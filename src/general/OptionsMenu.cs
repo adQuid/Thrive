@@ -1026,6 +1026,13 @@ public class OptionsMenu : Control
         UpdateResetSaveButtonState();
     }
 
+    private void OnHardModeToggled(bool pressed)
+    {
+        gameProperties.Difficulty = pressed ? 100.0f : 1.0f;
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnMaxAutoSavesValueChanged(float value)
     {
         Settings.Instance.MaxAutoSaves.Value = (int)value;
