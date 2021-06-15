@@ -80,7 +80,10 @@
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=80]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=81]
+[ext_resource path="res://assets/textures/DiscoBall.jpg" type="Texture" id=81]
+[ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=82]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=83]
+[ext_resource path="res://assets/textures/gui/bevel/parts/CytoplasmIcon.png" type="Texture" id=84]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -2011,6 +2014,47 @@ margin_left = 10.0
 margin_top = 30.0
 margin_right = 207.0
 
+[node name="HotBar" type="HBoxContainer" parent="MicrobeHUD"]
+margin_left = 460.0
+margin_top = 675.0
+margin_right = 839.0
+margin_bottom = 710.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EngulfmentKey" type="TextureButton" parent="MicrobeHUD/HotBar"]
+margin_left = 152.0
+margin_right = 187.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 35 )
+texture_normal = ExtResource( 82 )
+texture_pressed = ExtResource( 81 )
+texture_hover = ExtResource( 82 )
+expand = true
+
+[node name="FiretoxinKey" type="TextureButton" parent="MicrobeHUD/HotBar"]
+margin_left = 191.0
+margin_right = 226.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 35 )
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 81 )
+texture_hover = ExtResource( 15 )
+expand = true
+
+[node name="BindingModeKey" type="TextureButton" parent="MicrobeHUD/HotBar"]
+visible = false
+margin_left = 211.0
+margin_right = 246.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 35 )
+texture_normal = ExtResource( 66 )
+texture_pressed = ExtResource( 81 )
+texture_hover = ExtResource( 66 )
+expand = true
+
 [node name="HintText" type="Label" parent="MicrobeHUD"]
 anchor_right = 1.0
 margin_top = 35.0
@@ -2043,6 +2087,8 @@ visible = false
 [connection signal="mouse_exited" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
 [connection signal="OnClosed" from="MicrobeHUD/ProcessPanel" to="MicrobeHUD" method="OnProcessPanelClosed"]
+[connection signal="pressed" from="MicrobeHUD/HotBar/EngulfmentKey" to="MicrobeHUD" method="EngulfmentKeyPressed"]
+[connection signal="pressed" from="MicrobeHUD/HotBar/FiretoxinKey" to="MicrobeHUD" method="FiretoxinKeyPressed"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 [connection signal="OnClosed" from="PauseMenu" to="MicrobeHUD" method="CloseMenu"]
 [connection signal="OnOpenWithKeyPress" from="PauseMenu" to="MicrobeHUD" method="OpenMenu"]
