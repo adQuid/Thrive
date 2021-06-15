@@ -264,6 +264,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             }
         }
 
+        Constants.Difficulty = pauseMenu.GameProperties.Difficulty;
+
         pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
 
         tutorialGUI.EventReceiver = TutorialState;
@@ -294,6 +296,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     public void OnFinishLoading()
     {
         Camera.ObjectToFollow = Player;
+        Constants.Difficulty = pauseMenu.GameProperties.Difficulty;
     }
 
     public void StartNewGame()

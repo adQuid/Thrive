@@ -265,9 +265,9 @@ public static class Constants
     /// </summary>
     public const float ATP_COST_FOR_OSMOREGULATION = 1.0f;
 
-    public static float AtpCostWithDifficulty(GameProperties properties)
+    public static float AtpCostWithDifficulty()
     {
-        return ATP_COST_FOR_OSMOREGULATION * properties.Difficulty;
+        return ATP_COST_FOR_OSMOREGULATION * Difficulty;
     }
 
     /// <summary>
@@ -565,4 +565,6 @@ public static class Constants
             return "error (" + error.GetType().Name + ")";
         }
     }
+
+    public static float Difficulty;
 }
