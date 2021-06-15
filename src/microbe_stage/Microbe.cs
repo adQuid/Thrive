@@ -1968,7 +1968,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private void HandleOsmoregulation(float delta)
     {
         var osmoregulationCost = (HexCount * Species.MembraneType.OsmoregulationFactor *
-            Constants.AtpCostWithDifficulty(CurrentGame)) * delta;
+            Constants.AtpCostWithDifficulty()) * delta;
 
         Compounds.TakeCompound(atp, osmoregulationCost);
     }
