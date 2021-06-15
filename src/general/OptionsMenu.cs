@@ -242,6 +242,7 @@ public class OptionsMenu : Control
     private bool savedTutorialsEnabled;
 
     private GameProperties gameProperties;
+    private float difficultyAtStart;
 
     /*
       Signals
@@ -383,6 +384,7 @@ public class OptionsMenu : Control
 
         // Need a reference to game properties in the current game for later comparisons.
         this.gameProperties = gameProperties;
+        this.difficultyAtStart = gameProperties.Difficulty;
 
         // Set the mode to the one we opened with, and show/hide any options that should only be visible
         // when the options menu is opened from in-game.
@@ -663,6 +665,10 @@ public class OptionsMenu : Control
     {
         // Compare global settings.
         if (Settings.Instance != savedSettings)
+            return false;
+
+        // Difficulty is stored in GameProperties, so needs to be checked seperately
+        if (difficultyAtStart != gameProperties.Difficulty)
             return false;
 
         // If we're in game we need to compare the tutorials enabled state as well.
