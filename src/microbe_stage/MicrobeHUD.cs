@@ -974,4 +974,36 @@ public class MicrobeHUD : Node
     {
         processPanelButton.Pressed = false;
     }
+
+    // Actions performed from the hotbar
+    private void EngulfmentKeyPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        {
+            if (stage.Player == null)
+                return;
+
+            stage.Player.State = Microbe.MicrobeState.Engulf;
+        }
+    }
+
+    private void FiretoxinKeyPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        {
+            stage.Player?.EmitToxin();
+        }
+    }
+
+    private void UpdateHotBar()
+    {
+        if (stage.Player.Membrane.Type.CellWall)
+        {
+            //hotBar.GetNode<TextureRect>("EngulfmentKey").Hide();
+        }
+        else
+        {
+            //hotBar.GetNode<TextureRect>("EngulfmentKey").Show();
+        }
+    }
 }
