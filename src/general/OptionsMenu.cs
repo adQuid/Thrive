@@ -242,7 +242,7 @@ public class OptionsMenu : Control
     private bool savedTutorialsEnabled;
 
     private GameProperties gameProperties;
-    private float difficultyAtStart;
+    private float newDifficulty;
 
     /*
       Signals
@@ -384,7 +384,7 @@ public class OptionsMenu : Control
 
         // Need a reference to game properties in the current game for later comparisons.
         this.gameProperties = gameProperties;
-        this.difficultyAtStart = gameProperties.Difficulty;
+        this.newDifficulty = gameProperties.Difficulty;
 
         // Set the mode to the one we opened with, and show/hide any options that should only be visible
         // when the options menu is opened from in-game.
@@ -668,7 +668,7 @@ public class OptionsMenu : Control
             return false;
 
         // Difficulty is stored in GameProperties, so needs to be checked seperately
-        if (difficultyAtStart != gameProperties.Difficulty)
+        if (newDifficulty != gameProperties.Difficulty)
             return false;
 
         // If we're in game we need to compare the tutorials enabled state as well.
@@ -760,6 +760,8 @@ public class OptionsMenu : Control
 
         if (optionsMode == OptionsMode.InGame)
             savedTutorialsEnabled = gameProperties.TutorialState.Enabled;
+
+        gameProperties.Difficulty = newDifficulty;
 
         UpdateResetSaveButtonState();
     }
@@ -1034,7 +1036,7 @@ public class OptionsMenu : Control
 
     private void OnHardModeToggled(bool pressed)
     {
-        gameProperties.Difficulty = pressed ? 100.0f : 1.0f;
+        newDifficulty = pressed ? 100.0f : 1.0f;
 
         UpdateResetSaveButtonState();
     }
