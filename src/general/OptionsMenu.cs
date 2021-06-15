@@ -790,6 +790,7 @@ public class OptionsMenu : Control
         // Copy over the new saved settings.
         savedSettings = Settings.Instance.Clone();
         gameProperties.Difficulty = newDifficulty;
+        Mutations.GameDifficulty = newDifficulty;
     }
 
     private void BackDiscardSelected()
@@ -1035,7 +1036,7 @@ public class OptionsMenu : Control
 
     private void OnHardModeToggled(bool pressed)
     {
-        newDifficulty = pressed ? 100.0f : 1.0f;
+        newDifficulty = pressed ? 2.0f : 1.0f;
 
         UpdateResetSaveButtonState();
     }
