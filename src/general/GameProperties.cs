@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 public class GameProperties
 {
     [JsonProperty]
+    public float Difficulty = 1.0f;
+
+    [JsonProperty]
     private readonly Dictionary<string, bool> setBoolStatuses = new Dictionary<string, bool>();
 
     [JsonProperty]
