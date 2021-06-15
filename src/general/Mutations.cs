@@ -27,9 +27,6 @@ public class Mutations
         "n", "p", "q", "s", "t", "v", "w", "x", "y", "z",
     };
 
-    // TODO: Find a cleaner way to pass that around
-    public static float GameDifficulty = 1.0f;
-
     [JsonProperty]
     private Random random = new Random();
 

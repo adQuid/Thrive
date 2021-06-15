@@ -790,7 +790,6 @@ public class OptionsMenu : Control
         // Copy over the new saved settings.
         savedSettings = Settings.Instance.Clone();
         gameProperties.Difficulty = newDifficulty;
-        Mutations.GameDifficulty = newDifficulty;
     }
 
     private void BackDiscardSelected()
