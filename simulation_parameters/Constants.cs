@@ -265,6 +265,11 @@ public static class Constants
     /// </summary>
     public const float ATP_COST_FOR_OSMOREGULATION = 1.0f;
 
+    public static float AtpCostWithDifficulty(GameProperties properties)
+    {
+        return ATP_COST_FOR_OSMOREGULATION * properties.Difficulty;
+    }
+
     /// <summary>
     ///   The default contact store count for objects using contact reporting
     /// </summary>
