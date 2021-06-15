@@ -326,7 +326,7 @@ public class OptionsMenu : Control
         tutorialsEnabledOnNewGame = GetNode<CheckBox>(TutorialsEnabledOnNewGamePath);
         cheats = GetNode<CheckBox>(CheatsPath);
         autoSave = GetNode<CheckBox>(AutoSavePath);
-        autoSave = GetNode<CheckBox>(HardModePath);
+        hardMode = GetNode<CheckBox>(HardModePath);
         maxAutoSaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuickSaves = GetNode<SpinBox>(MaxQuickSavesPath);
         tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
@@ -389,7 +389,7 @@ public class OptionsMenu : Control
 
         // Need a reference to game properties in the current game for later comparisons.
         this.gameProperties = gameProperties;
-        this.newDifficulty = gameProperties.Difficulty;
+        newDifficulty = gameProperties.Difficulty;
 
         // Set the mode to the one we opened with, and show/hide any options that should only be visible
         // when the options menu is opened from in-game.
