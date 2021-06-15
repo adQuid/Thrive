@@ -983,7 +983,14 @@ public class MicrobeHUD : Node
             if (stage.Player == null)
                 return;
 
-            stage.Player.State = Microbe.MicrobeState.Engulf;
+            if (stage.Player.State == Microbe.MicrobeState.Engulf)
+            {
+                stage.Player.State = Microbe.MicrobeState.Normal;
+            }
+            else
+            {
+                stage.Player.State = Microbe.MicrobeState.Engulf;
+            }
         }
     }
 
