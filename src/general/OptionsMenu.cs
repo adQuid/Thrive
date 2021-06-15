@@ -747,21 +747,10 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Save the new settings to the config file.
-        if (!Settings.Instance.Save())
-        {
-            GD.PrintErr("Failed to save new options menu settings to configuration file.");
-            errorAcceptBox.PopupCenteredShrink();
-            return;
-        }
-
-        // Copy over the new saved settings.
-        savedSettings = Settings.Instance.Clone();
+        Save();
 
         if (optionsMode == OptionsMode.InGame)
             savedTutorialsEnabled = gameProperties.TutorialState.Enabled;
-
-        gameProperties.Difficulty = newDifficulty;
 
         UpdateResetSaveButtonState();
     }
@@ -775,22 +764,26 @@ public class OptionsMenu : Control
 
     private void BackSaveSelected()
     {
+        Save();
+        backConfirmationBox.Hide();
+
+        UpdateResetSaveButtonState();
+        EmitSignal(nameof(OnOptionsClosed));
+    }
+
+    private void Save()
+    {
         // Save the new settings to the config file.
         if (!Settings.Instance.Save())
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
-            backConfirmationBox.Hide();
             errorAcceptBox.PopupCenteredShrink();
-
             return;
         }
 
         // Copy over the new saved settings.
         savedSettings = Settings.Instance.Clone();
-        backConfirmationBox.Hide();
-
-        UpdateResetSaveButtonState();
-        EmitSignal(nameof(OnOptionsClosed));
+        gameProperties.Difficulty = newDifficulty;
     }
 
     private void BackDiscardSelected()
