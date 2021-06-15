@@ -1035,7 +1035,7 @@ public class OptionsMenu : Control
 
     private void OnHardModeToggled(bool pressed)
     {
-        newDifficulty = pressed ? 2.0f : 1.0f;
+        newDifficulty = pressed ? 1.5f : 1.0f;
 
         UpdateResetSaveButtonState();
     }
