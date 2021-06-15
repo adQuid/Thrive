@@ -133,6 +133,9 @@ public class OptionsMenu : Control
     public NodePath AutoSavePath;
 
     [Export]
+    public NodePath HardModePath;
+
+    [Export]
     public NodePath MaxAutoSavesPath;
 
     [Export]
@@ -214,6 +217,7 @@ public class OptionsMenu : Control
     private CheckBox cheats;
     private CheckBox tutorialsEnabledOnNewGame;
     private CheckBox autoSave;
+    private CheckBox hardMode;
     private SpinBox maxAutoSaves;
     private SpinBox maxQuickSaves;
     private CheckBox customUsernameEnabled;
@@ -322,6 +326,7 @@ public class OptionsMenu : Control
         tutorialsEnabledOnNewGame = GetNode<CheckBox>(TutorialsEnabledOnNewGamePath);
         cheats = GetNode<CheckBox>(CheatsPath);
         autoSave = GetNode<CheckBox>(AutoSavePath);
+        autoSave = GetNode<CheckBox>(HardModePath);
         maxAutoSaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuickSaves = GetNode<SpinBox>(MaxQuickSavesPath);
         tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
@@ -444,6 +449,7 @@ public class OptionsMenu : Control
         tutorialsEnabledOnNewGame.Pressed = settings.TutorialsEnabled;
         cheats.Pressed = settings.CheatsEnabled;
         autoSave.Pressed = settings.AutoSaveEnabled;
+        hardMode.Pressed = gameProperties.Difficulty > 1.0f;
         maxAutoSaves.Value = settings.MaxAutoSaves;
         maxAutoSaves.Editable = settings.AutoSaveEnabled;
         maxQuickSaves.Value = settings.MaxQuickSaves;
