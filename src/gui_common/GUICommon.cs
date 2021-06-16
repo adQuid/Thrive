@@ -55,7 +55,6 @@ public class GUICommon : Node
         popup.RectPosition = new Vector2(left, top);
     }
 
-    // Totally useless comment
 
     /// <summary>
     ///   Play the button click sound effect.
