@@ -57,6 +57,7 @@ public class MainMenu : NodeWithInput
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
+    private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
     private ModManager modManager = null!;
@@ -188,6 +189,7 @@ public class MainMenu : NodeWithInput
         RandomizeBackground();
 
         options = GetNode<OptionsMenu>("OptionsMenu");
+        newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
@@ -283,13 +285,44 @@ public class MainMenu : NodeWithInput
         // Start music after the video
         StartMusic();
     }
+    public void OnMicrobeIntroEnded()
+    {
+        OnEnteringGame();
+
+        // TODO: Add loading screen while changing between scenes
+        SceneManager.Instance.SwitchToScene(MainGameState.MicrobeStage);
+    }
+
+    private void OnFreebuildFadeInEnded()
+    {
+        OnEnteringGame();
+
+        // Instantiate a new editor scene
+        var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
+
+        // Start freebuild game
+        editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
+
+        // Switch to the editor scene
+        SceneManager.Instance.SwitchToScene(editor);
+    }
 
     private void NewGamePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Disable the button to prevent it being executed again.
-        newGameButton.Disabled = true;
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the options
+        newGameSettings.OpenFromMainMenu();
+
+        thriveLogo.Hide();
+    }
+
+    public void NewGameSetupDone(WorldGenerationSettings settings)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
@@ -386,6 +419,15 @@ public class MainMenu : NodeWithInput
     private void OnReturnFromOptions()
     {
         options.Visible = false;
+
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
+    }
+
+    private void OnReturnFromNewGameSettings()
+    {
+        newGameSettings.Visible = false;
 
         SetCurrentMenu(0, false);
 
