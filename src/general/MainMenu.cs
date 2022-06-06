@@ -347,7 +347,10 @@ public class MainMenu : NodeWithInput
             OnEnteringGame();
 
             // TODO: Add loading screen while changing between scenes
-            SceneManager.Instance.SwitchToScene(MainGameState.MicrobeStage);
+            var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
+            GD.Print(settings);
+            microbeStage.WorldSettings = settings;
+            SceneManager.Instance.SwitchToScene(microbeStage);
         });
     }
 
@@ -378,7 +381,7 @@ public class MainMenu : NodeWithInput
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 
             // Start freebuild game
-            editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
+            editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true);
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);

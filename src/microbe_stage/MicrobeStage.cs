@@ -118,6 +118,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [JsonIgnore]
     public PlayerHoverInfo HoverInfo { get; private set; } = null!;
 
+    [JsonProperty]
+    public WorldGenerationSettings? WorldSettings { get; set; }
+
     /// <summary>
     ///   The main current game object holding various details
     /// </summary>
@@ -342,7 +345,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public void StartNewGame()
     {
-        CurrentGame = GameProperties.StartNewMicrobeGame();
+        WorldSettings ??= new WorldGenerationSettings();
+        CurrentGame = GameProperties.StartNewMicrobeGame(WorldSettings);
 
         patchManager.CurrentGame = CurrentGame;
 
