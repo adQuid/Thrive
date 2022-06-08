@@ -22,7 +22,7 @@ public class FloatingChunkSystem
         clouds = cloudSystem;
     }
 
-    public void Process(float delta, Vector3? playerPosition)
+    public void Process(float delta, Vector3? playerPosition, List<Microbe> allMicrobes)
     {
         if (playerPosition != null)
             latestPlayerPosition = playerPosition.Value;
@@ -52,6 +52,26 @@ public class FloatingChunkSystem
         foreach (var chunk in chunks)
         {
             chunk.ProcessChunk(delta, clouds);
+
+            //TODO: Make this not terrible
+            foreach (var microbe in allMicrobes.Where(m => m.State == Microbe.MicrobeState.Engulf))
+            {
+                var ciliaCount = 0;
+
+                foreach (var organelle in microbe.organelles)
+                {
+                    if (organelle.Definition.HasComponentFactory<CiliaComponentFactory>())
+                    {
+                        ciliaCount++;
+                    }
+                }
+
+                if (ciliaCount > 0
+                    && (microbe.GlobalTransform.origin - chunk.GlobalTransform.origin).LengthSquared() < 500.0f)
+                {
+                    chunk.ApplyCentralImpulse((microbe.GlobalTransform.origin - chunk.Translation) * 0.15f * ciliaCount);
+                }
+            }
         }
 
         findTooManyChunksTask.Wait();

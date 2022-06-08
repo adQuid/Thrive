@@ -29,7 +29,7 @@ public partial class Microbe
     ///   The organelles in this microbe
     /// </summary>
     [JsonProperty]
-    private OrganelleLayout<PlacedOrganelle>? organelles;
+    public OrganelleLayout<PlacedOrganelle>? organelles;
 
     [JsonProperty]
     private float lastCheckedATPDamage;

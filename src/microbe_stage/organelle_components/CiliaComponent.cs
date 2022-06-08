@@ -38,8 +38,15 @@ public class CiliaComponent : ExternallyPositionedComponent
         var rawRotation = previousCellRotation.Value.AngleTo(currentCellRotation);
         var rotationSpeed = rawRotation * Constants.CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER;
 
-        targetSpeed = Mathf.Clamp(rotationSpeed, Constants.CILIA_MIN_ANIMATION_SPEED,
+        if (organelle!.ParentMicrobe!.State == Microbe.MicrobeState.Engulf)
+        {
+            targetSpeed = Constants.CILIA_MAX_ANIMATION_SPEED;
+        }
+        else
+        {
+            targetSpeed = Mathf.Clamp(rotationSpeed, Constants.CILIA_MIN_ANIMATION_SPEED,
             Constants.CILIA_MAX_ANIMATION_SPEED);
+        }
 
         previousCellRotation = currentCellRotation;
 
