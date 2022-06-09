@@ -240,11 +240,11 @@ msgid "ABILITIES"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "FIRE_TOXIN"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:42
+
 #: ../src/microbe_stage/MicrobeStage.tscn:2164
 msgid "TOGGLE_ENGULF"
 msgstr ""
@@ -254,6 +254,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
+
 #: ../src/microbe_stage/MicrobeStage.tscn:2187
 msgid "TOGGLE_BINDING"
 msgstr ""
@@ -263,6 +264,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:58
+
 #: ../src/microbe_stage/MicrobeStage.tscn:2199
 msgid "UNBIND_ALL"
 msgstr ""
@@ -1526,13 +1528,21 @@ msgstr ""
 msgid "NEW_GAME"
 msgstr ""
 
+
 #: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
+
+#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:195
+msgid "LOAD_GAME_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr ""
+
 
 #: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
 msgid "OPTIONS_BUTTON_TOOLTIP"
@@ -1540,6 +1550,12 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:220
 #: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
+
+#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:220
+msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr ""
 
@@ -1559,6 +1575,7 @@ msgstr ""
 msgid "CREDITS"
 msgstr ""
 
+
 #: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:235
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
@@ -1567,9 +1584,10 @@ msgstr ""
 msgid "QUIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:277
+#: ../src/general/MainMenu.tscn:278
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
+
 
 
 #: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
@@ -1584,24 +1602,27 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:254
 
+
+#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
+#: ../src/general/MainMenu.tscn:453 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:358
+#: ../src/general/MainMenu.tscn:359
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:373
 msgid "ART_GALLERY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:384
+#: ../src/general/MainMenu.tscn:385
 msgid "LICENSES"
 msgstr ""
-
 
 
 #: ../src/general/MainMenu.tscn:495
@@ -1617,6 +1638,7 @@ msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:502
+
 
 #: ../src/general/MainMenu.tscn:497
 
@@ -2152,6 +2174,7 @@ msgstr ""
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
+
 #: ../src/general/PauseMenu.tscn:178
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr ""
@@ -2173,14 +2196,37 @@ msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:204
+
+#: ../src/general/PauseMenu.tscn:179
+msgid "PAUSE_MENU_RESUME_TOOLTIP"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:180
+msgid "RESUME"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:187
+msgid "SAVE_GAME_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:188
+msgid "SAVE_GAME"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:203
+msgid "STATISTICS_BUTTON_TOOLTIP"
+msgstr ""
+
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr ""
+
 
 #: ../src/general/PauseMenu.tscn:211
 #: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
+
 
 #: ../src/general/PauseMenu.tscn:212
 msgid "HELP"
@@ -2190,16 +2236,29 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
+#: ../src/general/PauseMenu.tscn:213
+msgid "HELP"
+msgstr ""
+
 #: ../src/general/PauseMenu.tscn:228
+msgid "RETURN_TO_MENU_TOOLTIP"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:229
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr ""
+
 
 #: ../src/general/PauseMenu.tscn:236
 msgid "EXIT"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:287
+#: ../src/general/PauseMenu.tscn:237
+msgid "EXIT"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr ""
 
@@ -3092,6 +3151,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1284
 
+
 #: ../src/microbe_stage/MicrobeHUD.cs:1285
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
@@ -3099,9 +3159,8 @@ msgstr ""
 
 
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1326
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1321
+#: ../src/microbe_stage/MicrobeHUD.cs:1326
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
@@ -3184,6 +3243,7 @@ msgstr ""
 
 
 
+
 #: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
@@ -3201,13 +3261,16 @@ msgid "POPULATION_CAPITAL"
 msgstr ""
 
 
+
 #: ../src/microbe_stage/MicrobeStage.tscn:1973
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2119
+#: ../src/microbe_stage/MicrobeStage.tscn:1969
+msgid "EDITOR_BUTTON_TOOLTIP"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2120
+#: ../src/microbe_stage/MicrobeStage.tscn:2115
 msgid "PAUSED"
 msgstr ""
 
