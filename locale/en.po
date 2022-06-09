@@ -10,6 +10,7 @@ msgstr ""
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 "POT-Creation-Date: 2022-06-09 14:12+0300\n"
 "PO-Revision-Date: 2022-06-07 15:38+0700\n"
 =======
@@ -21,6 +22,9 @@ msgstr ""
 >>>>>>> a1a5bd93 (Final changes and linter appeasement)
 =======
 "POT-Creation-Date: 2022-06-07 15:09+0700\n"
+=======
+"POT-Creation-Date: 2022-06-09 14:12+0300\n"
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 "PO-Revision-Date: 2022-06-07 15:38+0700\n"
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
@@ -308,6 +312,7 @@ msgstr "Abilities"
 #: ../simulation_parameters/common/input_options.json:38
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #: ../src/microbe_stage/MicrobeStage.tscn:2176
 =======
 #: ../src/microbe_stage/MicrobeStage.tscn:2177
@@ -315,10 +320,14 @@ msgstr "Abilities"
 =======
 #: ../src/microbe_stage/MicrobeStage.tscn:2172
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "FIRE_TOXIN"
 msgstr "Fire toxin"
 
 #: ../simulation_parameters/common/input_options.json:42
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 #: ../src/microbe_stage/MicrobeStage.tscn:2164
@@ -328,6 +337,9 @@ msgstr "Fire toxin"
 =======
 #: ../src/microbe_stage/MicrobeStage.tscn:2160
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/microbe_stage/MicrobeStage.tscn:2164
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "TOGGLE_ENGULF"
 msgstr "Toggle engulf"
 
@@ -338,6 +350,7 @@ msgstr "Hold to show pack commands menu"
 #: ../simulation_parameters/common/input_options.json:50
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #: ../src/microbe_stage/MicrobeStage.tscn:2187
 =======
 #: ../src/microbe_stage/MicrobeStage.tscn:2188
@@ -345,6 +358,9 @@ msgstr "Hold to show pack commands menu"
 =======
 #: ../src/microbe_stage/MicrobeStage.tscn:2183
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/microbe_stage/MicrobeStage.tscn:2187
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "TOGGLE_BINDING"
 msgstr "Toggle binding"
 
@@ -355,6 +371,7 @@ msgstr "Toggle unbinding"
 #: ../simulation_parameters/common/input_options.json:58
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #: ../src/microbe_stage/MicrobeStage.tscn:2199
 =======
 #: ../src/microbe_stage/MicrobeStage.tscn:2200
@@ -362,6 +379,9 @@ msgstr "Toggle unbinding"
 =======
 #: ../src/microbe_stage/MicrobeStage.tscn:2195
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/microbe_stage/MicrobeStage.tscn:2199
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "UNBIND_ALL"
 msgstr "Unbind all"
 
@@ -1676,16 +1696,21 @@ msgstr "New Game"
 msgid "NEW_GAME"
 msgstr "New Game"
 
-#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Load previously saved games"
 
+<<<<<<< HEAD
 #: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:196
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:195
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Load Game"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1707,6 +1732,13 @@ msgstr "Change your settings"
 
 #: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:221
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
+msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr "Change your settings"
+
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:220
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "OPTIONS"
 msgstr "Options"
 
@@ -1729,6 +1761,7 @@ msgstr "Credits"
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:235
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Exit the game"
@@ -1741,6 +1774,9 @@ msgstr "Exit the game"
 >>>>>>> 3b730936 (Ai mutation setting (#3390))
 =======
 #: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:236
+=======
+#: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:235
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Exit the game"
 
@@ -1770,8 +1806,12 @@ msgstr "Microbe Freebuild Editor"
 =======
 #: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
 #: ../src/general/MainMenu.tscn:453 ../src/general/OptionsMenu.tscn:1184
+<<<<<<< HEAD
 #: ../src/general/PauseMenu.tscn:263
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/general/PauseMenu.tscn:262
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -2365,6 +2405,7 @@ msgstr ""
 "You will lose any unsaved progress."
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #: ../src/general/PauseMenu.tscn:178
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Return to the game"
@@ -2388,40 +2429,52 @@ msgstr "Insightful stats about the current game"
 #: ../src/general/PauseMenu.tscn:204
 =======
 #: ../src/general/PauseMenu.tscn:179
+=======
+#: ../src/general/PauseMenu.tscn:178
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Return to the game"
 
-#: ../src/general/PauseMenu.tscn:180
+#: ../src/general/PauseMenu.tscn:179
 msgid "RESUME"
 msgstr "Resume"
 
-#: ../src/general/PauseMenu.tscn:187
+#: ../src/general/PauseMenu.tscn:186
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr "Open the save menu to save the game"
 
-#: ../src/general/PauseMenu.tscn:188
+#: ../src/general/PauseMenu.tscn:187
 msgid "SAVE_GAME"
 msgstr "Save Game"
 
-#: ../src/general/PauseMenu.tscn:203
+#: ../src/general/PauseMenu.tscn:202
 msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr "Insightful stats about the current game"
 
+<<<<<<< HEAD
 #: ../src/general/PauseMenu.tscn:205
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/general/PauseMenu.tscn:204
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Statistics"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #: ../src/general/PauseMenu.tscn:211
 =======
 #: ../src/general/PauseMenu.tscn:212
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/general/PauseMenu.tscn:211
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "How to play the game"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #: ../src/general/PauseMenu.tscn:212
 msgid "HELP"
@@ -2434,19 +2487,27 @@ msgstr "Exit to the main menu"
 #: ../src/general/PauseMenu.tscn:228
 =======
 #: ../src/general/PauseMenu.tscn:213
+=======
+#: ../src/general/PauseMenu.tscn:212
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "HELP"
 msgstr "Help"
 
-#: ../src/general/PauseMenu.tscn:228
+#: ../src/general/PauseMenu.tscn:227
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Exit to the main menu"
 
+<<<<<<< HEAD
 #: ../src/general/PauseMenu.tscn:229
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/general/PauseMenu.tscn:228
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Return to Menu"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #: ../src/general/PauseMenu.tscn:236
 msgid "EXIT"
@@ -2460,6 +2521,13 @@ msgstr "Exit"
 
 #: ../src/general/PauseMenu.tscn:288
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/general/PauseMenu.tscn:236
+msgid "EXIT"
+msgstr "Exit"
+
+#: ../src/general/PauseMenu.tscn:287
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "CONFIRM_EXIT"
 msgstr "Confirm Exit"
 
@@ -3142,10 +3210,14 @@ msgstr "No processes"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
 <<<<<<< HEAD
+<<<<<<< HEAD
 #: ../src/microbe_stage/MicrobeHUD.cs:1505
 =======
 #: ../src/microbe_stage/MicrobeHUD.cs:1500
 >>>>>>> 3b730936 (Ai mutation setting (#3390))
+=======
+#: ../src/microbe_stage/MicrobeHUD.cs:1505
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "TO_BE_IMPLEMENTED"
 msgstr "To be Implemented."
 
@@ -3395,6 +3467,7 @@ msgstr "very little"
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #: ../src/microbe_stage/MicrobeHUD.cs:1290
 =======
 #: ../src/microbe_stage/MicrobeHUD.cs:1284
@@ -3405,10 +3478,14 @@ msgstr "very little"
 >>>>>>> 3b730936 (Ai mutation setting (#3390))
 =======
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/microbe_stage/MicrobeHUD.cs:1290
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr "Become Multicellular ({0}/{1})"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 #: ../src/microbe_stage/MicrobeHUD.cs:1326
@@ -3421,6 +3498,9 @@ msgstr "Become Multicellular ({0}/{1})"
 >>>>>>> 3b730936 (Ai mutation setting (#3390))
 =======
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/microbe_stage/MicrobeHUD.cs:1326
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr "Become Macroscopic ({0}/{1})"
@@ -3525,6 +3605,7 @@ msgstr "POPULATION:"
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #: ../src/microbe_stage/MicrobeStage.tscn:1973
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Enter the editor and modify your species"
@@ -3540,6 +3621,13 @@ msgstr "Enter the editor and modify your species"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2115
 >>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
+=======
+#: ../src/microbe_stage/MicrobeStage.tscn:1973
+msgid "EDITOR_BUTTON_TOOLTIP"
+msgstr "Enter the editor and modify your species"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:2119
+>>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "PAUSED"
 msgstr "PAUSED"
 
