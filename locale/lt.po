@@ -1,25 +1,21 @@
 # Translations template for PROJECT.
-# Copyright (C) 2022 ORGANIZATION
+# Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2022-06-09 14:12+0300\n"
-=======
 "POT-Creation-Date: 2022-06-10 14:12+0100\n"
->>>>>>> f9027433 (Easter egg setting capability)
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.1\n"
+"Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
@@ -244,18 +240,11 @@ msgid "ABILITIES"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:38
-<<<<<<< HEAD
-=======
 #: ../src/microbe_stage/MicrobeStage.tscn:2176
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "FIRE_TOXIN"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:42
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/MicrobeStage.tscn:2164
 msgid "TOGGLE_ENGULF"
 msgstr ""
@@ -265,10 +254,6 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/MicrobeStage.tscn:2187
 msgid "TOGGLE_BINDING"
 msgstr ""
@@ -278,10 +263,6 @@ msgid "TOGGLE_UNBINDING"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:58
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/MicrobeStage.tscn:2199
 msgid "UNBIND_ALL"
 msgstr ""
@@ -1545,17 +1526,7 @@ msgstr ""
 msgid "NEW_GAME"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
-msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr ""
-
-
-#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:195
-=======
-#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1564,19 +1535,7 @@ msgstr ""
 msgid "LOAD_GAME"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
-msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:220
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
-
-#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:220
-=======
-#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1600,10 +1559,6 @@ msgstr ""
 msgid "CREDITS"
 msgstr ""
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:235
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
@@ -1616,29 +1571,9 @@ msgstr ""
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-
-
 #: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-
-#: ../src/general/MainMenu.tscn:453 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:262
-
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:873
-
-#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
-#: ../src/general/MainMenu.tscn:455 ../src/general/NewGameSettings.tscn:926
-
-#: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:254
-
-
-#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-<<<<<<< HEAD
-#: ../src/general/MainMenu.tscn:453 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:262
-=======
 #: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1013
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:262
->>>>>>> f9027433 (Easter egg setting capability)
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1657,78 +1592,49 @@ msgstr ""
 msgid "LICENSES"
 msgstr ""
 
-
-#: ../src/general/MainMenu.tscn:495
-msgid "GLES2_MODE_WARNING"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:497
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:501
-msgid "MOD_LOAD_ERRORS"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:502
-
-
-#: ../src/general/MainMenu.tscn:497
-
-#: ../src/general/MainMenu.tscn:496
-msgid "GLES2_MODE_WARNING"
-msgstr ""
-
 #: ../src/general/MainMenu.tscn:498
+msgid "GLES2_MODE_WARNING"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-
-
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:115
+#: ../src/general/NewGameSettings.tscn:114
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
+#: ../src/general/NewGameSettings.tscn:128
 #: ../src/general/NewGameSettings.tscn:129
-#: ../src/general/NewGameSettings.tscn:130
 #: ../src/general/NewGameSettings.tscn:342
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
-<<<<<<< HEAD
-#: ../src/general/NewGameSettings.tscn:150
-#: ../src/general/NewGameSettings.tscn:754
-msgid "LIFE_ORIGIN"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:157
-#: ../src/general/NewGameSettings.tscn:761
-=======
 #: ../src/general/NewGameSettings.tscn:149
 #: ../src/general/NewGameSettings.tscn:822
 msgid "LIFE_ORIGIN"
@@ -1736,41 +1642,11 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:156
 #: ../src/general/NewGameSettings.tscn:829
->>>>>>> f9027433 (Easter egg setting capability)
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
 
+#: ../src/general/NewGameSettings.tscn:171
 #: ../src/general/NewGameSettings.tscn:172
-<<<<<<< HEAD
-#: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:776
-#: ../src/general/NewGameSettings.tscn:777
-msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:777
-msgid "LIFE_ORIGIN_POND"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:777
-msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:188
-#: ../src/general/NewGameSettings.tscn:792
-msgid "LAWK_ONLY"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:195
-#: ../src/general/NewGameSettings.tscn:799
-msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:810
-=======
 #: ../src/general/NewGameSettings.tscn:844
 #: ../src/general/NewGameSettings.tscn:845
 msgid "LIFE_ORIGIN_VENTS"
@@ -1798,19 +1674,18 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:205
 #: ../src/general/NewGameSettings.tscn:878
->>>>>>> f9027433 (Easter egg setting capability)
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:269
+#: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:279
+#: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:289 ../src/general/OptionsMenu.tscn:179
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
 msgstr ""
 
@@ -2255,8 +2130,6 @@ msgstr ""
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/PauseMenu.tscn:178
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr ""
@@ -2278,61 +2151,16 @@ msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:204
-
-#: ../src/general/PauseMenu.tscn:179
-=======
-#: ../src/general/PauseMenu.tscn:178
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
-msgid "PAUSE_MENU_RESUME_TOOLTIP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:179
-msgid "RESUME"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:186
-msgid "SAVE_GAME_BUTTON_TOOLTIP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:187
-msgid "SAVE_GAME"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:202
-msgid "STATISTICS_BUTTON_TOOLTIP"
-msgstr ""
-
-<<<<<<< HEAD
-=======
-#: ../src/general/PauseMenu.tscn:204
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr ""
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/general/PauseMenu.tscn:211
 #: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/PauseMenu.tscn:212
-msgid "HELP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:227
-msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:213
-=======
-#: ../src/general/PauseMenu.tscn:212
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "HELP"
 msgstr ""
 
@@ -2345,16 +2173,7 @@ msgstr ""
 msgid "RETURN_TO_MENU"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/PauseMenu.tscn:236
-msgid "EXIT"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:237
-=======
-#: ../src/general/PauseMenu.tscn:236
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "EXIT"
 msgstr ""
 
@@ -3002,14 +2821,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-<<<<<<< HEAD
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1505
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1500
-=======
-#: ../src/microbe_stage/MicrobeHUD.cs:1505
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
+#: ../src/microbe_stage/MicrobeHUD.cs:1506
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
@@ -3249,29 +3061,12 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-<<<<<<< HEAD
-
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1290
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1284
-
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1285
-=======
-#: ../src/microbe_stage/MicrobeHUD.cs:1290
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
+#: ../src/microbe_stage/MicrobeHUD.cs:1291
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
-#: ../src/microbe_stage/MicrobeHUD.cs:1326
+#: ../src/microbe_stage/MicrobeHUD.cs:1327
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
@@ -3352,13 +3147,6 @@ msgstr ""
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-
-
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1724
-msgid "HELP_BUTTON_TOOLTIP"
-msgstr ""
-
 #: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
@@ -3371,17 +3159,7 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-<<<<<<< HEAD
-
-
 #: ../src/microbe_stage/MicrobeStage.tscn:1973
-msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1969
-=======
-#: ../src/microbe_stage/MicrobeStage.tscn:1973
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4745,4 +4523,3 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
-

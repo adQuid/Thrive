@@ -104,6 +104,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         HandleCloudSpawns(currentPatch.Biome);
         HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
+        HandleEasterEggSpawns();
 
         RemoveNonMarkedSpawners();
 
@@ -117,6 +118,9 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private void HandleChunkSpawns(BiomeConditions biome)
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
+
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
         foreach (var entry in biome.Chunks)
@@ -126,7 +130,12 @@ public class PatchManager : IChildPropertiesLoadCallback
                 {
                     var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
+<<<<<<< HEAD
                     spawnSystem.AddSpawnType(spawner.Spawner, CurrentGame == null ? entry.Value.Density : (float)(entry.Value.Density * CurrentGame.WorldSettings.CompoundDensity),
+=======
+                    spawnSystem.AddSpawnType(spawner.Spawner,
+                        (float)(entry.Value.Density * CurrentGame.WorldSettings.CompoundDensity),
+>>>>>>> f9027433 (Easter egg setting capability)
                         Constants.MICROBE_SPAWN_RADIUS);
 
                     return spawner;
@@ -136,6 +145,9 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private void HandleCloudSpawns(BiomeConditions biome)
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
+
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
         foreach (var entry in biome.Compounds)
@@ -148,7 +160,11 @@ public class PatchManager : IChildPropertiesLoadCallback
                         Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
 
                     spawnSystem.AddSpawnType(spawner.Spawner,
+<<<<<<< HEAD
                     CurrentGame == null ? entry.Value.Density : (float)(entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR * CurrentGame.WorldSettings.CompoundDensity),
+=======
+                        (float)(entry.Value.Density * CurrentGame.WorldSettings.CompoundDensity),
+>>>>>>> f9027433 (Easter egg setting capability)
                         Constants.CLOUD_SPAWN_RADIUS);
 
                     return spawner;
@@ -187,6 +203,28 @@ public class PatchManager : IChildPropertiesLoadCallback
                         Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 }, new MicrobeSpawnerComparer());
+        }
+    }
+
+    private void HandleEasterEggSpawns()
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
+
+        if (!CurrentGame.WorldSettings.EasterEggs)
+            return;
+
+        // TODO: replace with actual list of Easter eggs once they're in the game
+        string[] easterEggs = {};
+
+        // Randomly choose to spawn Easter eggs in this patch
+        var random = new Random();
+        foreach (var easterEgg in easterEggs)
+        {
+            if (random.NextDouble() < Constants.EASTER_EGG_SPAWN_PROBABILITY)
+            {
+                // TODO: spawn Easter eggs
+            }
         }
     }
 

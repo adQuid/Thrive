@@ -1,482 +1,511 @@
 # Translations template for PROJECT.
-# Copyright (C) 2022 ORGANIZATION
+# Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2022-06-09 14:12+0300\n"
-=======
 "POT-Creation-Date: 2022-06-10 14:12+0100\n"
->>>>>>> f9027433 (Easter egg setting capability)
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2022-03-21 19:55+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
+"Language: lv\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.1\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
+"X-Generator: Weblate 4.11.2\n"
+"Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
+msgstr "Jūsu šūna izmanto [thrive:compound type=\"atp\"][/thrive:compound] kā enerģijas avotu, ja tā beidzas, jūs nomirsiet."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
+msgstr "Lai atbloķētu redaktoru un vairoties, jums jāsavāc amonjaks (oranžs mākonis) un fosfāts (purpurs mākonis)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
+msgstr "Jūs varat arī absorbēt šūnas, baktērijas, kā arī dzelzs un šūnu gabalus, kas ir mazāki par jūs, nospiežot [thrive:input][g_toggle_engulf[/thrive:input]. Tas maksās papildu [thrive:compound type=\"atp\"][/thrive:compound], kā arī jūs palēninās. Neaizmirsti nospiest [thrive:input]g_toggle_engulf[/thrive:input] otrreiz, lai pārtrauktu absorbēšanu."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
+msgstr "Osmoregulācija izmanto [thrive:compound type=\"atp\"][/thrive:compound]. Tas nozīmē, ka, jo lielāka ir tava šūna, jo vairāk [thrive:compound type=\"atp\"][/thrive:compound] ražojošu organoīdu tev ir nepieciešams, lai nezaudētu ATP, kad nekusties."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
+msgstr "Redaktorā ir daudz organoīdu, kurus vari attīstīt, pieļaujot daudz dažādu spēles stilu."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
+"Dažādi savienojumu mākoņi ir:\n"
+"\n"
+"Balti - glikoze\n"
+"Dzelteni - sērūdeņradis\n"
+"Oranži - amonjaks\n"
+"Purpuri - fosfāts\n"
+"Rūsas brūni - dzelzs\n"
+"\n"
+"Glikoze ražo ATP."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
+msgstr "Sērūdeņradi var pārveidot glikozē, izmantojot hemoplastus un hemosintezējošas olbaltumvielas. Ar rusticianīnu no dzelzs var ražot ATP."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
+msgstr "Lai vairoties, katrs no tavam organoīdiem jāsadala divās daļās. Organoīdiem ir nepieciešams amonjaks un fosfāts, lai sadalītos."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
+msgstr "Pagaidām, ja tava populācija samazināsies līdz nullei, tu izmirsi."
 
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
+msgstr "Bet, ja tu izdzīvo divdesmit ģenerācijās ar 300 iedzīvotājiem, pašlaik tiek uzskatīts, ka esi uzvarējis spēlē. Pēc uzvaras tu vari turpināt spēlēt, kā vēlies."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
+msgstr "Esiet uzmanīgi, jo jūsu konkurenti evolucionē vienlaikus jums. Katru reizi, kad jūs esiet rediģētājā, tie arī evolucionē."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
+msgstr "Savienojot citas šūnas, jūs varat veidot koloniju, kurā šūnas dalās ar savienojumiem, ko absorbē un ražo ar vienu otru. Lai varētu savieno savienoties ar citu šūnu, jums ir nepieciešams saistvielas organoīds un tad virzieties pretī tai pēc savienošanas režīma ieslēgšanas. Jūs varat savienoties tikai ar savas sugas pārstāvjiem. Kāmēram esiet kolonijā, jūs nevariet sadalīt savu šūnu un ieiet redaktorā(pagaidām). Lai ieietu redaktorā, vispirms ir jāpamet kolonija tad, kad jums ir pietiekami daudz savienojumi savākti un tad ieejiet redaktorā. Lielās šūnu kolonijas ir ceļš uz daudžšūnību (tas nav vēl spēlē)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
+"Ārējie organoīdi\n"
+"\n"
+"Vica: Pārvieto jūsu šūnu ātrāk, izmantojot [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Pīluss: Var sadurt citas šūnas"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
+"Membrānas piesaistītie organoīdi\n"
+"\n"
+"Kodols: Aizņem 11 heksades un atļauj membrānai piesaistītām organoīdu evolūcijai, kā arī dubultu šūnas lielumu (to var evolucionēt tikai 1 reizi)\n"
+"\n"
+"Saistviela: Atļauj savienoties ar citām šūnām\n"
+"\n"
+"Mitohondrijs: Ražo [thrive:compound type=\"atp\"][/thrive:compound] no [thrive:compound type=\"glucose\"][/thrive:compound] un atmosfērisku O2 efektīvāk nekā citoplazma\n"
+"\n"
+"Hloroplasti: Ražo [thrive:compound type=\"glucose\"][/thrive:compound] no saules gaismas un atmosfēriskā CO2\n"
+"\n"
+"Ķīmijplasts: Ražo [thrive:compound type=\"glucose\"][/thrive:compound] no [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"\n"
+"Slāpekļa fiksācijas plastids: Ražo [thrive:compound type=\"ammonia\"][/thrive:compound] no [thrive:compound type=\"atp\"][/thrive:compound] un atmosfēriskā Slāpekļā un Skābekļa\n"
+"\n"
+"Vakuola: Glabā 8 sakrātos savienojumus\n"
+"\n"
+"Toksīnu Vakuolas: Ražo toksīnus (called [thrive:compound type=\"oxytoxy\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
+msgstr "Katru paaudzi, jums ir 100 mutācijas punkti (MP), ko drīkstiet patērēt, un katru izmaiņa (vai mutācija) maksās konkrētu skaitu tā MP. Pievienojot vai noņemot organoīdus maksās MP. Tomēr noņemot organoīdus, kuri tika pievienoti šajā mutāciajs sesijā, atmaksās MP par to organoīdu. Jūs varat pārvietot vai pavisam noņemt organoīdu ar labo klikšķi uz tās un izvēloties konkrēto darbību no uznirstošās izvēlnes. Jūs varat rotēt jūsu organoīdus, kāmēr jūs tās liekat, ar [thrive:input]e_rotate_left[/thrive:input] un [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
+msgstr "Katru reizi, kad jūs pavairojaties, jūs ieejat Mikrobu Redaktorā, kur jūs varat veikt izmaiņas jūsu sugai (Pievenojot, pārvietojot vai noņemot organoīdus), lai palielinātu jūsu sugas panākumus. Katrs apmeklējums redaktorā mikroba posmā pārstāv [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljonus evolucijas gadus."
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
-msgstr ""
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
 
 #: ../simulation_parameters/common/help_texts.json:126
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
+msgstr "Jautrs fakts; Didīnijs un Paramēcijs ir mācību grāmats piemērs plēsēja un upura attiecībām, ko pētīja vairākas desmitgades. Šobrī, vai jūs esat Didīnijs, vai tomēr Paramēcijs? Plēsējs vai upurs?"
 
 #: ../simulation_parameters/common/help_texts.json:129
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
+msgstr "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja esi pietiekami ātrs."
 
 #: ../simulation_parameters/common/help_texts.json:132
 msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
+msgstr "Padoms: Osmoregulācija maksā 1 ATP sekundē par daļu tavā šūnā, katra tukšā citoplazmas daļa rada 5 ATP sekundē, kas nozīmē, ka, ja tu zaudē ATP osmoregulācijas dēļ, vienkārši pievieno vairāk tukšu citoplazmas daļu vai noņem dažus organoīdus."
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
+msgstr "Jautrs fakts, Īstajā dzīvē prokariotiem ir tāda lieta, ko sauc par bio nodalījumiem, kas rīkojas kā organoīdi un tos arī sauc par daudzskaldņu organoīdiem."
 
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
+msgstr "Jautrs fakts, metabolosoma ir to, ko sauc par daudzskaldņa organoīdu."
 
 #: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
+msgstr "Padoms: dažreiz labākā rīcība ir vienkārši bēgt no citām šūnām."
 
 #: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
+msgstr "Padoms: tu vari absorbēt šūnu, ja tā ir aptuveni puse no tavas šūnas lieluma."
 
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
+msgstr "Rekur padoms, baktērijas var izskatīties stirpākas nekā tās ir, tās var būt mazas, bet dažas var ieurbties iekš jūs un nogalināt jūs tā!"
 
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
+msgstr "Rekur padoms, jūs varat nomedīt citas sugas līz izmiršanai, ja neesat pietiekami akurāts. Citas sugas arī to spēj darīt."
 
 #: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
+msgstr "ŠŪPOJOŠĀS LIETAS!"
 
 #: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
+msgstr "Kausē kausējumu."
 
 #: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
+msgstr "Tās zilās šūnas tak."
 
 #: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
+msgstr "Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos biomos dažreiz parādās ar dažādiem biežumiem."
 
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
+msgstr "Padoms: jo vairāk tev ir vicu, jo ātrāk tu esi, bet tas arī maksā vairāk ATP"
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
+msgstr "Rekur padoms, jūs varat absorbēt gabalus, dzelža vai citus."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
+msgstr "Rekur padoms, sagatavojaties pirms pievienojat kodolu. Tās lietas ir dārgas! Gan uzturēšanā, gan nopirkšānā."
 
 #: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
+msgstr "Interesants fakts: vai zināji, ka uz Zemes ir vairāk nekā 8000 infuzoriju veidu?"
 
 #: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
+msgstr "Jautrs fakts, Stentors ir ciliāts, kas var stiept sevi un noķert upuri ar trompetei līdzīgu muti, kas pievelk savu upuri veicinot ūdens straumi ar skropstiņām."
 
 #: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_19"
-msgstr ""
+msgstr "Jautrs fakts, Didinijs ir ciliāts, kas medī paramecijus."
 
 #: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
+msgstr "Jautrs fakts, Amēba medī un noķer upurus ar \"kājām\", kuras veidotas no citoplazmas, ko sauc par pseidopodiem, mēs vēlamies tos drīz Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
+msgstr "Rekur padoms, uzmanieties no lielām šūnām un baktēŗijām, nav jautri būt sagremotam, un tie apēdīs jūs."
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
+msgstr "Thrive skaņas kommandas galvenais izveidoja tik daudz dziesmas, kuras vēl nav spēlē pievienotas. Jūs varat tās sadzirdēt, vai skatīties tiešraides, kur viņš sakomponē tās Youtube kanālā, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
+msgstr "Padoms: ja tavā šūnā ir 150 daļas, tā var absorbēt lielus dzelzs gabalus."
 
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
+msgstr "Thrive ir domāta kā svešās planētas simulācija, tāpēc tas ir loģiski, ka vairums būtnes, ko atradīsi, būs saistīti ar vienu vai divām sugām evolūcijas dēļ, kas notiek apkārt jums, paraudzieties vai nevarat atpazīt kādu!"
 
 #: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
+msgstr "Jautrs faks, Thrive kommanda straumē podkastus laiku pa laikam, jums vajadzētu tos izbaudīt!"
 
 #: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
+msgstr "Jautrs fakts, Thrive ir veidots ar atvērtā pirmkoda dzinēju Godot!"
 
 #: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
+msgstr "Jautrs fakts, pirmo no spēlējamiem prototipiem izveidoja mūsu satriecošs programmētājs, untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
-msgstr ""
+msgstr "Kustība"
 
 #: ../simulation_parameters/common/input_options.json:10
 msgid "MOVE_LEFT"
-msgstr ""
+msgstr "Pārvietoties pa kreisi"
 
 #: ../simulation_parameters/common/input_options.json:14
 msgid "MOVE_RIGHT"
-msgstr ""
+msgstr "Pārvietoties pa labi"
 
 #: ../simulation_parameters/common/input_options.json:18
 msgid "MOVE_FORWARD"
-msgstr ""
+msgstr "Pārvietoties uz priekšu"
 
 #: ../simulation_parameters/common/input_options.json:22
 msgid "MOVE_BACKWARDS"
-msgstr ""
+msgstr "Pārvietoties atpakaļ"
 
 #: ../simulation_parameters/common/input_options.json:26
 msgid "AUTO_MOVE_FORWARDS"
-msgstr ""
+msgstr "Automātiski pārvietoties uz priekšu"
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr ""
+msgstr "Spējas"
 
 #: ../simulation_parameters/common/input_options.json:38
-<<<<<<< HEAD
-=======
 #: ../src/microbe_stage/MicrobeStage.tscn:2176
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Šaut toksīnus"
 
 #: ../simulation_parameters/common/input_options.json:42
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/MicrobeStage.tscn:2164
 msgid "TOGGLE_ENGULF"
-msgstr ""
+msgstr "Pārslēgt absorbēšanas režīmu"
 
 #: ../simulation_parameters/common/input_options.json:46
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/MicrobeStage.tscn:2187
 msgid "TOGGLE_BINDING"
-msgstr ""
+msgstr "Ieslēgt absorbēšanas režīmu"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "TOGGLE_UNBINDING"
-msgstr ""
+msgstr "Atslēgt absorbēšanas režīmu"
 
 #: ../simulation_parameters/common/input_options.json:58
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/MicrobeStage.tscn:2199
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Atsaistīt visu"
 
 #: ../simulation_parameters/common/input_options.json:62
 msgid "PERFORM_UNBINDING"
-msgstr ""
+msgstr "Veikt atsaistīšanu"
 
 #: ../simulation_parameters/common/input_options.json:71
 msgid "CAMERA"
-msgstr ""
+msgstr "Kamera"
 
 #: ../simulation_parameters/common/input_options.json:75
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "Attālināt"
 
 #: ../simulation_parameters/common/input_options.json:79
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "Pietuvināt"
 
 #: ../simulation_parameters/common/input_options.json:87
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:153
 msgid "EDITOR"
-msgstr ""
+msgstr "Redaktors"
 
 #: ../simulation_parameters/common/input_options.json:91
 msgid "ROTATE_RIGHT"
-msgstr ""
+msgstr "Pagriezt pa labi"
 
 #: ../simulation_parameters/common/input_options.json:95
 msgid "ROTATE_LEFT"
-msgstr ""
+msgstr "Pagriezt pa kreisi"
 
 #: ../simulation_parameters/common/input_options.json:99
 msgid "UNDO"
-msgstr ""
+msgstr "Atsaukt"
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "REDO"
-msgstr ""
+msgstr "Atcelt atsaukšanu"
 
 #: ../simulation_parameters/common/input_options.json:107
 msgid "PLACE_ORGANELLE"
-msgstr ""
+msgstr "Novietot organoīdu"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "OPEN_ORGANELLE_MENU"
-msgstr ""
+msgstr "Atvērt oganoīdu izvēlni"
 
 #: ../simulation_parameters/common/input_options.json:115
 msgid "PAN_CAMERA_LEFT"
-msgstr ""
+msgstr "Panoramējiet pa kreisi"
 
 #: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_RIGHT"
-msgstr ""
+msgstr "Panoramējiet pa labi"
 
 #: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_UP"
-msgstr ""
+msgstr "Panoramējiet uz augšu"
 
 #: ../simulation_parameters/common/input_options.json:127
 msgid "PAN_CAMERA_DOWN"
-msgstr ""
+msgstr "Panoramējiet uz leju"
 
 #: ../simulation_parameters/common/input_options.json:131
 msgid "PAN_CAMERA_RESET"
-msgstr ""
+msgstr "Atiestātīt kameru"
 
 #: ../simulation_parameters/common/input_options.json:135
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Atcelt pašreizējo darbību"
 
 #: ../simulation_parameters/common/input_options.json:139
 msgid "DELETE_ORGANELLE"
-msgstr ""
+msgstr "Noņemt organoīdu"
 
 #: ../simulation_parameters/common/input_options.json:143
 msgid "MOVE_ORGANELLE"
-msgstr ""
+msgstr "Pārvietot organoīdu"
 
 #: ../simulation_parameters/common/input_options.json:151
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:16
 msgid "CHEATS"
-msgstr ""
+msgstr "Čīti"
 
 #: ../simulation_parameters/common/input_options.json:155
 msgid "ENABLE_EDITOR"
-msgstr ""
+msgstr "Ieslēgt redaktoru"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "SPAWN_GLUCOSE"
-msgstr ""
+msgstr "Iespavnot glikozi"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "SPAWN_AMMONIA"
-msgstr ""
+msgstr "Iespavnot amonjaku"
 
 #: ../simulation_parameters/common/input_options.json:167
 msgid "SPAWN_PHOSPHATES"
-msgstr ""
+msgstr "Iespavnot fosfātu"
 
 #: ../simulation_parameters/common/input_options.json:171
 msgid "CHEAT_MENU"
-msgstr ""
+msgstr "Krāpšanās izvēlne (Čīti)"
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "MISCELLANEOUS"
-msgstr ""
+msgstr "Dažādumi"
 
 #: ../simulation_parameters/common/input_options.json:184
 msgid "TOGGLE_PAUSE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:188
+#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr ""
+msgstr "Pārslēgt absorbēšanas režīmu"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
-msgstr ""
+msgstr "Rādīt FPS"
 
 #: ../simulation_parameters/common/input_options.json:196
+#, fuzzy
 msgid "TOGGLE_METRICS"
-msgstr ""
+msgstr "Rādīt FPS"
 
 #: ../simulation_parameters/common/input_options.json:200
 msgid "QUICK_SAVE"
-msgstr ""
+msgstr "Ātra saglabāšana"
 
 #: ../simulation_parameters/common/input_options.json:204
 msgid "QUICK_LOAD"
-msgstr ""
+msgstr "Ātrā ielāde"
 
 #: ../simulation_parameters/common/input_options.json:208
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "Uzņemt ekrānuzņēmumu"
 
 #: ../simulation_parameters/common/input_options.json:212
 msgid "SHOW_HELP"
-msgstr ""
+msgstr "Rādīt palīdzību"
 
 #: ../simulation_parameters/common/input_options.json:216
 msgid "TOGGLE_FULLSCREEN"
-msgstr ""
+msgstr "Pārslēgt pilnekrāna režīmu"
 
 #: ../simulation_parameters/common/input_options.json:220
 msgid "TOGGLE_HUD_HIDE"
-msgstr ""
+msgstr "Ieslēgt HUD"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr ""
+msgstr "Aerobiskā elpošana"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
-msgstr ""
+msgstr "Glikolīze"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr ""
+msgstr "Citoplazmas glikolīze"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
 msgid "PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Fotosintēze"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr ""
+msgstr "OxyToxy sintēze"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr ""
+msgstr "Hemosintēze"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "Aerobiskā slāpekļa fiksācija"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "Anaerobiskā slāpekļa fiksācija"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr ""
+msgstr "Dzelža Ķīmolitoautotrofija"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
-msgstr ""
+msgstr "Epipelaģiāle"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
 #: ../simulation_parameters/microbe_stage/biomes.json:170
@@ -490,7 +519,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1665
 #: ../simulation_parameters/microbe_stage/biomes.json:1809
 msgid "FLOATING_HAZARD"
-msgstr ""
+msgstr "Peldošs apdraudējums"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
 #: ../simulation_parameters/microbe_stage/biomes.json:188
@@ -504,7 +533,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1683
 #: ../simulation_parameters/microbe_stage/biomes.json:1827
 msgid "SMALL_IRON_CHUNK"
-msgstr ""
+msgstr "Mazs dzelzs gabals"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:79
 #: ../simulation_parameters/microbe_stage/biomes.json:303
@@ -518,11 +547,11 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1718
 #: ../simulation_parameters/microbe_stage/biomes.json:1862
 msgid "BIG_IRON_CHUNK"
-msgstr ""
+msgstr "Liels dzelzs gabals"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:148
 msgid "VOLCANIC_VENT"
-msgstr ""
+msgstr "Vulkāniskā izeja"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:223
 #: ../simulation_parameters/microbe_stage/biomes.json:615
@@ -530,236 +559,240 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1063
 #: ../simulation_parameters/microbe_stage/biomes.json:1885
 msgid "MARINE_SNOW"
-msgstr ""
+msgstr "Jūras sniegs"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:372
 msgid "TIDEPOOL"
-msgstr ""
+msgstr "Plūdmaiņas baseins"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:517
 msgid "BATHYPELAGIC"
-msgstr ""
+msgstr "Batipelaģiāle"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:741
 msgid "ABYSSOPELAGIC"
-msgstr ""
+msgstr "Abisālpelaģiāle"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:965
 msgid "MESOPELAGIC"
-msgstr ""
+msgstr "Mezopelaģiāle"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1189
 msgid "COASTAL"
-msgstr ""
+msgstr "Piekrastes"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1334
 msgid "UNDERWATERCAVE"
-msgstr ""
+msgstr "Zemūdens ala"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1478
 msgid "ICESHELF"
-msgstr ""
+msgstr "Šelfa ledājs"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1554
 msgid "ICESHARD"
-msgstr ""
+msgstr "Ledus lauska"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1642
 msgid "ESTUARY"
-msgstr ""
+msgstr "Grīva"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1787
 msgid "SEA_FLOOR"
-msgstr ""
+msgstr "Jūras dibens"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 msgid "ATP"
-msgstr ""
+msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1304
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "AMMONIA"
-msgstr ""
+msgstr "Amonjaks"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1356
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
 msgid "PHOSPHATE"
-msgstr ""
+msgstr "Fosfāti"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1408
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
 msgid "HYDROGEN_SULFIDE"
-msgstr ""
+msgstr "Sērūdeņradis"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1252
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "GLUCOSE"
-msgstr ""
+msgstr "Glikoze"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
 #: ../src/microbe_stage/MicrobeStage.tscn:1590
 msgid "OXYTOXY_NT"
-msgstr ""
+msgstr "Oksitocīns NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1460
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "IRON"
-msgstr ""
+msgstr "Dzelzs"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:549
 msgid "OXYGEN"
-msgstr ""
+msgstr "Skābeklis"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:603
 msgid "CARBON_DIOXIDE"
-msgstr ""
+msgstr "Ogļskābā gāze"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:576
 msgid "NITROGEN"
-msgstr ""
+msgstr "Slāpeklis"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3763
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
-msgstr ""
+msgstr "Saules gaisma"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2247
 msgid "NORMAL"
-msgstr ""
+msgstr "Normāls"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2415
 msgid "DOUBLE"
-msgstr ""
+msgstr "Dubults"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2579
 msgid "CELLULOSE"
-msgstr ""
+msgstr "Celuloze"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:57
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2814
 msgid "CHITIN"
-msgstr ""
+msgstr "Hitīns"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:75
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3049
 msgid "CALCIUM_CARBONATE"
-msgstr ""
+msgstr "Kalcija Karbonāts"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:93
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3317
 msgid "SILICA"
-msgstr ""
+msgstr "Silīcija dioksīds"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1104
 msgid "PREDATORY_PILUS"
-msgstr ""
+msgstr "Pīluss"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:56
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:677
 msgid "RUSTICYANIN"
-msgstr ""
+msgstr "Rusticianīns"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:92
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:774
 msgid "NITROGENASE"
-msgstr ""
+msgstr "Nitrāzes"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:128
 msgid "PROTOPLASM"
-msgstr ""
+msgstr "Protoplazma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:161
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:574
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr ""
+msgstr "Hemosintezējošas olbaltumvielas"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:201
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:872
 msgid "OXYTOXISOME"
-msgstr ""
+msgstr "Oksitoksisoma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:237
 msgid "THYLAKOIDS"
-msgstr ""
+msgstr "Tilakoīdi"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:272
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:375
 msgid "METABOLOSOMES"
-msgstr ""
+msgstr "Metabolosomas"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:311
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1823
 msgid "NITROGEN_FIXING_PLASTID"
-msgstr ""
+msgstr "Slāpekļa fiksējošs plastids"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1738
 msgid "CHEMOPLAST"
-msgstr ""
+msgstr "Hemoplasts"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:386
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:969
 msgid "FLAGELLUM"
-msgstr ""
+msgstr "Vica"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:416
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1922
 msgid "VACUOLE"
-msgstr ""
+msgstr "Vakuola"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:454
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1452
 msgid "MITOCHONDRION"
-msgstr ""
+msgstr "Mitohondrijs"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:491
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2020
 msgid "TOXIN_VACUOLE"
 msgstr ""
+"Toksīnu\n"
+"vakuola"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:523
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1271
 msgid "BINDING_AGENT"
-msgstr ""
+msgstr "Saistviela"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:566
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1537
 msgid "CHLOROPLAST"
-msgstr ""
+msgstr "Hloroplasts"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:601
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:276
 msgid "CYTOPLASM"
-msgstr ""
+msgstr "Citoplazma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:669
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1355
 msgid "NUCLEUS"
-msgstr ""
+msgstr "Kodols"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:696
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1164
+#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr ""
+msgstr "Hemoplasts"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:723
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2118
+#, fuzzy
 msgid "SIGNALING_AGENT"
-msgstr ""
+msgstr "Saistviela"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:747
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2217
@@ -769,100 +802,110 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:771
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1622
 msgid "THERMOPLAST"
-msgstr ""
+msgstr "Termoplasts"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:801
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1224
 msgid "CILIA"
-msgstr ""
+msgstr "Skropstiņas"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
+#, fuzzy
 msgid "ABORTED_DOT"
-msgstr ""
+msgstr "Atcelts."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
+#, fuzzy
 msgid "FINISHED_DOT"
-msgstr ""
+msgstr "Pabeigts."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
+#, fuzzy
 msgid "NOT_RUNNING_DOT"
-msgstr ""
+msgstr "Neejošs."
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
 msgid "AUTO-EVO_STEPS_DONE"
-msgstr ""
+msgstr "{0:F1}% pabeigts. {1:n0}/{2:n0} pakāpieni."
 
 #: ../src/auto-evo/AutoEvoRun.cs:142
 msgid "STARTING"
-msgstr ""
+msgstr "Sākas"
 
 #: ../src/auto-evo/AutoEvoRun.cs:288
 msgid "AUTO-EVO_POPULATION_CHANGED"
-msgstr ""
+msgstr "{0} populācija izmainījās par {1} jo:{2}"
 
 #: ../src/auto-evo/RunResults.cs:554
+#, fuzzy
 msgid "POPULATION_COLON"
-msgstr ""
+msgstr "Kopējā Populācija:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
-msgstr ""
+msgstr "Izmira {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
+#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr ""
+msgstr "Suga:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr ""
+msgstr "Atdalījās no {0}"
 
 #: ../src/auto-evo/RunResults.cs:600
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr ""
+msgstr "Radās, lai aizpildītu nišu"
 
 #: ../src/auto-evo/RunResults.cs:603
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
-msgstr ""
+msgstr "Radās dažādās atlases spiediena dēļ"
 
 #: ../src/auto-evo/RunResults.cs:620
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr ""
+msgstr "Populācija dažos plankumos atdalījās, lai veidotu jaunu sugu {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
+#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr ""
+msgstr "Satur mutāciju"
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
-msgstr ""
+msgstr "Gēna kods:"
 
 #: ../src/auto-evo/RunResults.cs:652
+#, fuzzy
 msgid "SPREAD_TO_PATCHES"
-msgstr ""
+msgstr "Izplatījās uz plankumiem:"
 
 #: ../src/auto-evo/RunResults.cs:660
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
-msgstr ""
+msgstr "{0} aizsūtot:{1} populāciju no plankuma: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
+#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr ""
+msgstr "{0} ({1})"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr ""
+msgstr "Izmira no planētas"
 
 #: ../src/auto-evo/RunResults.cs:844
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:854 ../src/auto-evo/RunResults.cs:876
+#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr ""
+msgstr "Sugas populācija"
 
 #: ../src/auto-evo/RunResults.cs:860 ../src/auto-evo/RunResults.cs:882
+#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr ""
+msgstr "Sugas populācija"
 
 #: ../src/auto-evo/RunResults.cs:868
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
@@ -881,71 +924,80 @@ msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:922
+#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
-msgstr ""
+msgstr "Radās, lai aizpildītu nišu"
 
 #: ../src/auto-evo/RunResults.cs:928
+#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr ""
+msgstr "Radās dažādās atlases spiediena dēļ"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
+#, fuzzy
 msgid "NOT_FOUND_CHUNK"
-msgstr ""
+msgstr "Liels dzelzs gabals"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 msgid "CHUNK_FOOD_SOURCE"
-msgstr ""
+msgstr "{0} Patēriņš"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:42
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "{0} Patēriņš"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "Vienmērīgi izplatīja vides pārtikas avotu {0}"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
 msgid "PREDATION_FOOD_SOURCE"
-msgstr ""
+msgstr "{0} Plēsonība"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
+#, fuzzy
 msgid "STEM_CELL_NAME"
-msgstr ""
+msgstr "Pielāgots lietotājvards:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:299
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:360
 msgid "STRUCTURE"
-msgstr ""
+msgstr "Struktūra"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:320
+#, fuzzy
 msgid "REPRODUCTION"
-msgstr ""
+msgstr "ATP ražošana"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:341
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:402
 msgid "BEHAVIOUR"
-msgstr ""
+msgstr "Uzvedība"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
+#, fuzzy
 msgid "CELLS"
-msgstr ""
+msgstr "Celuloze"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:403
+#, fuzzy
 msgid "MODIFY_TYPE"
-msgstr ""
+msgstr "Modificēt"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:416
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr ""
+msgstr "Izdzēst"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
+#, fuzzy
 msgid "DUPLICATE_TYPE"
-msgstr ""
+msgstr "Dublēt Spēlētāju"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
+#, fuzzy
 msgid "REPRODUCTION_METHOD"
-msgstr ""
+msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
@@ -955,14 +1007,14 @@ msgstr ""
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:520
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr ""
+msgstr "ATCELT DARBĪBU"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:533
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1245
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
-msgstr ""
+msgstr "NĀKAMAIS"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 msgid "DISCONNECTED_CELLS"
@@ -981,24 +1033,29 @@ msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr ""
+msgstr "Izveidot jaunu saglabāšanas failu"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:567
+#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr ""
+msgstr "Mana satriecošā modifikācija"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:580
+#, fuzzy
 msgid "NEW_NAME_COLON"
-msgstr ""
+msgstr "Ātrums:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:587
+#, fuzzy
 msgid "NEW_NAME"
-msgstr ""
+msgstr "Jauna spēle"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:58
+#, fuzzy
 msgid "MULTIPLE_CELLS"
-msgstr ""
+msgstr "Novietot organoīdu"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:76
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
@@ -1035,12 +1092,14 @@ msgstr ""
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
 #: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
+#, fuzzy
 msgid "FPS"
-msgstr ""
+msgstr "Augstākais FPS:"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
+#, fuzzy
 msgid "FRAME_DURATION"
-msgstr ""
+msgstr "Aerobiskā elpošana"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
@@ -1049,8 +1108,9 @@ msgstr ""
 
 #: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
 #: ../src/engine/PerformanceMetrics.tscn:30
+#, fuzzy
 msgid "METRICS"
-msgstr ""
+msgstr "Rādīt FPS"
 
 #: ../src/engine/DebugOverlays.tscn:86
 msgid "DEBUG_PANEL"
@@ -1069,196 +1129,199 @@ msgid "ENTITY_LABEL"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.tscn:128
+#, fuzzy
 msgid "TRANSPARENCY"
-msgstr ""
+msgstr "Tulkotāji"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
 msgid "LOADING"
-msgstr ""
+msgstr "Lādējas"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr ""
+msgstr "Uzspiediet kādu pogu..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:129
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"Šeit ir konflikts ar {0}.\n"
+"Vai jūs vēlaties noņemt ievadi no {1}?"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
 msgid "KEY_FORWARD"
-msgstr ""
+msgstr "Pārvietoties uz priekšu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:127
 msgid "KEY_TAB"
-msgstr ""
+msgstr "Tab"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:128
 msgid "KEY_ENTER"
-msgstr ""
+msgstr "Ievades taustiņš"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:129
 msgid "KEY_INSERT"
-msgstr ""
+msgstr "Ievietošanas taustiņš"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:130
 msgid "KEY_DELETE"
-msgstr ""
+msgstr "Izdzēst"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:131
 msgid "KEY_PAUSE"
-msgstr ""
+msgstr "Pauze"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr ""
+msgstr "Clear (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
-msgstr ""
+msgstr "Mājas"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "KEY_END"
-msgstr ""
+msgstr "End (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 msgid "KEY_LEFT"
-msgstr ""
+msgstr "Pārvietoties pa kreisi"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "KEY_UP"
-msgstr ""
+msgstr "Augšā"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 msgid "KEY_RIGHT"
-msgstr ""
+msgstr "Pārvietoties pa labi"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "KEY_DOWN"
-msgstr ""
+msgstr "Rullīte uz leju"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
-msgstr ""
+msgstr "Izvēlne"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KEY_HELP"
-msgstr ""
+msgstr "Palīdzība"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
 msgid "KEY_BACK"
-msgstr ""
+msgstr "Atpakaļ"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 msgid "KEY_STOP"
-msgstr ""
+msgstr "Beigt"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_REFRESH"
-msgstr ""
+msgstr "Atsvaidzināt"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
-msgstr ""
+msgstr "Meklēt"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "KEY_STANDBY"
-msgstr ""
+msgstr "Stāvēt"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "KEY_OPENURL"
-msgstr ""
+msgstr "Atvērt URL"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "KEY_HOMEPAGE"
-msgstr ""
+msgstr "Mājaslapa"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
 msgid "KEY_FAVORITES"
-msgstr ""
+msgstr "Izlase"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr ""
+msgstr "Printēt ekrānu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
-msgstr ""
+msgstr "Atstarpes taustiņš"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr ""
+msgstr "Atpakaļ"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
-msgstr ""
+msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
-msgstr ""
+msgstr "Atpakaļ"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
-msgstr ""
+msgstr "Cipartastatūra Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
-msgstr ""
+msgstr "SysRq (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
-msgstr ""
+msgstr "Page Up (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "PAGEDOWN"
-msgstr ""
+msgstr "Page down (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Caps Lock (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Num Lock (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Scroll Lock (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
-msgstr ""
+msgstr "Super Left (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "SUPERR"
-msgstr ""
+msgstr "Super Right (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
 msgid "HYPERL"
-msgstr ""
+msgstr "Hyper Left (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "HYPERR"
-msgstr ""
+msgstr "Hyper Right (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "DIRECTIONL"
-msgstr ""
+msgstr "Kreisi"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
 msgid "DIRECTIONR"
-msgstr ""
+msgstr "Labi"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
 msgid "VOLUMEDOWN"
-msgstr ""
+msgstr "Skaļums uz leju"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
 msgid "VOLUMEMUTE"
-msgstr ""
+msgstr "Skaļuma izslēgšana"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
 msgid "VOLUMEUP"
-msgstr ""
+msgstr "Skaļums uz augšu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
@@ -1278,7 +1341,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "TREBLEDOWN"
-msgstr ""
+msgstr "Treble Down (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
@@ -1438,51 +1501,51 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
-msgstr ""
+msgstr "CTRL"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "Peles kreisā poga"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "Peles labā poga"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "Peles vidējā poga"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "Rullīte uz augšu"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "Rullīte uz leju"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "Rullīte pa kreisi"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_RIGHT"
-msgstr ""
+msgstr "Rullīte pa labi"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "SPECIAL_MOUSE_1"
-msgstr ""
+msgstr "Peles papildpoga 1"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_2"
-msgstr ""
+msgstr "Peles papildpoga 2"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "UNKNOWN_MOUSE"
@@ -1494,7 +1557,7 @@ msgstr ""
 
 #: ../src/general/EditorComponentBase.cs:72
 msgid "CONFIRM_CAPITAL"
-msgstr ""
+msgstr "APSTIPRINĀT"
 
 #: ../src/general/Gallery.cs:73
 msgid "ARTWORK_TITLE"
@@ -1512,7 +1575,7 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:992
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
 msgid "CLOSE"
-msgstr ""
+msgstr "Aizvērt"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:537
@@ -1543,19 +1606,9 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME"
-msgstr ""
-
-<<<<<<< HEAD
+msgstr "Jauna spēle"
 
 #: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
-msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr ""
-
-
-#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:195
-=======
-#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1564,86 +1617,51 @@ msgstr ""
 msgid "LOAD_GAME"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
+#, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:220
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
-
-#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:220
-=======
-#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
-msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 #: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS"
-msgstr ""
+msgstr "Opcijas"
 
 #: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
-msgstr ""
+msgstr "Instrumenti"
 
 #: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "Apskatīt pirmkodu"
 
 #: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
-msgstr ""
+msgstr "Papildinājumi"
 
 #: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
 msgstr ""
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:235
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:258
 msgid "QUIT"
-msgstr ""
+msgstr "Iziet"
 
 #: ../src/general/MainMenu.tscn:278
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-
-
 #: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-
-#: ../src/general/MainMenu.tscn:453 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:262
-
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:873
-
-#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
-#: ../src/general/MainMenu.tscn:455 ../src/general/NewGameSettings.tscn:926
-
-#: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:254
-
-
-#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-<<<<<<< HEAD
-#: ../src/general/MainMenu.tscn:453 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:262
-=======
 #: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1013
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:262
->>>>>>> f9027433 (Easter egg setting capability)
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
-msgstr ""
+msgstr "Atpakaļ"
 
 #: ../src/general/MainMenu.tscn:359
 msgid "MODS"
@@ -1657,78 +1675,49 @@ msgstr ""
 msgid "LICENSES"
 msgstr ""
 
-
-#: ../src/general/MainMenu.tscn:495
-msgid "GLES2_MODE_WARNING"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:497
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:501
-msgid "MOD_LOAD_ERRORS"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:502
-
-
-#: ../src/general/MainMenu.tscn:497
-
-#: ../src/general/MainMenu.tscn:496
-msgid "GLES2_MODE_WARNING"
-msgstr ""
-
 #: ../src/general/MainMenu.tscn:498
+msgid "GLES2_MODE_WARNING"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-
-
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:115
+#: ../src/general/NewGameSettings.tscn:114
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
+#: ../src/general/NewGameSettings.tscn:128
 #: ../src/general/NewGameSettings.tscn:129
-#: ../src/general/NewGameSettings.tscn:130
 #: ../src/general/NewGameSettings.tscn:342
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
-<<<<<<< HEAD
-#: ../src/general/NewGameSettings.tscn:150
-#: ../src/general/NewGameSettings.tscn:754
-msgid "LIFE_ORIGIN"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:157
-#: ../src/general/NewGameSettings.tscn:761
-=======
 #: ../src/general/NewGameSettings.tscn:149
 #: ../src/general/NewGameSettings.tscn:822
 msgid "LIFE_ORIGIN"
@@ -1736,41 +1725,16 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:156
 #: ../src/general/NewGameSettings.tscn:829
->>>>>>> f9027433 (Easter egg setting capability)
+#, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
+"Bailīgie mikrobi muks tālas distances\n"
+"un visbiežāk muks no plēsējiem kopumā.\n"
+"Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
+"un visbiežāk uzbruks pretī."
 
+#: ../src/general/NewGameSettings.tscn:171
 #: ../src/general/NewGameSettings.tscn:172
-<<<<<<< HEAD
-#: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:776
-#: ../src/general/NewGameSettings.tscn:777
-msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:777
-msgid "LIFE_ORIGIN_POND"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:777
-msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:188
-#: ../src/general/NewGameSettings.tscn:792
-msgid "LAWK_ONLY"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:195
-#: ../src/general/NewGameSettings.tscn:799
-msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:810
-=======
 #: ../src/general/NewGameSettings.tscn:844
 #: ../src/general/NewGameSettings.tscn:845
 msgid "LIFE_ORIGIN_VENTS"
@@ -1793,24 +1757,28 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:194
 #: ../src/general/NewGameSettings.tscn:867
+#, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
+"Bailīgie mikrobi muks tālas distances\n"
+"un visbiežāk muks no plēsējiem kopumā.\n"
+"Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
+"un visbiežāk uzbruks pretī."
 
 #: ../src/general/NewGameSettings.tscn:205
 #: ../src/general/NewGameSettings.tscn:878
->>>>>>> f9027433 (Easter egg setting capability)
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:269
+#: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:279
+#: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:289 ../src/general/OptionsMenu.tscn:179
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
 msgstr ""
 
@@ -1819,24 +1787,36 @@ msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:415
+#, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #: ../src/general/NewGameSettings.tscn:432
+#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr ""
+msgstr "Mutācijas punkti"
 
 #: ../src/general/NewGameSettings.tscn:477
+#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #: ../src/general/NewGameSettings.tscn:494
+#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr ""
+msgstr "Savienojumu mākonis"
 
 #: ../src/general/NewGameSettings.tscn:539
+#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
+"Oportūnistiski mikrobi sacentīsies ar konkurentiem pāri gabaliem\n"
+"un mēģinās nomedīt upuru ar toksīniem, ja tie nevarēs aprīt to.\n"
+"Piesardzīgi mikrobi parasti neapdraudēs sevi, lai iegūtu gabalus."
 
 #: ../src/general/NewGameSettings.tscn:556
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
@@ -1855,28 +1835,38 @@ msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:679
+#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "Osmoregulācijas izmaksas"
 
 #: ../src/general/NewGameSettings.tscn:724
+#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
+msgstr "Osmoregulācijas izmaksas"
 
 #: ../src/general/NewGameSettings.tscn:736
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:743
+#, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
+"Koncentrēti mikrobi meklēs gabalus vai upurus tālas distances\n"
+"un visticamāk būs ambiciozāki par gabaliem.\n"
+"Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
 
 #: ../src/general/NewGameSettings.tscn:779
+#, fuzzy
 msgid "PATCH_MAP_TYPE"
-msgstr ""
+msgstr "Ala"
 
 #: ../src/general/NewGameSettings.tscn:786
+#, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #: ../src/general/NewGameSettings.tscn:801
 #: ../src/general/NewGameSettings.tscn:802
@@ -1900,12 +1890,18 @@ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:995
+#, fuzzy
 msgid "EASTER_EGGS"
-msgstr ""
+msgstr "Jautrs fakts; Didīnijs un Paramēcijs ir mācību grāmats piemērs plēsēja un upura attiecībām, ko pētīja vairākas desmitgades. Šobrī, vai jūs esat Didīnijs, vai tomēr Paramēcijs? Plēsējs vai upurs?"
 
 #: ../src/general/NewGameSettings.tscn:1002
+#, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
+"Bailīgie mikrobi muks tālas distances\n"
+"un visbiežāk muks no plēsējiem kopumā.\n"
+"Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
+"un visbiežāk uzbruks pretī."
 
 #: ../src/general/NewGameSettings.tscn:1031
 msgid "ADVANCED_VIEW"
@@ -1916,12 +1912,14 @@ msgid "BASIC_VIEW"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:1051
+#, fuzzy
 msgid "CONFIRM_NORMAL"
-msgstr ""
+msgstr "APSTIPRINĀT"
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
+#, fuzzy
 msgid "AUTO_RESOLUTION"
-msgstr ""
+msgstr "Izšķirtspēja:"
 
 #: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1937,15 +1935,15 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.cs:964
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr ""
+msgstr "Šī valoda ir {0}% pabeigta"
 
 #: ../src/general/OptionsMenu.tscn:135
 msgid "GRAPHICS"
-msgstr ""
+msgstr "Grafika"
 
 #: ../src/general/OptionsMenu.tscn:146
 msgid "SOUND"
-msgstr ""
+msgstr "Audio"
 
 #: ../src/general/OptionsMenu.tscn:157
 msgid "PERFORMANCE"
@@ -1953,19 +1951,19 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:168
 msgid "INPUTS"
-msgstr ""
+msgstr "Ievade"
 
 #: ../src/general/OptionsMenu.tscn:211
 msgid "VSYNC"
-msgstr ""
+msgstr "Vertikālā sinhronizācija"
 
 #: ../src/general/OptionsMenu.tscn:218
 msgid "FULLSCREEN"
-msgstr ""
+msgstr "Pilnekrāns"
 
 #: ../src/general/OptionsMenu.tscn:240
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr ""
+msgstr "Vairāku paraugu kropļojumnovērse:"
 
 #: ../src/general/OptionsMenu.tscn:247
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
@@ -1985,7 +1983,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "EIGHT_TIMES"
-msgstr ""
+msgstr "8x"
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "SIXTEEN_TIMES"
@@ -1993,19 +1991,19 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
-msgstr ""
+msgstr "Izšķirtspēja:"
 
 #: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
-msgstr ""
+msgstr "Augstākais FPS:"
 
 #: ../src/general/OptionsMenu.tscn:316
 msgid "MAX_FPS_NO_LIMIT"
-msgstr ""
+msgstr "Bezgalīgi"
 
 #: ../src/general/OptionsMenu.tscn:332
 msgid "COLOURBLIND_CORRECTION"
-msgstr ""
+msgstr "Krāsu korekcija krāsu aklumam:"
 
 #: ../src/general/OptionsMenu.tscn:346 ../src/general/OptionsMenu.tscn:347
 msgid "NONE"
@@ -2021,7 +2019,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:363
 msgid "CHROMATIC_ABERRATION"
-msgstr ""
+msgstr "Hromatiskā aberācija:"
 
 #: ../src/general/OptionsMenu.tscn:389
 msgid "DISPLAY_ABILITIES_BAR"
@@ -2029,21 +2027,21 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:397
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr ""
+msgstr "Ieslēgt GUI gaismas efektus"
 
 #: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
-msgstr ""
+msgstr "Skaļums"
 
 #: ../src/general/OptionsMenu.tscn:449 ../src/general/OptionsMenu.tscn:489
 #: ../src/general/OptionsMenu.tscn:521 ../src/general/OptionsMenu.tscn:553
 #: ../src/general/OptionsMenu.tscn:585
 msgid "MUTE"
-msgstr ""
+msgstr "Izslēgt skaņu"
 
 #: ../src/general/OptionsMenu.tscn:463
 msgid "MUSIC_VOLUME"
-msgstr ""
+msgstr "Mūzikas skaļums"
 
 #: ../src/general/OptionsMenu.tscn:495
 msgid "AMBIANCE_VOLUME"
@@ -2051,11 +2049,11 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:527
 msgid "SFX_VOLUME"
-msgstr ""
+msgstr "SFX skaļums"
 
 #: ../src/general/OptionsMenu.tscn:559
 msgid "GUI_VOLUME"
-msgstr ""
+msgstr "Interfeisa skaļums"
 
 #: ../src/general/OptionsMenu.tscn:603
 msgid "AUDIO_OUTPUT_DEVICE"
@@ -2063,7 +2061,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:631
 msgid "LANGUAGE"
-msgstr ""
+msgstr "Valoda:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
 msgid "RESET"
@@ -2071,15 +2069,15 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:667
 msgid "OPEN_TRANSLATION_SITE"
-msgstr ""
+msgstr "Palīdziet tulkot spēli"
 
 #: ../src/general/OptionsMenu.tscn:693
 msgid "COMPOUND_CLOUDS"
-msgstr ""
+msgstr "Savienojumu mākonis"
 
 #: ../src/general/OptionsMenu.tscn:708
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
+msgstr "Mākoņa simulācijas minimālais intervāls:"
 
 #: ../src/general/OptionsMenu.tscn:715 ../src/general/OptionsMenu.tscn:757
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -2087,7 +2085,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:750
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr ""
+msgstr "Mākoņa izšķirtspējas dalītājs:"
 
 #: ../src/general/OptionsMenu.tscn:791
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
@@ -2095,11 +2093,11 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:811
 msgid "DETECTED_CPU_COUNT"
-msgstr ""
+msgstr "Atklātais CPU skaits:"
 
 #: ../src/general/OptionsMenu.tscn:828
 msgid "ACTIVE_THREAD_COUNT"
-msgstr ""
+msgstr "Esošie pavedieni:"
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
@@ -2127,23 +2125,25 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1004
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
+msgstr "Automātiski saglabāt progresu spēles laikā"
 
 #: ../src/general/OptionsMenu.tscn:1015
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "Automātisko saglabāšanas failu daudzums:"
 
 #: ../src/general/OptionsMenu.tscn:1043
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "Ātru saglabāšanas failu daudzums:"
 
 #: ../src/general/OptionsMenu.tscn:1068
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr ""
+msgstr "Rādīt tutoriālus (jaunās spēlēs)"
 
 #: ../src/general/OptionsMenu.tscn:1075
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr ""
+msgstr "Rādīt tutoriālus (pašreizējā spēlē)"
 
 #: ../src/general/OptionsMenu.tscn:1081
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -2155,19 +2155,19 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1101
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr ""
+msgstr "Izmantot pielāgotu lietotājvārdu"
 
 #: ../src/general/OptionsMenu.tscn:1112
 msgid "CUSTOM_USERNAME"
-msgstr ""
+msgstr "Pielāgots lietotājvards:"
 
 #: ../src/general/OptionsMenu.tscn:1138
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr ""
+msgstr "Atvērt ekrānuzņēmumu mapi"
 
 #: ../src/general/OptionsMenu.tscn:1146
 msgid "OPEN_LOGS_FOLDER"
-msgstr ""
+msgstr "Atvērt logu mapi"
 
 #: ../src/general/OptionsMenu.tscn:1156
 msgid "JSON_DEBUG_MODE"
@@ -2187,7 +2187,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
-msgstr ""
+msgstr "Saglabāt"
 
 #: ../src/general/OptionsMenu.tscn:1224
 msgid "RESET_SETTINGS_TO_DEFAULTS"
@@ -2219,21 +2219,21 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1297
 msgid "SAVE_AND_CONTINUE"
-msgstr ""
+msgstr "Saglabāt un turpināt"
 
 #: ../src/general/OptionsMenu.tscn:1307
 msgid "DISCARD_AND_CONTINUE"
-msgstr ""
+msgstr "Atlaist un turpināt"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
-msgstr ""
+msgstr "Atcelt"
 
 #: ../src/general/OptionsMenu.tscn:1335 ../src/general/OptionsMenu.tscn:1343
 msgid "ERROR"
-msgstr ""
+msgstr "Kļūda"
 
 #: ../src/general/OptionsMenu.tscn:1345
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
@@ -2241,7 +2241,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1353
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr ""
+msgstr "Nav atrasta ekrānuzņēmuma direktorija"
 
 #: ../src/general/OptionsMenu.tscn:1355
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
@@ -2250,20 +2250,21 @@ msgstr ""
 #: ../src/general/PauseMenu.cs:329
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
+"Vai patiešām vēlaties iziet uz galveno izvēlni?\n"
+"Jūs zaudēsiet nesaglabāto progresu."
 
 #: ../src/general/PauseMenu.cs:345
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/PauseMenu.tscn:178
+#, fuzzy
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
-msgstr ""
+msgstr "Atsākt spēli"
 
 #: ../src/general/PauseMenu.tscn:179
 msgid "RESUME"
-msgstr ""
+msgstr "Turpināt"
 
 #: ../src/general/PauseMenu.tscn:186
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
@@ -2271,96 +2272,43 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:187
 msgid "SAVE_GAME"
-msgstr ""
+msgstr "Saglabāt spēli"
 
 #: ../src/general/PauseMenu.tscn:202
 msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:204
-
-#: ../src/general/PauseMenu.tscn:179
-=======
-#: ../src/general/PauseMenu.tscn:178
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
-msgid "PAUSE_MENU_RESUME_TOOLTIP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:179
-msgid "RESUME"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:186
-msgid "SAVE_GAME_BUTTON_TOOLTIP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:187
-msgid "SAVE_GAME"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:202
-msgid "STATISTICS_BUTTON_TOOLTIP"
-msgstr ""
-
-<<<<<<< HEAD
-=======
-#: ../src/general/PauseMenu.tscn:204
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
-msgstr ""
+msgstr "Statistika"
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/general/PauseMenu.tscn:211
 #: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/PauseMenu.tscn:212
 msgid "HELP"
-msgstr ""
+msgstr "Palīdzība"
 
 #: ../src/general/PauseMenu.tscn:227
+#, fuzzy
 msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:213
-=======
-#: ../src/general/PauseMenu.tscn:212
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
-msgid "HELP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:227
-msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr ""
+msgstr "Atgriezties izvēlnē"
 
 #: ../src/general/PauseMenu.tscn:228
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
-msgstr ""
-
-<<<<<<< HEAD
+msgstr "Atgriezties izvēlnē"
 
 #: ../src/general/PauseMenu.tscn:236
 msgid "EXIT"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:237
-=======
-#: ../src/general/PauseMenu.tscn:236
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
-msgid "EXIT"
-msgstr ""
+msgstr "Iziet"
 
 #: ../src/general/PauseMenu.tscn:287
 msgid "CONFIRM_EXIT"
-msgstr ""
+msgstr "Apstiprināt Izeju"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -2477,11 +2425,11 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:352
 msgid "DONATIONS"
-msgstr ""
+msgstr "Ziedojumi"
 
 #: ../src/gui_common/CreditsScroll.cs:375
 msgid "TRANSLATORS"
-msgstr ""
+msgstr "Tulkotāji"
 
 #: ../src/gui_common/CreditsScroll.cs:389
 msgid "USED_LIBRARIES_LICENSES"
@@ -2501,11 +2449,11 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:497
 msgid "GRAPHICS_TEAM"
-msgstr ""
+msgstr "Grafikas Komanda"
 
 #: ../src/gui_common/CreditsScroll.cs:498
 msgid "SOUND_TEAM"
-msgstr ""
+msgstr "Skaņas Komanda"
 
 #: ../src/gui_common/CreditsScroll.cs:499
 msgid "OUTREACH_TEAM"
@@ -2545,7 +2493,7 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:508
 msgid "FEBRUARY"
-msgstr ""
+msgstr "Februāris"
 
 #: ../src/gui_common/CreditsScroll.cs:509
 msgid "MARCH"
@@ -2581,7 +2529,7 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "NOVEMBER"
-msgstr ""
+msgstr "Novembris"
 
 #: ../src/gui_common/CreditsScroll.cs:518
 msgid "DECEMBER"
@@ -2608,8 +2556,9 @@ msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr ""
 
 #: ../src/gui_common/RadialMenu.cs:63
+#, fuzzy
 msgid "SELECT_OPTION"
-msgstr ""
+msgstr "Atlasīts:"
 
 #: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -2665,26 +2614,26 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
-msgstr ""
+msgstr "Jēls"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2184
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Nav datu, ko parādīt"
 
 #: ../src/gui_common/charts/line/LineChart.cs:652
 msgid "INVALID_DATA_TO_PLOT"
-msgstr ""
+msgstr "Nav datu, ko parādīt"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1120
 #: ../src/gui_common/charts/line/LineChart.cs:1212
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "Nav atļauts rādīt vairāk nekā {0} datu kopas!"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1126
 #: ../src/gui_common/charts/line/LineChart.cs:1217
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "Nav atļauts rādīt mazāk nekā {0} datu kopu(as)!"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
@@ -2694,23 +2643,23 @@ msgstr ""
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr ""
+msgstr "Kopēt kļūdu starpliktuvē"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.cs:62
 msgid "GPL_LICENSE_HEADING"
-msgstr ""
+msgstr "GPL licences teksts seko:"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
 msgid "THRIVE_LICENSES"
-msgstr ""
+msgstr "Thrive Licences"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
 msgid "LICENSES_COVERING_THRIVE"
-msgstr ""
+msgstr "Licences aizsedzošās daļas no Thrive ir parādītas šeit"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
@@ -2722,51 +2671,52 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "Atvērt izvēlni"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:53
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Atvērt palīdzības ekrānu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:67
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "Vai jūs uzplauksiet?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:84
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Beigt rediģēt un atgriezties uz apkārtni"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#, fuzzy
 msgid "NEXT_EDITOR_TAB"
-msgstr ""
+msgstr "Ieslēgt redaktoru"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
-msgstr ""
+msgstr "Izmainīt simetriju"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:101
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Atsaukt pēdējo darbību"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:107
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Atcelt pēdējo atsaukšanu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:113
 msgid "CREATE_A_NEW_MICROBE"
-msgstr ""
+msgstr "Izveidot jaunu mikrobu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:118
 msgid "RANDOMIZE_SPECIES_NAME"
-msgstr ""
+msgstr "Randomizēt sugas nosaukumu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:128
 msgid "MEMBRANE_RIGIDITY"
-msgstr ""
+msgstr "Membrānas cietība"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:129
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Stingrāka membrāna ir izturīgāka pret kairinājumu, toties tas padarīs kustību grūtāku tai."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:155
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2274
@@ -2776,7 +2726,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3074
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3344
 msgid "MOBILITY"
-msgstr ""
+msgstr "Kustīgums"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:190
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2377
@@ -2786,31 +2736,47 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3177
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3447
 msgid "HEALTH"
-msgstr ""
+msgstr "Veselība"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Agresīvi mikrobi savu upuri dzīs ļoti tālas distances\n"
+"un ir tie, kuri visbiežāk cīnīsies ar plēsējiem, kad tie uzbrūk.\n"
+"Miermīlīgi mikrobrobi necīnīsies ar citiem pāri tālām distancēm\n"
+"un retāk lietos toksīnus pret plēsējiem."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:237
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
+"Oportūnistiski mikrobi sacentīsies ar konkurentiem pāri gabaliem\n"
+"un mēģinās nomedīt upuru ar toksīniem, ja tie nevarēs aprīt to.\n"
+"Piesardzīgi mikrobi parasti neapdraudēs sevi, lai iegūtu gabalus."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:245
 msgid "FEAR_EXPLANATION"
 msgstr ""
+"Bailīgie mikrobi muks tālas distances\n"
+"un visbiežāk muks no plēsējiem kopumā.\n"
+"Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
+"un visbiežāk uzbruks pretī."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:253
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:261
 msgid "FOCUS_EXPLANATION"
 msgstr ""
+"Koncentrēti mikrobi meklēs gabalus vai upurus tālas distances\n"
+"un visticamāk būs ambiciozāki par gabaliem.\n"
+"Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:277
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:278
 msgid "CYTOPLASM_DESCRIPTION"
@@ -2835,7 +2801,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2040
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2138
 msgid "STORAGE"
-msgstr ""
+msgstr "Uzglabāšana"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:333
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:437
@@ -2865,11 +2831,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3109
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3379
 msgid "OSMOREGULATION_COST"
-msgstr ""
+msgstr "Osmoregulācijas izmaksas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:376
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]. Likme mainās ar [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrāciju."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:377
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -2877,7 +2843,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:477
 msgid "THYLAKOID"
-msgstr ""
+msgstr "Tilakoīds"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:478
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
@@ -2889,7 +2855,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:575
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Pārveido [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] par [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]. Ātrums ir atkarīgs no [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrācijas. Arī pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:576
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -2897,7 +2863,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:678
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Pārveido [thrive:compound type=\"iron\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]. Likme mainās ar [thrive:compound type=\"carbondioxide\"][/thrive:compound] un[thrive:compound type=\"oxygen\"][/thrive:compound] koncentrāciju."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:679
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -2929,39 +2895,44 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:988
 msgid "SPEED"
-msgstr ""
+msgstr "Ātrums"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1105
+#, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
+#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
+#, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr ""
+msgstr "Modifikācijas Apraksts:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
+#, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
+#, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr ""
+msgstr "Apraksts:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Spiediet [thrive:input]g_toggle_binding[/thrive:input] , lai pārslēgtu saistīšanas režīmu. Kad esiet saistīšanas režīmā, jūs varat pievienot citas šūnas no jūsu sugas, virzoties tām pretī, jūsu kolonijai. Lai pamestu koloniju, spiediet [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr ""
+msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšūnu veidošanos. Kad tava šūna ir daļā no kolonijas, savienojumi tiek dalīti starp šūnām. Jūs nevarat ieiet redaktorā, kāmēram esat daļa no kolonijas, jums nepieciešams atdalīties, kad savākts nepieciešamais savienojumu daudzums, lai sadalītu jūsu šūnu."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1356
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2998,18 +2969,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1641
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:202
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr ""
+msgstr "Nav procesu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-<<<<<<< HEAD
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1505
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1500
-=======
-#: ../src/microbe_stage/MicrobeHUD.cs:1505
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
+#: ../src/microbe_stage/MicrobeHUD.cs:1506
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
@@ -3046,12 +3010,14 @@ msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2119
+#, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Spiediet [thrive:input]g_toggle_binding[/thrive:input] , lai pārslēgtu saistīšanas režīmu. Kad esiet saistīšanas režīmā, jūs varat pievienot citas šūnas no jūsu sugas, virzoties tām pretī, jūsu kolonijai. Lai pamestu koloniju, spiediet [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2120
+#, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr ""
+msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšūnu veidošanos. Kad tava šūna ir daļā no kolonijas, savienojumi tiek dalīti starp šūnām. Jūs nevarat ieiet redaktorā, kāmēram esat daļa no kolonijas, jums nepieciešams atdalīties, kad savākts nepieciešamais savienojumu daudzums, lai sadalītu jūsu šūnu."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2248
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -3085,7 +3051,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3279
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3549
 msgid "CANNOT_ENGULF"
-msgstr ""
+msgstr "Nevar absorbēt"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2815
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -3095,7 +3061,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3515
 msgid "TOXIN_RESISTANCE"
-msgstr ""
+msgstr "Izturība pret toksīniem"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3050
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
@@ -3130,16 +3096,17 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
 msgid "TEMPERATURE"
-msgstr ""
+msgstr "Temperatūra"
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn:97
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:78
 msgid "N_A_MP"
-msgstr ""
+msgstr "N/A MP"
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn:126
+#, fuzzy
 msgid "REQUIRES_NUCLEUS"
-msgstr ""
+msgstr "Kodols"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:588
 msgid "DEATH"
@@ -3163,7 +3130,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
 msgid "INFINITE_COMPOUNDS"
-msgstr ""
+msgstr "Bezgalīgi daudz savienojumu"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
 msgid "GODMODE"
@@ -3176,10 +3143,12 @@ msgstr ""
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:63
 msgid "PLAYER_SPEED"
 msgstr ""
+"Spēlētājs\n"
+"Ātrums"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:84
 msgid "PLAYER_DUPLICATE"
-msgstr ""
+msgstr "Dublēt Spēlētāju"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
 msgid "SPAWN_ENEMY"
@@ -3202,12 +3171,14 @@ msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:564
+#, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr ""
+msgstr "Saistviela"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:567
+#, fuzzy
 msgid "SIGNAL_TO_EMIT"
-msgstr ""
+msgstr "Saistviela"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:814
 msgid "PAUSE_PROMPT"
@@ -3219,11 +3190,11 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:961
 msgid "PLAYER_CELL"
-msgstr ""
+msgstr "Spēlētāja šūna"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:978
 msgid "SPECIES_N_TIMES"
-msgstr ""
+msgstr "{0} (x{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1023
 msgid "CATEGORY_AN_ABUNDANCE"
@@ -3249,29 +3220,12 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-<<<<<<< HEAD
-
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1290
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1284
-
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1285
-=======
-#: ../src/microbe_stage/MicrobeHUD.cs:1290
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
+#: ../src/microbe_stage/MicrobeHUD.cs:1291
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
-#: ../src/microbe_stage/MicrobeHUD.cs:1326
+#: ../src/microbe_stage/MicrobeHUD.cs:1327
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
@@ -3294,31 +3248,31 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:547
 msgid "NOTHING_HERE"
-msgstr ""
+msgstr "Nekas šeit"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:572
 msgid "COMPOUNDS_COLON"
-msgstr ""
+msgstr "Savienojumi:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:612
 msgid "SPECIES_COLON"
-msgstr ""
+msgstr "Suga:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:692
 msgid "ENVIRONMENT"
-msgstr ""
+msgstr "Vide"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:960
 msgid "TEMPERATURE_SHORT"
-msgstr ""
+msgstr "Temperatūra."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1016
 msgid "LIGHT"
-msgstr ""
+msgstr "Gaisma"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1071
 msgid "PRESSURE_SHORT"
-msgstr ""
+msgstr "Spied."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1154
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
@@ -3326,7 +3280,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:712
 msgid "COMPOUNDS"
-msgstr ""
+msgstr "Savienojumi"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1530
 msgid "AGENTS"
@@ -3342,7 +3296,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1659
 msgid "RESUME_TOOLTIP"
-msgstr ""
+msgstr "Atsākt spēli"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1672
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -3350,13 +3304,6 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1687
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
-
-
-
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1724
-msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1736
@@ -3369,29 +3316,21 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1822
 msgid "POPULATION_CAPITAL"
-msgstr ""
-
-<<<<<<< HEAD
-
+msgstr "POPULĀCIJA:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1973
+#, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1969
-=======
-#: ../src/microbe_stage/MicrobeStage.tscn:1973
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
-msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2119
 msgid "PAUSED"
 msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:214
+#, fuzzy
 msgid "PATCH_NAME"
-msgstr ""
+msgstr "Ala"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3399,7 +3338,7 @@ msgstr ""
 
 #: ../src/microbe_stage/ProcessPanel.tscn:16
 msgid "PROCESS_PANEL_TITLE"
-msgstr ""
+msgstr "Šūnas procesi"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
 msgid "PEACEFUL"
@@ -3444,19 +3383,19 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
 msgid "ATP_PRODUCTION"
-msgstr ""
+msgstr "ATP ražošana"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr ""
+msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:403
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
+msgstr "{0}: +{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:423
 msgid "OSMOREGULATION"
-msgstr ""
+msgstr "Osmoregulācija"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:429
 msgid "BASE_MOVEMENT"
@@ -3464,7 +3403,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:441
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
-msgstr ""
+msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:524
 msgid "CELL_TYPE_NAME"
@@ -3472,17 +3411,17 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
 msgid "FAILED"
-msgstr ""
+msgstr "Neizdevās"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2038
 msgid "POPULATION_IN_PATCH_SHORT"
-msgstr ""
+msgstr "{0} ({1})"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2044
 msgid "N_A"
-msgstr ""
+msgstr "N/A"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_IN_PATCH_FOR"
@@ -3502,19 +3441,19 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:381
 msgid "MEMBRANE"
-msgstr ""
+msgstr "Membrāna"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:454
 msgid "SEARCH_DOT_DOT_DOT"
-msgstr ""
+msgstr "Meklēt..."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:461
 msgid "STRUCTURAL"
-msgstr ""
+msgstr "Strukturāls"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
 msgid "PROTEINS"
-msgstr ""
+msgstr "Olbaltumvielas"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:479
 msgid "EXTERNAL"
@@ -3522,11 +3461,11 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:488
 msgid "ORGANELLES"
-msgstr ""
+msgstr "Organoīdi"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:529
 msgid "MEMBRANE_TYPES"
-msgstr ""
+msgstr "Membrānas veidi"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:547
 msgid "FLUIDITY_RIGIDITY"
@@ -3542,19 +3481,20 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:613
 msgid "COLOUR"
-msgstr ""
+msgstr "Krāsa"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:681
 msgid "ORGANISM_STATISTICS"
-msgstr ""
+msgstr "Organisma statistika"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:743
 msgid "SPEED_COLON"
-msgstr ""
+msgstr "Ātrums:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
+#, fuzzy
 msgid "ROTATION_COLON"
-msgstr ""
+msgstr "Kopējā Populācija:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:804
 msgid "HP_COLON"
@@ -3562,15 +3502,16 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:834
 msgid "SIZE_COLON"
-msgstr ""
+msgstr "Izmērs:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:864
+#, fuzzy
 msgid "STORAGE_COLON"
-msgstr ""
+msgstr "Uzglabāšana"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:885
 msgid "GENERATION_COLON"
-msgstr ""
+msgstr "Ģenerācija:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:927
 msgid "ATP_BALANCE"
@@ -3583,23 +3524,23 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1044
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1279
 msgid "AUTO-EVO_PREDICTION"
-msgstr ""
+msgstr "Automātiska-Evo Pareģošana"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1052
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr ""
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1122
 msgid "TOTAL_POPULATION_COLON"
-msgstr ""
+msgstr "Kopējā Populācija:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1146
 msgid "BEST_PATCH_COLON"
-msgstr ""
+msgstr "Labākais Plankums:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1171
 msgid "WORST_PATCH_COLON"
-msgstr ""
+msgstr "Sliktākais Plankums:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
 msgid "NEGATIVE_ATP_BALANCE"
@@ -3608,6 +3549,8 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
+"Tavs mikrobs neražo pietiekami daudz ATP, lai izdzīvot!\n"
+"Vai vēlies turpināt?"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1261
 msgid "DISCONNECTED_ORGANELLES"
@@ -3631,7 +3574,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:174
 msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr ""
+msgstr "Sugas nosaukums..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
 msgid "LOADING_MICROBE_EDITOR"
@@ -3652,22 +3595,22 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
 msgid "PHYSICAL_CONDITIONS"
-msgstr ""
+msgstr "Fiziskie apstākļi"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:403
 msgid "PRESSURE"
-msgstr ""
+msgstr "Spiediens"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:508
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:669
 msgid "ATMOSPHERIC_GASSES"
-msgstr ""
+msgstr "Atmosfēras gāzes"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:931
 msgid "SPECIES_PRESENT"
-msgstr ""
+msgstr "Sastopamās sugas"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:988
 msgid "MOVE_TO_THIS_PATCH"
@@ -3683,21 +3626,21 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:330
 msgid "SPECIES_LIST"
-msgstr ""
+msgstr "Sugu saraksts"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:341
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:354
 msgid "EXTINCT_FROM_THE_PLANET"
-msgstr ""
+msgstr "Izmira no planētas"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:342
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:353
 msgid "EXTINCT_FROM_PATCH"
-msgstr ""
+msgstr "Izmira no plankuma"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:370
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
+msgstr "Glikozes daudzums ir samazināts līdz {0} no iepriekšējā daudzuma."
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:377
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
@@ -3714,19 +3657,19 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:218
 msgid "FOOD_CHAIN"
-msgstr ""
+msgstr "Barības ķēde"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:231
 msgid "TIMELINE"
-msgstr ""
+msgstr "Laika skala"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:284
 msgid "AUTO_EVO_RESULTS"
-msgstr ""
+msgstr "Auto-evo rezultāti:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:303
 msgid "EXTERNAL_EFFECTS"
-msgstr ""
+msgstr "Ārējie efekti:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:400
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
@@ -3747,7 +3690,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:497
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:525
 msgid "SPECIES_POPULATION"
-msgstr ""
+msgstr "Sugas populācija"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
@@ -3758,8 +3701,9 @@ msgid "PATCH_MAP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
+#, fuzzy
 msgid "CELL"
-msgstr ""
+msgstr "Celuloze"
 
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:46
 msgid "FREEBUILDING"
@@ -3767,19 +3711,20 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MutationPointsBar.tscn:150
 msgid "MUTATION_POINTS"
-msgstr ""
+msgstr "Mutācijas punkti"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:62
+#, fuzzy
 msgid "MULTIPLE_ORGANELLES"
-msgstr ""
+msgstr "Novietot organoīdu"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
-msgstr ""
+msgstr "Pārvietot"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:362
 msgid "MODIFY"
-msgstr ""
+msgstr "Modificēt"
 
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:387
 msgid "BIOME_LABEL"
@@ -3790,20 +3735,22 @@ msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:429
+#, fuzzy
 msgid "SPECIES_WITH_POPULATION"
-msgstr ""
+msgstr "Sugas populācija"
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
 msgid "EXTINCT_SPECIES"
-msgstr ""
+msgstr "Izmirusi suga"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
+#, fuzzy
 msgid "COMPOUND_TO_FIND"
-msgstr ""
+msgstr "Savienojumu mākonis"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "SEARCH_RADIUS"
@@ -3814,16 +3761,18 @@ msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr ""
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
+#, fuzzy
 msgid "LINE_COLOUR"
-msgstr ""
+msgstr "Krāsa"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
+#, fuzzy
 msgid "MODIFY_ORGANELLE"
-msgstr ""
+msgstr "Pārvietot organoīdu"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
-msgstr ""
+msgstr "IZMIRŠANA"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
@@ -3879,7 +3828,7 @@ msgstr ""
 
 #: ../src/modding/ModLoader.cs:473
 msgid "PCK_LOAD_FAILED"
-msgstr ""
+msgstr "Pck faila {0} lādēšana neizdevās"
 
 #: ../src/modding/ModManager.cs:297
 msgid "INVALID_ICON_PATH"
@@ -3899,7 +3848,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.cs:565
 msgid "NO_SELECTED_MOD"
-msgstr ""
+msgstr "Nav atlasīto modifikāciju"
 
 #: ../src/modding/ModManager.cs:901
 msgid "THIS_IS_WORKSHOP_MOD"
@@ -3910,8 +3859,9 @@ msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
 
 #: ../src/modding/ModManager.cs:913
+#, fuzzy
 msgid "USES_FEATURE"
-msgstr ""
+msgstr "Temperatūra"
 
 #: ../src/modding/ModManager.cs:914
 msgid "DOES_NOT_USE_FEATURE"
@@ -3919,7 +3869,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.cs:959
 msgid "ERROR_CREATING_FOLDER"
-msgstr ""
+msgstr "Kļūme veidojot mapi modifikācijai"
 
 #: ../src/modding/ModManager.cs:968
 msgid "ERROR_CREATING_INFO_FILE"
@@ -3931,19 +3881,19 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
-msgstr ""
+msgstr "Atsvaidzināt"
 
 #: ../src/modding/ModManager.tscn:150
 msgid "OPEN_FOLDER"
-msgstr ""
+msgstr "Atvērt mapi"
 
 #: ../src/modding/ModManager.tscn:168
 msgid "RIGHT_ARROW"
-msgstr ""
+msgstr "→"
 
 #: ../src/modding/ModManager.tscn:181
 msgid "LEFT_ARROW"
-msgstr ""
+msgstr "←"
 
 #: ../src/modding/ModManager.tscn:193
 msgid "ENABLED_MODS"
@@ -3955,7 +3905,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:248
 msgid "SELECTED_MOD"
-msgstr ""
+msgstr "Atlasītā Modifikācija:"
 
 #: ../src/modding/ModManager.tscn:282 ../src/modding/ModManager.tscn:670
 #: ../src/modding/NewModGUI.tscn:140
@@ -3965,7 +3915,7 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:313 ../src/modding/ModManager.tscn:692
 #: ../src/modding/NewModGUI.tscn:163
 msgid "MOD_VERSION"
-msgstr ""
+msgstr "Modifikācijas Versija:"
 
 #: ../src/modding/ModManager.tscn:369
 msgid "RECOMMENDED_THRIVE_VERSION"
@@ -3973,12 +3923,12 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:413
 msgid "MINIMUM_VERSION"
-msgstr ""
+msgstr "Minimums:"
 
 #: ../src/modding/ModManager.tscn:440 ../src/modding/ModManager.tscn:714
 #: ../src/modding/NewModGUI.tscn:186
 msgid "MOD_DESCRIPTION"
-msgstr ""
+msgstr "Modifikācijas Apraksts:"
 
 #: ../src/modding/ModManager.tscn:472
 msgid "MORE_INFO"
@@ -4018,11 +3968,11 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:578
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr ""
+msgstr "Jums ir niepieciešams pielietot jūsu izmaiņas, lai ielādētu vai izlādētu jebkādas modifikācijas."
 
 #: ../src/modding/ModManager.tscn:579
 msgid "DISCARD_CHANGES"
-msgstr ""
+msgstr "Atmest Izmaiņas"
 
 #: ../src/modding/ModManager.tscn:586
 msgid "FULL_MOD_INFO"
@@ -4030,7 +3980,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:627 ../src/modding/NewModGUI.tscn:117
 msgid "MOD_NAME"
-msgstr ""
+msgstr "Modifikācijas Nosaukums:"
 
 #: ../src/modding/ModManager.tscn:649 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
@@ -4038,7 +3988,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:736 ../src/modding/NewModGUI.tscn:209
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr ""
+msgstr "Modifikācijas Garais Apraksts:"
 
 #: ../src/modding/ModManager.tscn:774 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
@@ -4106,15 +4056,15 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:311
 msgid "MISSING_DESCRIPTION"
-msgstr ""
+msgstr "Trūkst apraksts"
 
 #: ../src/modding/ModUploader.cs:319
 msgid "DESCRIPTION_TOO_LONG"
-msgstr ""
+msgstr "Apraksts ir pārāk garš"
 
 #: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:280
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
-msgstr ""
+msgstr "Izmaiņas piezīmes ir pārāk garas"
 
 #: ../src/modding/ModUploader.cs:333
 msgid "TAGS_IS_WHITESPACE"
@@ -4138,7 +4088,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:460
 msgid "CREATING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Veido..."
 
 #: ../src/modding/ModUploader.cs:474
 msgid "SUCCESS_BUT_MISSING_ID"
@@ -4146,7 +4096,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:519
 msgid "UPLOADING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Augšuplādē..."
 
 #: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
@@ -4182,11 +4132,11 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:121
 msgid "CREATE_NEW"
-msgstr ""
+msgstr "Izveidot Jaunu"
 
 #: ../src/modding/ModUploader.tscn:128
 msgid "ENTER_EXISTING_ID"
-msgstr ""
+msgstr "Ievadiet Esošo ID"
 
 #: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
@@ -4206,7 +4156,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:186
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr ""
+msgstr "Lietas Apraksts:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
@@ -4230,7 +4180,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
-msgstr ""
+msgstr "Noņemiet datus saistībā ar šo lietu. Noderīgi, ja jūs ievadījāt nepareizo ID vai arī vēlaties augšuplādēt jaunu versiju citai lietai."
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
@@ -4238,11 +4188,11 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
-msgstr ""
+msgstr "Mainīt piezīmes, lai šī vienuma versijai tiktu rādītas Steam darbnīcā (neobligāti)"
 
 #: ../src/modding/ModUploader.tscn:294
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr ""
+msgstr "Lietas izmaiņas piezīmes"
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
@@ -4250,11 +4200,11 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:336
 msgid "UPLOAD_SUCCEEDED"
-msgstr ""
+msgstr "Augšuplāde Veiksmīga"
 
 #: ../src/modding/NewModGUI.cs:180
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr ""
+msgstr "Mana satriecošā modifikācija"
 
 #: ../src/modding/NewModGUI.cs:239
 msgid "INVALID_URL_FORMAT"
@@ -4282,7 +4232,7 @@ msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:33
 msgid "CREATE_NEW_MOD"
-msgstr ""
+msgstr "Izveidot Jaunu Modifikāciju"
 
 #: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
@@ -4311,11 +4261,11 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:81
 msgid "READING_SAVE_DATA"
-msgstr ""
+msgstr "Notiek datu lasīšana no saglabāšanas faila"
 
 #: ../src/saving/InProgressLoad.cs:103
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr ""
+msgstr "Notiek objektu izveidošana no saglabāšanas faila"
 
 #: ../src/saving/InProgressLoad.cs:112
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -4323,7 +4273,7 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:138
 msgid "SAVE_IS_INVALID"
-msgstr ""
+msgstr "Saglabāšanas fails nav derīgs"
 
 #: ../src/saving/InProgressLoad.cs:139
 msgid "SAVE_HAS_INVALID_GAME_STATE"
@@ -4350,20 +4300,22 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
 #: ../src/saving/InProgressSave.cs:203
+#, fuzzy
 msgid "SAVING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Veido..."
 
 #: ../src/saving/InProgressSave.cs:242
 msgid "SAVE_FAILED"
-msgstr ""
+msgstr "Saglabāšana neizdevās"
 
 #: ../src/saving/InProgressSave.cs:243
 msgid "ERROR_SAVING"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.cs:80
+#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr ""
+msgstr "Izvelētais faila nosaukums ({0}) jau eksistē. Pārrakstīt?"
 
 #: ../src/saving/NewSaveMenu.cs:185
 msgid "INVALID_SAVE_NAME_POPUP"
@@ -4371,27 +4323,29 @@ msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:32
 msgid "CREATE_NEW_SAVE"
-msgstr ""
+msgstr "Izveidot jaunu saglabāšanas failu"
 
 #: ../src/saving/NewSaveMenu.tscn:49
 msgid "NAME"
-msgstr ""
+msgstr "Nosaukums:"
 
 #: ../src/saving/NewSaveMenu.tscn:67
 msgid "EXTRA_OPTIONS"
-msgstr ""
+msgstr "Papildu opcijas"
 
 #: ../src/saving/NewSaveMenu.tscn:85
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr ""
+msgstr "Pārrakstīt esošo saglabāšanas failu:"
 
 #: ../src/saving/NewSaveMenu.tscn:117
+#, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr ""
+msgstr "Pārrakstīt esošo saglabāšanas failu:"
 
 #: ../src/saving/NewSaveMenu.tscn:121
+#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr ""
+msgstr "Nevar absorbēt"
 
 #: ../src/saving/NewSaveMenu.tscn:125
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
@@ -4407,7 +4361,7 @@ msgstr ""
 
 #: ../src/saving/SaveHelper.cs:495
 msgid "PLAYER_EXTINCT"
-msgstr ""
+msgstr "Spēlētājs ir izmiris"
 
 #: ../src/saving/SaveHelper.cs:514
 msgid "IN_PROTOTYPE"
@@ -4415,7 +4369,7 @@ msgstr ""
 
 #: ../src/saving/SaveHelper.cs:526
 msgid "SAVING_SUCCEEDED"
-msgstr ""
+msgstr "Saglabāšana izdevās"
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
@@ -4423,11 +4377,11 @@ msgstr ""
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
-msgstr ""
+msgstr "Automātiska saglabāšana"
 
 #: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
-msgstr ""
+msgstr "Ātrā saglabāšana"
 
 #: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
@@ -4435,23 +4389,28 @@ msgstr ""
 
 #: ../src/saving/SaveList.cs:219
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
+msgstr "Šī faila dzēšanu nevar atcelt. Vai tiešām vēlies neatgriezeniski dzēst {0}?"
 
 #: ../src/saving/SaveList.tscn:51
 msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
+#, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Augšuplādē..."
 
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
+#, fuzzy
 msgid "DELETE_THIS_SAVE_PROMPT"
-msgstr ""
+msgstr "Izdzēst šo saglabāšanas failu?"
 
 #: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
+#, fuzzy
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr ""
+"Izvelētais saglabāšanas fails nav saderīgs ar šo Thrive versiju.\n"
+"Tā kā Thrive ir agrā attīstības stadijā, saglabāšanas failu saderība nav augsta prioritāte, tādēļ nav iebūvēta saglabāšanas failu pārveidotājs, lai jauninātu vecos saglabāšanas failus."
 
 #: ../src/saving/SaveList.tscn:78
 msgid "NEWER_VERSION_LOADING_WARNING"
@@ -4476,6 +4435,8 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:103
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
+"Izvelētais saglabāšanas fails nav saderīgs ar šo Thrive versiju.\n"
+"Tā kā Thrive ir agrā attīstības stadijā, saglabāšanas failu saderība nav augsta prioritāte, tādēļ nav iebūvēta saglabāšanas failu pārveidotājs, lai jauninātu vecos saglabāšanas failus."
 
 #: ../src/saving/SaveList.tscn:112
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
@@ -4487,19 +4448,25 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:119
 msgid "SAVE_UPGRADE_FAILED"
-msgstr ""
+msgstr "Saglabāšānas faila atjaunināšana neizdevās"
 
 #: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:127
+#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr ""
+"Izvelētais saglabāšanas fails nav saderīgs ar šo Thrive versiju.\n"
+"Tā kā Thrive ir agrā attīstības stadijā, saglabāšanas failu saderība nav augsta prioritāte, tādēļ nav iebūvēta saglabāšanas failu pārveidotājs, lai jauninātu vecos saglabāšanas failus."
 
 #: ../src/saving/SaveList.tscn:129
+#, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
+"Izvelētais saglabāšanas fails nav saderīgs ar šo Thrive versiju.\n"
+"Tā kā Thrive ir agrā attīstības stadijā, saglabāšanas failu saderība nav augsta prioritāte, tādēļ nav iebūvēta saglabāšanas failu pārveidotājs, lai jauninātu vecos saglabāšanas failus."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
@@ -4509,19 +4476,21 @@ msgstr ""
 #: ../src/saving/SaveListItem.tscn:177 ../src/saving/SaveListItem.tscn:200
 #: ../src/saving/SaveListItem.tscn:229 ../src/saving/SaveListItem.tscn:248
 msgid "DOT_DOT_DOT"
-msgstr ""
+msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
+#, fuzzy
 msgid "TYPE_COLON"
-msgstr ""
+msgstr "Ātrums:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
-msgstr ""
+msgstr "Apraksts:"
 
 #: ../src/saving/SaveListItem.tscn:193
+#, fuzzy
 msgid "VERSION_COLON"
-msgstr ""
+msgstr "Ģenerācija:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -4549,15 +4518,15 @@ msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
-msgstr ""
+msgstr "Dzēst atlasītos failus"
 
 #: ../src/saving/SaveManagerGUI.tscn:87
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr ""
+msgstr "Dzēst vecos saglabāšanas failus"
 
 #: ../src/saving/SaveManagerGUI.tscn:99
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr ""
+msgstr "Atvērt saglabāšanas failu direktoriju"
 
 #: ../src/saving/SaveManagerGUI.tscn:132
 msgid "TOTAL_SAVES"
@@ -4569,19 +4538,21 @@ msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:172
 msgid "SELECTED_COLON"
-msgstr ""
+msgstr "Atlasīts:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
+#, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
-msgstr ""
+msgstr "Dzēst atlasītos saglabāšanas failus?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
+#, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
-msgstr ""
+msgstr "Izdzēst vecos saglabāšanas failus?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
 msgid "NO_SAVE_DIRECTORY"
-msgstr ""
+msgstr "Nav atrasta saglabāšanas faila direktorija"
 
 #: ../src/saving/SaveManagerGUI.tscn:202
 msgid "TRY_MAKING_A_SAVE"
@@ -4629,7 +4600,7 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:546
 msgid "STEAM_ERROR_DUPLICATE_NAME"
-msgstr ""
+msgstr "Steam ziņo par dublikāta vārda kļūmi"
 
 #: ../src/steam/SteamClient.cs:548
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
@@ -4637,7 +4608,7 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:550
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
-msgstr ""
+msgstr "Jūsu Steam kontam nepieder Thrive licence"
 
 #: ../src/steam/SteamClient.cs:552
 msgid "STEAM_ERROR_LOCKING_FAILED"
@@ -4645,7 +4616,7 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"
-msgstr ""
+msgstr "Nezināma Steam kļūme notika"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
@@ -4663,8 +4634,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
+#, fuzzy
 msgid "TUTORIAL"
-msgstr ""
+msgstr "Tutoriāls"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
@@ -4675,8 +4647,22 @@ msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
@@ -4687,16 +4673,21 @@ msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
+"Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
+"\n"
+"Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
-msgstr ""
+msgstr "Automātiska-Evo Pareģošana"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
@@ -4707,8 +4698,9 @@ msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#, fuzzy
 msgid "SHOW_TUTORIALS"
-msgstr ""
+msgstr "Rādīt tutoriālus"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
@@ -4727,22 +4719,217 @@ msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+"Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
+"\n"
+"Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
+"Jūs savācāt pietiekami daudz resursus, lai sadalītos jūsu šūna.\n"
+"\n"
+"Jūs esat gatavs, lai rediģēt jūsu sugu.\n"
+"\n"
+"Lai ieietu rediģētājā, uzpiediet mirgojošo rediģētāja pogu apakšējā labajā stūrī."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
+"Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
+"\n"
+"Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
+"Ja jums joprojām ir grūtības ar spēles mehāniku, pārskatiet palīdzības izvēlni. Jūs varat to atvērt ar jautājuma zīmes pogu lejējā kreisajā stūrī.\n"
+"\n"
+"Viens papildus padoms: Jūs varat attālināt jūsu skatu ar ritināšanas riteni."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
+#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr ""
+msgstr "Tutoriāls"
 
+#, fuzzy
+#~ msgid "CONFIRM"
+#~ msgstr "Apstiprināt Izeju"
+
+#~ msgid "PATCH_CAVE"
+#~ msgstr "Ala"
+
+#~ msgid "AUTO"
+#~ msgstr "Automātiski"
+
+#~ msgid "POPULATION"
+#~ msgstr "populācija:"
+
+#~ msgid "PREVIOUS"
+#~ msgstr "Iepriekš:"
+
+#~ msgid "RUN_RESULT_POP_IN_PATCHES"
+#~ msgstr "Populācija plankumos:"
+
+#~ msgid "SAVING"
+#~ msgstr "Notiek saglabāšana..."
+
+#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+#~ msgstr "Pārrakstīt esošo saglabāšanas failu?"
+
+#~ msgid "TYPE"
+#~ msgstr "Tips:"
+
+#~ msgid "VERSION"
+#~ msgstr "Versija:"
+
+#~ msgid "VIEW_NOW"
+#~ msgstr "Pārskatīt tagad"
+
+#, fuzzy
+#~ msgid "TOTAL_EXTINCTION"
+#~ msgstr "Izmira {0}"
+
+#, fuzzy
+#~ msgid "LOCAL_EXTINCTION"
+#~ msgstr "Spēlētājs ir izmiris"
+
+#~ msgid "MARINE_SNOW_FOOD_SOURCE"
+#~ msgstr "Jūras sniega patēriņš"
+
+#, fuzzy
+#~ msgid "OPEN_DETAILS"
+#~ msgstr "Atvērt logu mapi"
+
+#~ msgid "Cancel"
+#~ msgstr "Atcelt"
+
+#~ msgid "SAVING_ERROR"
+#~ msgstr "Saglabāšanas kļūda"
+
+#~ msgid "REMOVE_ORGANELLE"
+#~ msgstr "Noņemt organoīdu"
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Jauna spēle"
+
+#, fuzzy
+#~ msgid "COLOR"
+#~ msgstr "Krāsa"
+
+#, fuzzy
+#~ msgid "OXYTOXY"
+#~ msgstr "OxyToxy NT"
+
+#, fuzzy
+#~ msgid "TOXINS_BY_PRESSING_E"
+#~ msgstr "Izturība pret toksīniem"
+
+#, fuzzy
+#~ msgid "CONCENTRATION_OF"
+#~ msgstr "Ģenerācija:"
+
+#~ msgid "SPEED_OF_THE_CELL"
+#~ msgstr "šūnas ātrums."
+
+#~ msgid "OXYGEN_DOT"
+#~ msgstr "Skābeklis."
+
+#~ msgid "BIOLUMESCENT_VACUOLE"
+#~ msgstr ""
+#~ "Bioluminiscējošā\n"
+#~ "vakuola"
+
+#, fuzzy
+#~ msgid "LEFT"
+#~ msgstr "Pārvietoties pa kreisi"
+
+#, fuzzy
+#~ msgid "RIGHT"
+#~ msgstr "Gaisma"
+
+#, fuzzy
+#~ msgid "FORWARD"
+#~ msgstr "Pārvietoties uz priekšu"
+
+#, fuzzy
+#~ msgid "PARENLEFT"
+#~ msgstr "Pagriezt pa kreisi"
+
+#, fuzzy
+#~ msgid "PARENRIGHT"
+#~ msgstr "Pagriezt pa labi"
+
+#, fuzzy
+#~ msgid "COLON"
+#~ msgstr "Krāsa"
+
+#, fuzzy
+#~ msgid "SEMICOLON"
+#~ msgstr "Izmērs:"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "Izšķirtspēja:"
+
+#, fuzzy
+#~ msgid "AT"
+#~ msgstr "ATP"
+
+#, fuzzy
+#~ msgid "BRACKETLEFT"
+#~ msgstr "Pagriezt pa kreisi"
+
+#, fuzzy
+#~ msgid "BRACKETRIGHT"
+#~ msgstr "Pagriezt pa labi"
+
+#, fuzzy
+#~ msgid "QUOTELEFT"
+#~ msgstr "Pagriezt pa kreisi"
+
+#, fuzzy
+#~ msgid "BRACELEFT"
+#~ msgstr "Pagriezt pa kreisi"
+
+#, fuzzy
+#~ msgid "BRACERIGHT"
+#~ msgstr "Pagriezt pa labi"
+
+#, fuzzy
+#~ msgid "EXCLAMDOWN"
+#~ msgstr "Rullīte uz leju"
+
+#, fuzzy
+#~ msgid "YEN"
+#~ msgstr "Skābeklis"
+
+#, fuzzy
+#~ msgid "SECTION"
+#~ msgstr "Apraksts:"
+
+#, fuzzy
+#~ msgid "COPYRIGHT"
+#~ msgstr "Pārvietoties pa labi"
+
+#, fuzzy
+#~ msgid "MU"
+#~ msgstr "Izslēgt skaņu"
+
+#, fuzzy
+#~ msgid "AE"
+#~ msgstr "Saglabāt"
+
+#, fuzzy
+#~ msgid "DIVISION"
+#~ msgstr "Versija:"
+
+#, fuzzy
+#~ msgid "BACKTAB"
+#~ msgstr "Atpakaļ"

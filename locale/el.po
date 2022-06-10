@@ -3,43 +3,41 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2022-06-09 14:12+0300\n"
-=======
 "POT-Creation-Date: 2022-06-10 14:12+0100\n"
->>>>>>> f9027433 (Easter egg setting capability)
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2022-03-31 05:02+0000\n"
+"Last-Translator: Apostolos Paschidis <tolissius@gmail.com>\n"
+"Language-Team: Greek <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/el/>\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.11.2\n"
+"Generated-By: Babel 2.9.1\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
+msgstr "Το κύτταρό σας χρησιμοποιεί [thrive:compound type=\"atp\"][/thrive:compound] ως πηγή ενέργειας· εάν τελειώσει, το κύτταρο πεθαίνει."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
+msgstr "Για να ξεκλειδώσετε τον επεξεργαστή και να αναπαραχθείτε πρέπει να συλλέξετε [thrive:compound type=\"ammonia\"][/thrive:compound] (πορτοκαλί νέφος) και [thrive:compound type=\"phosphates\"][/thrive:compound] (μωβ νέφος)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
+msgstr "Μπορείτε επίσης να απορροφήσετε κύτταρα, βακτήρια, θραύσματα σιδήρου ή άλλων κυττάρων που είναι μικρότερα από εσάς πατώντας το [thrive:input]g_toggle_engulf[/thrive:input]. Αυτό κοστίζει επιπλέον [thrive:compound type=\"atp\"][/thrive:compound] και σας επιβραδύνει. Μη ξεχνάτε να πατάτε πάλι το [thrive:input]g_toggle_engulf[/thrive:input] για να σταματάτε να απορροφάτε."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
@@ -49,11 +47,20 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
+msgstr "Υπάρχουν πολλά Οργανίδια στον επεξεργαστή για να εξελιχθείτε, επιτρέποντας ποικιλία διαφορετικών τρόπων να παίξετε."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
+"Τα διάφορα νέφη ενώσεων είναι:\n"
+"\n"
+"Λευκό - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Κίτρινο - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Πορτοκαλί - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Μωβ - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Καφέ - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+"\n"
+"Η [thrive:compound type=\"glucose\"][/thrive:compound] παράγει [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
@@ -63,25 +70,25 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
+msgstr "Για να αναπαραχθείτε πρέπει να διαιρεθούν πρώτα τα οργανίδιά σας. Η διαίρεση των οργανιδίων απαιτεί αμμωνία και φωσφορικά."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
+msgstr "Για τώρα, εάν ο πληθυσμός τού είδους σας πέσει στο μηδέν, αφανίζεσθε."
 
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
+msgstr "Εάν όμως επιβιώσετε επί είκοσι γενεές με πληθυσμό 300, θεωρείται ότι νικήσατε το τρέχον παιχνίδι. Μετά την νίκη ενημερώνεστε και μπορείτε να συνεχίσετε το παιχνίδι όπως επιθυμείτε."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
+msgstr "Προσέχετε, καθ' ότι οι ανταγωνιστές σας εξελίσσονται παραλλήλως. Κάθε φορά που εισέρχεστε στον επεξεργαστή, εξελίσσονται και εκείνοι."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
+msgstr "Συνδεόμενοι με άλλα κύτταρα, μπορείτε να φτιάξετε αποικία, όπου τα κύτταρα μοιράζονται τις ενώσεις που απορροφούν και παράγουν μαζί. Για να μπορέσετε να συνδεθείτε με άλλα κύτταρα, χρειάζεται να έχετε οργανίδιο σύνδεσης και να κινηθείτε προς αυτά, αφού εισέλθετε στην λειτουργία σύνδεσης. Είναι δυνατόν να συνδέεστε μόνον με κύτταρα τού ιδίου είδους. Συνδεδεμένοι σε αποικία, δεν μπορείτε να διαιρεθείτε και να εισέλθετε στον επεξεργαστή (προς το παρόν). Για να εισέλθετε στον επεξεργαστή, πρώτα αποχωρήστε από την αποικία αφού έχετε συλλέξει αρκετές ενώσεις και έπειτα εισέλθετε στον επεξεργαστή. Οι μεγάλες αποικίες κυττάρων είναι ο δρόμος προς τους πολυκύτταρους οργανισμούς (δεν διατίθενται ακόμη στο παιχνίδι)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -97,15 +104,15 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
+msgstr "Κάθε φορά που αναπαράγεσθε, εισέρχεσθε στον Επεξεργαστή Μικροβίων, όπου μπορείτε να πραγματοποιήσετε αλλαγές στο είδος σας (προσθέτοντας, μετακινώντας ή αφαιρώντας οργανίδια) για να αυξήσετε την επιτυχία τού είδους σας. Κάθε επίσκεψη στον επεξεργαστή κατά το Στάδιο Μικροβίων αντιστοιχεί σε [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]εκατομμύρια έτη εξέλιξης."
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
-msgstr ""
+msgstr "Πατήστε το πλήκτρο αναίρεσης στον επεξεργαστή για να διορθώσετε σφάλματα"
 
 #: ../simulation_parameters/common/help_texts.json:126
 msgid "EASTEREGG_MESSAGE_1"
@@ -113,7 +120,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:129
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
 
 #: ../simulation_parameters/common/help_texts.json:132
 msgid "EASTEREGG_MESSAGE_3"
@@ -129,11 +136,11 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
+msgstr "Συμβουλή: μερικές φορές είναι καλύτερο να αποφεύγετε άλλα κύτταρα."
 
 #: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
+msgstr "Συμβουλή: εάν ένα κύτταρο είναι περίπου το μισό από το δικό σας, τότε μπορείτε να το απορροφήσετε."
 
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
@@ -141,7 +148,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
+msgstr "Σύμβουλή: είναι δυνατόν να κυνηγήσετε άλλο είδος μέχρι αφανισμού εάν δεν προσέχετε αρκετά. Άλλα είδη μπορούν το κάνουν επίσης."
 
 #: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_10"
@@ -169,7 +176,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
+msgstr "Συμβουλή: ετοιμασθείτε προτού προσθέσετε πυρήνα. Αυτά τα πράγματα είναι ακριβά! Σε συντήρηση και αρχική αγορά."
 
 #: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_17"
@@ -189,7 +196,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
+msgstr "Συμβουλή: προέχετε τα μεγαλύτερα κύτταρα και τα μεγάλα βακτήρια, δεν είναι ευχάριστο να σας τρώνε (και θα σας φάνε)."
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
@@ -217,7 +224,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
-msgstr ""
+msgstr "Κίνηση"
 
 #: ../simulation_parameters/common/input_options.json:10
 msgid "MOVE_LEFT"
@@ -244,18 +251,11 @@ msgid "ABILITIES"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:38
-<<<<<<< HEAD
-=======
 #: ../src/microbe_stage/MicrobeStage.tscn:2176
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "FIRE_TOXIN"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:42
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/MicrobeStage.tscn:2164
 msgid "TOGGLE_ENGULF"
 msgstr ""
@@ -265,10 +265,6 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/MicrobeStage.tscn:2187
 msgid "TOGGLE_BINDING"
 msgstr ""
@@ -278,10 +274,6 @@ msgid "TOGGLE_UNBINDING"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:58
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/MicrobeStage.tscn:2199
 msgid "UNBIND_ALL"
 msgstr ""
@@ -1545,17 +1537,7 @@ msgstr ""
 msgid "NEW_GAME"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
-msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr ""
-
-
-#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:195
-=======
-#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1564,19 +1546,7 @@ msgstr ""
 msgid "LOAD_GAME"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
-msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:220
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
-
-#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:220
-=======
-#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1600,10 +1570,6 @@ msgstr ""
 msgid "CREDITS"
 msgstr ""
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:235
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
@@ -1616,29 +1582,9 @@ msgstr ""
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-
-
 #: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-
-#: ../src/general/MainMenu.tscn:453 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:262
-
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:873
-
-#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
-#: ../src/general/MainMenu.tscn:455 ../src/general/NewGameSettings.tscn:926
-
-#: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:254
-
-
-#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-<<<<<<< HEAD
-#: ../src/general/MainMenu.tscn:453 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:262
-=======
 #: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1013
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:262
->>>>>>> f9027433 (Easter egg setting capability)
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1657,78 +1603,49 @@ msgstr ""
 msgid "LICENSES"
 msgstr ""
 
-
-#: ../src/general/MainMenu.tscn:495
-msgid "GLES2_MODE_WARNING"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:497
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:501
-msgid "MOD_LOAD_ERRORS"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:502
-
-
-#: ../src/general/MainMenu.tscn:497
-
-#: ../src/general/MainMenu.tscn:496
-msgid "GLES2_MODE_WARNING"
-msgstr ""
-
 #: ../src/general/MainMenu.tscn:498
+msgid "GLES2_MODE_WARNING"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-
-
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:115
+#: ../src/general/NewGameSettings.tscn:114
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
+#: ../src/general/NewGameSettings.tscn:128
 #: ../src/general/NewGameSettings.tscn:129
-#: ../src/general/NewGameSettings.tscn:130
 #: ../src/general/NewGameSettings.tscn:342
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
-<<<<<<< HEAD
-#: ../src/general/NewGameSettings.tscn:150
-#: ../src/general/NewGameSettings.tscn:754
-msgid "LIFE_ORIGIN"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:157
-#: ../src/general/NewGameSettings.tscn:761
-=======
 #: ../src/general/NewGameSettings.tscn:149
 #: ../src/general/NewGameSettings.tscn:822
 msgid "LIFE_ORIGIN"
@@ -1736,41 +1653,11 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:156
 #: ../src/general/NewGameSettings.tscn:829
->>>>>>> f9027433 (Easter egg setting capability)
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
 
+#: ../src/general/NewGameSettings.tscn:171
 #: ../src/general/NewGameSettings.tscn:172
-<<<<<<< HEAD
-#: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:776
-#: ../src/general/NewGameSettings.tscn:777
-msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:777
-msgid "LIFE_ORIGIN_POND"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:777
-msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:188
-#: ../src/general/NewGameSettings.tscn:792
-msgid "LAWK_ONLY"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:195
-#: ../src/general/NewGameSettings.tscn:799
-msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:810
-=======
 #: ../src/general/NewGameSettings.tscn:844
 #: ../src/general/NewGameSettings.tscn:845
 msgid "LIFE_ORIGIN_VENTS"
@@ -1798,19 +1685,18 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:205
 #: ../src/general/NewGameSettings.tscn:878
->>>>>>> f9027433 (Easter egg setting capability)
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:269
+#: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:279
+#: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:289 ../src/general/OptionsMenu.tscn:179
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
 msgstr ""
 
@@ -1900,8 +1786,9 @@ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:995
+#, fuzzy
 msgid "EASTER_EGGS"
-msgstr ""
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
 
 #: ../src/general/NewGameSettings.tscn:1002
 msgid "EASTER_EGGS_EXPLANATION"
@@ -2255,8 +2142,6 @@ msgstr ""
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/PauseMenu.tscn:178
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr ""
@@ -2278,61 +2163,16 @@ msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:204
-
-#: ../src/general/PauseMenu.tscn:179
-=======
-#: ../src/general/PauseMenu.tscn:178
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
-msgid "PAUSE_MENU_RESUME_TOOLTIP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:179
-msgid "RESUME"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:186
-msgid "SAVE_GAME_BUTTON_TOOLTIP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:187
-msgid "SAVE_GAME"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:202
-msgid "STATISTICS_BUTTON_TOOLTIP"
-msgstr ""
-
-<<<<<<< HEAD
-=======
-#: ../src/general/PauseMenu.tscn:204
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr ""
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 #: ../src/general/PauseMenu.tscn:211
 #: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/PauseMenu.tscn:212
-msgid "HELP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:227
-msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:213
-=======
-#: ../src/general/PauseMenu.tscn:212
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "HELP"
 msgstr ""
 
@@ -2345,16 +2185,7 @@ msgstr ""
 msgid "RETURN_TO_MENU"
 msgstr ""
 
-<<<<<<< HEAD
-
 #: ../src/general/PauseMenu.tscn:236
-msgid "EXIT"
-msgstr ""
-
-#: ../src/general/PauseMenu.tscn:237
-=======
-#: ../src/general/PauseMenu.tscn:236
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "EXIT"
 msgstr ""
 
@@ -3002,14 +2833,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-<<<<<<< HEAD
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1505
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1500
-=======
-#: ../src/microbe_stage/MicrobeHUD.cs:1505
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
+#: ../src/microbe_stage/MicrobeHUD.cs:1506
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
@@ -3249,29 +3073,12 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-<<<<<<< HEAD
-
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1290
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1284
-
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1285
-=======
-#: ../src/microbe_stage/MicrobeHUD.cs:1290
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
+#: ../src/microbe_stage/MicrobeHUD.cs:1291
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
-#: ../src/microbe_stage/MicrobeHUD.cs:1326
+#: ../src/microbe_stage/MicrobeHUD.cs:1327
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
@@ -3352,13 +3159,6 @@ msgstr ""
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-
-
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1724
-msgid "HELP_BUTTON_TOOLTIP"
-msgstr ""
-
 #: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
@@ -3371,17 +3171,7 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-<<<<<<< HEAD
-
-
 #: ../src/microbe_stage/MicrobeStage.tscn:1973
-msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1969
-=======
-#: ../src/microbe_stage/MicrobeStage.tscn:1973
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4745,4 +4535,3 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
-
