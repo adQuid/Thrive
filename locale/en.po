@@ -3609,6 +3609,7 @@ msgstr "POPULATION:"
 #: ../src/microbe_stage/MicrobeStage.tscn:1973
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Enter the editor and modify your species"
+<<<<<<< HEAD
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2119
 =======
@@ -3625,6 +3626,8 @@ msgstr "Enter the editor and modify your species"
 #: ../src/microbe_stage/MicrobeStage.tscn:1973
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Enter the editor and modify your species"
+=======
+>>>>>>> 0d9b29bf (Fix missing tooltip from merge)
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2119
 >>>>>>> 0e0b88c4 (Debug Overlay (#3295))
