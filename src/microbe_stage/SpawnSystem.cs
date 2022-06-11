@@ -142,7 +142,6 @@ public class SpawnSystem
         }
 
         var debugOverlay = DebugOverlays.Instance;
-<<<<<<< HEAD
 
         if (debugOverlay.PerformanceMetricsVisible)
             debugOverlay.ReportDespawns(despawned);
@@ -156,11 +155,6 @@ public class SpawnSystem
     public void ClearSpawnCoordinates()
     {
         coordinatesSpawned.Clear();
-=======
-
-        if (debugOverlay.PerformanceMetricsVisible)
-            debugOverlay.ReportDespawns(despawned);
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
     }
 
     /// <summary>
@@ -290,16 +284,7 @@ public class SpawnSystem
             }
         }
 
-<<<<<<< HEAD
         SpawnMicrobesAroundPlayer(playerPosition);
-=======
-        estimateEntityCountInSpawnRadius += spawned;
-
-        var debugOverlay = DebugOverlays.Instance;
-
-        if (debugOverlay.PerformanceMetricsVisible)
-            debugOverlay.ReportSpawns(spawned);
->>>>>>> 0e0b88c4 (Debug Overlay (#3295))
     }
 
     /// <summary>
