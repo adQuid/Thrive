@@ -31,19 +31,6 @@ public class SpawnSystem
     private Random random = new();
 
     /// <summary>
-    ///   This limits the number of things that can be spawned in a single spawn radius.
-    ///   Used to limit items spawning in a circle when the player doesn't move.
-    /// </summary>
-    [JsonProperty]
-    private int maxEntitiesInSpawnRadius = 15;
-
-    /// <summary>
-    ///   Max tries per spawner to avoid very high spawn densities lagging
-    /// </summary>
-    [JsonProperty]
-    private int maxTriesPerSpawner = 500;
-
-    /// <summary>
     ///   This is used to spawn only a few entities per frame with minimal changes needed to code that wants to
     ///   spawn a bunch of stuff at once
     /// </summary>
@@ -65,18 +52,14 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
+    private int spawnsLeftThisFrame;
+
     /// <summary>
     ///   Estimate count of existing spawn entities within the current spawn radius of the player;
     ///   Used to prevent a "spawn belt" of densely spawned entities when player doesn't move.
     /// </summary>
     [JsonProperty]
-    private int estimateEntityCountInSpawnRadius;
-
-    /// <summary>
-    ///   Last recorded position of the player. Positions are recorded upon moving more than the stationary threshold.
-    /// </summary>
-    [JsonProperty]
-    private Vector3 lastRecordedPlayerPosition = Vector3.Zero;
+    private HashSet<Int2> coordinatesSpawned = new();
 
     public SpawnSystem(Node root)
     {
@@ -103,13 +86,12 @@ public class SpawnSystem
     public void AddSpawnType(Spawner spawner, float spawnDensity, int spawnRadius)
     {
         spawner.SpawnRadius = spawnRadius;
-        spawner.SpawnFrequency = 122;
         spawner.SpawnRadiusSquared = spawnRadius * spawnRadius;
 
         float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
         spawner.MinSpawnRadiusSquared = minSpawnRadius * minSpawnRadius;
+        spawner.Density = spawnDensity;
 
-        spawner.SetFrequencyFromDensity(spawnDensity);
         spawnTypes.Add(spawner);
     }
 
@@ -159,10 +141,20 @@ public class SpawnSystem
             }
         }
 
-        var metrics = PerformanceMetrics.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
-        if (metrics.Visible)
-            metrics.ReportDespawns(despawned);
+        if (debugOverlay.PerformanceMetricsVisible)
+            debugOverlay.ReportDespawns(despawned);
+
+        ClearSpawnCoordinates();
+    }
+
+    /// <summary>
+    ///   Forgets all record of where clouds have spawned, so clouds can spawn anywhere.
+    /// </summary>
+    public void ClearSpawnCoordinates()
+    {
+        coordinatesSpawned.Clear();
     }
 
     /// <summary>
@@ -176,7 +168,7 @@ public class SpawnSystem
         // Remove the y-position from player position
         playerPosition.y = 0;
 
-        int spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
+        spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
 
         // If we have queued spawns to do spawn those
 
@@ -197,7 +189,7 @@ public class SpawnSystem
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
-            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
+            SpawnEntities(playerPosition, estimateEntityCount);
         }
         else if (despawnElapsed > Constants.DESPAWN_INTERVAL)
         {
@@ -244,157 +236,139 @@ public class SpawnSystem
 
         if (initialSpawns != spawnsLeftThisFrame)
         {
-            var metrics = PerformanceMetrics.Instance;
+            var debugOverlay = DebugOverlays.Instance;
 
-            if (metrics.Visible)
-                metrics.ReportSpawns(initialSpawns - spawnsLeftThisFrame);
+            if (debugOverlay.PerformanceMetricsVisible)
+                debugOverlay.ReportSpawns(initialSpawns - spawnsLeftThisFrame);
         }
 
         return spawnsLeftThisFrame;
     }
 
-    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
+    private void SpawnEntities(Vector3 playerPosition, int existing)
     {
         // If there are already too many entities, don't spawn more
         if (existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
             return;
 
-        // Here we want to check that the player moved to not basically spawn in circle around the player.
-        // Solution inspired by gwen is to check if the player moves out of a square/cycle around their current
-        // registered position (note that the cloud system also used to work like this -hhyyrylainen).
-        // Not perfect however as going on and off could still break this.
-        float squaredDistanceToLastPosition = (playerPosition - lastRecordedPlayerPosition).LengthSquared();
-        bool immobilePlayer = squaredDistanceToLastPosition < Constants.PLAYER_IMMOBILITY_ZONE_RADIUS_SQUARED;
+        var playerCoordinatePoint = new Tuple<int, int>(Mathf.RoundToInt(playerPosition.x /
+            Constants.SPAWN_SECTOR_SIZE), Mathf.RoundToInt(playerPosition.z / Constants.SPAWN_SECTOR_SIZE));
 
-        if (immobilePlayer)
+        // Spawn for all sectors immediately outside a 3x3 box around the player
+        var sectorsToSpawn = new List<Int2>(12);
+        for (int y = -1; y <= 1; y++)
         {
-            // If the player is staying inside a circle around their previous position,
-            // only spawn up to the local spawn cap
-            if (estimateEntityCountInSpawnRadius > maxEntitiesInSpawnRadius)
-                return;
-        }
-        else
-        {
-            // The player moved, so let's update their position and reset counts in spawn radius
-            lastRecordedPlayerPosition = playerPosition;
-            estimateEntityCountInSpawnRadius = 0;
+            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + y));
         }
 
-        int spawned = 0;
-
-        foreach (var spawnType in spawnTypes)
+        for (int x = -1; x <= 1; x++)
         {
-            /*
-            To actually spawn a given entity for a given attempt, two
-            conditions should be met. The first condition is a random
-            chance that adjusts the spawn frequency to the appropriate
-            amount. The second condition is whether the entity will
-            spawn in a valid position. It is checked when the first
-            condition is met and a position for the entity has been
-            decided.
+            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 + x));
+        }
 
-            To allow more than one entity of each type to spawn per
-            spawn cycle, the SpawnSystem attempts to spawn each given
-            entity multiple times depending on the spawnFrequency.
-            numAttempts stores how many times the SpawnSystem attempts
-            to spawn the given entity.
-            */
-            int numAttempts = Mathf.Clamp(spawnType!.SpawnFrequency * 2, 1, maxTriesPerSpawner);
+        for (int y = -1; y <= 1; y++)
+        {
+            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + y, playerCoordinatePoint.Item2 - 2));
+        }
 
-            for (int i = 0; i < numAttempts; i++)
+        for (int x = -1; x <= 1; x++)
+        {
+            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + x, playerCoordinatePoint.Item2 + 2));
+        }
+
+        foreach (var newSector in sectorsToSpawn)
+        {
+            if (coordinatesSpawned.Add(newSector))
             {
-                if (random.Next(0, numAttempts + 1) < spawnType.SpawnFrequency)
-                {
-                    /*
-                    First condition passed. Choose a location for the entity.
-
-                    A random location in the square of side length 2*spawnRadius
-                    centered on the player is chosen. The corners
-                    of the square are outside the spawning region, but they
-                    will fail the second condition, so entities still only
-                    spawn within the spawning region.
-                    */
-                    float displacementDistance = random.NextFloat() * spawnType.SpawnRadius;
-
-                    // If the player moves, weight the rotation to be in front of him for encounter.
-                    // Else compute a uniform rotation to avoid clustering
-                    float displacementRotation = ComputeRandomRadianRotation(playerRotation.y, !immobilePlayer);
-
-                    float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
-                    float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
-
-                    // Distance from the player.
-                    Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
-                    float squaredDistance = displacement.LengthSquared();
-
-                    if (squaredDistance <= spawnType.SpawnRadiusSquared &&
-                        squaredDistance >= spawnType.MinSpawnRadiusSquared)
-                    {
-                        // Second condition passed. Spawn the entity.
-                        if (SpawnWithSpawner(spawnType, playerPosition + displacement, playerPosition, existing,
-                                ref spawnsLeftThisFrame, ref spawned))
-                        {
-                            estimateEntityCountInSpawnRadius += spawned;
-
-                            return;
-                        }
-                    }
-                }
+                SpawnInSector(newSector);
             }
         }
 
-        estimateEntityCountInSpawnRadius += spawned;
+        SpawnMicrobesAroundPlayer(playerPosition);
+    }
 
-        var metrics = PerformanceMetrics.Instance;
+    /// <summary>
+    ///   Handles all spawning for this section of the play area, as it will look when the player enters. Does NOT
+    ///   handle recording that the sector was spawned.
+    /// </summary>
+    /// <param name="sector">X/Y coordinates of the sector to be spawned, in <see cref="Constants.SPAWN_SECTOR_SIZE" />
+    /// units</param>
+    private void SpawnInSector(Int2 sector)
+    {
+        var spawns = 0;
 
-        if (metrics.Visible)
-            metrics.ReportSpawns(spawned);
+        foreach (var spawnType in spawnTypes)
+        {
+            var sectorCenter = new Vector3(sector.x * Constants.SPAWN_SECTOR_SIZE, 0,
+                sector.y * Constants.SPAWN_SECTOR_SIZE);
+
+            // Distance from the sector center.
+            var displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE -
+                (Constants.SPAWN_SECTOR_SIZE / 2), 0,
+                random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
+
+            spawns += SpawnWithSpawner(spawnType, sectorCenter + displacement);
+        }
+
+        var debugOverlay = DebugOverlays.Instance;
+
+        if (debugOverlay.PerformanceMetricsVisible)
+            debugOverlay.ReportSpawns(spawns);
+    }
+
+    private void SpawnMicrobesAroundPlayer(Vector3 playerLocation)
+    {
+        var angle = random.NextFloat() * 2 * Mathf.Pi;
+
+        var spawns = 0;
+        foreach (var spawnType in spawnTypes)
+        {
+            if (spawnType is MicrobeSpawner)
+            {
+                spawns += SpawnWithSpawner(spawnType,
+                    playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
+                        Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
+            }
+        }
+
+        var debugOverlay = DebugOverlays.Instance;
+
+        if (debugOverlay.PerformanceMetricsVisible)
+            debugOverlay.ReportSpawns(spawns);
     }
 
     /// <summary>
     ///   Does a single spawn with a spawner
     /// </summary>
-    /// <returns>True if we have exceeded the spawn limit and no further spawns should be done this frame</returns>
-    private bool SpawnWithSpawner(Spawner spawnType, Vector3 location, Vector3 playerPosition, int existing,
-        ref int spawnsLeftThisFrame, ref int spawned)
+    private int SpawnWithSpawner(Spawner spawnType, Vector3 location)
     {
-        var enumerable = spawnType.Spawn(worldRoot, location, playerPosition);
+        var spawns = 0;
 
-        if (enumerable == null)
-            return false;
-
-        var spawner = enumerable.GetEnumerator();
-
-        while (spawner.MoveNext())
+        if (random.NextFloat() > spawnType.Density)
         {
-            if (spawner.Current == null)
-                throw new NullReferenceException("spawn enumerator is not allowed to return null");
+            return spawns;
+        }
 
-            // Spawned something
-            ProcessSpawnedEntity(spawner.Current, spawnType);
-            spawned += 1;
-            --spawnsLeftThisFrame;
+        if (spawnType is CompoundCloudSpawner || estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
+        {
+            var enumerable = spawnType.Spawn(worldRoot, location);
 
-            // Check if we are out of quota for this frame
+            if (enumerable == null)
+                return spawns;
 
-            // TODO: this is a bit awkward if this stops compound clouds from spawning as well...
-            if (spawned + existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
+            using var spawner = enumerable.GetEnumerator();
+            while (spawner.MoveNext())
             {
-                // We likely couldn't spawn things next frame anyway if we are at the entity limit,
-                // so the spawner is not stored here
-                return true;
-            }
+                if (spawner.Current == null)
+                    throw new NullReferenceException("spawn enumerator is not allowed to return null");
 
-            if (spawnsLeftThisFrame <= 0)
-            {
-                // This spawner might still have something left to spawn next frame, so store it
-                queuedSpawns = new QueuedSpawn(spawner, spawnType);
-                return true;
+                ProcessSpawnedEntity(spawner.Current, spawnType);
+                spawns++;
+                estimateEntityCount++;
             }
         }
 
-        // Can still spawn more stuff
-        return false;
+        return spawns;
     }
 
     /// <summary>
@@ -430,10 +404,10 @@ public class SpawnSystem
             }
         }
 
-        var metrics = PerformanceMetrics.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
-        if (metrics.Visible)
-            metrics.ReportDespawns(entitiesDeleted);
+        if (debugOverlay.PerformanceMetricsVisible)
+            debugOverlay.ReportDespawns(entitiesDeleted);
 
         return spawnedCount - entitiesDeleted;
     }

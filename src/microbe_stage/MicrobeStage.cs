@@ -22,6 +22,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     public NodePath HUDRootPath = null!;
 
     private Compound glucose = null!;
+    private Compound phosphate = null!;
 
     private Node world = null!;
     private Node rootOfDynamicallySpawned = null!;
@@ -222,6 +223,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         ResolveNodeReferences();
 
         glucose = SimulationParameters.Instance.GetCompound("glucose");
+        phosphate = SimulationParameters.Instance.GetCompound("phosphates");
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
@@ -305,6 +307,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         Clouds.Init(FluidSystem);
 
+        // If this is a new game, place some phosphates as a learning tool
+        if (!IsLoadedFromSave)
+        {
+            Clouds.AddCloud(phosphate, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+        }
+
         patchManager.CurrentGame = CurrentGame;
 
         pauseMenu.SetNewSaveNameFromSpeciesName();
@@ -378,6 +386,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         Player.OnCompoundChemoreceptionInfo = HandlePlayerChemoreceptionDetection;
 
         Camera.ObjectToFollow = Player;
+
+        spawner.DespawnAll();
 
         if (spawnedPlayer)
         {
@@ -511,13 +521,13 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             wantsToSave = false;
         }
 
-        var metrics = PerformanceMetrics.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
-        if (metrics.Visible)
+        if (debugOverlay.PerformanceMetricsVisible)
         {
             var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP).Count();
             var childCount = rootOfDynamicallySpawned.GetChildCount();
-            metrics.ReportEntities(entities, childCount - entities);
+            debugOverlay.ReportEntities(entities, childCount - entities);
         }
     }
 
@@ -860,6 +870,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         else
         {
             // Player is not extinct, so can respawn
+            spawner.ClearSpawnCoordinates();
             SpawnPlayer();
         }
     }
