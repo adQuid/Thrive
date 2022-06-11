@@ -15,10 +15,7 @@
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Small.tres" type="DynamicFont" id=16]
-<<<<<<< HEAD
 [ext_resource path="res://src/general/NewGameSettings.tscn" type="PackedScene" id=17]
-=======
->>>>>>> 758dff23 (Added more tooltips to game buttons (#3385))
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
