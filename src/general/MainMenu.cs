@@ -328,7 +328,7 @@ public class MainMenu : NodeWithInput
         var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 
         // Start freebuild game
-        editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
+        editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
 
         // Switch to the editor scene
         SceneManager.Instance.SwitchToScene(editor);
