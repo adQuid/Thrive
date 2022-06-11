@@ -19,7 +19,7 @@ Repository structure:
 
 Getting Involved
 ----------------
-If you want to contribute code, all you have to do is make a PR. For more details read the [contribution guidelines](CONTRIBUTING.md). The [styleguide](/doc/styleguide.md) is quite short, so be sure to give that a look as well.
+If you want to contribute code, all you have to do is make a PR. For more details read the [setup instructions](doc/setup_instructions.md) and [contribution guidelines](CONTRIBUTING.md). The [styleguide](/doc/style_guide.md) is quite short, so be sure to give that a look as well.
 
 If you want to contribute some other variety of asset, consider contributing to (or joining) Thrive's main team. Assets from the main repo are good to trasfer over to this one, but because of permissions it does NOT work the other way, and I sure wouldn't want to steal taleneted people away from Thrive!
 
