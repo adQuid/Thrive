@@ -130,12 +130,7 @@ public class PatchManager : IChildPropertiesLoadCallback
                 {
                     var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
-<<<<<<< HEAD
                     spawnSystem.AddSpawnType(spawner.Spawner, CurrentGame == null ? entry.Value.Density : (float)(entry.Value.Density * CurrentGame.WorldSettings.CompoundDensity),
-=======
-                    spawnSystem.AddSpawnType(spawner.Spawner,
-                        (float)(entry.Value.Density * CurrentGame.WorldSettings.CompoundDensity),
->>>>>>> f9027433 (Easter egg setting capability)
                         Constants.MICROBE_SPAWN_RADIUS);
 
                     return spawner;
@@ -160,11 +155,7 @@ public class PatchManager : IChildPropertiesLoadCallback
                         Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
 
                     spawnSystem.AddSpawnType(spawner.Spawner,
-<<<<<<< HEAD
                     CurrentGame == null ? entry.Value.Density : (float)(entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR * CurrentGame.WorldSettings.CompoundDensity),
-=======
-                        (float)(entry.Value.Density * CurrentGame.WorldSettings.CompoundDensity),
->>>>>>> f9027433 (Easter egg setting capability)
                         Constants.CLOUD_SPAWN_RADIUS);
 
                     return spawner;
