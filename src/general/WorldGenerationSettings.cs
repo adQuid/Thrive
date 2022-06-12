@@ -97,7 +97,7 @@ public class WorldGenerationSettings
             case DifficultyPreset.Normal:
                 return 1;
             case DifficultyPreset.Hard:
-                return 0.5;
+                return 1;
             default:
                 return 1;
         }
