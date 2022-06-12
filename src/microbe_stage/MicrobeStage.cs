@@ -118,6 +118,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [JsonIgnore]
     public PlayerHoverInfo HoverInfo { get; private set; } = null!;
 
+    [JsonProperty]
+    public WorldGenerationSettings? WorldSettings { get; set; }
+
     /// <summary>
     ///   The main current game object holding various details
     /// </summary>
@@ -301,6 +304,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             }
         }
 
+        GD.Print(WorldSettings);
+
         pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
 
         tutorialGUI.EventReceiver = TutorialState;
@@ -342,7 +347,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public void StartNewGame()
     {
-        CurrentGame = GameProperties.StartNewMicrobeGame();
+        WorldSettings ??= new WorldGenerationSettings();
+        CurrentGame = GameProperties.StartNewMicrobeGame(WorldSettings);
 
         patchManager.CurrentGame = CurrentGame;
 
@@ -695,6 +701,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // Make sure player is spawned
         SpawnPlayer();
 
+        // Add a cloud of glucose if difficulty settings call for it
+        if (WorldSettings!.FreeGlucoseCloud)
+        {
+            Clouds.AddCloud(glucose, 200000.0f, Player!.Translation + new Vector3(0.0f, 0.0f, -25.0f));
+        }
+
         // Check win conditions
         if (!CurrentGame.FreeBuild && Player!.Species.Generation >= 20 &&
             Player.Species.Population >= 300 && !wonOnce)
@@ -808,9 +820,11 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         // Decrease the population by the constant for the player dying
         GameWorld.AlterSpeciesPopulation(
-            GameWorld.PlayerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
+            GameWorld.PlayerSpecies,
+            Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
-            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
+            true, (float)(Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
+                / CurrentGame!.WorldSettings.PlayerDeathPopulationPenalty));
 
         if (IsGameOver())
         {

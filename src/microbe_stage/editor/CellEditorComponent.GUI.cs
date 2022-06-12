@@ -202,7 +202,7 @@ public partial class CellEditorComponent
 
     private void UpdateRigiditySliderState(int mutationPoints)
     {
-        int costPerStep = (int)(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * editorCostFactor);
+        int costPerStep = Math.Min((int)(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier), 100);
         if (mutationPoints >= costPerStep && MovingPlacedHex == null)
         {
             rigiditySlider.Editable = true;
@@ -285,6 +285,31 @@ public partial class CellEditorComponent
         }
     }
 
+    private void UpdateOrganelleLawkSettings()
+    {
+        // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
+        foreach (var organelle in allPartSelectionElements.Keys)
+        {
+            var control = allPartSelectionElements[organelle];
+            control.Visible = !Editor.CurrentGame.WorldSettings.Lawk || organelle.Lawk;
+        }
+    }
+
+    private void UpdateDifficultyAdjustedMPCost()
+    {
+        foreach (var organelle in placeablePartSelectionElements.Keys)
+        {
+            var control = placeablePartSelectionElements[organelle];
+            control.MPCost = Math.Min((int)(control.MPCost * CostMultiplier), 100);
+        }
+
+        foreach (var membrane in membraneSelectionElements.Keys)
+        {
+            var control = membraneSelectionElements[membrane];
+            control.MPCost = Math.Min((int)(control.MPCost * CostMultiplier), 100);
+        }
+    }
+
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
     {
         return (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(name, group);
@@ -303,7 +328,10 @@ public partial class CellEditorComponent
 
             var tooltip = GetSelectionTooltip(name, "organelleSelection");
             if (tooltip != null)
+            {
                 tooltip.EditorCostFactor = editorCostFactor;
+                tooltip.MutationPointCost = Math.Min((int)(tooltip.MutationPointCost * CostMultiplier), 100);
+            }
         }
 
         var membraneNames = SimulationParameters.Instance.GetAllMembranes().Select(m => m.InternalName);
@@ -311,12 +339,19 @@ public partial class CellEditorComponent
         {
             var tooltip = GetSelectionTooltip(name, "membraneSelection");
             if (tooltip != null)
+            {
                 tooltip.EditorCostFactor = editorCostFactor;
+                tooltip.MutationPointCost = Math.Min((int)(tooltip.MutationPointCost * CostMultiplier), 100);
+            }
         }
 
         var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
         if (rigidityTooltip != null)
+        {
             rigidityTooltip.EditorCostFactor = editorCostFactor;
+            rigidityTooltip.MutationPointCost =
+                Math.Min((int)(rigidityTooltip.MutationPointCost * CostMultiplier), 100);
+        }
     }
 
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)

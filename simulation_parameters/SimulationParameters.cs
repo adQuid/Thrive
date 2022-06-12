@@ -212,11 +212,18 @@ public class SimulationParameters : Node
         return gameCredits;
     }
 
-    public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
+    public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random, bool lawkOnly)
     {
         float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
 
-        foreach (var organelle in prokaryoticOrganelles)
+        // Filter to only LAWK organelles if necessary
+        var usedOrganelles = prokaryoticOrganelles;
+        if (lawkOnly)
+        {
+            usedOrganelles = usedOrganelles.Where(o => o.Lawk).ToList();
+        }
+
+        foreach (var organelle in usedOrganelles)
         {
             valueLeft -= organelle.ProkaryoteChance;
 
@@ -224,14 +231,21 @@ public class SimulationParameters : Node
                 return organelle;
         }
 
-        return prokaryoticOrganelles[prokaryoticOrganelles.Count - 1];
+        return usedOrganelles[usedOrganelles.Count - 1];
     }
 
-    public OrganelleDefinition GetRandomEukaryoticOrganelle(Random random)
+    public OrganelleDefinition GetRandomEukaryoticOrganelle(Random random, bool lawkOnly)
     {
         float valueLeft = random.Next(0.0f, eukaryoticOrganellesChance);
 
-        foreach (var organelle in eukaryoticOrganelles)
+        // Filter to only LAWK organelles if necessary
+        var usedOrganelles = eukaryoticOrganelles;
+        if (lawkOnly)
+        {
+            usedOrganelles = usedOrganelles.Where(o => o.Lawk).ToList();
+        }
+
+        foreach (var organelle in usedOrganelles)
         {
             valueLeft -= organelle.ChanceToCreate;
 
@@ -239,7 +253,7 @@ public class SimulationParameters : Node
                 return organelle;
         }
 
-        return eukaryoticOrganelles[eukaryoticOrganelles.Count - 1];
+        return usedOrganelles[usedOrganelles.Count - 1];
     }
 
     public PatchMapNameGenerator GetPatchMapNameGenerator()
