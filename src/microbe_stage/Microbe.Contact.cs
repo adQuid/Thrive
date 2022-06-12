@@ -509,7 +509,7 @@ public partial class Microbe
                 Dissolves = true,
                 Mass = 1.0f,
                 Radius = 1.0f,
-                Size = 3.0f,
+                Size = 1.0f,
                 VentAmount = 0.1f,
 
                 // Add compounds
@@ -538,12 +538,14 @@ public partial class Microbe
             {
                 if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
                 {
+                    chunkType.Size = organelle.Definition.HexCount;
                     sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
                     break;
                 }
 
                 if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
                 {
+                    chunkType.Size = organelle.Definition.HexCount;
                     sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
                     sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
                     break;
