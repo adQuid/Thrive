@@ -500,8 +500,7 @@ public partial class Microbe
             // Amount of compound in one chunk
             float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
 
-            var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
-                random.Next(-2.0f, 2.0f));
+            var positionOffset = new Vector3((organelle.Position.R / -2.0f) * Mathf.Cos(Rotation.y), 0.0f, (organelle.Position.R / -2.0f) * Mathf.Sin(Rotation.y));
 
             var chunkType = new ChunkConfiguration
             {
@@ -561,7 +560,7 @@ public partial class Microbe
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
+            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionOffset, GetStageAsParent(),
                 chunkScene, random);
 
             // Add to the spawn system to make these chunks limit possible number of entities
