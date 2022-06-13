@@ -119,7 +119,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     public PlayerHoverInfo HoverInfo { get; private set; } = null!;
 
     [JsonProperty]
-    public WorldGenerationSettings? WorldSettings { get; set; }
+    public WorldGenerationSettings WorldSettings { get; set; } = new();
 
     /// <summary>
     ///   The main current game object holding various details

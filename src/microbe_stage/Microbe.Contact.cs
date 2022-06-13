@@ -194,11 +194,6 @@ public partial class Microbe
     {
         get
         {
-            if (CellTypeProperties.IsBacteria)
-            {
-                return HexCount * 0.5f;
-            }
-
             return HexCount;
         }
     }
@@ -290,9 +285,6 @@ public partial class Microbe
             return;
         }
 
-        // Damage reduction is only wanted for non-starving damage
-        bool canApplyDamageReduction = true;
-
         if (source is "toxin" or "oxytoxy")
         {
             // TODO: Replace this take damage sound with a more appropriate one.
@@ -325,7 +317,6 @@ public partial class Microbe
         else if (source == "atpDamage")
         {
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg");
-            canApplyDamageReduction = false;
         }
         else if (source == "ice")
         {
@@ -333,11 +324,6 @@ public partial class Microbe
 
             // Divide damage by physical resistance
             amount /= CellTypeProperties.MembraneType.PhysicalResistance;
-        }
-
-        if (!CellTypeProperties.IsBacteria && canApplyDamageReduction)
-        {
-            amount /= 2;
         }
 
         Hitpoints -= amount;
@@ -509,7 +495,7 @@ public partial class Microbe
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
 
-        for (int i = 0; i < chunksToSpawn; ++i)
+        foreach (var organelle in organelles)
         {
             // Amount of compound in one chunk
             float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
@@ -523,7 +509,7 @@ public partial class Microbe
                 Dissolves = true,
                 Mass = 1.0f,
                 Radius = 1.0f,
-                Size = 3.0f,
+                Size = 1.0f,
                 VentAmount = 0.1f,
 
                 // Add compounds
@@ -547,24 +533,24 @@ public partial class Microbe
 
             var sceneToUse = new ChunkConfiguration.ChunkScene();
 
-            // Try all organelles in random order and use the first one with a scene for model
-            foreach (var organelle in organelles.OrderBy(_ => random.Next()))
+            // if there is no scene, just don't spawn a chunk
+            if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
             {
-                if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
-                {
-                    sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
-                    break;
-                }
-
-                if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
-                {
-                    sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
-                    sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
-                    break;
-                }
+                chunkType.Size = organelle.Definition.HexCount;
+                sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
+            }
+            else if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
+            {
+                chunkType.Size = organelle.Definition.HexCount;
+                sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
+                sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
+            }
+            else
+            {
+                continue;
             }
 
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             // ReSharper disable once HeuristicUnreachableCode
             if (sceneToUse == null)
                 throw new Exception("sceneToUse is null");
