@@ -516,23 +516,6 @@ public partial class Microbe
                 Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>(),
             };
 
-            // They were added in order already so looping through this other thing is fine
-            foreach (var entry in compoundsToRelease)
-            {
-                var compoundAmount = (entry.Value / random.Next(amount / 3.0f, amount)) *
-                        Constants.CORPSE_COMPOUND_COMPENSATION;
-
-                var compoundValue = new ChunkConfiguration.ChunkCompound
-                {
-                    // Randomize compound amount a bit so things "rot away"
-                    Amount = compoundAmount,
-                };
-
-                chunkType.Compounds[entry.Key] = compoundValue;
-
-                compoundsToRelease[entry.Key] = entry.Value - compoundAmount;
-            }
-
             chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
             var sceneToUse = new ChunkConfiguration.ChunkScene();
@@ -554,10 +537,26 @@ public partial class Microbe
                 continue;
             }
 
-             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            // ReSharper disable once HeuristicUnreachableCode
-            if (sceneToUse == null)
-                throw new Exception("sceneToUse is null");
+            // They were added in order already so looping through this other thing is fine
+            foreach (var entry in compoundsToRelease.Keys.ToList())
+            {
+                if (compoundsToRelease[entry] <= 0.0f)
+                {
+                    continue;
+                }
+
+                var compoundAmount = compoundsToRelease[entry] * random.Next(amount / 3.0f, amount / 2.0f);
+
+                var compoundValue = new ChunkConfiguration.ChunkCompound
+                {
+                    // Randomize compound amount a bit so things "rot away"
+                    Amount = compoundAmount,
+                };
+
+                chunkType.Compounds[entry] = compoundValue;
+
+                compoundsToRelease[entry] = compoundsToRelease[entry] - compoundAmount;
+            }
 
             chunkType.Meshes.Add(sceneToUse);
 
