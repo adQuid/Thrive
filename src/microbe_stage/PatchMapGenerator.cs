@@ -168,16 +168,16 @@ public static class PatchMapGenerator
         switch (WorldSettings.Origin)
         {
             case WorldGenerationSettings.LifeOrigin.Vent:
-                vents.AddSpecies(defaultSpecies);
+                vents.AddSpecies(defaultSpecies, 1);
                 map.CurrentPatch = vents;
                 break;
             case WorldGenerationSettings.LifeOrigin.Pond:
-                tidepool.AddSpecies(defaultSpecies);
+                tidepool.AddSpecies(defaultSpecies, 1);
                 map.CurrentPatch = tidepool;
                 break;
             case WorldGenerationSettings.LifeOrigin.Panspermia:
                 var startingPatch = map.Patches.Random(random);
-                startingPatch!.AddSpecies(defaultSpecies);
+                startingPatch!.AddSpecies(defaultSpecies, 1);
                 map.CurrentPatch = startingPatch;
                 break;
         }
