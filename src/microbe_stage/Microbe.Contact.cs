@@ -495,7 +495,7 @@ public partial class Microbe
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
 
-        for (int i = 0; i < chunksToSpawn; ++i)
+        foreach (var organelle in organelles)
         {
             // Amount of compound in one chunk
             float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
@@ -533,26 +533,24 @@ public partial class Microbe
 
             var sceneToUse = new ChunkConfiguration.ChunkScene();
 
-            // Try all organelles in random order and use the first one with a scene for model
-            foreach (var organelle in organelles.OrderBy(_ => random.Next()))
+            // if there is no scene, just don't spawn a chunk
+            if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
             {
-                if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
-                {
-                    chunkType.Size = organelle.Definition.HexCount;
-                    sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
-                    break;
-                }
-
-                if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
-                {
-                    chunkType.Size = organelle.Definition.HexCount;
-                    sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
-                    sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
-                    break;
-                }
+                chunkType.Size = organelle.Definition.HexCount;
+                sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
+            }
+            else if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
+            {
+                chunkType.Size = organelle.Definition.HexCount;
+                sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
+                sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
+            }
+            else
+            {
+                continue;
             }
 
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             // ReSharper disable once HeuristicUnreachableCode
             if (sceneToUse == null)
                 throw new Exception("sceneToUse is null");
