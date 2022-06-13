@@ -490,6 +490,11 @@ public partial class Microbe
 
     private void HandleCompoundAbsorbing(float delta)
     {
+        if (Dead)
+        {
+            return;
+        }
+
         // max here buffs compound absorbing for the smallest cells
         var grabRadius = Mathf.Max(Radius, 3.0f);
 

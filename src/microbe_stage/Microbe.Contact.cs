@@ -569,7 +569,7 @@ public partial class Microbe
 
         foreach (var compound in compoundsToRelease)
         {
-            SpawnHelpers.SpawnCloud(cloudSystem, GlobalTransform.origin, compound.Key, compound.Value);
+            cloudSystem.AddCloud(compound.Key, compound.Value / Constants.ABSORPTION_RATIO, Translation);
         }
 
         // Subtract population
