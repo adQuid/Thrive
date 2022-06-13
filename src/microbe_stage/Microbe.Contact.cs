@@ -567,6 +567,11 @@ public partial class Microbe
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
 
+        foreach (var compound in compoundsToRelease)
+        {
+            SpawnHelpers.SpawnCloud(cloudSystem, GlobalTransform.origin, compound.Key, compound.Value);
+        }
+
         // Subtract population
         if (!IsPlayerMicrobe && !Species.PlayerSpecies)
         {
