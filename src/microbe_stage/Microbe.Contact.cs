@@ -519,14 +519,18 @@ public partial class Microbe
             // They were added in order already so looping through this other thing is fine
             foreach (var entry in compoundsToRelease)
             {
+                var compoundAmount = (entry.Value / random.Next(amount / 3.0f, amount)) *
+                        Constants.CORPSE_COMPOUND_COMPENSATION;
+
                 var compoundValue = new ChunkConfiguration.ChunkCompound
                 {
                     // Randomize compound amount a bit so things "rot away"
-                    Amount = (entry.Value / random.Next(amount / 3.0f, amount)) *
-                        Constants.CORPSE_COMPOUND_COMPENSATION,
+                    Amount = compoundAmount,
                 };
 
                 chunkType.Compounds[entry.Key] = compoundValue;
+
+                compoundsToRelease[entry.Key] = entry.Value - compoundAmount;
             }
 
             chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
