@@ -42,9 +42,6 @@ public class MicrobeHUD : Control
     public NodePath PauseButtonPath = null!;
 
     [Export]
-    public NodePath ResumeButtonPath = null!;
-
-    [Export]
     public NodePath AtpLabelPath = null!;
 
     [Export]
@@ -287,8 +284,7 @@ public class MicrobeHUD : Control
     private Light2D editorButtonFlash = null!;
 
     private PauseMenu menu = null!;
-    private TextureButton pauseButton = null!;
-    private TextureButton resumeButton = null!;
+    private PlayButton pauseButton = null!;
     private Label atpLabel = null!;
     private Label hpLabel = null!;
     private Label populationLabel = null!;
@@ -328,11 +324,6 @@ public class MicrobeHUD : Control
 #pragma warning disable 649 // ignored until we get some GUI or something to change this
     private bool showMouseCoordinates;
 #pragma warning restore 649
-
-    /// <summary>
-    ///   For toggling paused with the pause button.
-    /// </summary>
-    private bool paused;
 
     // Checks
     private bool environmentCompressed;
@@ -396,8 +387,7 @@ public class MicrobeHUD : Control
 
         panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MarginContainer>(MouseHoverPanelPath);
-        pauseButton = GetNode<TextureButton>(PauseButtonPath);
-        resumeButton = GetNode<TextureButton>(ResumeButtonPath);
+        pauseButton = GetNode<PlayButton>(PauseButtonPath);
         agentsPanel = GetNode<Control>(AgentsPanelPath);
 
         environmentPanel = GetNode<Panel>(EnvironmentPanelPath);
@@ -772,34 +762,12 @@ public class MicrobeHUD : Control
         // TODO: pressure?
     }
 
-    public void PauseButtonPressed()
+    public void TogglePause()
     {
         if (menu.Visible)
             return;
 
-        GUICommon.Instance.PlayButtonPressSound();
-
-        paused = !paused;
-        if (paused)
-        {
-            pauseButton.Hide();
-            resumeButton.Show();
-            pausePrompt.Show();
-            pauseButton.Pressed = false;
-
-            // Pause the game
-            PauseManager.Instance.AddPause(nameof(MicrobeHUD));
-        }
-        else
-        {
-            pauseButton.Show();
-            resumeButton.Hide();
-            pausePrompt.Hide();
-            resumeButton.Pressed = false;
-
-            // Unpause the game
-            PauseManager.Instance.Resume(nameof(MicrobeHUD));
-        }
+        pauseButton.Toggle();
     }
 
     public void DisableBottomRight()
@@ -1389,6 +1357,26 @@ public class MicrobeHUD : Control
         menu.Open();
     }
 
+    private void PauseButtonPressed(bool paused)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (paused)
+        {
+            pausePrompt.Show();
+
+            // Pause the game
+            PauseManager.Instance.AddPause(nameof(MicrobeHUD));
+        }
+        else
+        {
+            pausePrompt.Hide();
+
+            // Unpause the game
+            PauseManager.Instance.Resume(nameof(MicrobeHUD));
+        }
+    }
+
     private void CompoundButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -1493,7 +1481,7 @@ public class MicrobeHUD : Control
         if (!PauseManager.Instance.Paused)
         {
             // The button press sound will play along with this
-            PauseButtonPressed();
+            pauseButton.Paused = true;
         }
         else
         {
@@ -1509,7 +1497,7 @@ public class MicrobeHUD : Control
         if (PauseManager.Instance.Paused)
         {
             // The button press sound will play along with this
-            PauseButtonPressed();
+            pauseButton.Paused = false;
         }
     }
 
@@ -1543,7 +1531,7 @@ public class MicrobeHUD : Control
     {
         if (PauseManager.Instance.Paused)
         {
-            PauseButtonPressed();
+            pauseButton.Paused = false;
 
             if (PauseManager.Instance.Paused)
                 GD.PrintErr("Unpausing the game after editor button press didn't work");

@@ -608,7 +608,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // Check nothing else has keyboard focus and pause the game
         if (HUD.GetFocusOwner() == null)
         {
-            HUD.PauseButtonPressed();
+            HUD.TogglePause();
         }
     }
 
