@@ -487,7 +487,7 @@ public partial class Microbe
                 compoundsToRelease.TryGetValue(entry.Key, out var existing);
 
                 compoundsToRelease[entry.Key] = existing + (entry.Value *
-                    Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE * 20.0f);
+                    Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE * 5.0f);
             }
         }
 
