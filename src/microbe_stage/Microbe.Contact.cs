@@ -504,7 +504,7 @@ public partial class Microbe
 
             var chunkType = new ChunkConfiguration
             {
-                ChunkScale = 1.0f,
+                ChunkScale = CellTypeProperties.IsBacteria ? 0.5f : 1.0f,
                 Dissolves = true,
                 Mass = 1.0f,
                 Radius = 1.0f,
