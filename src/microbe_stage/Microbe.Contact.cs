@@ -487,7 +487,7 @@ public partial class Microbe
                 compoundsToRelease.TryGetValue(entry.Key, out var existing);
 
                 compoundsToRelease[entry.Key] = existing + (entry.Value *
-                    Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
+                    Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE * 5.0f);
             }
         }
 
@@ -500,12 +500,11 @@ public partial class Microbe
             // Amount of compound in one chunk
             float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
 
-            var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
-                random.Next(-2.0f, 2.0f));
+            var positionOffset = new Vector3((organelle.Position.R / -2.0f) * Mathf.Cos(Rotation.y), 0.0f, (organelle.Position.R / -2.0f) * Mathf.Sin(Rotation.y));
 
             var chunkType = new ChunkConfiguration
             {
-                ChunkScale = 1.0f,
+                ChunkScale = CellTypeProperties.IsBacteria ? 0.5f : 1.0f,
                 Dissolves = true,
                 Mass = 1.0f,
                 Radius = 1.0f,
@@ -515,19 +514,6 @@ public partial class Microbe
                 // Add compounds
                 Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>(),
             };
-
-            // They were added in order already so looping through this other thing is fine
-            foreach (var entry in compoundsToRelease)
-            {
-                var compoundValue = new ChunkConfiguration.ChunkCompound
-                {
-                    // Randomize compound amount a bit so things "rot away"
-                    Amount = (entry.Value / random.Next(amount / 3.0f, amount)) *
-                        Constants.CORPSE_COMPOUND_COMPENSATION,
-                };
-
-                chunkType.Compounds[entry.Key] = compoundValue;
-            }
 
             chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
@@ -550,21 +536,42 @@ public partial class Microbe
                 continue;
             }
 
-             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            // ReSharper disable once HeuristicUnreachableCode
-            if (sceneToUse == null)
-                throw new Exception("sceneToUse is null");
+            // They were added in order already so looping through this other thing is fine
+            foreach (var entry in compoundsToRelease.Keys.ToList())
+            {
+                if (compoundsToRelease[entry] <= 0.0f)
+                {
+                    continue;
+                }
+
+                var compoundAmount = compoundsToRelease[entry] * random.Next(amount / 3.0f, amount / 2.0f);
+
+                var compoundValue = new ChunkConfiguration.ChunkCompound
+                {
+                    // Randomize compound amount a bit so things "rot away"
+                    Amount = compoundAmount,
+                };
+
+                chunkType.Compounds[entry] = compoundValue;
+
+                compoundsToRelease[entry] = compoundsToRelease[entry] - compoundAmount;
+            }
 
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
+            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionOffset, GetStageAsParent(),
                 chunkScene, random);
 
             // Add to the spawn system to make these chunks limit possible number of entities
             SpawnSystem.AddEntityToTrack(chunk);
 
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
+        }
+
+        foreach (var compound in compoundsToRelease)
+        {
+            cloudSystem.AddCloud(compound.Key, compound.Value / Constants.ABSORPTION_RATIO, Translation);
         }
 
         // Subtract population
