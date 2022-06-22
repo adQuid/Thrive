@@ -12,7 +12,7 @@
     "glycolysis": {
         "name": "GLYCOLYSIS",
         "inputs": {
-            "glucose": 0.006
+            "glucose": 0.002
         },
         "outputs": {
             "atp": 2
@@ -21,7 +21,7 @@
     "glycolysis_cytoplasm": {
         "name": "CYTOPLASM_GLYCOLYSIS",
         "inputs": {
-            "glucose": 0.011
+            "glucose": 0.04
         },
         "outputs": {
             "atp": 3
@@ -34,7 +34,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.08
+            "glucose": 0.02
         }
     },
     "oxytoxySynthesis": {
@@ -115,7 +115,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.015
+            "glucose": 0.005
         }
     },
     "iron_chemolithoautotrophy": {
