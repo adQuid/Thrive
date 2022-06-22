@@ -248,6 +248,7 @@ SizeIndicatorPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/
 TotalPopulationIndicatorPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total/Indicator")
 RigiditySliderPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
 NegativeAtpPopupPath = NodePath("NegativeAtpWarning")
+NoMovementPopupPath = NodePath("NoMovementWarning")
 OrganelleMenuPath = NodePath("OrganellePopupMenu")
 CompoundBalancePath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
 AutoEvoPredictionExplanationPopupPath = NodePath("PredictionExplanation")
