@@ -805,8 +805,7 @@ public partial class CellEditorComponent :
             return false;
         }
 
-        if (!IsMulticellularEditor && energyBalanceInfo != null &&
-            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
+        if (!IsMulticellularEditor && CalculateSpeed() <= 0.0f)
         {
             noMovementPopup.PopupCenteredShrink();
             return false;
