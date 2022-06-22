@@ -487,7 +487,7 @@ public partial class Microbe
                 compoundsToRelease.TryGetValue(entry.Key, out var existing);
 
                 compoundsToRelease[entry.Key] = existing + (entry.Value *
-                    Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE * 5.0f);
+                    Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
             }
         }
 
@@ -497,9 +497,6 @@ public partial class Microbe
 
         foreach (var organelle in organelles)
         {
-            // Amount of compound in one chunk
-            float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
-
             var positionOffset = new Vector3((organelle.Position.R / -2.0f) * Mathf.Cos(Rotation.y), 0.0f, (organelle.Position.R / -2.0f) * Mathf.Sin(Rotation.y));
 
             var chunkType = new ChunkConfiguration
@@ -544,12 +541,11 @@ public partial class Microbe
                     continue;
                 }
 
-                var compoundAmount = compoundsToRelease[entry] * random.Next(amount / 3.0f, amount / 2.0f);
+                var compoundAmount = compoundsToRelease[entry] * random.Next(1.0f / HexCount, 1.0f);
 
                 var compoundValue = new ChunkConfiguration.ChunkCompound
                 {
-                    // Randomize compound amount a bit so things "rot away"
-                    Amount = compoundAmount,
+                    Amount = compoundAmount * 30,
                 };
 
                 chunkType.Compounds[entry] = compoundValue;
