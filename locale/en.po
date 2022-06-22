@@ -3512,10 +3512,20 @@ msgstr "Worst Patch:"
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negative ATP Balance"
 
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
+msgid "NO_MOVEMENT"
+msgstr "No Movement"
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Your microbe is not producing enough ATP for it to survive!\n"
+"Do you wish to continue?"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
+msgid "NO_MOVEMENT_TEXT"
+msgstr ""
+"Your microbe is unable to move!\n"
 "Do you wish to continue?"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1261
