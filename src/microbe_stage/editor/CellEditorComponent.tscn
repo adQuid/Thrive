@@ -1254,6 +1254,13 @@ rect_min_size = Vector2( 500, 0 )
 WindowTitle = "NEGATIVE_ATP_BALANCE"
 DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
 
+[node name="NoMovementWarning" parent="." instance=ExtResource( 9 )]
+margin_right = 500.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 500, 0 )
+WindowTitle = "NO_MOVEMENT"
+DialogText = "NO_MOVEMENT_TEXT"
+
 [node name="IslandError" parent="." instance=ExtResource( 9 )]
 margin_right = 600.0
 margin_bottom = 85.0
