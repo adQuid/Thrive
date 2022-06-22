@@ -987,6 +987,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         return GameWorld.PlayerSpecies.Population <= 0 && !CurrentGame!.FreeBuild;
     }
 
+    // Use this in OnReturnFromEditor, right after spawning the player, to spawn one of every species in the patch
     private void DebugPrintSpecies()
     {
         var i = 0;
