@@ -105,10 +105,17 @@ public static class SpawnHelpers
         Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem, GameProperties currentGame,
         Random random)
     {
+        var microbeSpecies = (MicrobeSpecies)species;
         var curSpawn = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
         var clumpSize = random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
             Constants.MAX_BACTERIAL_COLONY_SIZE + 1);
+
+        if (MicrobeInternalCalculations.CalculateSpeed(microbeSpecies.Organelles, microbeSpecies.MembraneType, microbeSpecies.MembraneRigidity) <= 0.0f)
+        {
+            clumpSize *= 3;
+        }
+
         for (int i = 0; i < clumpSize; i++)
         {
             // Dont spawn them on top of each other because it
@@ -116,7 +123,7 @@ public static class SpawnHelpers
             yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
                 cloudSystem, currentGame);
 
-            curSpawn += new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
+            curSpawn += new Vector3(random.Next(-1, 2), 0, random.Next(-1, 2));
         }
     }
 
