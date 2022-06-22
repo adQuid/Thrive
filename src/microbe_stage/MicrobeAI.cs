@@ -109,6 +109,10 @@ public class MicrobeAI
         if (microbe.ColonyParent != null)
             return;
 
+        // For now don't think if immobile
+        if (MicrobeInternalCalculations.CalculateSpeed(((MicrobeSpecies)microbe.Species).Organelles, microbe.Membrane.Type, ((MicrobeSpecies)microbe.Species).MembraneRigidity) <= 0.0f)
+            return;
+
         timeSinceSignalSniffing += delta;
 
         if (timeSinceSignalSniffing > Constants.MICROBE_AI_SIGNAL_REACT_INTERVAL)
