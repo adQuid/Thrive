@@ -58,6 +58,8 @@ public partial class Microbe
     /// </remarks>
     private bool allOrganellesDivided;
 
+    private bool hasDivided = false;
+
     private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
 
     /// <summary>
@@ -374,6 +376,7 @@ public partial class Microbe
         // Play the split sound
         PlaySoundEffect("res://assets/sounds/soundeffects/reproduction.ogg");
 
+        hasDivided = true;
         return copyEntity;
     }
 
@@ -500,6 +503,13 @@ public partial class Microbe
 
         cloudSystem!.AbsorbCompounds(GlobalTransform.origin, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
+
+        // If a microbe has already divided, don't get any more free stuff
+        if (!hasDivided)
+        {
+            Compounds.AddCompound(SimulationParameters.Instance.GetCompound("ammonia"), 0.05f * delta);
+            Compounds.AddCompound(SimulationParameters.Instance.GetCompound("phosphates"), 0.05f * delta);
+        }
 
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
         {
