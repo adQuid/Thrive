@@ -986,4 +986,19 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     {
         return GameWorld.PlayerSpecies.Population <= 0 && !CurrentGame!.FreeBuild;
     }
+
+    private void DebugPrintSpecies()
+    {
+        var i = 0;
+        foreach (MicrobeSpecies toSpawn in CurrentGame.GameWorld.Map.CurrentPatch.SpeciesInPatch.Keys)
+        {
+            if (toSpawn != Player.Species)
+            {
+                SpawnHelpers.SpawnMicrobe(toSpawn, Player.Translation + new Vector3(4.0f * ++i, 0.0f, 0.5f * (float)Math.Pow(CurrentGame.GameWorld.Map.CurrentPatch.GetSpeciesPopulation(toSpawn), 0.35)),
+                rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
+                CurrentGame);
+
+            }
+        }
+    }
 }
