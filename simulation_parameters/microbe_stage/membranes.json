@@ -41,7 +41,7 @@
         "albedoTexture": "res://assets/textures/CellWallGradient.png",
         "normalTexture": "res://assets/textures/MembraneNormals.png",
         "damagedTexture": "res://assets/textures/CellWallGradientDamaged.png",
-        "movementFactor": 0.9,
+        "movementFactor": 0.0,
         "baseWigglyness": 0.25,
         "movementWigglyness": 0.25,
         "osmoregulationFactor": 0.8,
