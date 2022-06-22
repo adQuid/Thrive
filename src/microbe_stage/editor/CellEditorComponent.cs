@@ -805,6 +805,13 @@ public partial class CellEditorComponent :
             return false;
         }
 
+        if (!IsMulticellularEditor && energyBalanceInfo != null &&
+            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
+        {
+            noMovementPopup.PopupCenteredShrink();
+            return false;
+        }
+
         return true;
     }
 
