@@ -248,6 +248,7 @@ SizeIndicatorPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/
 TotalPopulationIndicatorPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total/Indicator")
 RigiditySliderPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
 NegativeAtpPopupPath = NodePath("NegativeAtpWarning")
+NoMovementPopupPath = NodePath("NoMovementWarning")
 OrganelleMenuPath = NodePath("OrganellePopupMenu")
 CompoundBalancePath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
 AutoEvoPredictionExplanationPopupPath = NodePath("PredictionExplanation")
@@ -1254,6 +1255,13 @@ rect_min_size = Vector2( 500, 0 )
 WindowTitle = "NEGATIVE_ATP_BALANCE"
 DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
 
+[node name="NoMovementWarning" parent="." instance=ExtResource( 9 )]
+margin_right = 500.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 500, 0 )
+WindowTitle = "NO_MOVEMENT"
+DialogText = "NO_MOVEMENT_TEXT"
+
 [node name="IslandError" parent="." instance=ExtResource( 9 )]
 margin_right = 600.0
 margin_bottom = 85.0
@@ -1355,6 +1363,7 @@ text = "CLOSE"
 [connection signal="pressed" from="BottomRight/HBoxContainer/CancelButton" to="." method="OnCancelActionClicked"]
 [connection signal="pressed" from="BottomRight/HBoxContainer/ConfirmButton" to="." method="NextOrFinishClicked"]
 [connection signal="Confirmed" from="NegativeAtpWarning" to="." method="ConfirmFinishEditingWithNegativeATPPressed"]
+[connection signal="Confirmed" from="NoMovementWarning" to="." method="ConfirmFinishEditingWithNegativeATPPressed"]
 [connection signal="DeletePressed" from="OrganellePopupMenu" to="." method="OnDeletePressed"]
 [connection signal="ModifyPressed" from="OrganellePopupMenu" to="." method="OnModifyPressed"]
 [connection signal="MovePressed" from="OrganellePopupMenu" to="." method="OnMovePressed"]

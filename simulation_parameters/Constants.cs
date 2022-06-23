@@ -204,7 +204,7 @@ public static class Constants
     ///   Percentage of the compounds that compose the organelle
     ///   released upon death (between 0.0 and 1.0).
     /// </summary>
-    public const float COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.9f;
+    public const float COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.4f;
 
     public const float COMPOUND_RELEASE_PERCENTAGE = 0.9f;
 

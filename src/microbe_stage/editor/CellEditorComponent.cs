@@ -117,6 +117,9 @@ public partial class CellEditorComponent :
     public NodePath NegativeAtpPopupPath = null!;
 
     [Export]
+    public NodePath NoMovementPopupPath = null!;
+
+    [Export]
     public NodePath OrganelleMenuPath = null!;
 
     [Export]
@@ -175,6 +178,7 @@ public partial class CellEditorComponent :
     private TextureRect totalPopulationIndicator = null!;
 
     private CustomConfirmationDialog negativeAtpPopup = null!;
+    private CustomConfirmationDialog noMovementPopup = null!;
 
     private OrganellePopupMenu organelleMenu = null!;
     private OrganelleUpgradeGUI organelleUpgradeGUI = null!;
@@ -591,6 +595,7 @@ public partial class CellEditorComponent :
         totalPopulationIndicator = GetNode<TextureRect>(TotalPopulationIndicatorPath);
 
         negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
+        noMovementPopup = GetNode<CustomConfirmationDialog>(NoMovementPopupPath);
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
         organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
 
@@ -797,6 +802,12 @@ public partial class CellEditorComponent :
             energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
             negativeAtpPopup.PopupCenteredShrink();
+            return false;
+        }
+
+        if (!IsMulticellularEditor && CalculateSpeed() <= 0.0f)
+        {
+            noMovementPopup.PopupCenteredShrink();
             return false;
         }
 
