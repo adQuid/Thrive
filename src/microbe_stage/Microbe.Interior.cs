@@ -505,7 +505,7 @@ public partial class Microbe
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
         // If a microbe has already divided, don't get any more free stuff
-        if (!hasDivided)
+        if (IsPlayerMicrobe || !hasDivided)
         {
             Compounds.AddCompound(SimulationParameters.Instance.GetCompound("ammonia"), 0.05f * delta);
             Compounds.AddCompound(SimulationParameters.Instance.GetCompound("phosphates"), 0.05f * delta);
