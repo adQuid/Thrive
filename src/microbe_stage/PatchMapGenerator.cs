@@ -44,18 +44,6 @@ public static class PatchMapGenerator
         };
         map.AddPatch(vents);
 
-        var mesopelagic = new Patch(GetPatchLocalizedName(areaName, "MESOPELAGIC"), 1,
-            GetBiomeTemplate("mesopelagic"))
-        {
-            Depth =
-            {
-                [0] = 200,
-                [1] = 1000,
-            },
-            ScreenCoordinates = new Vector2(200, 200),
-        };
-        map.AddPatch(mesopelagic);
-
         var epipelagic = new Patch(GetPatchLocalizedName(areaName, "EPIPELAGIC"), 2,
             GetBiomeTemplate("default"))
         {
@@ -79,30 +67,6 @@ public static class PatchMapGenerator
             ScreenCoordinates = new Vector2(300, 100),
         };
         map.AddPatch(tidepool);
-
-        var bathypelagic = new Patch(GetPatchLocalizedName(areaName, "BATHYPELAGIC"), 4,
-            GetBiomeTemplate("bathypelagic"))
-        {
-            Depth =
-            {
-                [0] = 1000,
-                [1] = 4000,
-            },
-            ScreenCoordinates = new Vector2(200, 300),
-        };
-        map.AddPatch(bathypelagic);
-
-        var abyssopelagic = new Patch(GetPatchLocalizedName(areaName, "ABYSSOPELAGIC"), 5,
-            GetBiomeTemplate("abyssopelagic"))
-        {
-            Depth =
-            {
-                [0] = 4000,
-                [1] = 6000,
-            },
-            ScreenCoordinates = new Vector2(300, 400),
-        };
-        map.AddPatch(abyssopelagic);
 
         var coast = new Patch(GetPatchLocalizedName(areaName, "COASTAL"), 6,
             GetBiomeTemplate("coastal"))
@@ -182,14 +146,8 @@ public static class PatchMapGenerator
                 break;
         }
 
-        // Connections
-        LinkPatches(vents, seafloor);
-        LinkPatches(seafloor, bathypelagic);
-        LinkPatches(seafloor, abyssopelagic);
-        LinkPatches(bathypelagic, abyssopelagic);
-        LinkPatches(bathypelagic, mesopelagic);
-        LinkPatches(mesopelagic, epipelagic);
-        LinkPatches(mesopelagic, cave);
+        LinkPatches(vents, epipelagic);
+        LinkPatches(seafloor, vents);
         LinkPatches(epipelagic, tidepool);
         LinkPatches(epipelagic, iceShelf);
         LinkPatches(epipelagic, coast);
