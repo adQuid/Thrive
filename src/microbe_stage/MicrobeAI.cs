@@ -716,7 +716,7 @@ public class MicrobeAI
     private void LaunchToxin(Vector3 target)
     {
         if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
-            (microbe.Translation - target).LengthSquared() <= SpeciesFocus * 10.0f)
+            (microbe.Translation - target).LengthSquared() <= SpeciesFocus + microbe.EngulfSize * 10.0f)
         {
             if (CanShootToxin())
             {
@@ -811,7 +811,7 @@ public class MicrobeAI
 
     private bool CanShootToxin()
     {
-        return microbe.Compounds.GetCompoundAmount(oxytoxy) >=
+        return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT +
             Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
     }
 
