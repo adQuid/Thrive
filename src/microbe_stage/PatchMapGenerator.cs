@@ -40,7 +40,7 @@ public static class PatchMapGenerator
                 [0] = 2500,
                 [1] = 3000,
             },
-            ScreenCoordinates = new Vector2(100, 400),
+            ScreenCoordinates = new Vector2(200, 300),
         };
         map.AddPatch(vents);
 
@@ -92,18 +92,6 @@ public static class PatchMapGenerator
         };
         map.AddPatch(estuary);
 
-        var cave = new Patch(GetPatchLocalizedName(areaName, "UNDERWATERCAVE"), 8,
-            GetBiomeTemplate("underwater_cave"))
-        {
-            Depth =
-            {
-                [0] = 200,
-                [1] = 1000,
-            },
-            ScreenCoordinates = new Vector2(300, 200),
-        };
-        map.AddPatch(cave);
-
         var iceShelf = new Patch(GetPatchLocalizedName(areaName, "ICESHELF"), 9,
             GetBiomeTemplate("ice_shelf"))
         {
@@ -124,7 +112,7 @@ public static class PatchMapGenerator
                 [0] = 4000,
                 [1] = 6000,
             },
-            ScreenCoordinates = new Vector2(200, 400),
+            ScreenCoordinates = new Vector2(300, 400),
         };
         map.AddPatch(seafloor);
 
