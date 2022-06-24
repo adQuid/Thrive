@@ -716,7 +716,7 @@ public class MicrobeAI
     private void LaunchToxin(Vector3 target)
     {
         if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
-            (microbe.Translation - target).LengthSquared() <= SpeciesFocus * 10.0f)
+            (microbe.Translation - target).LengthSquared() <= SpeciesFocus + microbe.EngulfSize * 10.0f)
         {
             if (CanShootToxin())
             {
