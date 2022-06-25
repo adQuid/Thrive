@@ -107,8 +107,8 @@
                     "dissolved": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
+                    "amount": 0,
+                    "density": 0,
                     "dissolved": 0
                 },
                 "phosphates": {
@@ -476,8 +476,8 @@
                     "dissolved": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
+                    "amount": 0,
+                    "density": 0,
                     "dissolved": 0
                 },
                 "phosphates": {
@@ -700,8 +700,8 @@
                     "dissolved": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
+                    "amount": 0,
+                    "density": 0,
                     "dissolved": 0
                 },
                 "phosphates": {
@@ -924,8 +924,8 @@
                     "dissolved": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
+                    "amount": 0,
+                    "density": 0,
                     "dissolved": 0
                 },
                 "phosphates": {
@@ -1148,8 +1148,8 @@
                     "dissolved": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
+                    "amount": 0,
+                    "density": 0,
                     "dissolved": 0
                 },
                 "phosphates": {
@@ -1293,8 +1293,8 @@
                     "dissolved": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
+                    "amount": 0,
+                    "density": 0,
                     "dissolved": 0
                 },
                 "phosphates": {
@@ -1437,8 +1437,8 @@
                     "dissolved": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
+                    "amount": 0,
+                    "density": 0,
                     "dissolved": 0
                 },
                 "phosphates": {
@@ -1601,8 +1601,8 @@
                     "dissolved": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
+                    "amount": 0,
+                    "density": 0,
                     "dissolved": 0
                 },
                 "phosphates": {
@@ -1746,8 +1746,8 @@
                     "dissolved": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
+                    "amount": 0,
+                    "density": 0,
                     "dissolved": 0
                 },
                 "phosphates": {
@@ -1970,8 +1970,8 @@
                     "dissolved": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
+                    "amount": 0,
+                    "density": 0,
                     "dissolved": 0
                 },
                 "phosphates": {
