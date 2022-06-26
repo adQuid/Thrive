@@ -4619,7 +4619,7 @@ msgstr "Tutorial"
 
 #: ../src/general/MainMenu.cs:174
 msgid "INTRO_MESSAGE_1"
-msgstr "Below the waves, and quite by accident,\nsome molecules formed a bubble..."
+msgstr "On an alien world, and quite by accident,\nsome molecules formed a bubble..."
 
 #: ../src/microbe_stage/MicrobeStage.cs:364
 msgid "INTRO_MESSAGE_2"
