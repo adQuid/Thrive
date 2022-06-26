@@ -176,6 +176,11 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
     protected override void InitEditorGUI(bool fresh)
     {
+        if (!TutorialState.EditorWelcome.TrustPlayer)
+        {
+            SetEditorTab(EditorTab.CellEditor);
+        }
+
         reportTab.OnNextTab = () => SetEditorTab(EditorTab.PatchMap);
         patchMapTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
         cellEditorTab.OnFinish = ForwardEditorComponentFinishRequest;

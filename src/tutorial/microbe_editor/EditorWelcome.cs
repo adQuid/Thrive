@@ -11,6 +11,8 @@
 
         public override string ClosedByName { get; } = "MicrobeEditorReport";
 
+        public bool TrustPlayer = false;
+
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {
             gui.EditorEntryReportVisible = ShownCurrently;
@@ -33,6 +35,7 @@
                     if (Time < Constants.MICROBE_EDITOR_BUTTON_QUICK)
                     {
                         Inhibit();
+                        TrustPlayer = true;
                         break;
                     }
 
