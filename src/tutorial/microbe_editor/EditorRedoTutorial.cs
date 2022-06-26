@@ -35,7 +35,6 @@
                     if (!HasBeenShown && CanTrigger)
                     {
                         Show();
-                        overallState.EditorTutorialEnd.CanTrigger = true;
 
                         return true;
                     }
