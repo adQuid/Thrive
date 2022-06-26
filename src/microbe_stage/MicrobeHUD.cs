@@ -1063,6 +1063,12 @@ public class MicrobeHUD : Control
     {
         var compounds = GetPlayerColonyOrPlayerStorage();
 
+        if (!bottomRight.Visible && 
+            compounds.GetCompoundAmount(phosphates) > 0 || compounds.GetCompoundAmount(ammonia) > 0)
+        {
+            bottomRight.Visible = true;
+        }
+
         glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
         glucoseBar.Value = compounds.GetCompoundAmount(glucose);
         glucoseBar.GetNode<Label>("Value").Text = glucoseBar.Value + " / " + glucoseBar.MaxValue;
