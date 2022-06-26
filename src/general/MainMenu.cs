@@ -167,8 +167,6 @@ public class MainMenu : NodeWithInput
         if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
         {
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
-            transitions.Add(TransitionManager.Instance.CreateCutscene(
-                "res://assets/videos/microbe_intro2.ogv", 0.65f));
         }
         else
         {
