@@ -4619,7 +4619,11 @@ msgstr "Tutorial"
 
 #: ../src/general/MainMenu.cs:174
 msgid "INTRO_MESSAGE_1"
-msstr "Below the waves, and quite by accident,\nsome molecules formed a bubble..."
+msgstr "Below the waves, and quite by accident,\nsome molecules formed a bubble..."
+
+#: ../src/microbe_stage/MicrobeStage.cs:364
+msgid "INTRO_MESSAGE_2"
+msgstr "This bubble let some chemicals in,\n but not others."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
