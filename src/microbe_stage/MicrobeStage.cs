@@ -351,6 +351,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public void StartNewGame()
     {
+        HUD.DisableBottomRight();
         WorldSettings ??= new WorldGenerationSettings();
         CurrentGame = GameProperties.StartNewMicrobeGame(WorldSettings);
 

@@ -15,6 +15,9 @@ public class MicrobeHUD : Control
     public NodePath AnimationPlayerPath = null!;
 
     [Export]
+    public NodePath BottomRightPath = null;
+
+    [Export]
     public NodePath PanelsTweenPath = null!;
 
     [Export]
@@ -228,6 +231,7 @@ public class MicrobeHUD : Control
     private Compound sunlight = null!;
 
     private AnimationPlayer animationPlayer = null!;
+    private Control bottomRight = null!;
     private MarginContainer mouseHoverPanel = null!;
     private VBoxContainer hoveredCompoundsContainer = null!;
     private HSeparator hoveredCellsSeparator = null!;
@@ -424,6 +428,7 @@ public class MicrobeHUD : Control
         hpLabel = GetNode<Label>(HpLabelPath);
         menu = GetNode<PauseMenu>(MenuPath);
         animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
+        bottomRight = GetNode<Control>(BottomRightPath);
         hoveredCompoundsContainer = GetNode<VBoxContainer>(HoveredCompoundsContainerPath);
         hoveredCellsSeparator = GetNode<HSeparator>(HoverPanelSeparatorPath);
         hoveredCellsContainer = GetNode<VBoxContainer>(HoveredCellsContainerPath);
@@ -784,6 +789,11 @@ public class MicrobeHUD : Control
             // Unpause the game
             PauseManager.Instance.Resume(nameof(MicrobeHUD));
         }
+    }
+
+    public void DisableBottomRight()
+    {
+        bottomRight.Visible = false;
     }
 
     /// <summary>
