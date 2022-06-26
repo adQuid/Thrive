@@ -31,8 +31,8 @@ public class CurrentSystem
 
         // Currents that pull objects towards a center point
         var sinkholes = new List<Sinkhole>();
-        var movables = chunks;
-        movables.Add(microbes);
+        List<RigidBody> movables = chunks.ToList<RigidBody>();
+        movables.AddRange(microbes.ToList<RigidBody>());
 
 
         foreach (var microbe in microbes.Where(m => m.State == Microbe.MicrobeState.Engulf))
@@ -59,7 +59,7 @@ public class CurrentSystem
             {
                 if ((sinkhole.Location - element.GlobalTransform.origin).LengthSquared() < 500.0f)
                 {
-                    element.ApplyCentralImpulse((sinkhole.Location - element.Translation) * sinkhole.Force);
+                    element.ApplyCentralImpulse((sinkhole.Location - element.GlobalTransform.origin) * sinkhole.Force);
                 }
             }
         }
