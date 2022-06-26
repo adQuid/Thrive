@@ -1,5 +1,6 @@
 Thrive Game
 Copyright (C) 2013-2022  Revolutionary Games
+Modified by Brian Zito in 2022 according to section 5 of gpl.txt
 
 Thrive is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
