@@ -284,6 +284,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned, Clouds);
         microbeSystem = new MicrobeSystem(rootOfDynamicallySpawned);
         floatingChunkSystem = new FloatingChunkSystem(rootOfDynamicallySpawned, Clouds);
+        CurrentSystem = new CurrentSystem(rootOfDynamicallySpawned, Clouds);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
