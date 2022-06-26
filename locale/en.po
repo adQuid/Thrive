@@ -3124,6 +3124,10 @@ msgstr "Duplicate Player"
 msgid "SPAWN_ENEMY"
 msgstr "Spawn Enemy"
 
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
+msgid "PRINT_SPECIES"
+msgstr "Spawn All Species"
+
 #: ../src/microbe_stage/MicrobeHUD.cs:560
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "No Command"

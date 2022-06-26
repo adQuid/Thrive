@@ -23,12 +23,16 @@ public class MicrobeCheatMenu : CheatMenu
     [Export]
     public NodePath SpawnEnemyPath = null!;
 
+    [Export]
+    public NodePath PrintSpeciesPath = null!;
+
     private CustomCheckBox infiniteCompounds = null!;
     private CustomCheckBox godMode = null!;
     private CustomCheckBox disableAI = null!;
     private Slider speed = null!;
     private Button playerDivide = null!;
     private Button spawnEnemy = null!;
+    private Button printSpecies = null!;
 
     public override void _Ready()
     {
@@ -38,9 +42,11 @@ public class MicrobeCheatMenu : CheatMenu
         speed = GetNode<Slider>(SpeedSliderPath);
         playerDivide = GetNode<Button>(PlayerDividePath);
         spawnEnemy = GetNode<Button>(SpawnEnemyPath);
+        printSpecies = GetNode<Button>(PrintSpeciesPath);
 
         playerDivide.Connect("pressed", this, nameof(OnPlayerDivideClicked));
         spawnEnemy.Connect("pressed", this, nameof(OnSpawnEnemyClicked));
+        printSpecies.Connect("pressed", this, nameof(OnPrintSpeciesClicked));
         base._Ready();
     }
 
@@ -60,5 +66,10 @@ public class MicrobeCheatMenu : CheatMenu
     private void OnSpawnEnemyClicked()
     {
         CheatManager.SpawnEnemy();
+    }
+
+    private void OnPrintSpeciesClicked()
+    {
+        CheatManager.PrintSpecies();
     }
 }

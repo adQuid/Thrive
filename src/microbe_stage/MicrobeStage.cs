@@ -240,12 +240,14 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     {
         base._EnterTree();
         CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
+        CheatManager.OnPrintSpeciesCheatUsed += OnPrintSpeciesCheatUsed;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
         CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
+        CheatManager.OnPrintSpeciesCheatUsed -= OnPrintSpeciesCheatUsed;
     }
 
     public override void _Notification(int what)
@@ -811,6 +813,11 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         // Make the cell despawn like normal
         SpawnSystem.AddEntityToTrack(copyEntity);
+    }
+
+    private void OnPrintSpeciesCheatUsed(object sender, EventArgs e)
+    {
+        DebugPrintSpecies();
     }
 
     [DeserializedCallbackAllowed]
