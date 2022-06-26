@@ -163,11 +163,11 @@ public class MainMenu : NodeWithInput
         Jukebox.Instance.SmoothStop();
 
         var transitions = new List<ITransition>();
-
         transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.0f));
 
         TransitionManager.Instance.AddSequence(transitions, () =>
         {
+            Jukebox.Instance.PlayCategory("MicrobeStage");
             var transitions = new List<ITransition>();
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_1"));
 
