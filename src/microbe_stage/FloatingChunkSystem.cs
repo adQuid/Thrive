@@ -32,6 +32,10 @@ public class FloatingChunkSystem
             return;
 
         var chunks = worldRoot.GetChildrenToProcess<FloatingChunk>(Constants.AI_TAG_CHUNK).ToList();
+        foreach (var chunk in chunks)
+        {
+            chunk.ProcessChunk(delta, clouds);
+        }
 
         var findTooManyChunksTask = new Task<IEnumerable<FloatingChunk>>(() =>
         {
