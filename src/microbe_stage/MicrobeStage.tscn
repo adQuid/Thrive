@@ -408,6 +408,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 AnimationPlayerPath = NodePath("AnimationPlayer")
+BottomRightPath = NodePath("BottomRight")
 PanelsTweenPath = NodePath("BottomLeft/LeftPanels/PanelsTween")
 LeftPanelsPath = NodePath("BottomLeft/LeftPanels")
 MouseHoverPanelPath = NodePath("MouseHoverPanel")
