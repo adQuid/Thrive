@@ -764,7 +764,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     {
         TransitionFinished = true;
         TutorialState.SendEvent(
-            TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
+            TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.DisplayStartingMessage), this);
     }
 
     /// <summary>
