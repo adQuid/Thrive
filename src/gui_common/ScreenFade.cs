@@ -29,6 +29,8 @@ public class ScreenFade : Control, ITransition
         StayBlack
     }
 
+    public string? Message = null;
+
     public bool Finished { get; private set; }
 
     public float FadeDuration { get; set; }
@@ -91,8 +93,9 @@ public class ScreenFade : Control, ITransition
                 break;
         }
 
-        if (CurrentFadeType == FadeType.StayBlack)
+        if (Message != null)
         {
+            label.Text = Message;
             animationPlayer.Play("FadeInOut");
         }
     }

@@ -162,24 +162,25 @@ public class MainMenu : NodeWithInput
         // before the stage music starts)
         Jukebox.Instance.SmoothStop();
 
-        var transitions1 = new List<ITransition>();
-        
+        var transitions = new List<ITransition>();
 
-        transitions1.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, Settings.Instance.PlayMicrobeIntroVideo ? 1.5f : 0.2f));
+        transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.0f));
 
-        
-
-        TransitionManager.Instance.AddSequence(transitions1, () =>
+        TransitionManager.Instance.AddSequence(transitions, () =>
         {
-            OnEnteringGame();
+            var transitions = new List<ITransition>();
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "Under the sea, there was a bubble"));
 
-            // TODO: Add loading screen while changing between scenes
-            var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
-            microbeStage.WorldSettings = settings;
-            SceneManager.Instance.SwitchToScene(microbeStage);
+            TransitionManager.Instance.AddSequence(transitions, () =>
+            {
+                OnEnteringGame();
+
+                // TODO: Add loading screen while changing between scenes
+                var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
+                microbeStage.WorldSettings = settings;
+                SceneManager.Instance.SwitchToScene(microbeStage);
+            });
         });
-
-        
     }
 
     /// <summary>

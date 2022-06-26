@@ -763,24 +763,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     public void OnFinishTransitioning()
     {
         TransitionFinished = true;
-        var transitions = new List<ITransition>();
-
-        transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.0f));
-
-        TransitionManager.Instance.AddSequence(transitions, () =>
-        {
-            HUD.DisplayStartingMessage();
-            var transitions = new List<ITransition>();
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f));
-
-            TransitionManager.Instance.AddSequence(transitions, () =>
-            {
-                var transitions = new List<ITransition>();
-                transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeIn, 2.0f));
-
-                TransitionManager.Instance.AddSequence(transitions, () => { });
-            });
-        });
     }
 
     /// <summary>
