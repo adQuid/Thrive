@@ -26,6 +26,11 @@
 
         public override string ClosedByName { get; } = "MicrobeMovementExplain";
 
+        public MicrobeMovement()
+        {
+            ProcessWhileHidden = true;
+        }
+
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
             gui.MicrobeMovementRotation = keyPromptRotation;
@@ -56,16 +61,26 @@
                 {
                     bool consumed = false;
 
-                    if (!HasBeenShown && overallState.TotalElapsed > 8.0f && moveForwardTime < Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME)
+                    if (!HasBeenShown && overallState.TotalElapsed > 8.0f)
+                    {
+                        if (moveForwardTime < Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME)
                         {
-                        Show();
+                            Show();
 
-                        moveForwardTime = 0;
-                        moveLeftTime = 0;
-                        moveRightTime = 0;
-                        moveBackwardsTime = 0;
+                            moveForwardTime = 0;
+                            moveLeftTime = 0;
+                            moveRightTime = 0;
+                            moveBackwardsTime = 0;
 
-                        consumed = true;
+                            consumed = true;
+                        }
+                        else
+                        {
+                            moveForwardTime = Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME;
+                            moveLeftTime = Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME;
+                            moveRightTime = Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME;
+                            moveBackwardsTime = Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME;
+                        }
                     }
 
                     if (ShownCurrently)
