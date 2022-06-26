@@ -56,7 +56,7 @@
                 {
                     bool consumed = false;
 
-                    if (!HasBeenShown && overallState.MicrobeStageWelcome.Complete && CanTrigger)
+                    if (!HasBeenShown && moveForwardTime < Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME)
                     {
                         Show();
 
