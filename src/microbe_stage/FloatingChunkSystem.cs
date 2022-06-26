@@ -69,7 +69,7 @@ public class FloatingChunkSystem
                 if (ciliaCount > 0
                     && (microbe.GlobalTransform.origin - chunk.GlobalTransform.origin).LengthSquared() < 500.0f)
                 {
-                    chunk.ApplyCentralImpulse((microbe.GlobalTransform.origin - chunk.Translation) * 0.15f * ciliaCount);
+                    chunk.ApplyCentralImpulse((microbe.GlobalTransform.origin - chunk.Translation) * 0.01f * ciliaCount);
                 }
             }
         }
