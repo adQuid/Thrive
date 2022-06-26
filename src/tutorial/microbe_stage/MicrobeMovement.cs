@@ -56,7 +56,7 @@
                 {
                     bool consumed = false;
 
-                        if (!HasBeenShown && overallState.TotalElapsed > 8.0f && moveForwardTime < Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME)
+                    if (!HasBeenShown && overallState.TotalElapsed > 8.0f && moveForwardTime < Constants.MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME)
                         {
                         Show();
 
