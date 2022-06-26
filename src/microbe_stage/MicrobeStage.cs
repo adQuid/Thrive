@@ -763,8 +763,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     public void OnFinishTransitioning()
     {
         TransitionFinished = true;
-        TutorialState.SendEvent(
-            TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.DisplayStartingMessage), this);
+        if (GameWorld.PlayerSpecies.Population == 1)
+        {
+            HUD.DisplayStartingMessage();
+        }
     }
 
     /// <summary>
