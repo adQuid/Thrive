@@ -162,11 +162,20 @@ public class MainMenu : NodeWithInput
         // before the stage music starts)
         Jukebox.Instance.SmoothStop();
 
-        var transitions = new List<ITransition>();
+        var transitions1 = new List<ITransition>();
+        var transitions2 = new List<ITransition>();
 
-        transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, Settings.Instance.PlayMicrobeIntroVideo ? 1.5f : 0.2f));
+        transitions1.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, Settings.Instance.PlayMicrobeIntroVideo ? 1.5f : 0.2f));
 
-        TransitionManager.Instance.AddSequence(transitions, () =>
+        transitions2.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeIn, Settings.Instance.PlayMicrobeIntroVideo ? 1.5f : 0.2f));
+
+        TransitionManager.Instance.AddSequence(transitions1, () =>
+        {
+            var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
+            microbeStage.HUD.DisplayStartingMessage();
+        });
+
+        TransitionManager.Instance.AddSequence(transitions2, () =>
         {
             OnEnteringGame();
 
