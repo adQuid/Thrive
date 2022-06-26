@@ -4617,6 +4617,10 @@ msgstr "Unknown Steam error happened"
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
+#: ../src/general/MainMenu.cs:174
+msgid "INTRO_MESSAGE_1"
+msstr "Below the waves, and quite by accident,\nsome molecules formed a bubble..."
+
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""

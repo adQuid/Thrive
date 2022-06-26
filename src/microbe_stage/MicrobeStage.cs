@@ -361,7 +361,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         SpawnPlayer();
 
-        HUD.DisplayMessage("This bubble let some chemicals in,\n but not others.");
+        HUD.DisplayMessage("INTRO_MESSAGE_2");
     }
 
     public void StartMusic()
