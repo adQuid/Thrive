@@ -6,6 +6,8 @@
 public class ScreenFade : Control, ITransition
 {
     private ColorRect? rect;
+    private Label? label;
+    private AnimationPlayer? animationPlayer;
     private Tween fader = null!;
 
     private FadeType currentFadeType;
@@ -24,6 +26,7 @@ public class ScreenFade : Control, ITransition
         ///   Screen fades to black
         /// </summary>
         FadeOut,
+        StayBlack
     }
 
     public bool Finished { get; private set; }
@@ -43,6 +46,8 @@ public class ScreenFade : Control, ITransition
     public override void _Ready()
     {
         rect = GetNode<ColorRect>("Rect");
+        label = GetNode<Label>("Label");
+        animationPlayer = GetNode<AnimationPlayer>("Label/AnimationPlayer");
         fader = GetNode<Tween>("Fader");
 
         fader.Connect("tween_all_completed", this, nameof(OnFinished));
@@ -81,8 +86,14 @@ public class ScreenFade : Control, ITransition
                 FadeToWhite();
                 break;
             case FadeType.FadeOut:
+            case FadeType.StayBlack:
                 FadeToBlack();
                 break;
+        }
+
+        if (CurrentFadeType == FadeType.StayBlack)
+        {
+            animationPlayer.Play("FadeInOut");
         }
     }
 
@@ -102,7 +113,8 @@ public class ScreenFade : Control, ITransition
             return;
 
         // Apply initial colors
-        if (currentFadeType == FadeType.FadeIn)
+        if (currentFadeType == FadeType.FadeIn
+            || currentFadeType == FadeType.StayBlack)
         {
             rect.Color = new Color(0, 0, 0, 1);
         }
