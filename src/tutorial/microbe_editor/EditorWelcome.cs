@@ -21,8 +21,21 @@
         {
             switch (eventType)
             {
+                case TutorialEventType.MicrobePlayerReadyToEdit:
+                {
+                    Time = 0;
+                    break;
+                }
+
                 case TutorialEventType.EnteredMicrobeEditor:
                 {
+                    // The player was quick to hit the button, and probably doesn't need help
+                    if (Time < Constants.MICROBE_EDITOR_BUTTON_QUICK)
+                    {
+                        Inhibit();
+                        break;
+                    }
+
                     if (!HasBeenShown && CanTrigger)
                     {
                         Show();
