@@ -80,7 +80,7 @@ public static class Constants
     public const float CELL_BASE_ROTATION = 0.2f;
     public const float CELL_MAX_ROTATION = 0.40f;
     public const float CELL_MIN_ROTATION = 0.005f;
-    public const float CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER = 0.5f;
+    public const float CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER = 0.05f;
     public const float CILIA_ROTATION_FACTOR = 0.008f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.7f;
 
@@ -95,7 +95,7 @@ public static class Constants
 
     public const float CILIA_DEFAULT_ANIMATION_SPEED = 0.3f;
     public const float CILIA_MIN_ANIMATION_SPEED = 0.15f;
-    public const float CILIA_MAX_ANIMATION_SPEED = 1.2f;
+    public const float CILIA_MAX_ANIMATION_SPEED = 5.0f;
     public const float CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
