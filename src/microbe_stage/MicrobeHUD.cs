@@ -663,11 +663,6 @@ public class MicrobeHUD : Control
         patchOverlayAnimator.Play("FadeInOut");
     }
 
-    public void DisplayStartingMessage()
-    {
-        DisplayMessage("Under the waves, there was a bubble");
-    }
-
     public void EditorButtonPressed()
     {
         GD.Print("Move to editor pressed");
