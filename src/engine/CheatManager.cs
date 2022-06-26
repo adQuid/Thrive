@@ -23,6 +23,11 @@ public static class CheatManager
     public static event EventHandler<EventArgs>? OnSpawnEnemyCheatUsed;
 
     /// <summary>
+    ///   Fired whenever the user uses the "Print Species" cheat
+    /// </summary>
+    public static event EventHandler<EventArgs>? OnPrintSpeciesCheatUsed;
+
+    /// <summary>
     ///   You automatically have 100% of all compounds
     /// </summary>
     public static bool InfiniteCompounds { get; set; }
@@ -62,6 +67,14 @@ public static class CheatManager
     public static void SpawnEnemy()
     {
         OnSpawnEnemyCheatUsed?.Invoke(null, EventArgs.Empty);
+    }
+
+    /// <summary>
+    ///   Spawns one of every species in the patch
+    /// </summary>
+    public static void PrintSpecies()
+    {
+        OnPrintSpeciesCheatUsed?.Invoke(null, EventArgs.Empty);
     }
 
     public static void DisableAllCheats()
