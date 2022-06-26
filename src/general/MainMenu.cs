@@ -164,15 +164,7 @@ public class MainMenu : NodeWithInput
 
         var transitions = new List<ITransition>();
 
-        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
-        {
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
-        }
-        else
-        {
-            // People who disable the cutscene are impatient anyway so use a reduced fade time
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
-        }
+        transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, Settings.Instance.PlayMicrobeIntroVideo ? 1.5f : 0.2f));
 
         TransitionManager.Instance.AddSequence(transitions, () =>
         {
