@@ -365,7 +365,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         SpawnPlayer();
 
-        HUD.DisplayMessage("INTRO_MESSAGE_2");
+        HUD.DisplayMessageIfIntro("INTRO_MESSAGE_2");
     }
 
     public void StartMusic()
@@ -498,7 +498,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
                 && Player.Compounds.GetCompoundAmount(SimulationParameters.Instance.GetCompound("atp")) <= 0.1f
                 && !TutorialState.HaveShownATPMessage)
             {
-                HUD.DisplayMessage("STARVATION_MESSAGE");
+                HUD.DisplayMessageIfIntro("STARVATION_MESSAGE");
                 TutorialState.HaveShownATPMessage = true;
             }
         }
@@ -878,7 +878,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             if (!TutorialState.MicrobePressEditorButton.HasShownMessage)
             {
-                HUD.DisplayMessage("EDITOR_BUTTON_MESSAGE");
+                HUD.DisplayMessageIfIntro("EDITOR_BUTTON_MESSAGE");
                 TutorialState.MicrobePressEditorButton.HasShownMessage = true;
             }
         }

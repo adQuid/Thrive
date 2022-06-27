@@ -4631,7 +4631,7 @@ msgstr "But when the bubble ran out of energy,\nthe unliving world took the mole
 
 #: ../src/microbe_stage/MicrobeStage.cs:866
 msgid "EDITOR_BUTTON_MESSAGE"
-msgstr "It took so much, it split in half.\nBut neither one popped."
+msgstr "The bubble took so much, it split in half.\nBut neither one popped."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"

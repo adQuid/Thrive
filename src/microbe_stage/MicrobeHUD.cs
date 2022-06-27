@@ -663,6 +663,14 @@ public class MicrobeHUD : Control
         patchOverlayAnimator.Play("FadeInOut");
     }
 
+    public void DisplayMessageIfIntro(string message)
+    {
+        if (Settings.Instance.PlayMicrobeIntroVideo)
+        {
+            DisplayMessage(message);
+        }
+    }
+
     public void EditorButtonPressed()
     {
         GD.Print("Move to editor pressed");

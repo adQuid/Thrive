@@ -158,29 +158,41 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
-        // before the stage music starts)
-        Jukebox.Instance.SmoothStop();
-
-        var transitions = new List<ITransition>();
-        transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.0f));
-
-        TransitionManager.Instance.AddSequence(transitions, () =>
+        if (Settings.Instance.PlayMicrobeIntroVideo)
         {
-            Jukebox.Instance.PlayCategory("MicrobeStage");
+            // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
+            // before the stage music starts)
+            Jukebox.Instance.SmoothStop();
+
             var transitions = new List<ITransition>();
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_1"));
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.0f));
 
             TransitionManager.Instance.AddSequence(transitions, () =>
             {
-                OnEnteringGame();
+                Jukebox.Instance.PlayCategory("MicrobeStage");
+                var transitions = new List<ITransition>();
+                transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_1"));
 
-                // TODO: Add loading screen while changing between scenes
-                var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
-                microbeStage.WorldSettings = settings;
-                SceneManager.Instance.SwitchToScene(microbeStage);
+                TransitionManager.Instance.AddSequence(transitions, () =>
+                {
+                    StartNewGame();
+                });
             });
-        });
+        }
+        else
+        {
+            StartNewGame();
+        }
+    }
+
+    private void StartNewGame()
+    {
+        OnEnteringGame();
+
+        // TODO: Add loading screen while changing between scenes
+        var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
+        microbeStage.WorldSettings = settings;
+        SceneManager.Instance.SwitchToScene(microbeStage);
     }
 
     /// <summary>
