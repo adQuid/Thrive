@@ -16,7 +16,7 @@
         [JsonIgnore]
         public Control? EditorAutoEvoPredictionPanel { get; set; }
 
-        protected override int TriggersOnNthEditorSession => 2;
+        protected override int TriggersOnNthEditorSession => 2000;
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {
