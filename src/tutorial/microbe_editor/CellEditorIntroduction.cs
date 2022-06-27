@@ -33,7 +33,7 @@
 
                 case TutorialEventType.MicrobeEditorOrganellePlaced:
                 {
-                    if (!HasBeenShown && CanTrigger && (overallState.EditorWelcome.ShownCurrently || overallState.EditorWelcome.Complete))
+                    if (!HasBeenShown && CanTrigger && !overallState.EditorWelcome.TrustPlayer && (overallState.EditorWelcome.ShownCurrently || overallState.EditorWelcome.Complete))
                     {
                         Show();
                     }
