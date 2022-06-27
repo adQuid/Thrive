@@ -333,7 +333,7 @@ region_rect = Rect2( 0, 0, 429, 1 )
 
 [sub_resource type="Animation" id=37]
 resource_name = "FadeInOut"
-length = 4.5
+length = 5.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
