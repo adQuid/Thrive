@@ -175,13 +175,13 @@ public class MainMenu : NodeWithInput
 
                 TransitionManager.Instance.AddSequence(transitions, () =>
                 {
-                    StartNewGame();
+                    StartNewGame(settings);
                 });
             });
         }
         else
         {
-            StartNewGame();
+            StartNewGame(settings);
         }
     }
 
