@@ -4641,13 +4641,13 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"This is the patch map.\n"
+"There are more places for life to spread.\n"
 "\n"
 "Each icon represents a unique environment that you can inhabit, with the panel on your right describing the conditions of the currently selected patch.\n"
 "\n"
-"If you select a patch connected to the one you occupy, which is highlighted with a thin cyan border, you can press the \"Move to this patch\" button on the right to migrate there.\n"
+"Once you have selected a patch, you can press the \"Move to this patch\" button on the right to migrate there.\n"
 "\n"
-"Try selecting a patch to continue."
+"Be warned: the starting design for your microbe will not be able to survive in either neighboring patch."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
