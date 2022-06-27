@@ -185,7 +185,7 @@ public class MainMenu : NodeWithInput
         }
     }
 
-    private void StartNewGame()
+    private void StartNewGame(WorldGenerationSettings settings)
     {
         OnEnteringGame();
 
