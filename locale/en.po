@@ -4621,6 +4621,10 @@ msgstr "Tutorial"
 msgid "INTRO_MESSAGE_1"
 msgstr "On an alien world, and quite by accident,\nsome molecules formed a bubble..."
 
+#: ../src/general/MainMenu.cs:174
+msgid "INTRO_MESSAGE_PANSPERMIA"
+msgstr "Accross the cosmos, a seed slept.\nWith a flash of light, it awakens."
+
 #: ../src/microbe_stage/MicrobeStage.cs:364
 msgid "INTRO_MESSAGE_2"
 msgstr "The bubble let some chemicals in,\n but not others."
