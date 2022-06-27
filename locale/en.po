@@ -4652,11 +4652,11 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"These bubbles only continue by converting some kinds of chemicals for others. For your convenience, these exchanges are displayed on the right.\n"
+"These bubbles only continue by converting some kinds of chemicals for others. For your convenience, these exchanges are displayed in the 'Compound Balances' section.\n"
 "\n"
 "Any negative number is something you will need to find in the environment in order to survive, but anything with a positive production amount you will be able to make internally.\n"
 "\n"
-"Some microbes are not able to produce enough ATP, as shown in the ATP balance section. Those microbes quickly die. Others evolve to consume something that does not occur in the environment."
+"Some microbes are not able to produce enough ATP, as shown in the ATP balance section. Those microbes quickly die. Others evolve to consume something that does not occur in the environment.\n"
 "\n"
 "They die slowly."
 
