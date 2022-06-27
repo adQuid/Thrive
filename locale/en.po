@@ -4626,6 +4626,10 @@ msgid "INTRO_MESSAGE_2"
 msgstr "The bubble let some chemicals in,\n but not others."
 
 #: ../src/microbe_stage/MicrobeStage.cs:866
+msgid "STARVATION_MESSAGE"
+msgstr "Everything the bubbles did required energy.\nWhen it ran out, the unliving world took the molecules back."
+
+#: ../src/microbe_stage/MicrobeStage.cs:866
 msgid "EDITOR_BUTTON_MESSAGE"
 msgstr "It took so much, it split in half.\nBut neither one popped."
 
@@ -4695,26 +4699,6 @@ msgstr ""
 msgid "GOT_IT"
 msgstr "Got it"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
-msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
-msgstr ""
-"This panel shows a prediction of your future population. These numbers are from the population simulation of auto-evo.\n"
-"\n"
-"They don't take into account your individual performance. So in your current patch you are going to perform better when you enter the editor.\n"
-"\n"
-"But you should try to keep your population up even when you aren't directly involved.\n"
-"\n"
-"You can view more detailed information behind the prediction by pressing the question mark button in the panel. Press it to continue."
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
-msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
-msgstr ""
-"You should focus on specialization to survive on one or two energy sources so that you don't require many different resources at once to sustain yourself.\n"
-"\n"
-"Also carefully consider if adding a part is truly beneficial, you don't always need to change what already works, as each part costs ATP to maintain and requires more resources to reproduce.\n"
-"\n"
-"One possible strategy is to stay a single hex of cytoplasm and just head to the surface patches first before getting photosynthesis organelles."
-
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -4755,8 +4739,8 @@ msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Keep an eye on your health bar next to the ATP bar (bottom right).\n"
 "Your cell dies if it runs out of health.\n"
-"You regenerate health while you have ATP.\n"
-"Make sure to collect enough glucose to produce ATP."
+"If you can't tell why you died, it was probably a lack of ATP.\n"
+"You might need food, or you might have designed an inviable species in the editor."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"

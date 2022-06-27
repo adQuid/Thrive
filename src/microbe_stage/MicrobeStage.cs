@@ -493,6 +493,14 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             {
                 guidanceLine.Visible = false;
             }
+
+            if (!TutorialState.EditorWelcome.TrustPlayer
+                && Player.Compounds.GetCompoundAmount(SimulationParameters.Instance.GetCompound("atp")) <= 0.1f
+                && !TutorialState.HaveShownATPMessage)
+            {
+                HUD.DisplayMessage("STARVATION_MESSAGE");
+                TutorialState.HaveShownATPMessage = true;
+            }
         }
         else
         {

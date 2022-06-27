@@ -69,6 +69,9 @@ public class TutorialState : ITutorialInput
     [JsonProperty]
     public float TotalElapsed { get; private set; }
 
+    [JsonProperty]
+    public bool HaveShownATPMessage;
+
     /// <summary>
     ///   True if any of the tutorials are active that want to pause the game
     /// </summary>
