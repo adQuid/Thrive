@@ -4625,6 +4625,10 @@ msgstr "On an alien world, and quite by accident,\nsome molecules formed a bubbl
 msgid "INTRO_MESSAGE_2"
 msgstr "This bubble let some chemicals in,\n but not others."
 
+#: ../src/microbe_stage/MicrobeStage.cs:866
+msgid "EDITOR_BUTTON_MESSAGE"
+msgstr "It took so much, it split in half,\nbut neither one popped."
+
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
@@ -4755,12 +4759,6 @@ msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "In order to reproduce you need to duplicate all of your organelles by collecting enough ammonia and phosphates.\n"
 "Look at the bars encircling the large button in the bottom right to see how much more you need. These bars become white when filled."
-
-#: ../src/microbe_stage/MicrobeStage.cs:866
-msgid "EDITOR_BUTTON_MESSAGE"
-msgstr "The bubble used the materials to grow.\n"
-"\n"
-"Eventually, it had copied all of its parts, and was ready to divide.\n"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
