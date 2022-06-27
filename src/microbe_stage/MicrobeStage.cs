@@ -257,8 +257,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         {
             if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
                 throw new InvalidOperationException("Stage not initialized properly");
-
-            HUD.UpdatePatchInfo(CurrentGame.GameWorld.Map.CurrentPatch.Name.ToString());
         }
     }
 
@@ -926,17 +924,17 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // going back to the stage
         if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!) && promptPatchNameChange)
         {
-            if (Settings.Instance.PlayMicrobeIntroVideo && GameWorld.Map.CurrentPatch!.Name.ToString().ToLower().Contains("epi"))
+            if (Settings.Instance.PlayMicrobeIntroVideo && "epi".IsSubsequenceOf(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower()))
             {
                 HUD.DisplayMessageIfIntro("EPIPELAGIC_INTRO_MESSAGE");
             }
             else
             {
-                HUD.PopupPatchInfo();
+                GD.Print(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower());
+                HUD.DisplayMessage(GameWorld.Map.CurrentPatch!.Name.ToString());
             }
         }
 
-        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch!.Name.ToString());
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
 
         UpdateBackground();
