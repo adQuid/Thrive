@@ -4756,13 +4756,15 @@ msgstr ""
 "In order to reproduce you need to duplicate all of your organelles by collecting enough ammonia and phosphates.\n"
 "Look at the bars encircling the large button in the bottom right to see how much more you need. These bars become white when filled."
 
+#: ../src/microbe_stage/MicrobeStage.cs:866
+msgid "EDITOR_BUTTON_MESSAGE"
+msgstr "The bubble used the materials to grow.\n"
+"\n"
+"Eventually, it had copied all of its parts, and was ready to divide.\n"
+
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"The bubble used the materials to grow.\n"
-"\n"
-"Eventually, it had copied all of its parts, and was ready to divide.\n"
-"\n"
 "Press the large flashing button in the bottom right when you are ready."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381

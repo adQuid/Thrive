@@ -861,6 +861,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             // This is to prevent the editor button being able to be clicked multiple times in freebuild mode
             if (!MovingToEditor)
                 HUD.ShowReproductionDialog();
+
+            if (!TutorialState.MicrobePressEditorButton.HasShownMessage)
+            {
+                HUD.DisplayMessage("EDITOR_BUTTON_MESSAGE");
+                TutorialState.MicrobePressEditorButton.HasShownMessage = true;
+            }
         }
         else
         {

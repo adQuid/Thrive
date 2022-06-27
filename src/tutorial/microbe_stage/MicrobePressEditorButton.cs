@@ -9,6 +9,8 @@
     {
         public override string ClosedByName { get; } = "MicrobeEditorPress";
 
+        public bool HasShownMessage = false;
+
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
             gui.EditorButtonTutorialVisible = ShownCurrently;
