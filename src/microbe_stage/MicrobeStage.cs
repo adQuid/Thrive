@@ -321,6 +321,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         {
             Clouds.AddCloud(phosphate, 30000.0f, new Vector3(40.0f, 0.0f, 0.0f));
             Clouds.AddCloud(glucose, 40000.0f, new Vector3(80.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(SimulationParameters.Instance.GetCompound("hydrogensulfide"), 40000.0f, new Vector3(100.0f, 0.0f, 0.0f));
             Clouds.AddCloud(phosphate, 20000.0f, new Vector3(120.0f, 0.0f, 0.0f));
         }
 
