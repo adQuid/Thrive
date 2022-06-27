@@ -791,6 +791,16 @@ public class MicrobeHUD : Control
         bottomRight.Visible = false;
     }
 
+    public void DisableCompoundsPanel()
+    {
+        compoundsPanel.Visible = false;
+    }
+
+    public void EnableCompoundsPanel()
+    {
+        compoundsPanel.Visible = true;
+    }
+
     /// <summary>
     ///   Updates the GUI bars to show only needed compounds
     /// </summary>

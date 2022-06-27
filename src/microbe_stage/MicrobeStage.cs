@@ -352,6 +352,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     public void StartNewGame()
     {
         HUD.DisableBottomRight();
+        HUD.DisableCompoundsPanel();
         WorldSettings ??= new WorldGenerationSettings();
         CurrentGame = GameProperties.StartNewMicrobeGame(WorldSettings);
 
@@ -708,6 +709,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         // Make sure player is spawned
         SpawnPlayer();
+
+        HUD.EnableCompoundsPanel();
 
         // Add a cloud of glucose if difficulty settings call for it
         if (WorldSettings!.FreeGlucoseCloud)
