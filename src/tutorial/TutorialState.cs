@@ -72,6 +72,9 @@ public class TutorialState : ITutorialInput
     [JsonProperty]
     public bool HaveShownATPMessage;
 
+    [JsonProperty]
+    public bool HasBeenToEpipelagic;
+
     /// <summary>
     ///   True if any of the tutorials are active that want to pause the game
     /// </summary>
