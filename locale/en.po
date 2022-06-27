@@ -4635,7 +4635,7 @@ msgstr "The bubble took so much, it split in half.\nBut neither one popped."
 
 #: ../src/microbe_stage/MicrobeStage.cs:930
 msgid "EPIPELAGIC_INTRO_MESSAGE"
-msgstr "Some floated to the top, near the sun.\nBut no glucose floated here."
+msgstr "Some come to the open sea, near the sun.\nBut no glucose floated here."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
