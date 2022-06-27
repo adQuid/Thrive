@@ -41,7 +41,7 @@
                     break;
                 }
 
-                /*case TutorialEventType.EnteredMicrobeStage:
+                case TutorialEventType.EnteredMicrobeStage:
                 {
                     if (ShownCurrently)
                     {
@@ -49,7 +49,7 @@
                     }
 
                     break;
-                }*/
+                }
             }
 
             return false;

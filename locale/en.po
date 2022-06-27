@@ -4627,7 +4627,7 @@ msgstr "The bubble let some chemicals in,\n but not others."
 
 #: ../src/microbe_stage/MicrobeStage.cs:866
 msgid "EDITOR_BUTTON_MESSAGE"
-msgstr "It took so much, it split in half.\nbut neither one popped."
+msgstr "It took so much, it split in half.\nBut neither one popped."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
@@ -4652,11 +4652,13 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"An organism is a series of trades of one compound for another. Keep an eye on the values displayed on the right.\n"
+"These bubbles only continue by converting some kinds of chemicals for others. For your convenience, these exchanges are displayed on the right.\n"
 "\n"
-"Anything negative is something you will need to find in the environment in order to survive, but anything with a positive production amount you will be able to make internally.\n"
+"Any negative number is something you will need to find in the environment in order to survive, but anything with a positive production amount you will be able to make internally.\n"
 "\n"
-"Pay close attention to the ATP balance. Not being able to produce enough is the leading cause of death in new players."
+"Some microbes are not able to produce enough ATP, as shown in the ATP balance section. Those microbes quickly die. Others evolve to consume something that does not occur in the environment."
+"\n"
+"They die slowly."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
