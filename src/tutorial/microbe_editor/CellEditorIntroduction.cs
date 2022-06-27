@@ -33,6 +33,16 @@
 
                 case TutorialEventType.MicrobeEditorOrganellePlaced:
                 {
+                    if (!HasBeenShown && CanTrigger && !overallState.EditorWelcome.TrustPlayer)
+                    {
+                        Show();
+                    }
+
+                    break;
+                }
+
+                case TutorialEventType.EnteredMicrobeStage:
+                {
                     if (ShownCurrently)
                     {
                         Hide();
