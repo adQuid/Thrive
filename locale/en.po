@@ -4625,13 +4625,17 @@ msgstr "On an alien world, and quite by accident,\nsome molecules formed a bubbl
 msgid "INTRO_MESSAGE_2"
 msgstr "The bubble let some chemicals in,\n but not others."
 
-#: ../src/microbe_stage/MicrobeStage.cs:866
+#: ../src/microbe_stage/MicrobeStage.cs:501
 msgid "STARVATION_MESSAGE"
-msgstr "When a bubble ran out of energy,\nthe unliving world took the molecules back."
+msgstr "When a bubble ran out of energy,\nphysics took the molecules back."
 
 #: ../src/microbe_stage/MicrobeStage.cs:866
 msgid "EDITOR_BUTTON_MESSAGE"
 msgstr "The bubble took so much, it split in half.\nBut neither one popped."
+
+#: ../src/microbe_stage/MicrobeStage.cs:930
+msgid "EPIPELAGIC_INTRO_MESSAGE"
+msgstr "Some floated to the top, near the sun.\nBut no glucose floated here."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"

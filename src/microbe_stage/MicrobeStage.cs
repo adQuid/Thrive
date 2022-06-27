@@ -926,7 +926,14 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // going back to the stage
         if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!) && promptPatchNameChange)
         {
-            HUD.PopupPatchInfo();
+            if (Settings.Instance.PlayMicrobeIntroVideo && GameWorld.Map.CurrentPatch!.Name.ToString().ToLower().Contains("epi"))
+            {
+                HUD.DisplayMessageIfIntro("EPIPELAGIC_INTRO_MESSAGE");
+            }
+            else
+            {
+                HUD.PopupPatchInfo();
+            }
         }
 
         HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch!.Name.ToString());
