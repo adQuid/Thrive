@@ -874,7 +874,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             if (!MovingToEditor)
                 HUD.ShowReproductionDialog();
 
-            if (!TutorialState.MicrobePressEditorButton.HasShownMessage)
+            if (!TutorialState.MicrobePressEditorButton.HasShownMessage && player.Hitpoints == player.MaxHitpoints)
             {
                 HUD.DisplayMessageIfIntro("EDITOR_BUTTON_MESSAGE");
                 TutorialState.MicrobePressEditorButton.HasShownMessage = true;
