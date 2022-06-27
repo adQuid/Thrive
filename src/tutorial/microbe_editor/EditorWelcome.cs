@@ -1,6 +1,7 @@
 ﻿namespace Tutorial
 {
     using System;
+    using Godot;
 
     /// <summary>
     ///   Welcome message and intro to the report tab
@@ -12,6 +13,11 @@
         public override string ClosedByName { get; } = "MicrobeEditorReport";
 
         public bool TrustPlayer = false;
+
+        public EditorWelcome()
+        {
+            ProcessWhileHidden = true;
+        }
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {
@@ -32,12 +38,7 @@
                 case TutorialEventType.EnteredMicrobeEditor:
                 {
                     // The player was quick to hit the button, and probably doesn't need help
-                    if (Time < Constants.MICROBE_EDITOR_BUTTON_QUICK)
-                    {
-                        Inhibit();
-                        TrustPlayer = true;
-                        break;
-                    }
+                    TestPlayerTrust();
 
                     if (!HasBeenShown && CanTrigger)
                     {
@@ -65,6 +66,15 @@
             }
 
             return false;
+        }
+
+        public void TestPlayerTrust()
+        {
+            if (Time < Constants.MICROBE_EDITOR_BUTTON_QUICK)
+            {
+                Inhibit();
+                TrustPlayer = true;
+            }
         }
     }
 }

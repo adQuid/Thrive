@@ -23,7 +23,7 @@
             {
                 case TutorialEventType.MicrobeEditorTabChanged:
                 {
-                    if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab)
+                    if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab && overallState.EditorWelcome.Complete)
                     {
                         Show();
                     }
