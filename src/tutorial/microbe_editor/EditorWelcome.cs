@@ -63,6 +63,16 @@
 
                     break;
                 }
+
+                case TutorialEventType.MicrobeEditorOrganellePlaced:
+                {
+                    if (ShownCurrently)
+                    {
+                        Hide();
+                    }
+
+                    break;
+                }
             }
 
             return false;

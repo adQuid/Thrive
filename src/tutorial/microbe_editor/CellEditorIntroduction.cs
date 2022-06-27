@@ -23,7 +23,7 @@
             {
                 case TutorialEventType.MicrobeEditorTabChanged:
                 {
-                    if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab && overallState.EditorWelcome.Complete)
+                    if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab && !overallState.EditorWelcome.TrustPlayer && overallState.EditorWelcome.Complete)
                     {
                         Show();
                     }
@@ -33,7 +33,7 @@
 
                 case TutorialEventType.MicrobeEditorOrganellePlaced:
                 {
-                    if (!HasBeenShown && CanTrigger && !overallState.EditorWelcome.TrustPlayer)
+                    if (!HasBeenShown && CanTrigger && (overallState.EditorWelcome.ShownCurrently || overallState.EditorWelcome.Complete))
                     {
                         Show();
                     }
@@ -41,7 +41,7 @@
                     break;
                 }
 
-                case TutorialEventType.EnteredMicrobeStage:
+                /*case TutorialEventType.EnteredMicrobeStage:
                 {
                     if (ShownCurrently)
                     {
@@ -49,7 +49,7 @@
                     }
 
                     break;
-                }
+                }*/
             }
 
             return false;
