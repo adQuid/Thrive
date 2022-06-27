@@ -4627,7 +4627,7 @@ msgstr "The bubble let some chemicals in,\n but not others."
 
 #: ../src/microbe_stage/MicrobeStage.cs:866
 msgid "STARVATION_MESSAGE"
-msgstr "But when the bubble ran out of energy,\nthe unliving world took the molecules back."
+msgstr "When a bubble ran out of energy,\nthe unliving world took the molecules back."
 
 #: ../src/microbe_stage/MicrobeStage.cs:866
 msgid "EDITOR_BUTTON_MESSAGE"
@@ -4640,7 +4640,9 @@ msgstr ""
 "\n"
 "After a long time, some of the bubbles were different in ways that let them survive better. The rest were dead.\n"
 "\n"
-"Select something on the left and add it to your species. Chemosynthesizing proteins are a good choice."
+"Select something on the left to add it to your species. Chemosynthesizing proteins would be a good choice.\n"
+"\n"
+"You may place it next to, or even on, your starting hex."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
