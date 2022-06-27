@@ -4628,13 +4628,9 @@ msgstr "This bubble let some chemicals in,\n but not others."
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Welcome to the Microbe Editor.\n"
+"The two new bubbles were a little bit different from the first. As were the next four from the two.\n"
 "\n"
-"Here you can review what has happened during previous generations, and then make changes to your species.\n"
-"\n"
-"This tab gives you a list of changes in the patch you currently occupy. Try exploring the various tools at your disposal to learn more about events in your world!\n"
-"\n"
-"When you are ready, press the \"next\" button in the bottom right to continue."
+"After a long time, some of the bubbles were different in ways that let them survive better. The rest were dead.\n"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
@@ -4654,7 +4650,7 @@ msgstr ""
 "\n"
 "The hex in the center of your screen is your cell, which is composed of a single cytoplasm part.\n"
 "\n"
-"To continue, select a part from the left panel. Then left-click next to the hex to place it. You can rotate parts with A and D (default keys)."
+"Select a part from the left panel. Then left-click next to the hex to place it. You can rotate parts with A and D (default keys)."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
@@ -4763,11 +4759,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"You have collected enough resources for your cell to reproduce.\n"
+"The bubble used the materials to grow.\n"
 "\n"
-"Each time you reproduce, you will be taken to the editor.\n"
+"Eventually, it had copied all of its parts, and was ready to divide.\n"
 "\n"
-"To enter the editor press the large flashing button in the bottom right when you are ready."
+"Press the large flashing button in the bottom right when you are ready."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
