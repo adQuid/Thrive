@@ -4627,7 +4627,7 @@ msgstr "The bubble let some chemicals in,\n but not others."
 
 #: ../src/microbe_stage/MicrobeStage.cs:866
 msgid "STARVATION_MESSAGE"
-msgstr "Everything the bubbles did required energy.\nWhen it ran out, the unliving world took the molecules back."
+msgstr "But when the bubble ran out of energy,\nthe unliving world took the molecules back."
 
 #: ../src/microbe_stage/MicrobeStage.cs:866
 msgid "EDITOR_BUTTON_MESSAGE"
