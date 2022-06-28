@@ -57,6 +57,16 @@
             "oxytoxy": 0.15
         }
     },
+    "glycoSynthesis": {
+        "name": "GLYCOTOXY_SYNTHESIS",
+        "inputs": {
+            "oxygen": 1,
+            "atp": 15
+        },
+        "outputs": {
+            "glycotoxy": 1.5
+        }
+    },
     "chemoSynthesis": {
         "name": "CHEMO_SYNTHESIS",
         "inputs": {

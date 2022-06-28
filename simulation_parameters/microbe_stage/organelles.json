@@ -510,15 +510,15 @@
             }
         ],
         "processes": {
-            "oxytoxySynthesis": 1
+            "glycotoxySynthesis": 1
         },
         "components": {
             "storage": {
                 "capacity": 1
             },
             "agentVacuole": {
-                "process": "oxytoxySynthesis",
-                "compound": "oxytoxy"
+                "process": "glycotoxySynthesis",
+                "compound": "glycotoxy"
             }
         },
         "prokaryoteChance": 0,
