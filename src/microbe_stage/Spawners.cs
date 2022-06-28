@@ -212,7 +212,14 @@ public static class SpawnHelpers
 
     public static PackedScene LoadAgentScene()
     {
-        return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
+        if (new Random().Next() < 0.5)
+        {
+            return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
+        }
+        else
+        {
+            return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectileBlue.tscn");
+        }
     }
 }
 
