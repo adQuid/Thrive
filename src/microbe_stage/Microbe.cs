@@ -618,10 +618,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         CheckEngulfShapeSize();
 
         // Fire queued agents
-        if (queuedToxinToEmit != null)
+        if (queuedToxinToEmit.Count > 0)
         {
-            EmitToxin(queuedToxinToEmit);
-            queuedToxinToEmit = null;
+            EmitToxin(queuedToxinToEmit.Dequeue());
         }
 
         // If we didn't have our membrane ready yet in the async process we need to do these now

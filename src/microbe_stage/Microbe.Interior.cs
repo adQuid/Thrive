@@ -23,7 +23,7 @@ public partial class Microbe
     private CompoundCloudSystem? cloudSystem;
 
     [JsonProperty]
-    private Compound? queuedToxinToEmit;
+    private Queue<Compound> queuedToxinToEmit = new();
 
     /// <summary>
     ///   The organelles in this microbe
@@ -235,7 +235,7 @@ public partial class Microbe
     /// <param name="toxinCompound">The toxin type to emit</param>
     public void QueueEmitToxin(Compound toxinCompound)
     {
-        queuedToxinToEmit = toxinCompound;
+        queuedToxinToEmit.Enqueue(toxinCompound);
     }
 
     /// <summary>
