@@ -763,7 +763,14 @@ msgstr "Mitochondrion"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2020
 msgid "TOXIN_VACUOLE"
 msgstr ""
-"Toxin\n"
+"Oxytoxy\n"
+"Vacuole"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:491
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2020
+msgid "GLY_TOXIN_VACUOLE"
+msgstr ""
+"Glycotoxy\n"
 "Vacuole"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:523
@@ -2972,8 +2979,16 @@ msgstr "The vacuole is an internal membranous organelle used for storage in the 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced damage."
 
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2021
+msgid "GLY_TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into CHANGED[thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced damage."
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
 msgid "TOXIN_VACUOLE_DESCRIPTION"
+msgstr "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of oxytoxy toxins. More toxin vacuoles will increase the rate at which toxins can be released."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
+msgid "GLY_TOXIN_VACUOLE_DESCRIPTION"
 msgstr "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of oxytoxy toxins. More toxin vacuoles will increase the rate at which toxins can be released."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2119
