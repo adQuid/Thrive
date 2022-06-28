@@ -65,7 +65,8 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyDown("g_fire_toxin")]
     public void EmitToxin()
     {
-        stage.Player?.EmitToxin();
+        stage.Player?.EmitToxin(SimulationParameters.Instance.GetCompound("oxytoxy"));
+        stage.Player?.EmitToxin(SimulationParameters.Instance.GetCompound("glycotoxy"));
     }
 
     [RunOnKeyDown("g_toggle_engulf")]
