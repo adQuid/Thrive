@@ -446,7 +446,7 @@ public partial class Microbe
 
             var props = new AgentProperties(Species, oxytoxy);
 
-            var agentScene = SpawnHelpers.LoadAgentScene();
+            var agentScene = SpawnHelpers.LoadAgentScene(oxytoxy);
 
             while (amount > Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
             {

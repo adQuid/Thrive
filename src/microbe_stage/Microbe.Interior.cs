@@ -214,7 +214,7 @@ public partial class Microbe
 
         var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),
-            SpawnHelpers.LoadAgentScene(), this);
+            SpawnHelpers.LoadAgentScene(agentType), this);
 
         ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
 
