@@ -333,7 +333,7 @@ region_rect = Rect2( 0, 0, 429, 1 )
 
 [sub_resource type="Animation" id=37]
 resource_name = "FadeInOut"
-length = 4.5
+length = 5.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
@@ -408,6 +408,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 AnimationPlayerPath = NodePath("AnimationPlayer")
+BottomRightPath = NodePath("BottomRight")
 PanelsTweenPath = NodePath("BottomLeft/LeftPanels/PanelsTween")
 LeftPanelsPath = NodePath("BottomLeft/LeftPanels")
 MouseHoverPanelPath = NodePath("MouseHoverPanel")
@@ -648,6 +649,7 @@ __meta__ = {
 }
 
 [node name="EnvironmentPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels"]
+visible = false
 margin_right = 197.0
 margin_bottom = 234.0
 rect_min_size = Vector2( 197, 234 )

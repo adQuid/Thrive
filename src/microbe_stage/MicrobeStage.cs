@@ -257,8 +257,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         {
             if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
                 throw new InvalidOperationException("Stage not initialized properly");
-
-            HUD.UpdatePatchInfo(CurrentGame.GameWorld.Map.CurrentPatch.Name.ToString());
         }
     }
 
@@ -316,10 +314,13 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         Clouds.Init(FluidSystem);
 
-        // If this is a new game, place some phosphates as a learning tool
+        // If this is a new game, place some compounds to lure the player away form origin
         if (!IsLoadedFromSave)
         {
-            Clouds.AddCloud(phosphate, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(phosphate, 30000.0f, new Vector3(40.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(glucose, 40000.0f, new Vector3(80.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(SimulationParameters.Instance.GetCompound("hydrogensulfide"), 40000.0f, new Vector3(100.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(phosphate, 20000.0f, new Vector3(120.0f, 0.0f, 0.0f));
         }
 
         patchManager.CurrentGame = CurrentGame;
@@ -351,6 +352,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public void StartNewGame()
     {
+        HUD.DisableBottomRight();
+        HUD.DisableCompoundsPanel();
         WorldSettings ??= new WorldGenerationSettings();
         CurrentGame = GameProperties.StartNewMicrobeGame(WorldSettings);
 
@@ -359,6 +362,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
+
+        HUD.DisplayMessageIfIntro("INTRO_MESSAGE_2");
     }
 
     public void StartMusic()
@@ -485,6 +490,14 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             else
             {
                 guidanceLine.Visible = false;
+            }
+
+            if (!TutorialState.EditorWelcome.TrustPlayer
+                && Player.Compounds.GetCompoundAmount(SimulationParameters.Instance.GetCompound("atp")) <= 0.1f
+                && !TutorialState.HaveShownATPMessage)
+            {
+                HUD.DisplayMessageIfIntro("STARVATION_MESSAGE");
+                TutorialState.HaveShownATPMessage = true;
             }
         }
         else
@@ -706,6 +719,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // Make sure player is spawned
         SpawnPlayer();
 
+        HUD.EnableCompoundsPanel();
+
         // Add a cloud of glucose if difficulty settings call for it
         if (WorldSettings!.FreeGlucoseCloud)
         {
@@ -763,8 +778,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     public void OnFinishTransitioning()
     {
         TransitionFinished = true;
-        TutorialState.SendEvent(
-            TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
     }
 
     /// <summary>
@@ -860,6 +873,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             // This is to prevent the editor button being able to be clicked multiple times in freebuild mode
             if (!MovingToEditor)
                 HUD.ShowReproductionDialog();
+
+            if (!TutorialState.MicrobePressEditorButton.HasShownMessage && player.Hitpoints == player.MaxHitpoints)
+            {
+                HUD.DisplayMessageIfIntro("EDITOR_BUTTON_MESSAGE");
+                TutorialState.MicrobePressEditorButton.HasShownMessage = true;
+            }
         }
         else
         {
@@ -905,10 +924,18 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // going back to the stage
         if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!) && promptPatchNameChange)
         {
-            HUD.PopupPatchInfo();
+            if (Settings.Instance.PlayMicrobeIntroVideo && !TutorialState.HasBeenToEpipelagic && "epi".IsSubsequenceOf(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower()))
+            {
+                HUD.DisplayMessageIfIntro("EPIPELAGIC_INTRO_MESSAGE");
+                TutorialState.HasBeenToEpipelagic = true;
+            }
+            else
+            {
+                GD.Print(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower());
+                HUD.DisplayMessage(GameWorld.Map.CurrentPatch!.Name.ToString());
+            }
         }
 
-        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch!.Name.ToString());
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
 
         UpdateBackground();

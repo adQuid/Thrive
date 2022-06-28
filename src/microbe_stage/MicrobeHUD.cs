@@ -15,6 +15,9 @@ public class MicrobeHUD : Control
     public NodePath AnimationPlayerPath = null!;
 
     [Export]
+    public NodePath BottomRightPath = null;
+
+    [Export]
     public NodePath PanelsTweenPath = null!;
 
     [Export]
@@ -228,6 +231,7 @@ public class MicrobeHUD : Control
     private Compound sunlight = null!;
 
     private AnimationPlayer animationPlayer = null!;
+    private Control bottomRight = null!;
     private MarginContainer mouseHoverPanel = null!;
     private VBoxContainer hoveredCompoundsContainer = null!;
     private HSeparator hoveredCellsSeparator = null!;
@@ -424,6 +428,7 @@ public class MicrobeHUD : Control
         hpLabel = GetNode<Label>(HpLabelPath);
         menu = GetNode<PauseMenu>(MenuPath);
         animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
+        bottomRight = GetNode<Control>(BottomRightPath);
         hoveredCompoundsContainer = GetNode<VBoxContainer>(HoveredCompoundsContainerPath);
         hoveredCellsSeparator = GetNode<HSeparator>(HoverPanelSeparatorPath);
         hoveredCellsContainer = GetNode<VBoxContainer>(HoveredCellsContainerPath);
@@ -652,6 +657,20 @@ public class MicrobeHUD : Control
         patchOverlayAnimator.Play("FadeInOut");
     }
 
+    public void DisplayMessage(string message)
+    {
+        patchLabel.Text = message;
+        patchOverlayAnimator.Play("FadeInOut");
+    }
+
+    public void DisplayMessageIfIntro(string message)
+    {
+        if (Settings.Instance.PlayMicrobeIntroVideo)
+        {
+            DisplayMessage(message);
+        }
+    }
+
     public void EditorButtonPressed()
     {
         GD.Print("Move to editor pressed");
@@ -773,6 +792,21 @@ public class MicrobeHUD : Control
             // Unpause the game
             PauseManager.Instance.Resume(nameof(MicrobeHUD));
         }
+    }
+
+    public void DisableBottomRight()
+    {
+        bottomRight.Visible = false;
+    }
+
+    public void DisableCompoundsPanel()
+    {
+        compoundsPanel.Visible = false;
+    }
+
+    public void EnableCompoundsPanel()
+    {
+        compoundsPanel.Visible = true;
     }
 
     /// <summary>
@@ -1094,6 +1128,12 @@ public class MicrobeHUD : Control
         catch (Exception e)
         {
             GD.PrintErr("can't get reproduction phosphates progress: ", e);
+        }
+
+        if (!bottomRight.Visible &&
+            (fractionOfAmmonia > 0.5f || fractionOfPhosphates > 0.5f))
+        {
+            bottomRight.Visible = true;
         }
 
         ammoniaReproductionBar.Value = fractionOfAmmonia * ammoniaReproductionBar.MaxValue;

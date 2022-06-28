@@ -23,7 +23,7 @@
             {
                 case TutorialEventType.MicrobeEditorTabChanged:
                 {
-                    if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab)
+                    if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab && !overallState.EditorWelcome.TrustPlayer && overallState.EditorWelcome.Complete)
                     {
                         Show();
                     }
@@ -32,6 +32,16 @@
                 }
 
                 case TutorialEventType.MicrobeEditorOrganellePlaced:
+                {
+                    if (!HasBeenShown && CanTrigger && !overallState.EditorWelcome.TrustPlayer && (overallState.EditorWelcome.ShownCurrently || overallState.EditorWelcome.Complete))
+                    {
+                        Show();
+                    }
+
+                    break;
+                }
+
+                case TutorialEventType.EnteredMicrobeStage:
                 {
                     if (ShownCurrently)
                     {

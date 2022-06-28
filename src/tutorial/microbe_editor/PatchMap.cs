@@ -26,7 +26,7 @@
                 {
                     var tab = ((StringEventArgs)args).Data;
 
-                    if (!HasBeenShown && CanTrigger && tab == patchMapTab)
+                    if (!HasBeenShown && CanTrigger && !overallState.EditorWelcome.TrustPlayer && tab == patchMapTab)
                     {
                         Show();
                     }

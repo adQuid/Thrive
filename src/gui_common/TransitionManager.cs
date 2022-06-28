@@ -35,18 +35,24 @@ public class TransitionManager : ControlWithInput
 
     private ScreenFade.FadeType? LastFadedType { get; set; }
 
+    public ScreenFade CreateScreenFade(ScreenFade.FadeType type, float fadeDuration)
+    {
+        return CreateScreenFade(type, fadeDuration, null);
+    }
+
     /// <summary>
     ///   Helper method for creating a screen fade.
     /// </summary>
     /// <param name="type">The type of fade to transition to</param>
     /// <param name="fadeDuration">How long the fade lasts</param>
-    public ScreenFade CreateScreenFade(ScreenFade.FadeType type, float fadeDuration)
+    public ScreenFade CreateScreenFade(ScreenFade.FadeType type, float fadeDuration, string? message)
     {
         // Instantiate scene
         var screenFade = (ScreenFade)screenFadeScene.Instance();
 
         screenFade.CurrentFadeType = type;
         screenFade.FadeDuration = fadeDuration;
+        screenFade.Message = message;
 
         return screenFade;
     }

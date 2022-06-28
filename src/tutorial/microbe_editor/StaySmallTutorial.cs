@@ -9,7 +9,7 @@
 
         public override string ClosedByName => "StaySmallTutorial";
 
-        protected override int TriggersOnNthEditorSession => 3;
+        protected override int TriggersOnNthEditorSession => 300;
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {

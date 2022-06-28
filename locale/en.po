@@ -4617,36 +4617,62 @@ msgstr "Unknown Steam error happened"
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
+#: ../src/general/MainMenu.cs:174
+msgid "INTRO_MESSAGE_1"
+msgstr "On an alien world, and quite by accident,\nsome molecules formed a bubble..."
+
+#: ../src/general/MainMenu.cs:174
+msgid "INTRO_MESSAGE_PANSPERMIA"
+msgstr "Accross the cosmos, a seed slept.\nWith a flash of light, it awakens."
+
+#: ../src/microbe_stage/MicrobeStage.cs:364
+msgid "INTRO_MESSAGE_2"
+msgstr "The bubble let some chemicals in,\n but not others."
+
+#: ../src/microbe_stage/MicrobeStage.cs:501
+msgid "STARVATION_MESSAGE"
+msgstr "When a bubble ran out of energy,\nphysics took the molecules back."
+
+#: ../src/microbe_stage/MicrobeStage.cs:866
+msgid "EDITOR_BUTTON_MESSAGE"
+msgstr "The bubble took so much, it split in half.\nBut neither one popped."
+
+#: ../src/microbe_stage/MicrobeStage.cs:930
+msgid "EPIPELAGIC_INTRO_MESSAGE"
+msgstr "Some come to the open sea, near the sun.\nBut no glucose floated here."
+
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Welcome to the Microbe Editor.\n"
+"The two new bubbles were a little bit different from the first. As were the next four from the two.\n"
 "\n"
-"Here you can review what has happened during previous generations, and then make changes to your species.\n"
+"After a long time, some of the bubbles were different in ways that let them survive better. The rest were dead.\n"
 "\n"
-"This tab gives you a list of changes in the patch you currently occupy. Try exploring the various tools at your disposal to learn more about events in your world!\n"
+"Select something on the left to add it to your species. Chemosynthesizing proteins would be a good choice.\n"
 "\n"
-"When you are ready, press the \"next\" button in the bottom right to continue."
+"You may place it next to, or even on, your starting hex."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"This is the patch map.\n"
+"There are more places for life to spread.\n"
 "\n"
 "Each icon represents a unique environment that you can inhabit, with the panel on your right describing the conditions of the currently selected patch.\n"
 "\n"
-"If you select a patch connected to the one you occupy, which is highlighted with a thin cyan border, you can press the \"Move to this patch\" button on the right to migrate there.\n"
+"Once you have selected a patch, you can press the \"Move to this patch\" button on the right to migrate there.\n"
 "\n"
-"Try selecting a patch to continue."
+"Be warned: the starting design for your microbe will not be able to survive in either neighboring patch."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"This is the cell editor where you can evolve your species by spending mutation points (MP). Each generation you will always have 100 MP to spend, so don't bother saving up!\n"
+"These bubbles only continue by converting some kinds of chemicals for others. For your convenience, these exchanges are displayed in the 'Compound Balances' section.\n"
 "\n"
-"The hex in the center of your screen is your cell, which is composed of a single cytoplasm part.\n"
+"Any negative number is something you will need to find in the environment in order to survive, but anything with a positive production amount you will be able to make internally.\n"
 "\n"
-"To continue, select a part from the left panel. Then left-click next to the hex to place it. You can rotate parts with A and D (default keys)."
+"Some microbes are not able to produce enough ATP, as shown in the ATP balance section. Those microbes quickly die. Others evolve to consume something that does not occur in the environment.\n"
+"\n"
+"They die slowly."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
@@ -4682,26 +4708,6 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr "Got it"
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
-msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
-msgstr ""
-"This panel shows a prediction of your future population. These numbers are from the population simulation of auto-evo.\n"
-"\n"
-"They don't take into account your individual performance. So in your current patch you are going to perform better when you enter the editor.\n"
-"\n"
-"But you should try to keep your population up even when you aren't directly involved.\n"
-"\n"
-"You can view more detailed information behind the prediction by pressing the question mark button in the panel. Press it to continue."
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
-msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
-msgstr ""
-"You should focus on specialization to survive on one or two energy sources so that you don't require many different resources at once to sustain yourself.\n"
-"\n"
-"Also carefully consider if adding a part is truly beneficial, you don't always need to change what already works, as each part costs ATP to maintain and requires more resources to reproduce.\n"
-"\n"
-"One possible strategy is to stay a single hex of cytoplasm and just head to the surface patches first before getting photosynthesis organelles."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
@@ -4743,8 +4749,8 @@ msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Keep an eye on your health bar next to the ATP bar (bottom right).\n"
 "Your cell dies if it runs out of health.\n"
-"You regenerate health while you have ATP.\n"
-"Make sure to collect enough glucose to produce ATP."
+"If you can't tell why you died, it was probably a lack of ATP.\n"
+"You might need food, or you might have designed an inviable species in the editor."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
@@ -4755,11 +4761,7 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"You have collected enough resources for your cell to reproduce.\n"
-"\n"
-"Each time you reproduce, you will be taken to the editor.\n"
-"\n"
-"To enter the editor press the large flashing button in the bottom right when you are ready."
+"Press the large flashing button in the bottom right when you are ready."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"

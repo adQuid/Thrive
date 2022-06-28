@@ -21,7 +21,7 @@
             {
                 case TutorialEventType.MicrobePlayerDied:
                 {
-                    if (!HasBeenShown && CanTrigger)
+                    if (!overallState.EditorWelcome.TrustPlayer && !HasBeenShown && CanTrigger)
                     {
                         Show();
                         return true;

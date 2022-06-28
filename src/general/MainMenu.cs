@@ -158,33 +158,50 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
-        // before the stage music starts)
-        Jukebox.Instance.SmoothStop();
-
-        var transitions = new List<ITransition>();
-
-        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
+        if (Settings.Instance.PlayMicrobeIntroVideo)
         {
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
-            transitions.Add(TransitionManager.Instance.CreateCutscene(
-                "res://assets/videos/microbe_intro2.ogv", 0.65f));
+            // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
+            // before the stage music starts)
+            Jukebox.Instance.SmoothStop();
+
+            var transitions = new List<ITransition>();
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.0f));
+
+            TransitionManager.Instance.AddSequence(transitions, () =>
+            {
+                Jukebox.Instance.PlayCategory("MicrobeStage");
+                var transitions = new List<ITransition>();
+
+                if (settings.Origin == WorldGenerationSettings.LifeOrigin.Panspermia)
+                {
+                    transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_PANSPERMIA"));
+                    Settings.Instance.PlayMicrobeIntroVideo = new(false);
+                }
+                else
+                {
+                    transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_1"));
+                }
+
+                TransitionManager.Instance.AddSequence(transitions, () =>
+                {
+                    StartNewGame(settings);
+                });
+            });
         }
         else
         {
-            // People who disable the cutscene are impatient anyway so use a reduced fade time
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
+            StartNewGame(settings);
         }
+    }
 
-        TransitionManager.Instance.AddSequence(transitions, () =>
-        {
-            OnEnteringGame();
+    private void StartNewGame(WorldGenerationSettings settings)
+    {
+        OnEnteringGame();
 
-            // TODO: Add loading screen while changing between scenes
-            var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
-            microbeStage.WorldSettings = settings;
-            SceneManager.Instance.SwitchToScene(microbeStage);
-        });
+        // TODO: Add loading screen while changing between scenes
+        var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
+        microbeStage.WorldSettings = settings;
+        SceneManager.Instance.SwitchToScene(microbeStage);
     }
 
     /// <summary>

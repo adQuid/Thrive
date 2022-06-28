@@ -62,24 +62,18 @@ public class TutorialState : ITutorialInput
     public CellEditorIntroduction CellEditorIntroduction { get; private set; } = new();
 
     [JsonProperty]
-    public EditorUndoTutorial EditorUndoTutorial { get; private set; } = new();
-
-    [JsonProperty]
-    public EditorRedoTutorial EditorRedoTutorial { get; private set; } = new();
-
-    [JsonProperty]
-    public EditorTutorialEnd EditorTutorialEnd { get; private set; } = new();
-
-    [JsonProperty]
-    public AutoEvoPrediction AutoEvoPrediction { get; private set; } = new();
-
-    [JsonProperty]
     public StaySmallTutorial StaySmallTutorial { get; private set; } = new();
 
     // End of tutorial state variables
 
     [JsonProperty]
     public float TotalElapsed { get; private set; }
+
+    [JsonProperty]
+    public bool HaveShownATPMessage;
+
+    [JsonProperty]
+    public bool HasBeenToEpipelagic;
 
     /// <summary>
     ///   True if any of the tutorials are active that want to pause the game
@@ -337,10 +331,6 @@ public class TutorialState : ITutorialInput
             EditorWelcome,
             PatchMap,
             CellEditorIntroduction,
-            EditorUndoTutorial,
-            EditorRedoTutorial,
-            EditorTutorialEnd,
-            AutoEvoPrediction,
             StaySmallTutorial,
         };
     }
