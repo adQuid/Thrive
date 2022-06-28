@@ -57,7 +57,7 @@
             "oxytoxy": 0.15
         }
     },
-    "glycoSynthesis": {
+    "glycotoxySynthesis": {
         "name": "GLYCOTOXY_SYNTHESIS",
         "inputs": {
             "oxygen": 1,
