@@ -210,15 +210,19 @@ public static class SpawnHelpers
         return agent;
     }
 
-    public static PackedScene LoadAgentScene()
+    public static PackedScene LoadAgentScene(Compound compound)
     {
-        if (new Random().Next() < 0.5)
+        if (compound.Name == "oxytoxy")
         {
             return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
         }
-        else
+        else if (compound.Name == "glycotoxy")
         {
             return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectileBlue.tscn");
+        }
+        else
+        {
+            throw new Exception("Cannot find agent projectile for compound " + compound.Name);
         }
     }
 }
