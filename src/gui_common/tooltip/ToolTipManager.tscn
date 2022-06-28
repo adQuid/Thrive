@@ -3744,6 +3744,12 @@ DisplayDelay = 0.0
 Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/oxytoxy/MarginContainer/VBoxContainer/Description")
 
+[node name="glycotoxy" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
+visible = false
+DisplayDelay = 0.0
+Positioning = 1
+DescriptionLabelPath = NodePath("../../processesProduction/glycotoxy/MarginContainer/VBoxContainer/Description")
+
 [node name="processesConsumption" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
