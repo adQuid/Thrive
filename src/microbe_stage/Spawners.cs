@@ -212,11 +212,11 @@ public static class SpawnHelpers
 
     public static PackedScene LoadAgentScene(Compound compound)
     {
-        if (compound.Name == "OxyToxy NT")
+        if (compound == SimulationParameters.Instance.GetCompound("oxytoxy"))
         {
             return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
         }
-        else if (compound.Name == "glycotoxy")
+        else if (compound == SimulationParameters.Instance.GetCompound("glycotoxy"))
         {
             return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectileBlue.tscn");
         }
