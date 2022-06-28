@@ -2887,11 +2887,11 @@ msgstr "All cells only \"see\" through chemoreception. That is how cells acquire
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "Increases turning speed of large cells."
+msgstr "Produces currents drawing objects towards the microbe in engulf mode."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
 msgid "CILIA_DESCRIPTION"
-msgstr "Cilia hairs are similar to the flagella but instead of providing directional thrust force they provide rotational force to help cells turn."
+msgstr "Cilia hairs are another mechanism of movement, as well as a way to manipulate objects around a microbe."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
