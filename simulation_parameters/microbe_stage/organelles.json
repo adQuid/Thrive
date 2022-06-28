@@ -497,6 +497,43 @@
         "editorButtonOrder": 9,
         "lawk": true
     },
+    "glycotoxy": {
+        "mpCost": 55,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "oxytoxySynthesis": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 1
+            },
+            "agentVacuole": {
+                "process": "oxytoxySynthesis",
+                "compound": "oxytoxy"
+            }
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 1,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Cytoplasm.tscn",
+        "name": "GLY_TOXIN_VACUOLE",
+        "productionColour": "#624acb",
+        "consumptionColour": "#c4307b",
+        "iconPath": "res://assets/textures/gui/bevel/parts/GlycotoxinVacuoleIcon.png",
+        "requiresNucleus": true,
+        "editorButtonGroup": "Organelle",
+        "editorButtonOrder": 9,
+        "lawk": true
+    },
     "bindingAgent": {
         "mpCost": 55,
         "initialComposition": {
