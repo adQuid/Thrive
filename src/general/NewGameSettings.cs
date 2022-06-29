@@ -246,6 +246,7 @@ public class NewGameSettings : ControlWithInput
         if (Visible)
             return;
 
+        OnDifficultyPresetSelected(DifficultyPresetValueToIndex(DifficultyPreset.Normal));
         Show();
     }
 
