@@ -341,6 +341,11 @@ public partial class Microbe
         }
     }
 
+    public void AddATPBlocker(float amount)
+    {
+        atpBlocker += amount;
+    }
+
     /// <summary>
     ///   Returns true when this microbe can engulf the target
     /// </summary>
@@ -446,14 +451,14 @@ public partial class Microbe
 
             var props = new AgentProperties(Species, oxytoxy);
 
-            var agentScene = SpawnHelpers.LoadAgentScene();
+            var agentScene = SpawnHelpers.LoadAgentScene(oxytoxy);
 
             while (amount > Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
             {
                 var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
-                var agent = SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
+                var agent = SpawnHelpers.SpawnAgent(props, oxytoxy, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
                     Constants.EMITTED_AGENT_LIFETIME,
                     Translation, direction, GetStageAsParent(),
                     agentScene, this);

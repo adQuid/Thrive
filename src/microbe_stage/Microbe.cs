@@ -549,9 +549,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         queuedMovementForce = new Vector3(0, 0, 0);
 
         // Reduce agent emission cooldown
-        AgentEmissionCooldown -= delta;
-        if (AgentEmissionCooldown < 0)
-            AgentEmissionCooldown = 0;
+        var cooldownKeys = AgentEmissionCooldowns.Select(x => x.Key).ToList();
+        foreach (var cooldown in cooldownKeys)
+        {
+            AgentEmissionCooldowns[cooldown] -= delta;
+            if (AgentEmissionCooldowns[cooldown] < 0)
+                AgentEmissionCooldowns[cooldown] = 0;
+        }
 
         lastCheckedATPDamage += delta;
 
@@ -618,10 +622,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         CheckEngulfShapeSize();
 
         // Fire queued agents
-        if (queuedToxinToEmit != null)
+        if (queuedToxinToEmit.Count > 0)
         {
-            EmitToxin(queuedToxinToEmit);
-            queuedToxinToEmit = null;
+            EmitToxin(queuedToxinToEmit.Dequeue());
         }
 
         // If we didn't have our membrane ready yet in the async process we need to do these now
@@ -663,6 +666,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         if (Colony != null && Colony.Master == this)
             Colony.Process(delta);
+
+        if (atpBlocker > 0.0f)
+        {
+            atpBlocker -= Compounds.TakeCompound(atp, atpBlocker);
+        }
 
         while (lastCheckedATPDamage >= Constants.ATP_DAMAGE_CHECK_INTERVAL)
         {

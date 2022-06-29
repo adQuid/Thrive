@@ -93,6 +93,7 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=91]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=92]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=93]
+[ext_resource path="res://assets/textures/gui/bevel/glycotoxy.png" type="Texture" id=94]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -192,6 +193,9 @@ bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
 
 [sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3111]
+bg_color = Color( 0.023529, 0.0745098, 0.976471, 1 )
 
 [sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0, 0, 0, 0.196078 )
@@ -448,6 +452,7 @@ CompoundsPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsPane
 CompoundsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer")
 AgentsPanelPath = NodePath("BottomLeft/LeftPanels/AgentsPanel")
 OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
+GlycotoxyBarPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/glycotoxy")
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer")
 AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
@@ -1485,7 +1490,7 @@ __meta__ = {
 margin_top = 473.0
 margin_right = 254.0
 margin_bottom = 567.0
-rect_min_size = Vector2( 254, 94 )
+rect_min_size = Vector2( 254, 134 )
 rect_clip_content = true
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1596,6 +1601,59 @@ __meta__ = {
 }
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -45.0
+margin_right = -4.99998
+margin_bottom = 25.0
+grow_horizontal = 0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = ExtResource( 80 )
+text = "0.0 / 4"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="glycotoxy" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+margin_right = 220.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 220, 25 )
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 3111 )
+custom_styles/bg = SubResource( 26 )
+step = 0.1
+percent_visible = false
+
+[node name="GlycoToxyIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/glycotoxy"]
+anchor_left = -0.00454545
+anchor_right = -0.00454545
+margin_left = -12.0
+margin_right = 13.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 25, 25 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 94 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/glycotoxy"]
+margin_left = 18.0
+margin_right = 97.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = ExtResource( 80 )
+text = "GLYCOTOXY"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/glycotoxy"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -45.0

@@ -83,6 +83,20 @@
         },
         "iconPath": "res://assets/textures/gui/bevel/oxytoxy.png"
     },
+    "glycotoxy": {
+        "name": "GLYCOTOXY",
+        "volume": 1,
+        "isCloud": false,
+        "isAlwaysUseful": true,
+        "isEnvironmental": false,
+        "canBeDistributed": true,
+        "colour": {
+            "r": 0.008,
+            "g": 0,
+            "b": 0.148
+        },
+        "iconPath": "res://assets/textures/gui/bevel/glycotoxy.png"
+    },
     "iron": {
         "name": "IRON",
         "volume": 1,

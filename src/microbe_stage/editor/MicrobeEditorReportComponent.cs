@@ -482,6 +482,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
                 return null;
             case "oxytoxy":
                 return null;
+            case "glycotoxy":
+                return null;
             case "sunlight":
                 return sunlightChart;
             case "oxygen":

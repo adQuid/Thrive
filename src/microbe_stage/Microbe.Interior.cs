@@ -23,7 +23,7 @@ public partial class Microbe
     private CompoundCloudSystem? cloudSystem;
 
     [JsonProperty]
-    private Compound? queuedToxinToEmit;
+    private Queue<Compound> queuedToxinToEmit = new();
 
     /// <summary>
     ///   The organelles in this microbe
@@ -60,6 +60,8 @@ public partial class Microbe
 
     private bool hasDivided = false;
 
+    private float atpBlocker = 0.0f;
+
     private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
 
     /// <summary>
@@ -92,7 +94,11 @@ public partial class Microbe
     public Dictionary<Compound, float> TotalAbsorbedCompounds { get; set; } = new();
 
     [JsonProperty]
-    public float AgentEmissionCooldown { get; private set; }
+    public Dictionary<Compound, float> AgentEmissionCooldowns { get; private set; } = new Dictionary<Compound, float> 
+    {
+       [SimulationParameters.Instance.GetCompound("oxytoxy")] = 0.0f,
+       [SimulationParameters.Instance.GetCompound("glycotoxy")] = 0.0f,
+    };
 
     /// <summary>
     ///   Called when the reproduction status of this microbe changes
@@ -174,18 +180,18 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Tries to fire a toxin if possible
+    ///   Tries to fire available toxins
     /// </summary>
     public void EmitToxin(Compound? agentType = null)
     {
-        if (AgentEmissionCooldown > 0)
+        agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
+
+        if (AgentEmissionCooldowns[agentType] > 0)
             return;
 
         // Only shoot if you have an agent vacuole.
         if (AgentVacuoleCount < 1)
             return;
-
-        agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
 
         float amountAvailable = Compounds.GetCompoundAmount(agentType);
 
@@ -197,7 +203,7 @@ public partial class Microbe
         Compounds.TakeCompound(agentType, amountEmitted);
 
         // The cooldown time is inversely proportional to the amount of agent vacuoles.
-        AgentEmissionCooldown = Constants.AGENT_EMISSION_COOLDOWN / AgentVacuoleCount;
+        AgentEmissionCooldowns[agentType] = Constants.AGENT_EMISSION_COOLDOWN / AgentVacuoleCount;
 
         float ejectionDistance = Membrane.EncompassingCircleRadius +
             Constants.AGENT_EMISSION_DISTANCE_OFFSET;
@@ -212,9 +218,9 @@ public partial class Microbe
 
         var position = Translation + (direction * ejectionDistance);
 
-        var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
+        var agent = SpawnHelpers.SpawnAgent(props, agentType, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),
-            SpawnHelpers.LoadAgentScene(), this);
+            SpawnHelpers.LoadAgentScene(agentType), this);
 
         ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
 
@@ -235,7 +241,7 @@ public partial class Microbe
     /// <param name="toxinCompound">The toxin type to emit</param>
     public void QueueEmitToxin(Compound toxinCompound)
     {
-        queuedToxinToEmit = toxinCompound;
+        queuedToxinToEmit.Enqueue(toxinCompound);
     }
 
     /// <summary>
