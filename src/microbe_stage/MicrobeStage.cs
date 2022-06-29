@@ -492,12 +492,18 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
                 guidanceLine.Visible = false;
             }
 
+            // See if any states are active for displaying intro messages
             if (!TutorialState.EditorWelcome.TrustPlayer
                 && Player.Compounds.GetCompoundAmount(SimulationParameters.Instance.GetCompound("atp")) <= 0.1f
                 && !TutorialState.HaveShownATPMessage)
             {
                 HUD.DisplayMessageIfIntro("STARVATION_MESSAGE");
                 TutorialState.HaveShownATPMessage = true;
+            }
+            else if (!TutorialState.HasEngulfed && Player.State == Microbe.MicrobeState.Engulf)
+            {
+                HUD.DisplayMessageIfIntro("ENGULF_MESSAGE");
+                TutorialState.HasEngulfed = true;
             }
         }
         else
