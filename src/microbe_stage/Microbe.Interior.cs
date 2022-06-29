@@ -513,7 +513,7 @@ public partial class Microbe
         // If a microbe has already divided, don't get any more free stuff
         if (IsPlayerMicrobe || !hasDivided)
         {
-            var backgroundAbsorbRate = (float)(0.02f * delta * Math.Sqrt(HexCount));
+            var backgroundAbsorbRate = (float)(0.01f * delta * Math.Sqrt(HexCount));
 
             Compounds.AddCompound(SimulationParameters.Instance.GetCompound("ammonia"), backgroundAbsorbRate);
             Compounds.AddCompound(SimulationParameters.Instance.GetCompound("phosphates"), backgroundAbsorbRate);
