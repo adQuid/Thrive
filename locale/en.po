@@ -2981,7 +2981,7 @@ msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:comp
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2021
 msgid "GLY_TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into CHANGED[thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced damage."
+msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"glycotoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"glycotoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced ATP effect."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2989,7 +2989,7 @@ msgstr "The toxin vacuole is a vacuole that has been modified for the specific p
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
 msgid "GLY_TOXIN_VACUOLE_DESCRIPTION"
-msgstr "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of oxytoxy toxins. More toxin vacuoles will increase the rate at which toxins can be released."
+msgstr "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of glycotoxy toxins. More toxin vacuoles will increase the rate at which toxins can be released."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2119
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
