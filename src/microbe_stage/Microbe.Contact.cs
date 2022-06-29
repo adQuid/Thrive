@@ -509,7 +509,7 @@ public partial class Microbe
                 ChunkScale = CellTypeProperties.IsBacteria ? 0.5f : 1.0f,
                 Dissolves = true,
                 Mass = 0.1f,
-                Radius = 1.0f,
+                Radius = CellTypeProperties.IsBacteria ? 0.5f : 1.0f,
                 Size = 1.0f,
                 VentAmount = 0.1f,
 
@@ -550,7 +550,7 @@ public partial class Microbe
 
                 var compoundValue = new ChunkConfiguration.ChunkCompound
                 {
-                    Amount = compoundAmount * 30,
+                    Amount = compoundAmount * 20,
                 };
 
                 chunkType.Compounds[entry] = compoundValue;

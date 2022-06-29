@@ -610,8 +610,8 @@
     "cytoplasm": {
         "mpCost": 22,
         "initialComposition": {
-            "ammonia": 0.1,
-            "phosphates": 0.1
+            "ammonia": 1,
+            "phosphates": 1
         },
         "hexes": [
             {
