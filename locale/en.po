@@ -4652,6 +4652,10 @@ msgstr "When a bubble ran out of energy,\nphysics took the molecules back."
 msgid "EDITOR_BUTTON_MESSAGE"
 msgstr "The bubble took so much, it split in half.\nBut neither one popped."
 
+#: ../src/microbe_stage/MicrobeStage.cs:506
+msgid "ENGULF_MESSAGE"
+msgstr "The larger bubbles could even\nconsume the smaller ones."
+
 #: ../src/microbe_stage/MicrobeStage.cs:930
 msgid "EPIPELAGIC_INTRO_MESSAGE"
 msgstr "Some come to the open sea, near the sun.\nBut no glucose floated here."
