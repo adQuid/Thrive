@@ -209,8 +209,8 @@
     "chromatophore": {
         "mpCost": 50,
         "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
+            "ammonia": 0.2,
+            "phosphates": 0.2
         },
         "hexes": [
             {
@@ -610,8 +610,8 @@
     "cytoplasm": {
         "mpCost": 22,
         "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
+            "ammonia": 0.1,
+            "phosphates": 0.1
         },
         "hexes": [
             {
