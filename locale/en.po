@@ -2977,11 +2977,11 @@ msgstr "The vacuole is an internal membranous organelle used for storage in the 
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2021
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced damage."
+msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. [thrive:compound type=\"oxytoxy\"][/thrive:compound] directly damages the target's tissues."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2021
 msgid "GLY_TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"glycotoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"glycotoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced ATP effect."
+msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"glycotoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. [thrive:compound type=\"glycotoxy\"][/thrive:compound] inhibits all forms of ATP production in the target."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
 msgid "TOXIN_VACUOLE_DESCRIPTION"
