@@ -4676,7 +4676,7 @@ msgstr ""
 "\n"
 "Once you have selected a patch, you can press the \"Move to this patch\" button on the right to migrate there.\n"
 "\n"
-"Be warned: the starting design for your microbe will not be able to survive in either neighboring patch."
+"Be warned: the starting species will not be able to survive in either neighboring patch. Investigate ways to get energy from compounds other than glucose, sunlight, or even your fellow lifeforms!"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
