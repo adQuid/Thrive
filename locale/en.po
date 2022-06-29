@@ -4654,7 +4654,7 @@ msgstr "The bubble took so much, it split in half.\nBut neither one popped."
 
 #: ../src/microbe_stage/MicrobeStage.cs:506
 msgid "ENGULF_MESSAGE"
-msgstr "The larger bubbles could even\nconsume the smaller ones."
+msgstr "The larger bubbles could even\nconsume other, smaller species."
 
 #: ../src/microbe_stage/MicrobeStage.cs:930
 msgid "EPIPELAGIC_INTRO_MESSAGE"
