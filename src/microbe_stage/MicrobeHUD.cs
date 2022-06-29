@@ -1283,7 +1283,7 @@ public class MicrobeHUD : Control
 
     private void UpdateAbilitiesHotBar(Microbe player)
     {
-        engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall;
+        engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall && player.EngulfSize >= 2;
         bindingModeHotkey.Visible = player.CanBind;
         fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;
         unbindAllHotkey.Visible = player.CanUnbind;
