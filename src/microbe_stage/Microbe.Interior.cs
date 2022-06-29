@@ -92,7 +92,11 @@ public partial class Microbe
     public Dictionary<Compound, float> TotalAbsorbedCompounds { get; set; } = new();
 
     [JsonProperty]
-    public float AgentEmissionCooldown { get; private set; }
+    public Dictionary<Compound, float> AgentEmissionCooldowns { get; private set; } = new Dictionary<Compound, float> 
+    {
+       [SimulationParameters.Instance.GetCompound("oxytoxy")] = 0.0f,
+       [SimulationParameters.Instance.GetCompound("glycotoxy")] = 0.0f,
+    };
 
     /// <summary>
     ///   Called when the reproduction status of this microbe changes
@@ -174,18 +178,18 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Tries to fire a toxin if possible
+    ///   Tries to fire available toxins
     /// </summary>
     public void EmitToxin(Compound? agentType = null)
     {
-        if (AgentEmissionCooldown > 0)
+        agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
+
+        if (AgentEmissionCooldowns[agentType] > 0)
             return;
 
         // Only shoot if you have an agent vacuole.
         if (AgentVacuoleCount < 1)
             return;
-
-        agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
 
         float amountAvailable = Compounds.GetCompoundAmount(agentType);
 
@@ -197,7 +201,7 @@ public partial class Microbe
         Compounds.TakeCompound(agentType, amountEmitted);
 
         // The cooldown time is inversely proportional to the amount of agent vacuoles.
-        AgentEmissionCooldown = Constants.AGENT_EMISSION_COOLDOWN / AgentVacuoleCount;
+        AgentEmissionCooldowns[agentType] = Constants.AGENT_EMISSION_COOLDOWN / AgentVacuoleCount;
 
         float ejectionDistance = Membrane.EncompassingCircleRadius +
             Constants.AGENT_EMISSION_DISTANCE_OFFSET;

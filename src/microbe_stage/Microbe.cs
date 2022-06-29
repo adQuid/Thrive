@@ -549,9 +549,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         queuedMovementForce = new Vector3(0, 0, 0);
 
         // Reduce agent emission cooldown
-        AgentEmissionCooldown -= delta;
-        if (AgentEmissionCooldown < 0)
-            AgentEmissionCooldown = 0;
+        var cooldownKeys = AgentEmissionCooldowns.Select(x => x.Key).ToList();
+        foreach (var cooldown in cooldownKeys)
+        {
+            AgentEmissionCooldowns[cooldown] -= delta;
+            if (AgentEmissionCooldowns[cooldown] < 0)
+                AgentEmissionCooldowns[cooldown] = 0;
+        }
 
         lastCheckedATPDamage += delta;
 
