@@ -500,7 +500,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
                 HUD.DisplayMessageIfIntro("STARVATION_MESSAGE");
                 TutorialState.HaveShownATPMessage = true;
             }
-            else if (!TutorialState.HasEngulfed)
+            else if (!TutorialState.HasEngulfed && Player.State == Microbe.MicrobeState.Engulf)
             {
                 HUD.DisplayMessageIfIntro("ENGULF_MESSAGE");
                 TutorialState.HasEngulfed = true;
