@@ -646,17 +646,22 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             var transitions = new List<ITransition>();
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.5f));
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EDITOR_MESSAGE_1"));
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EDITOR_MESSAGE_2"));
 
             TransitionManager.Instance.AddSequence(transitions, () =>
             {
-                TutorialState.HaveBeenToEditor = true;
+                var transitions = new List<ITransition>();
+                transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EDITOR_MESSAGE_2"));
 
-                // We don't free this here as the editor will return to this scene
-                if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
+                TransitionManager.Instance.AddSequence(transitions, () =>
                 {
-                    throw new Exception("failed to keep the current scene root");
-                }
+                    TutorialState.HaveBeenToEditor = true;
+
+                    // We don't free this here as the editor will return to this scene
+                    if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
+                    {
+                        throw new Exception("failed to keep the current scene root");
+                    }
+                });
             });
         }
         else
