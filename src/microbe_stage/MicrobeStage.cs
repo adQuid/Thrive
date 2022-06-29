@@ -661,6 +661,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
                     {
                         throw new Exception("failed to keep the current scene root");
                     }
+
+                    MovingToEditor = false;
                 });
             });
         }
@@ -671,9 +673,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             {
                 throw new Exception("failed to keep the current scene root");
             }
-        }
 
-        MovingToEditor = false;
+            MovingToEditor = false;
+        }
     }
 
     /// <summary>
