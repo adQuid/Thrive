@@ -641,10 +641,30 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         GiveReproductionPopulationBonus();
 
-        // We don't free this here as the editor will return to this scene
-        if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
+        if (Settings.Instance.PlayMicrobeIntroVideo && !TutorialState.HaveBeenToEditor)
         {
-            throw new Exception("failed to keep the current scene root");
+            var transitions = new List<ITransition>();
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.5f));
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EDITOR_MESSAGE"));
+
+            TransitionManager.Instance.AddSequence(transitions, () =>
+            {
+                TutorialState.HaveBeenToEditor = true;
+
+                // We don't free this here as the editor will return to this scene
+                if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
+                {
+                    throw new Exception("failed to keep the current scene root");
+                }
+            });
+        }
+        else
+        {
+            // We don't free this here as the editor will return to this scene
+            if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
+            {
+                throw new Exception("failed to keep the current scene root");
+            }
         }
 
         MovingToEditor = false;

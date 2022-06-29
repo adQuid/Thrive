@@ -70,6 +70,9 @@ public class TutorialState : ITutorialInput
     public float TotalElapsed { get; private set; }
 
     [JsonProperty]
+    public bool HaveBeenToEditor;
+
+    [JsonProperty]
     public bool HaveShownATPMessage;
 
     [JsonProperty]
