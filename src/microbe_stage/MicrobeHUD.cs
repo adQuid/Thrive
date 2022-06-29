@@ -135,6 +135,9 @@ public class MicrobeHUD : Control
     public NodePath OxytoxyBarPath = null!;
 
     [Export]
+    public NodePath GlycotoxyBarPath = null!;
+
+    [Export]
     public NodePath AgentsPanelBarContainerPath = null!;
 
     [Export]
@@ -227,6 +230,7 @@ public class MicrobeHUD : Control
     private Compound nitrogen = null!;
     private Compound oxygen = null!;
     private Compound oxytoxy = null!;
+    private Compound glycotoxy = null!;
     private Compound phosphates = null!;
     private Compound sunlight = null!;
 
@@ -274,6 +278,7 @@ public class MicrobeHUD : Control
 
     private Control agentsPanel = null!;
     private ProgressBar oxytoxyBar = null!;
+    private ProgressBar glycotoxyBar = null!;
 
     private TextureProgress atpBar = null!;
     private TextureProgress healthBar = null!;
@@ -418,6 +423,7 @@ public class MicrobeHUD : Control
         compoundsPanelCompressButton = GetNode<Button>(CompoundsPanelCompressButtonPath);
 
         oxytoxyBar = GetNode<ProgressBar>(OxytoxyBarPath);
+        glycotoxyBar = GetNode<ProgressBar>(GlycotoxyBarPath);
         atpBar = GetNode<TextureProgress>(AtpBarPath);
         healthBar = GetNode<TextureProgress>(HealthBarPath);
         ammoniaReproductionBar = GetNode<TextureProgress>(AmmoniaReproductionBarPath);
@@ -478,6 +484,7 @@ public class MicrobeHUD : Control
         nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
         oxygen = SimulationParameters.Instance.GetCompound("oxygen");
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        glycotoxy = SimulationParameters.Instance.GetCompound("glycotoxy");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
@@ -1100,6 +1107,10 @@ public class MicrobeHUD : Control
         oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
         oxytoxyBar.Value = compounds.GetCompoundAmount(oxytoxy);
         oxytoxyBar.GetNode<Label>("Value").Text = oxytoxyBar.Value + " / " + oxytoxyBar.MaxValue;
+
+        glycotoxyBar.MaxValue = compounds.GetCapacityForCompound(glycotoxy);
+        glycotoxyBar.Value = compounds.GetCompoundAmount(glycotoxy);
+        glycotoxyBar.GetNode<Label>("Value").Text = glycotoxyBar.Value + " / " + glycotoxyBar.MaxValue;
     }
 
     private void UpdateReproductionProgress(Microbe player)
