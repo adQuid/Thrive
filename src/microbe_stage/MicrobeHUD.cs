@@ -695,7 +695,7 @@ public class MicrobeHUD : Control
 
         EnsureGameIsUnpausedForEditor();
 
-        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToEditor, false);
+        stage.MoveToEditor();
 
         stage.MovingToEditor = true;
 
