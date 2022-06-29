@@ -341,6 +341,11 @@ public partial class Microbe
         }
     }
 
+    public void AddATPBlocker(float amount)
+    {
+        atpBlocker += amount;
+    }
+
     /// <summary>
     ///   Returns true when this microbe can engulf the target
     /// </summary>

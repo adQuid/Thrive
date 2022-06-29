@@ -60,6 +60,8 @@ public partial class Microbe
 
     private bool hasDivided = false;
 
+    private float atpBlocker = 0.0f;
+
     private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
 
     /// <summary>
