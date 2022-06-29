@@ -188,6 +188,8 @@ public static class Constants
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
+    public const float GLYCOTOXY_DAMAGE = 150.0f;
+
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
     ///   fade so this must always be at least as long as how long the despawn effect takes visually

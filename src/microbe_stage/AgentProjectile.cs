@@ -82,7 +82,7 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
                     else
                     {
                         Invoke.Instance.Perform(
-                            () => target.AddATPBlocker(Constants.OXYTOXY_DAMAGE * Amount));
+                            () => target.AddATPBlocker(Constants.GLYCOTOXY_DAMAGE * Amount));
                     }
 
                 }
