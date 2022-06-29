@@ -646,8 +646,8 @@
     "nucleus": {
         "mpCost": 70,
         "initialComposition": {
-            "ammonia": 2,
-            "phosphates": 2
+            "ammonia": 20,
+            "phosphates": 20
         },
         "hexes": [
             {
