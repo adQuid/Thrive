@@ -924,7 +924,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // going back to the stage
         if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!) && promptPatchNameChange)
         {
-            if (Settings.Instance.PlayMicrobeIntroVideo && !TutorialState.HasBeenToEpipelagic && "epi".IsSubsequenceOf(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower()))
+            if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && !TutorialState.HasBeenToEpipelagic && "epi".IsSubsequenceOf(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower()))
             {
                 HUD.DisplayMessageIfIntro("EPIPELAGIC_INTRO_MESSAGE");
                 TutorialState.HasBeenToEpipelagic = true;
