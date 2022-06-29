@@ -668,7 +668,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             Colony.Process(delta);
 
         if (atpBlocker > 0.0f)
-            atpBlocker = Compounds.AddCompound(atp, -atpBlocker);
+        {
+            atpBlocker -= Compounds.TakeCompound(atp, atpBlocker);
+        }
 
         while (lastCheckedATPDamage >= Constants.ATP_DAMAGE_CHECK_INTERVAL)
         {
