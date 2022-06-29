@@ -12,6 +12,7 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
     private Particles particles = null!;
 
     public float TimeToLiveRemaining { get; set; }
+    public Compound Compound { get; set; }
     public float Amount { get; set; }
     public AgentProperties? Properties { get; set; }
     public EntityReference<IEntity> Emitter { get; set; } = new();
@@ -73,8 +74,17 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
 
                 if (target != null)
                 {
-                    Invoke.Instance.Perform(
-                        () => target.Damage(Constants.OXYTOXY_DAMAGE * Amount, Properties.AgentType));
+                    if (Compound == SimulationParameters.Instance.GetCompound("oxytoxy"))
+                    {
+                        Invoke.Instance.Perform(
+                            () => target.Damage(Constants.OXYTOXY_DAMAGE * Amount, Properties.AgentType));
+                    }
+                    else
+                    {
+                        Invoke.Instance.Perform(
+                            () => target.Divide());
+                    }
+
                 }
             }
         }

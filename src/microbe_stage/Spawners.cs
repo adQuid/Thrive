@@ -186,7 +186,7 @@ public static class SpawnHelpers
     /// <summary>
     ///   Spawns an agent projectile
     /// </summary>
-    public static AgentProjectile SpawnAgent(AgentProperties properties, float amount,
+    public static AgentProjectile SpawnAgent(AgentProperties properties, Compound compound, float amount,
         float lifetime, Vector3 location, Vector3 direction,
         Node worldRoot, PackedScene agentScene, IEntity emitter)
     {
@@ -194,6 +194,7 @@ public static class SpawnHelpers
 
         var agent = (AgentProjectile)agentScene.Instance();
         agent.Properties = properties;
+        agent.Compound = compound;
         agent.Amount = amount;
         agent.TimeToLiveRemaining = lifetime;
         agent.Emitter = new EntityReference<IEntity>(emitter);

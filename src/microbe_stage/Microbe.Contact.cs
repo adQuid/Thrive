@@ -453,7 +453,7 @@ public partial class Microbe
                 var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
-                var agent = SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
+                var agent = SpawnHelpers.SpawnAgent(props, oxytoxy, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
                     Constants.EMITTED_AGENT_LIFETIME,
                     Translation, direction, GetStageAsParent(),
                     agentScene, this);

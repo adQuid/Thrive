@@ -216,7 +216,7 @@ public partial class Microbe
 
         var position = Translation + (direction * ejectionDistance);
 
-        var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
+        var agent = SpawnHelpers.SpawnAgent(props, agentType, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),
             SpawnHelpers.LoadAgentScene(agentType), this);
 
