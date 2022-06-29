@@ -826,7 +826,7 @@ public class MicrobeHUD : Control
         if (compounds?.HasAnyBeenSetUseful() != true)
             return;
 
-        if (compounds.IsSpecificallySetUseful(oxytoxy))
+        if (compounds.IsSpecificallySetUseful(oxytoxy) || compounds.IsSpecificallySetUseful(glycotoxy))
         {
             agentsPanel.Show();
         }

@@ -194,6 +194,9 @@ bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
 [sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
 
+[sub_resource type="StyleBoxFlat" id=3111]
+bg_color = Color( 0.023529, 0.0745098, 0.976471, 1 )
+
 [sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
@@ -1487,7 +1490,7 @@ __meta__ = {
 margin_top = 473.0
 margin_right = 254.0
 margin_bottom = 567.0
-rect_min_size = Vector2( 254, 94 )
+rect_min_size = Vector2( 254, 134 )
 rect_clip_content = true
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1618,7 +1621,7 @@ margin_right = 220.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 25 )
+custom_styles/fg = SubResource( 3111 )
 custom_styles/bg = SubResource( 26 )
 step = 0.1
 percent_visible = false
