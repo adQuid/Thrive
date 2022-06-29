@@ -4654,7 +4654,7 @@ msgstr "The bubble took so much, it split in half.\nBut neither one popped."
 
 #: ../src/microbe_stage/MicrobeStage.cs:648
 msgid "EDITOR_MESSAGE_1"
-msgstr "The two new bubbles were slightly different\n from the one that formed them.\n"
+msgstr "The two new bubbles were slightly different.\n"
 "As were the next four from the first two."
 
 #: ../src/microbe_stage/MicrobeStage.cs:648
@@ -4678,7 +4678,7 @@ msgstr ""
 "\n"
 "Select something on the left to add it to your species. Chemosynthesizing proteins would be a good choice.\n"
 "\n"
-"You may place it next to, or even on, your starting hex."
+"You may place it next to, or even on, your starting hex. The button to return to play is in the bottom right."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
