@@ -274,7 +274,7 @@
         },
         "prokaryoteChance": 2,
         "chanceToCreate": 0.5,
-        "osmoregulationCost": 1.0,
+        "osmoregulationCost": 1.5,
         "mass": 0.08,
         "displayScene": "res://assets/models/organelles/Metabolosome.tscn",
         "name": "METABOLOSOMES",
