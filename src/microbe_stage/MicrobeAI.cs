@@ -22,6 +22,7 @@ public class MicrobeAI
     private readonly Compound glucose;
     private readonly Compound iron;
     private readonly Compound oxytoxy;
+    private readonly Compound glycotoxy;
     private readonly Compound ammonia;
     private readonly Compound phosphates;
 
@@ -84,6 +85,7 @@ public class MicrobeAI
         glucose = SimulationParameters.Instance.GetCompound("glucose");
         iron = SimulationParameters.Instance.GetCompound("iron");
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        glycotoxy = SimulationParameters.Instance.GetCompound("glycotoxy");
         ammonia = SimulationParameters.Instance.GetCompound("ammonia");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
 
@@ -498,7 +500,7 @@ public class MicrobeAI
             300.0f - (5.0f * SpeciesAggression) + (6.0f * SpeciesFear) &&
             RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
         {
-            LaunchToxin(predatorLocation);
+            TryToLaunchToxin(predatorLocation);
         }
 
         // No matter what, I want to make sure I'm moving
@@ -512,7 +514,7 @@ public class MicrobeAI
         microbe.LookAtPoint = targetPosition;
         if (CanShootToxin())
         {
-            LaunchToxin(target);
+            TryToLaunchToxin(target);
 
             if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION / 5, random))
             {
@@ -713,7 +715,7 @@ public class MicrobeAI
         }
     }
 
-    private void LaunchToxin(Vector3 target)
+    private void TryToLaunchToxin(Vector3 target)
     {
         if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
             (microbe.Translation - target).LengthSquared() <= SpeciesFocus + microbe.EngulfSize * 10.0f)
@@ -722,6 +724,7 @@ public class MicrobeAI
             {
                 microbe.LookAtPoint = target;
                 microbe.QueueEmitToxin(oxytoxy);
+                microbe.QueueEmitToxin(glycotoxy);
             }
         }
     }
@@ -812,6 +815,9 @@ public class MicrobeAI
     private bool CanShootToxin()
     {
         return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT +
+            Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS
+            ||
+            microbe.Compounds.GetCompoundAmount(glycotoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT +
             Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
     }
 
