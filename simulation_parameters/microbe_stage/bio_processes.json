@@ -34,7 +34,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.04
+            "glucose": 0.03
         }
     },
     "oxytoxySynthesis": {
@@ -125,7 +125,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.015
+            "glucose": 0.008
         }
     },
     "iron_chemolithoautotrophy": {
