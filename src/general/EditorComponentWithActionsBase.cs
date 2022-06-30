@@ -57,7 +57,7 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     public void UpdateMutationPointsBar(bool tween = true)
     {
         float possibleMutationPoints = Editor.FreeBuilding ?
-            Constants.BASE_MUTATION_POINTS :
+            EditorGlobals.MaxMutationPoints :
             Editor.MutationPoints - CalculateCurrentActionCost();
 
         mutationPointsBar.UpdateBar(Editor.MutationPoints, possibleMutationPoints, tween);
