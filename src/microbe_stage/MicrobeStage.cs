@@ -777,8 +777,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         }
 
         // Check win conditions
-        if (!CurrentGame.FreeBuild && Player!.Species.Generation >= 20 &&
-            Player.Species.Population >= 300 && !wonOnce)
+        if (!CurrentGame.FreeBuild && Player!.Species.Generation >= 30 &&
+            Player.Species.Population >= 1000 && !wonOnce)
         {
             HUD.ToggleWinBox();
             wonOnce = true;
