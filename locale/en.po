@@ -4665,6 +4665,14 @@ msgstr "The two new bubbles were slightly different.\n"
 msgid "EDITOR_MESSAGE_2"
 msgstr "After many splits, they started to look,\nand live, unalike.\n"
 
+#: ../src/microbe_stage/MicrobeStage.cs:648
+msgid "PITY_EDITOR_MESSAGE_1"
+msgstr "But a few individuals escaped this collapse...\n"
+
+#: ../src/microbe_stage/MicrobeStage.cs:648
+msgid "PITY_EDITOR_MESSAGE_2"
+msgstr "By chance or adaptation, they are the last\nchance for a species"
+
 #: ../src/microbe_stage/MicrobeStage.cs:506
 msgid "ENGULF_MESSAGE"
 msgstr "The larger bubbles could even\nconsume other, smaller species."
