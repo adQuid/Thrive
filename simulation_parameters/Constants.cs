@@ -282,7 +282,7 @@ public static class Constants
     /// <summary>
     ///   Amount of health per second regenerated
     /// </summary>
-    public const float REGENERATION_RATE = 1.5f;
+    public const float REGENERATION_RATE = 0.5f;
 
     /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
