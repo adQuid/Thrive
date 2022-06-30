@@ -897,7 +897,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         Player = null;
         Camera.ObjectToFollow = null;
 
-        EditorGlobals.MaxMutationPoints += 5;
+        if (!EditorGlobals.InPityEditor)
+            EditorGlobals.MaxMutationPoints += 5;
     }
 
     [DeserializedCallbackAllowed]
@@ -956,6 +957,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             if (EditorGlobals.MaxMutationPoints > 100)
             {
+                EditorGlobals.InPityEditor = true;
                 MoveToEditor();
             }
         }
