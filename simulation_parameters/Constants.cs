@@ -325,7 +325,7 @@ public static class Constants
     /// <summary>
     ///   How much fully rigid membrane reduces movement factor of a cell
     /// </summary>
-    public const float MEMBRANE_RIGIDITY_MOBILITY_MODIFIER = 0.1f;
+    public const float MEMBRANE_RIGIDITY_MOBILITY_MODIFIER = 0.01f;
 
     /// <summary>
     ///   How much ATP does engulf mode cost per second

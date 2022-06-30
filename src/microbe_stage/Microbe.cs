@@ -952,8 +952,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             force *= CheatManager.Speed;
 
         return Transform.basis.Xform(MovementDirection * force) * appliedFactor *
-            (CellTypeProperties.MembraneType.MovementFactor -
-                (CellTypeProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+            (CellTypeProperties.MembraneType.MovementFactor *
+                (1 - (CellTypeProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER)));
     }
 
     private void ApplyMovementImpulse(Vector3 movement, float delta)
