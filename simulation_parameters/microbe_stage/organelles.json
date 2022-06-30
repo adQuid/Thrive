@@ -461,7 +461,7 @@
         },
         "prokaryoteChance": 0,
         "chanceToCreate": 3,
-        "osmoregulationCost": 1.0,
+        "osmoregulationCost": 1.5,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Mitochondrion.tscn",
         "name": "MITOCHONDRION",
