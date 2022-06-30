@@ -139,8 +139,11 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public bool IsLoadedFromSave { get; set; }
 
+    /// <summary>
+    ///   Forces the population to ignore auto-evo when the pity editor is invoked
+    /// </summary>
     [JsonProperty]
-    public bool InPityEditor;
+    public long? PityPopulation;
 
     /// <summary>
     ///   True once stage fade-in is complete
@@ -750,6 +753,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             throw new InvalidOperationException("Returning to stage from editor without a game setup");
 
         EditorGlobals.MaxMutationPoints = Constants.BASE_MUTATION_POINTS - random.Next(50);
+        if (PityPopulation != null)
+        {
+            GameWorld.PlayerSpecies.Population = (long)PityPopulation;
+        }
 
         UpdatePatchSettings();
 
@@ -900,8 +907,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         Player = null;
         Camera.ObjectToFollow = null;
 
-        if (!InPityEditor)
-            EditorGlobals.MaxMutationPoints += 5;
+        EditorGlobals.MaxMutationPoints += 5;
     }
 
     [DeserializedCallbackAllowed]
@@ -960,7 +966,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             if (EditorGlobals.MaxMutationPoints > 100)
             {
-                InPityEditor = true;
+                PityPopulation = GameWorld.PlayerSpecies.Population;
                 MoveToEditor();
             }
         }
