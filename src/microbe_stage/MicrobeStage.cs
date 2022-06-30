@@ -140,7 +140,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     public bool IsLoadedFromSave { get; set; }
 
     [JsonProperty]
-    public static bool InPityEditor;
+    public bool InPityEditor;
 
     /// <summary>
     ///   True once stage fade-in is complete
