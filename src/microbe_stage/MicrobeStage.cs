@@ -595,12 +595,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     /// </summary>
     public void MoveToEditor()
     {
-        if (Player?.Dead != false)
-        {
-            GD.PrintErr("Player object disappeared or died while transitioning to the editor");
-            return;
-        }
-
         if (CurrentGame == null)
             throw new InvalidOperationException("Stage has no current game");
 
