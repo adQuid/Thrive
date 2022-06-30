@@ -325,9 +325,13 @@ public class SpawnSystem
         {
             if (spawnType is MicrobeSpawner)
             {
-                spawns += SpawnWithSpawner(spawnType,
-                    playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
-                        Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
+                if (((MicrobeSpecies)((MicrobeSpawner)spawnType).Species).BaseSpeed > MathUtils.EPSILON)
+                {
+
+                    spawns += SpawnWithSpawner(spawnType,
+                        playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
+                            Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
+                }
             }
         }
 
