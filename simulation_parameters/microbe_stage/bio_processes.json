@@ -74,7 +74,7 @@
             "hydrogensulfide": 0.14
         },
         "outputs": {
-            "glucose": 0.09
+            "glucose": 0.21
         }
     },
     "bacterial_ChemoSynthesis": {
@@ -84,7 +84,7 @@
             "hydrogensulfide": 0.07
         },
         "outputs": {
-            "glucose": 0.04
+            "glucose": 0.09
         }
     },
     "nitrogenFixing": {
