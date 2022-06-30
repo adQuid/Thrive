@@ -181,6 +181,8 @@ public static class Constants
 
     public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
 
+    public const float CONTACT_IMPULSE_TO_PILUS_DAMAGE = 2;
+
     /// <summary>
     ///   Controls with how much force agents are fired
     /// </summary>

@@ -1124,15 +1124,17 @@ public partial class Microbe
             bool oursIsPilus = thisMicrobe.IsPilus(thisOwnerId);
 
             // Pilus logic
-            if (otherIsPilus && oursIsPilus)
-            {
-                // Pilus on pilus doesn't deal damage and you can't engulf
-                return;
-            }
-
             if (otherIsPilus || oursIsPilus)
             {
-                // Us attacking the other microbe, or it is attacking us
+                // both micobes immediately stop rotating
+                thisMicrobe.AngularVelocity = default(Vector3);
+                touchedMicrobe.AngularVelocity = default(Vector3);
+
+                if ((otherIsPilus && oursIsPilus) || thisMicrobe.collisionForce / Mass < Constants.CONTACT_IMPULSE_TO_BUMP_SOUND)
+                {
+                    // Pilus on pilus doesn't deal damage and you can't engulf
+                    return;
+                }
 
                 // Disallow cannibalism
                 if (touchedMicrobe.Species == thisMicrobe.Species)
