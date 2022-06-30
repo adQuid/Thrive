@@ -948,15 +948,16 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         {
             gameOver = true;
         }
-        else if (EditorGlobals.MaxMutationPoints > 100)
-        {
-            MoveToEditor();
-        }
         else
         {
             // Player is not extinct, so can respawn
             spawner.ClearSpawnCoordinates();
             SpawnPlayer();
+
+            if (EditorGlobals.MaxMutationPoints > 100)
+            {
+                MoveToEditor();
+            }
         }
     }
 
