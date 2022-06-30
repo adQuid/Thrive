@@ -879,7 +879,7 @@ public partial class Microbe
 
             if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
             {
-                State = MicrobeState.Normal;
+                Damage(0.05f, "atpDamage");
             }
         }
 
