@@ -181,7 +181,7 @@ public static class Constants
 
     public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
 
-    public const float CONTACT_IMPULSE_TO_PILUS_DAMAGE = 2;
+    public const float CONTACT_IMPULSE_TO_PILUS_DAMAGE = 1.5f;
 
     /// <summary>
     ///   Controls with how much force agents are fired
@@ -360,7 +360,7 @@ public static class Constants
     /// <summary>
     ///   Damage a single pilus stab does
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 3.0f;
+    public const float PILUS_BASE_DAMAGE = 6.0f;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex

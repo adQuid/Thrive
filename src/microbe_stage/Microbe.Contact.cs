@@ -1126,11 +1126,11 @@ public partial class Microbe
             // Pilus logic
             if (otherIsPilus || oursIsPilus)
             {
-                // both micobes immediately stop rotating
-                thisMicrobe.AngularVelocity = default(Vector3);
-                touchedMicrobe.AngularVelocity = default(Vector3);
+                // both micobes immediately stop moving
+                thisMicrobe.LinearVelocity = default(Vector3);
+                touchedMicrobe.LinearVelocity = default(Vector3);
 
-                if ((otherIsPilus && oursIsPilus) || thisMicrobe.collisionForce / Mass < Constants.CONTACT_IMPULSE_TO_BUMP_SOUND)
+                if ((otherIsPilus && oursIsPilus) || thisMicrobe.collisionForce / Mass < Constants.CONTACT_IMPULSE_TO_PILUS_DAMAGE)
                 {
                     // Pilus on pilus doesn't deal damage and you can't engulf
                     return;
