@@ -832,8 +832,7 @@ public partial class Microbe
 
     private void HandleOsmoregulation(float delta)
     {
-        var osmoregulationCost = (HexCount * CellTypeProperties.MembraneType.OsmoregulationFactor *
-            Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
+        var osmoregulationCost = MicrobeInternalCalculations.OsmoregulationCost(organelles.Select(x => x.Definition).ToList(), CellTypeProperties.MembraneType);
 
         // 5% osmoregulation bonus per colony member
         if (Colony != null)
