@@ -171,7 +171,7 @@ public static class MicrobeInternalCalculations
 
     public static float OsmoregulationCost(IEnumerable<OrganelleDefinition> organelles, MembraneType membrane)
     {
-        return Constants.ATP_COST_FOR_OSMOREGULATION * organelles.Select(x => x.HexCount).Sum() *
+        return Constants.ATP_COST_FOR_OSMOREGULATION * organelles.Select(x => x.OsmoregulationCost).Sum() *
            membrane.OsmoregulationFactor;
     }
 
