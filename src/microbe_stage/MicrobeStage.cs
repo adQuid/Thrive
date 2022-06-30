@@ -752,6 +752,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         if (CurrentGame == null)
             throw new InvalidOperationException("Returning to stage from editor without a game setup");
 
+        EditorGlobals.MaxMutationPoints = Constants.BASE_MUTATION_POINTS - random.Next(50);
+
         UpdatePatchSettings();
 
         // Now the editor increases the generation so we don't do that here anymore
@@ -900,6 +902,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         Player = null;
         Camera.ObjectToFollow = null;
+
+        EditorGlobals.MaxMutationPoints += 5;
     }
 
     [DeserializedCallbackAllowed]
@@ -949,6 +953,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         if (IsGameOver())
         {
             gameOver = true;
+        }
+        else if (EditorGlobals.MaxMutationPoints > 100)
+        {
+            MoveToEditor();
         }
         else
         {
