@@ -1126,9 +1126,10 @@ public partial class Microbe
             // Pilus logic
             if (otherIsPilus || oursIsPilus)
             {
-                // both micobes immediately stop moving
-                thisMicrobe.LinearVelocity = default(Vector3);
-                touchedMicrobe.LinearVelocity = default(Vector3);
+                // both micobes collide extremely inelasticly
+                var newVelocity = (thisMicrobe.LinearVelocity + touchedMicrobe.LinearVelocity) / 2;
+                thisMicrobe.LinearVelocity = newVelocity;
+                touchedMicrobe.LinearVelocity = newVelocity;
 
                 if ((otherIsPilus && oursIsPilus) || thisMicrobe.collisionForce / Mass < Constants.CONTACT_IMPULSE_TO_PILUS_DAMAGE)
                 {
