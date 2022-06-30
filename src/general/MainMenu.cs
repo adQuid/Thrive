@@ -408,7 +408,7 @@ public class MainMenu : NodeWithInput
     private void ViewSourceCodePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        OS.ShellOpen("https://github.com/Revolutionary-Games/Thrive");
+        OS.ShellOpen("https://github.com/adQuid/Thrive");
     }
 
     private void QuitPressed()
