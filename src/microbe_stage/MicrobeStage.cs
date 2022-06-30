@@ -641,13 +641,47 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         GiveReproductionPopulationBonus();
 
-        // We don't free this here as the editor will return to this scene
-        if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
+        var transitions = new List<ITransition>();
+        transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.5f));
+
+        if (Settings.Instance.PlayMicrobeIntroVideo && !TutorialState.HaveBeenToEditor)
         {
-            throw new Exception("failed to keep the current scene root");
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EDITOR_MESSAGE_1"));
         }
 
-        MovingToEditor = false;
+        TransitionManager.Instance.AddSequence(transitions, () =>
+        {
+            if (Settings.Instance.PlayMicrobeIntroVideo && !TutorialState.HaveBeenToEditor)
+            {
+                var transitions = new List<ITransition>();
+                transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EDITOR_MESSAGE_2"));
+
+                TransitionManager.Instance.AddSequence(transitions, () =>
+                {
+                    TutorialState.HaveBeenToEditor = true;
+
+                    // We don't free this here as the editor will return to this scene
+                    if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
+                    {
+                        throw new Exception("failed to keep the current scene root");
+                    }
+
+                    MovingToEditor = false;
+                });
+            }
+            else
+            {
+                TutorialState.HaveBeenToEditor = true;
+
+                // We don't free this here as the editor will return to this scene
+                if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
+                {
+                    throw new Exception("failed to keep the current scene root");
+                }
+
+                MovingToEditor = false;
+            }
+        });
     }
 
     /// <summary>

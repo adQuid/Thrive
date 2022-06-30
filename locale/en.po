@@ -4652,6 +4652,15 @@ msgstr "When a bubble ran out of energy,\nphysics took the molecules back."
 msgid "EDITOR_BUTTON_MESSAGE"
 msgstr "The bubble took so much, it split in half.\nBut neither one popped."
 
+#: ../src/microbe_stage/MicrobeStage.cs:648
+msgid "EDITOR_MESSAGE_1"
+msgstr "The two new bubbles were slightly different.\n"
+"As were the next four from the first two."
+
+#: ../src/microbe_stage/MicrobeStage.cs:648
+msgid "EDITOR_MESSAGE_2"
+msgstr "After many splits, they started to look,\nand live, unalike.\n"
+
 #: ../src/microbe_stage/MicrobeStage.cs:506
 msgid "ENGULF_MESSAGE"
 msgstr "The larger bubbles could even\nconsume other, smaller species."
@@ -4663,13 +4672,13 @@ msgstr "Some come to the open sea, near the sun.\nBut no glucose floated here."
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"The two new bubbles were a little bit different from the first. As were the next four from the two.\n"
+"This is the microbe editor, where you design the species you play in the next generation.\n"
 "\n"
-"After a long time, some of the bubbles were different in ways that let them survive better. The rest were dead.\n"
+"Don't worry about all the buttons in the top left unless you're feeling brave. Let's focus on organelles.\n"
 "\n"
 "Select something on the left to add it to your species. Chemosynthesizing proteins would be a good choice.\n"
 "\n"
-"You may place it next to, or even on, your starting hex."
+"You may place it next to, or even on, your starting hex. The button to return to play is in the bottom right."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
