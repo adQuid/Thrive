@@ -169,6 +169,11 @@ public static class MicrobeInternalCalculations
         return rawSpeed * 500;
     }
 
+    public static float MovementCost(IEnumerable<OrganelleDefinition> organelles, MembraneType membrane)
+    {
+        return Constants.BASE_MOVEMENT_ATP_COST * organelles.Select(x => x.HexCount).Sum();
+    }
+
     private static float MovementForce(float movementForce, float directionFactor)
     {
         if (directionFactor < 0)

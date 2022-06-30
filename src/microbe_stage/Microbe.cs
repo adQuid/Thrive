@@ -924,7 +924,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private Vector3 DoBaseMovementForce(float delta)
     {
-        var cost = (Constants.BASE_MOVEMENT_ATP_COST * HexCount) * delta;
+        var cost = MicrobeInternalCalculations.MovementCost(organelles.Organelles.Select(x => x.Definition), Membrane.Type) * delta;
 
         var got = Compounds.TakeCompound(atp, cost);
 
