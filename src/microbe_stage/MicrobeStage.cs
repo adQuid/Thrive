@@ -139,6 +139,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public bool IsLoadedFromSave { get; set; }
 
+    [JsonProperty]
+    public static bool InPityEditor;
+
     /// <summary>
     ///   True once stage fade-in is complete
     /// </summary>
@@ -897,7 +900,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         Player = null;
         Camera.ObjectToFollow = null;
 
-        if (!EditorGlobals.InPityEditor)
+        if (!InPityEditor)
             EditorGlobals.MaxMutationPoints += 5;
     }
 
@@ -957,7 +960,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             if (EditorGlobals.MaxMutationPoints > 100)
             {
-                EditorGlobals.InPityEditor = true;
+                InPityEditor = true;
                 MoveToEditor();
             }
         }
