@@ -491,6 +491,10 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxy Synthesis"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
+msgid "GLYCOTOXY_SYNTHESIS"
+msgstr "GlycoToxy Synthesis"
+
+#: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
 msgstr "Chemosynthesis"

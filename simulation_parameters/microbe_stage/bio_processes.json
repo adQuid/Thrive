@@ -44,7 +44,7 @@
             "atp": 15
         },
         "outputs": {
-            "oxytoxy": 1.5
+            "oxytoxy": 0.5
         }
     },
     "bacterial_oxytoxySynthesis": {
@@ -64,7 +64,7 @@
             "atp": 15
         },
         "outputs": {
-            "glycotoxy": 1.5
+            "glycotoxy": 0.25
         }
     },
     "chemoSynthesis": {
