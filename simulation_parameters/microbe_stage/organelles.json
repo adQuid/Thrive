@@ -267,7 +267,7 @@
         },
         "prokaryoteChance": 2,
         "chanceToCreate": 0.5,
-        "mass": 0.08,
+        "mass": 0.25,
         "displayScene": "res://assets/models/organelles/Metabolosome.tscn",
         "name": "METABOLOSOMES",
         "productionColour": "#26e0ff",
