@@ -213,6 +213,7 @@
     <Compile Include="src\microbe_stage\editor\CellEditorComponent.Callbacks.cs" />
     <Compile Include="src\microbe_stage\editor\CellEditorComponent.cs" />
     <Compile Include="src\microbe_stage\editor\CellEditorComponent.GUI.cs" />
+    <Compile Include="src\microbe_stage\editor\EditorGlobals.cs" />
     <Compile Include="src\microbe_stage\editor\EditorCommonBottomLeftButtons.cs" />
     <Compile Include="src\microbe_stage\editor\EditorComponentBottomLeftButtons.cs" />
     <Compile Include="src\microbe_stage\editor\EditorTab.cs" />

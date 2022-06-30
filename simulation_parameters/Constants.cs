@@ -554,7 +554,7 @@ public static class Constants
     /// </summary>
     public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
 
-    public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
+    public const int EDITOR_TIME_JUMP_MILLION_YEARS = 50;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
