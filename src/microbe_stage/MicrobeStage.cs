@@ -140,6 +140,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     public bool IsLoadedFromSave { get; set; }
 
     /// <summary>
+    ///   Forces the population to ignore auto-evo when the pity editor is invoked
+    /// </summary>
+    [JsonProperty]
+    public long? PityPopulation;
+
+    /// <summary>
     ///   True once stage fade-in is complete
     /// </summary>
     [JsonIgnore]
@@ -595,12 +601,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     /// </summary>
     public void MoveToEditor()
     {
-        if (Player?.Dead != false)
-        {
-            GD.PrintErr("Player object disappeared or died while transitioning to the editor");
-            return;
-        }
-
         if (CurrentGame == null)
             throw new InvalidOperationException("Stage has no current game");
 
@@ -644,17 +644,20 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         var transitions = new List<ITransition>();
         transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.5f));
 
-        if (Settings.Instance.PlayMicrobeIntroVideo && !TutorialState.HaveBeenToEditor)
+        if (Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.HaveBeenToEditor || PityPopulation != null))
         {
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EDITOR_MESSAGE_1"));
+            var text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_1" : "EDITOR_MESSAGE_1";
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
         }
 
         TransitionManager.Instance.AddSequence(transitions, () =>
         {
-            if (Settings.Instance.PlayMicrobeIntroVideo && !TutorialState.HaveBeenToEditor)
+            if (Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.HaveBeenToEditor || PityPopulation != null))
             {
                 var transitions = new List<ITransition>();
-                transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EDITOR_MESSAGE_2"));
+
+                var text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_2" : "EDITOR_MESSAGE_2";
+                transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
 
                 TransitionManager.Instance.AddSequence(transitions, () =>
                 {
@@ -752,6 +755,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         if (CurrentGame == null)
             throw new InvalidOperationException("Returning to stage from editor without a game setup");
 
+        EditorGlobals.MaxMutationPoints = Constants.BASE_MUTATION_POINTS - random.Next(50);
+        if (PityPopulation != null)
+        {
+            GameWorld.PlayerSpecies.Population = (long)PityPopulation;
+        }
+
         UpdatePatchSettings();
 
         // Now the editor increases the generation so we don't do that here anymore
@@ -768,8 +777,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         }
 
         // Check win conditions
-        if (!CurrentGame.FreeBuild && Player!.Species.Generation >= 20 &&
-            Player.Species.Population >= 300 && !wonOnce)
+        if (!CurrentGame.FreeBuild && Player!.Species.Generation >= 30 &&
+            Player.Species.Population >= 1000 && !wonOnce)
         {
             HUD.ToggleWinBox();
             wonOnce = true;
@@ -900,6 +909,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         Player = null;
         Camera.ObjectToFollow = null;
+
+        EditorGlobals.MaxMutationPoints += 5;
     }
 
     [DeserializedCallbackAllowed]
@@ -955,6 +966,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             // Player is not extinct, so can respawn
             spawner.ClearSpawnCoordinates();
             SpawnPlayer();
+
+            if (EditorGlobals.MaxMutationPoints > 100)
+            {
+                PityPopulation = GameWorld.PlayerSpecies.Population;
+                MoveToEditor();
+            }
         }
     }
 

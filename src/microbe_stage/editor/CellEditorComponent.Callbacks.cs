@@ -152,7 +152,7 @@ public partial class CellEditorComponent
         // against weird situations where it might be possible if the undo / redo system is changed to restore
         // the wrong organelles
 
-        Editor.MutationPoints = Constants.BASE_MUTATION_POINTS;
+        Editor.MutationPoints = EditorGlobals.MaxMutationPoints;
         Membrane = SimulationParameters.Instance.GetMembrane("single");
         editedMicrobeOrganelles.Clear();
         editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),

@@ -181,6 +181,8 @@ public static class Constants
 
     public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
 
+    public const float CONTACT_IMPULSE_TO_PILUS_DAMAGE = 1.5f;
+
     /// <summary>
     ///   Controls with how much force agents are fired
     /// </summary>
@@ -280,7 +282,7 @@ public static class Constants
     /// <summary>
     ///   Amount of health per second regenerated
     /// </summary>
-    public const float REGENERATION_RATE = 1.5f;
+    public const float REGENERATION_RATE = 0.5f;
 
     /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
@@ -358,7 +360,7 @@ public static class Constants
     /// <summary>
     ///   Damage a single pilus stab does
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 3.0f;
+    public const float PILUS_BASE_DAMAGE = 6.0f;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex
@@ -388,6 +390,7 @@ public static class Constants
     public const float CREATURE_ESCAPE_INTERVAL = 5;
 
     public const int BASE_MUTATION_POINTS = 100;
+    public const int MP_BONUS_FROM_DEATH = 5;
 
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
@@ -552,7 +555,7 @@ public static class Constants
     /// </summary>
     public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
 
-    public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
+    public const int EDITOR_TIME_JUMP_MILLION_YEARS = 50;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;

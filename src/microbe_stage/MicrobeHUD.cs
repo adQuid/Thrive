@@ -695,6 +695,7 @@ public class MicrobeHUD : Control
 
         EnsureGameIsUnpausedForEditor();
 
+        stage.PityPopulation = null;
         stage.MoveToEditor();
 
         stage.MovingToEditor = true;

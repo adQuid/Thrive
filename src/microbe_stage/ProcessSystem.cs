@@ -130,13 +130,12 @@ public class ProcessSystem
         }
 
         // Add movement consumption together
-        result.BaseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+        result.BaseMovement = MicrobeInternalCalculations.MovementCost(organelles.Select(x => x.Definition), membrane);
         result.AddConsumption("baseMovement", result.BaseMovement);
         var totalMovementConsumption = movementATPConsumption + result.BaseMovement;
 
         // Add osmoregulation
-        result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
-            membrane.OsmoregulationFactor;
+        result.Osmoregulation = MicrobeInternalCalculations.OsmoregulationCost(organelles.Select(x => x.Definition), membrane);
 
         if (isPlayer && worldSettings != null)
         {

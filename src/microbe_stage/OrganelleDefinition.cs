@@ -123,6 +123,8 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public Dictionary<string, float>? Processes;
 
+    public float OsmoregulationCost = 1.0f;
+
     /// <summary>
     ///   List of hexes this organelle occupies
     /// </summary>

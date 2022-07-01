@@ -21,7 +21,7 @@ public class NewMicrobeActionData : EditorCombinableActionData
 
     public override int CalculateCost()
     {
-        return -Constants.BASE_MUTATION_POINTS;
+        return -EditorGlobals.MaxMutationPoints;
     }
 
     protected override int CalculateCostInternal()

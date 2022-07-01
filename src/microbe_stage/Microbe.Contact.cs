@@ -509,7 +509,7 @@ public partial class Microbe
                 ChunkScale = CellTypeProperties.IsBacteria ? 0.5f : 1.0f,
                 Dissolves = true,
                 Mass = 0.1f,
-                Radius = 1.0f,
+                Radius = CellTypeProperties.IsBacteria ? 0.5f : 1.0f,
                 Size = 1.0f,
                 VentAmount = 0.1f,
 
@@ -550,7 +550,7 @@ public partial class Microbe
 
                 var compoundValue = new ChunkConfiguration.ChunkCompound
                 {
-                    Amount = compoundAmount * 30,
+                    Amount = compoundAmount * 20,
                 };
 
                 chunkType.Compounds[entry] = compoundValue;
@@ -879,7 +879,7 @@ public partial class Microbe
 
             if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
             {
-                State = MicrobeState.Normal;
+                Damage(0.05f, "atpDamage");
             }
         }
 
@@ -1124,15 +1124,18 @@ public partial class Microbe
             bool oursIsPilus = thisMicrobe.IsPilus(thisOwnerId);
 
             // Pilus logic
-            if (otherIsPilus && oursIsPilus)
-            {
-                // Pilus on pilus doesn't deal damage and you can't engulf
-                return;
-            }
-
             if (otherIsPilus || oursIsPilus)
             {
-                // Us attacking the other microbe, or it is attacking us
+                // both micobes collide extremely inelasticly
+                var newVelocity = (thisMicrobe.LinearVelocity + touchedMicrobe.LinearVelocity) / 2;
+                thisMicrobe.LinearVelocity = newVelocity;
+                touchedMicrobe.LinearVelocity = newVelocity;
+
+                if ((otherIsPilus && oursIsPilus) || thisMicrobe.collisionForce / Mass < Constants.CONTACT_IMPULSE_TO_PILUS_DAMAGE)
+                {
+                    // Pilus on pilus doesn't deal damage and you can't engulf
+                    return;
+                }
 
                 // Disallow cannibalism
                 if (touchedMicrobe.Species == thisMicrobe.Species)

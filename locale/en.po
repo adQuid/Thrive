@@ -491,6 +491,10 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxy Synthesis"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
+msgid "GLYCOTOXY_SYNTHESIS"
+msgstr "GlycoToxy Synthesis"
+
+#: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
 msgstr "Chemosynthesis"
@@ -4661,6 +4665,14 @@ msgstr "The two new bubbles were slightly different.\n"
 msgid "EDITOR_MESSAGE_2"
 msgstr "After many splits, they started to look,\nand live, unalike.\n"
 
+#: ../src/microbe_stage/MicrobeStage.cs:648
+msgid "PITY_EDITOR_MESSAGE_1"
+msgstr "But a few individuals escaped this collapse...\n"
+
+#: ../src/microbe_stage/MicrobeStage.cs:648
+msgid "PITY_EDITOR_MESSAGE_2"
+msgstr "By chance or adaptation, they are the last\nchance for a species."
+
 #: ../src/microbe_stage/MicrobeStage.cs:506
 msgid "ENGULF_MESSAGE"
 msgstr "The larger bubbles could even\nconsume other, smaller species."
@@ -4694,7 +4706,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"These bubbles only continue by converting some kinds of chemicals for others. For your convenience, these exchanges are displayed in the 'Compound Balances' section.\n"
+"These bubbles only continue by converting some kinds of chemicals for others. For your convenience, these exchanges are displayed in the 'Compound Balances' section. Note that these values are calculated under the assumption of a mobile lifestyle; for now plant players will need to play it by ear.\n"
 "\n"
 "Any negative number is something you will need to find in the environment in order to survive, but anything with a positive production amount you will be able to make internally.\n"
 "\n"

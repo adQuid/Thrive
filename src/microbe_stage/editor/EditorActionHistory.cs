@@ -119,7 +119,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
             }
         }
 
-        return Constants.BASE_MUTATION_POINTS - processedHistory.Sum(p => p.CalculateCost());
+        return EditorGlobals.MaxMutationPoints - processedHistory.Sum(p => p.CalculateCost());
     }
 
     public override bool Redo()

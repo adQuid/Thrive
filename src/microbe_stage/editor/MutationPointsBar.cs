@@ -51,16 +51,16 @@ public class MutationPointsBar : HBoxContainer
         if (tween)
         {
             GUICommon.Instance.TweenBarValue(
-                mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
+                mutationPointsBar, possibleMutationPoints, EditorGlobals.MaxMutationPoints, 0.5f);
             GUICommon.Instance.TweenBarValue(
-                mutationPointsSubtractBar, currentMutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+                mutationPointsSubtractBar, currentMutationPoints, EditorGlobals.MaxMutationPoints, 0.7f);
         }
         else
         {
             mutationPointsBar.Value = possibleMutationPoints;
-            mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+            mutationPointsBar.MaxValue = EditorGlobals.MaxMutationPoints;
             mutationPointsSubtractBar.Value = currentMutationPoints;
-            mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+            mutationPointsSubtractBar.MaxValue = EditorGlobals.MaxMutationPoints;
         }
 
         mutationPointsSubtractBar.SelfModulate = possibleMutationPoints < 0 ?
@@ -88,7 +88,7 @@ public class MutationPointsBar : HBoxContainer
 
                 currentMutationPointsLabel.Text = $"({currentMutationPoints:F0}";
                 resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
+                baseMutationPointsLabel.Text = $"/ {EditorGlobals.MaxMutationPoints:F0}";
             }
             else
             {
@@ -96,7 +96,7 @@ public class MutationPointsBar : HBoxContainer
                 resultingMutationPointsLabel.Hide();
 
                 currentMutationPointsLabel.Text = $"{currentMutationPoints:F0}";
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
+                baseMutationPointsLabel.Text = $"/ {EditorGlobals.MaxMutationPoints:F0}";
             }
         }
     }

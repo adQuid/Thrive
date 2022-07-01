@@ -819,11 +819,11 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     private int CalculateMutationPointsLeft()
     {
         if (FreeBuilding || CheatManager.InfiniteMP)
-            return Constants.BASE_MUTATION_POINTS;
+            return EditorGlobals.MaxMutationPoints;
 
         mutationPointsCache = history.CalculateMutationPointsLeft();
 
-        if (mutationPointsCache.Value < 0 || mutationPointsCache > Constants.BASE_MUTATION_POINTS)
+        if (mutationPointsCache.Value < 0 || mutationPointsCache > EditorGlobals.MaxMutationPoints)
         {
             GD.PrintErr("Invalid MP amount: ", mutationPointsCache,
                 " This should only happen if the user disabled the Infinite MP cheat while having mutated too much.");

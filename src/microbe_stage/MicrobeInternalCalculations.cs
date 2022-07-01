@@ -169,6 +169,17 @@ public static class MicrobeInternalCalculations
         return rawSpeed * 500;
     }
 
+    public static float OsmoregulationCost(IEnumerable<OrganelleDefinition> organelles, MembraneType membrane)
+    {
+        return Constants.ATP_COST_FOR_OSMOREGULATION * organelles.Select(x => x.OsmoregulationCost).Sum() *
+           membrane.OsmoregulationFactor;
+    }
+
+    public static float MovementCost(IEnumerable<OrganelleDefinition> organelles, MembraneType membrane)
+    {
+        return Constants.BASE_MOVEMENT_ATP_COST * organelles.Select(x => x.HexCount).Sum() + organelles.Select(x => x.Mass).Sum();
+    }
+
     private static float MovementForce(float movementForce, float directionFactor)
     {
         if (directionFactor < 0)
