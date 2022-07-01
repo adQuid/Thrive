@@ -25,7 +25,7 @@
         "iconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png",
         "editorButtonGroup": "External",
         "editorButtonOrder": 2,
-        "lawk": true
+        "lawk": false
     },
     "rusticyanin": {
         "mpCost": 45,
