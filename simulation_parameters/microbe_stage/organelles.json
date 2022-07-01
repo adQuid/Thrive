@@ -236,7 +236,7 @@
                 "colourChangeFactor": 1
             }
         },
-        "prokaryoteChance": 800,
+        "prokaryoteChance": 6,
         "chanceToCreate": 0.5,
         "osmoregulationCost": 1.0,
         "mass": 0.1,
