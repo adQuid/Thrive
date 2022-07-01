@@ -79,7 +79,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     // TODO: find a MUCH better way to do this.
     [JsonProperty]
-    private int savedMaxMutationPoints = Constants.BASE_MUTATION_POINTS;
+    protected int savedMaxMutationPoints = Constants.BASE_MUTATION_POINTS;
 
     private int? mutationPointsCache;
 
