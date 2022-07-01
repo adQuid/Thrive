@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -45,7 +46,7 @@ public class CompoundListBox : HBoxContainer
         foreach (var entry in compounds)
         {
             var compoundControl = compoundAmountControls.GetChild(entry.Key);
-            compoundControl.Amount = entry.Value;
+            compoundControl.Amount = new Tuple<float, float?>(entry.Value, 0);
 
             if (markRed != null)
             {

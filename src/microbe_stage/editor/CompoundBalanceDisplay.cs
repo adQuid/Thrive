@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -29,7 +30,7 @@ public class CompoundBalanceDisplay : VBoxContainer
         {
             var compoundControl = childCache.GetChild(entry.Key);
             var amount = entry.Value.Balance;
-            compoundControl.Amount = amount;
+            compoundControl.Amount = new Tuple<float, float?>(0, amount);
 
             compoundControl.ValueColour = amount < 0 ?
                 CompoundAmount.Colour.Red :

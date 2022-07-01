@@ -13,7 +13,8 @@ public class CompoundAmount : HBoxContainer
     private Compound? compound;
 
     private int decimals = 3;
-    private float amount = float.NegativeInfinity;
+    private float amount1 = float.NegativeInfinity;
+    private float? amount2 = float.NegativeInfinity;
     private bool prefixPositiveWithPlus;
     private bool usePercentageDisplay;
     private Colour valueColour = Colour.White;
@@ -50,15 +51,16 @@ public class CompoundAmount : HBoxContainer
     /// <summary>
     ///   The compound amount to show
     /// </summary>
-    public float Amount
+    public Tuple<float, float?> Amount
     {
-        get => amount;
+        get => new Tuple<float, float?>(amount1, amount2);
         set
         {
-            if (amount == value)
+            if (amount1 == value.Item1 && amount2 == value.Item2)
                 return;
 
-            amount = value;
+            amount1 = value.Item1;
+            amount2 = value.Item2;
             if (amountLabel != null)
                 UpdateLabel();
         }
@@ -165,24 +167,37 @@ public class CompoundAmount : HBoxContainer
             AddChild(amountLabel);
         }
 
-        string numberPart;
+        if (amount2 != null)
+        {
+            amountLabel.Text = NumberPart(amount1) + "/" + NumberPart(amount2.Value);
+        }
+        else
+        {
+            amountLabel.Text = NumberPart(amount1);
+        }
+
+    }
+
+    private string NumberPart(float amount)
+    {
+        string retval;
         if (UsePercentageDisplay)
         {
-            numberPart = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
+            retval = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
                 Math.Round(amount * 100, 1));
         }
         else
         {
-            numberPart = Math.Round(amount, decimals).ToString(CultureInfo.CurrentCulture);
+            retval = Math.Round(amount, decimals).ToString(CultureInfo.CurrentCulture);
         }
 
         if (PrefixPositiveWithPlus && amount >= 0)
         {
-            amountLabel.Text = "+" + numberPart;
+            return "+" + retval;
         }
         else
         {
-            amountLabel.Text = numberPart;
+            return retval;
         }
     }
 
