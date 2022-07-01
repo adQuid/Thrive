@@ -139,6 +139,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public bool IsLoadedFromSave { get; set; }
 
+    // TODO: find a MUCH better way to do this.
+    [JsonProperty]
+    protected int savedMaxMutationPoints = Constants.BASE_MUTATION_POINTS;
+
     /// <summary>
     ///   Forces the population to ignore auto-evo when the pity editor is invoked
     /// </summary>
@@ -309,6 +313,16 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             if (CurrentGame == null)
             {
                 StartNewGame();
+            }
+
+            // TODO: Clean up this awful code
+            if (EditorGlobals.MaxMutationPoints != Constants.BASE_MUTATION_POINTS)
+            {
+                savedMaxMutationPoints = EditorGlobals.MaxMutationPoints;
+            }
+            else
+            {
+                EditorGlobals.MaxMutationPoints = savedMaxMutationPoints;
             }
         }
 
