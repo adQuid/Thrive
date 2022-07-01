@@ -43,30 +43,14 @@
 
                         if (process.Process.Outputs.TryGetValue(glucose, out var glucoseAmount))
                         {
-                            // Better ratio means that we transform stuff more efficiently and need less input
-                            var compoundRatio = glucoseAmount / inputAmount;
-
-                            // Better output is a proxy for more time dedicated to reproduction than energy production
-                            var absoluteOutput = glucoseAmount * processEfficiency;
-
-                            energyCreationScore += (float)(
-                                Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
-                                * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
-                                * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER);
+                            energyCreationScore += glucoseAmount / inputAmount
+                                * processEfficiency * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
                         }
 
                         if (process.Process.Outputs.TryGetValue(atp, out var atpAmount))
                         {
-                            // Better ratio means that we transform stuff more efficiently and need less input
-                            var compoundRatio = atpAmount / inputAmount;
-
-                            // Better output is a proxy for more time dedicated to reproduction than energy production
-                            var absoluteOutput = atpAmount * processEfficiency;
-
-                            energyCreationScore += (float)(
-                                Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
-                                * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
-                                * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER);
+                            energyCreationScore += atpAmount / inputAmount
+                                * processEfficiency * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
                         }
                     }
                 }
