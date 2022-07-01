@@ -3,7 +3,7 @@
         "name": "RESPIRATION",
         "inputs": {
             "oxygen": 1,
-            "glucose": 0.18
+            "glucose": 0.09
         },
         "outputs": {
             "atp": 87
@@ -12,7 +12,7 @@
     "glycolysis": {
         "name": "GLYCOLYSIS",
         "inputs": {
-            "glucose": 0.002
+            "glucose": 0.001
         },
         "outputs": {
             "atp": 2
@@ -21,7 +21,7 @@
     "glycolysis_cytoplasm": {
         "name": "CYTOPLASM_GLYCOLYSIS",
         "inputs": {
-            "glucose": 0.03
+            "glucose": 0.015
         },
         "outputs": {
             "atp": 3
@@ -112,7 +112,7 @@
         "name": "RESPIRATION",
         "inputs": {
             "oxygen": 1,
-            "glucose": 0.12
+            "glucose": 0.06
         },
         "outputs": {
             "atp": 38
