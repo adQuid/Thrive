@@ -649,7 +649,7 @@
         },
         "prokaryoteChance": 1,
         "chanceToCreate": 1,
-        "osmoregulationCost": 1.0,
+        "osmoregulationCost": 0.8,
         "mass": 0.08,
         "displayScene": "",
         "corpseChunkScene": "",
