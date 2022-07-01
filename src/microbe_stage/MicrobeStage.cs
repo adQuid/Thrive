@@ -139,6 +139,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public bool IsLoadedFromSave { get; set; }
 
+    // TODO: find a MUCH better way to do this.
+    [JsonProperty]
+    protected int savedMaxMutationPoints = Constants.BASE_MUTATION_POINTS;
+
     /// <summary>
     ///   Forces the population to ignore auto-evo when the pity editor is invoked
     /// </summary>
@@ -310,6 +314,18 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             {
                 StartNewGame();
             }
+        }
+
+        // TODO: Clean up this awful code
+        if (EditorGlobals.MaxMutationPoints != Constants.BASE_MUTATION_POINTS)
+        {
+            savedMaxMutationPoints = EditorGlobals.MaxMutationPoints;
+            GD.Print("Not setting");
+        }
+        else
+        {
+            EditorGlobals.MaxMutationPoints = savedMaxMutationPoints;
+            GD.Print("Setting to " + savedMaxMutationPoints);
         }
 
         GD.Print(WorldSettings);
@@ -756,6 +772,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             throw new InvalidOperationException("Returning to stage from editor without a game setup");
 
         EditorGlobals.MaxMutationPoints = Constants.BASE_MUTATION_POINTS - random.Next(50);
+        savedMaxMutationPoints = EditorGlobals.MaxMutationPoints;
+        GD.Print("setting saved max to " + savedMaxMutationPoints);
         if (PityPopulation != null)
         {
             GameWorld.PlayerSpecies.Population = (long)PityPopulation;

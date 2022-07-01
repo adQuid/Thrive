@@ -77,6 +77,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     private Control editorGUIBaseNode = null!;
 
+    // TODO: find a MUCH better way to do this.
+    [JsonProperty]
+    protected int savedMaxMutationPoints = Constants.BASE_MUTATION_POINTS;
+
     private int? mutationPointsCache;
 
     /// <summary>
@@ -499,6 +503,16 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     /// </summary>
     protected virtual void OnEnterEditor()
     {
+        // TODO: Clean up this awful code
+        if (EditorGlobals.MaxMutationPoints != Constants.BASE_MUTATION_POINTS)
+        {
+            savedMaxMutationPoints = EditorGlobals.MaxMutationPoints;
+        }
+        else
+        {
+            EditorGlobals.MaxMutationPoints = savedMaxMutationPoints;
+        }
+
         // Clear old stuff in the world
         RootOfDynamicallySpawned.FreeChildren();
 
