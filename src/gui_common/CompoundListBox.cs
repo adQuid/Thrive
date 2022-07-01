@@ -46,7 +46,7 @@ public class CompoundListBox : HBoxContainer
         foreach (var entry in compounds)
         {
             var compoundControl = compoundAmountControls.GetChild(entry.Key);
-            compoundControl.Amount = new Tuple<float, float?>(entry.Value, 0);
+            compoundControl.Amount = new Tuple<float, float?>(entry.Value, null);
 
             if (markRed != null)
             {
