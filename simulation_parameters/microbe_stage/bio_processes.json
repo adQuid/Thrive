@@ -21,7 +21,7 @@
     "glycolysis_cytoplasm": {
         "name": "CYTOPLASM_GLYCOLYSIS",
         "inputs": {
-            "glucose": 0.04
+            "glucose": 0.03
         },
         "outputs": {
             "atp": 3
