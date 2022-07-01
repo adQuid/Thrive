@@ -3563,7 +3563,7 @@ msgstr "This panel shows the numbers that the auto-evo prediction works from. Th
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr "Compound Balances"
+msgstr "Compound Balances (at rest/moving)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:266
 msgid "INVALID_SPECIES_NAME_POPUP"
