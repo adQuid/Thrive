@@ -216,7 +216,8 @@
         "mpCost": 50,
         "initialComposition": {
             "ammonia": 0.2,
-            "phosphates": 0.2
+            "phosphates": 0.2,
+            "glucose": 1.0
         },
         "hexes": [
             {
