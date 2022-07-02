@@ -660,7 +660,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         var transitions = new List<ITransition>();
         transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.5f));
 
-        if (Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.HaveBeenToEditor || PityPopulation != null))
+        if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.HaveBeenToEditor || PityPopulation != null))
         {
             var text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_1" : "EDITOR_MESSAGE_1";
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
@@ -668,7 +668,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         TransitionManager.Instance.AddSequence(transitions, () =>
         {
-            if (Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.HaveBeenToEditor || PityPopulation != null))
+            if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.HaveBeenToEditor || PityPopulation != null))
             {
                 var transitions = new List<ITransition>();
 
