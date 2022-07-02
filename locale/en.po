@@ -716,15 +716,9 @@ msgid "NITROGEN"
 msgstr "Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3763
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:431
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:621
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "SUNLIGHT"
 msgstr "Sunlight"
 
@@ -1030,15 +1024,11 @@ msgstr "Reproduction"
 msgid "BEHAVIOUR"
 msgstr "Behaviour"
 
-<<<<<<< HEAD
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
 msgid "CELLS"
 msgstr "Cells"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:403
-=======
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "MODIFY_TYPE"
 msgstr "Modify Type"
 
@@ -1060,17 +1050,6 @@ msgstr "Reproduction:"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Budding"
 
-<<<<<<< HEAD
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:520
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
-msgid "CANCEL_ACTION_CAPITAL"
-msgstr "CANCEL ACTION"
-
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:533
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1245
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
-=======
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1233
 msgid "CANCEL_ACTION_CAPITAL"
@@ -1080,7 +1059,6 @@ msgstr "CANCEL ACTION"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:733
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "NEXT_CAPITAL"
 msgstr "NEXT"
 
@@ -1659,19 +1637,11 @@ msgstr "Close"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:537
 #: ../src/gui_common/CompoundAmount.cs:171
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:265
-#: ../src/microbe_stage/MicrobeHUD.cs:724
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
-=======
 #: ../src/microbe_stage/MicrobeHUD.cs:717
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:395
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1683,11 +1653,7 @@ msgstr "{0} concentrations have decreased by {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glucose concentrations have drastically dropped!"
 
-<<<<<<< HEAD
 #: ../src/general/MainMenu.cs:263
-=======
-#: ../src/general/MainMenu.cs:239
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"
 
@@ -1699,36 +1665,20 @@ msgstr "Start a new game"
 msgid "NEW_GAME"
 msgstr "New Game"
 
-<<<<<<< HEAD
 #: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Load previously saved games"
 
 #: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:195
-=======
-#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:195
-msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr "Load previously saved games"
-
-#: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:196
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Load Game"
 
-<<<<<<< HEAD
 #: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Change your settings"
 
 #: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:220
-=======
-#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:220
-msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr "Change your settings"
-
-#: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:221
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "OPTIONS"
 msgstr "Options"
 
@@ -1748,11 +1698,7 @@ msgstr "Extras"
 msgid "CREDITS"
 msgstr "Credits"
 
-<<<<<<< HEAD
-#: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:235
-=======
 #: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:236
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Exit the game"
 
@@ -1764,15 +1710,9 @@ msgstr "Quit"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
-<<<<<<< HEAD
-#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1013
-#: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:262
-=======
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:263
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -2355,15 +2295,6 @@ msgstr "Save Game"
 msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr "Insightful stats about the current game"
 
-<<<<<<< HEAD
-#: ../src/general/PauseMenu.tscn:204
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
-msgid "STATISTICS"
-msgstr "Statistics"
-
-#: ../src/general/PauseMenu.tscn:211
-#: ../src/microbe_stage/MicrobeStage.tscn:1724
-=======
 #: ../src/general/PauseMenu.tscn:205
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:484
 msgid "STATISTICS"
@@ -2371,7 +2302,6 @@ msgstr "Statistics"
 
 #: ../src/general/PauseMenu.tscn:212
 #: ../src/microbe_stage/MicrobeStage.tscn:1697
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "How to play the game"
 
@@ -3113,15 +3043,9 @@ msgstr "The thermoplast is a double membrane structure containing thermosensitiv
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "No processes"
 
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1506
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1726
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
 #: ../src/microbe_stage/MicrobeHUD.cs:1501
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "TO_BE_IMPLEMENTED"
 msgstr "To be Implemented."
 
@@ -3251,13 +3175,8 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Enables / disables the unsaved progress warning popup for when the player tries to quit the game."
 
-<<<<<<< HEAD
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3758
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
-=======
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:368
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:610
 msgid "TEMPERATURE"
@@ -3318,83 +3237,6 @@ msgstr "Duplicate Player"
 msgid "SPAWN_ENEMY"
 msgstr "Spawn Enemy"
 
-<<<<<<< HEAD
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
-msgid "PRINT_SPECIES"
-msgstr "Spawn All Species"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:560
-msgid "SIGNAL_COMMAND_NONE"
-msgstr "No Command"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:561
-msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr "Follow Me"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:562
-msgid "SIGNAL_COMMAND_TO_ME"
-msgstr "Move To Me"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:563
-msgid "SIGNAL_COMMAND_FLEE"
-msgstr "Flee"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:564
-msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr "Become Aggressive"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:567
-msgid "SIGNAL_TO_EMIT"
-msgstr "Signal To Emit"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:814
-msgid "PAUSE_PROMPT"
-msgstr "[center]Press [thrive:input]g_pause[/thrive:input] to unpause[/center]"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:928
-msgid "STUFF_AT"
-msgstr "Stuff at {0:F1}, {1:F1}:"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:961
-msgid "PLAYER_CELL"
-msgstr "Player Cell"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:978
-msgid "SPECIES_N_TIMES"
-msgstr "{0} (x{1})"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1023
-msgid "CATEGORY_AN_ABUNDANCE"
-msgstr "an abundance"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1025
-msgid "CATEGORY_QUITE_A_BIT"
-msgstr "quite a bit"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1027
-msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr "a fair amount"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1029
-msgid "CATEGORY_SOME"
-msgstr "some"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1031
-msgid "CATEGORY_LITTLE"
-msgstr "little"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1033
-msgid "CATEGORY_VERY_LITTLE"
-msgstr "very little"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1291
-#: ../src/microbe_stage/MicrobeStage.tscn:1791
-msgid "BECOME_MULTICELLULAR"
-msgstr "Become Multicellular ({0}/{1})"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1327
-#: ../src/microbe_stage/MicrobeStage.tscn:1802
-=======
 #: ../src/microbe_stage/MicrobeHUD.cs:553
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "No Command"
@@ -3466,7 +3308,6 @@ msgstr "Become Multicellular ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1302
 #: ../src/microbe_stage/MicrobeStage.tscn:1775
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "BECOME_MACROSCOPIC"
 msgstr "Become Macroscopic ({0}/{1})"
 
@@ -3656,16 +3497,12 @@ msgstr "Failed"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-<<<<<<< HEAD
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2044
 msgid "N_A"
 msgstr "N/A"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
-=======
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2149
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energy in {0} for {1}"
 
@@ -3788,31 +3625,23 @@ msgstr "Worst Patch:"
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negative ATP Balance"
 
-<<<<<<< HEAD
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
 msgid "NO_MOVEMENT"
 msgstr "No Movement"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
-=======
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Your microbe is not producing enough ATP for it to survive!\n"
 "Do you wish to continue?"
 
-<<<<<<< HEAD
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
 msgid "NO_MOVEMENT_TEXT"
 msgstr ""
 "Your microbe is unable to move!\n"
 "Do you wish to continue?"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1261
-=======
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1262
->>>>>>> 0bf60d14 (Implement art gallery (#2989))
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Disconnected Organelles"
 
