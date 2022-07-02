@@ -333,7 +333,7 @@ public class AutoEvoRun
                     steps.Enqueue(new FindBestMutation(autoEvoConfiguration,
                         Parameters.World.WorldSettings, map, speciesEntry.Key,
                         autoEvoConfiguration.MutationsPerSpecies,
-                        autoEvoConfiguration.AllowNoMigration,
+                        autoEvoConfiguration.AllowNoMutation,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
 
