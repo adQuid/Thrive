@@ -642,6 +642,11 @@ msgstr "Glucose"
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
+#: ../simulation_parameters/microbe_stage/compounds.json:73
+#: ../src/microbe_stage/MicrobeStage.tscn:1590
+msgid "GLYCOTOXY"
+msgstr "Glycotoxy"
+
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1460
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
