@@ -320,12 +320,18 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         base.SetupEditedSpecies();
     }
 
+    // note: this isn't actually referentially transparent
     protected override List<ITransition> GetExitEditorTransitions()
     {
         List<ITransition> retval = new();
 
-        retval.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.0f));
-        retval.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_PANSPERMIA"));
+        if (!CurrentGame.FreeBuild && !TutorialState.DisplayedMessages.Contains("INTRO_MESSAGE_PANSPERMIA"))
+        {
+            retval.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.0f));
+            retval.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_PANSPERMIA"));
+
+            TutorialState.DisplayedMessages.Add("INTRO_MESSAGE_PANSPERMIA");
+        }
 
         return retval;
     }
