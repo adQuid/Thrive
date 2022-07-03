@@ -320,6 +320,16 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         base.SetupEditedSpecies();
     }
 
+    protected override List<ITransition> GetExitEditorTransitions()
+    {
+        List<ITransition> retval = new();
+
+        retval.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.0f));
+        retval.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_PANSPERMIA"));
+
+        return retval;
+    }
+
     private void CreateMutatedSpeciesCopy(Species species)
     {
         var newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);
