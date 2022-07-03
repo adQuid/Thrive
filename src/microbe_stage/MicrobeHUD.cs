@@ -660,11 +660,15 @@ public class MicrobeHUD : Control
         patchOverlayAnimator.Play("FadeInOut");
     }
 
-    public void DisplayMessageIfIntro(string message)
+    public void DisplayIntroMessage(string message, TutorialState state)
     {
         if (Settings.Instance.PlayMicrobeIntroVideo)
         {
-            DisplayMessage(message);
+            if (!state.DisplayedMessages.Contains(message))
+            {
+                state.DisplayedMessages.Add(message);
+                DisplayMessage(message);
+            }
         }
     }
 

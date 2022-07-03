@@ -385,7 +385,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         SpawnPlayer();
 
-        HUD.DisplayMessageIfIntro("INTRO_MESSAGE_2");
+        HUD.DisplayIntroMessage("INTRO_MESSAGE_2", TutorialState);
     }
 
     public void StartMusic()
@@ -516,16 +516,13 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             // See if any states are active for displaying intro messages
             if (!TutorialState.EditorWelcome.TrustPlayer
-                && Player.Compounds.GetCompoundAmount(SimulationParameters.Instance.GetCompound("atp")) <= 0.1f
-                && !TutorialState.HaveShownATPMessage)
+                && Player.Compounds.GetCompoundAmount(SimulationParameters.Instance.GetCompound("atp")) <= 0.1f)
             {
-                HUD.DisplayMessageIfIntro("STARVATION_MESSAGE");
-                TutorialState.HaveShownATPMessage = true;
+                HUD.DisplayIntroMessage("STARVATION_MESSAGE", TutorialState);
             }
-            else if (!TutorialState.HasEngulfed && Player.State == Microbe.MicrobeState.Engulf)
+            else if (Player.State == Microbe.MicrobeState.Engulf)
             {
-                HUD.DisplayMessageIfIntro("ENGULF_MESSAGE");
-                TutorialState.HasEngulfed = true;
+                HUD.DisplayIntroMessage("ENGULF_MESSAGE", TutorialState);
             }
         }
         else
@@ -928,7 +925,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             if (!TutorialState.MicrobePressEditorButton.HasShownMessage && !CurrentGame.FreeBuild && player.Hitpoints == player.MaxHitpoints)
             {
-                HUD.DisplayMessageIfIntro("EDITOR_BUTTON_MESSAGE");
+                HUD.DisplayIntroMessage("EDITOR_BUTTON_MESSAGE", TutorialState);
                 TutorialState.MicrobePressEditorButton.HasShownMessage = true;
             }
         }
@@ -982,10 +979,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // going back to the stage
         if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!) && promptPatchNameChange)
         {
-            if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && !TutorialState.HasBeenToEpipelagic && "epi".IsSubsequenceOf(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower()))
+            if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && "epi".IsSubsequenceOf(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower()))
             {
-                HUD.DisplayMessageIfIntro("EPIPELAGIC_INTRO_MESSAGE");
-                TutorialState.HasBeenToEpipelagic = true;
+                HUD.DisplayIntroMessage("EPIPELAGIC_INTRO_MESSAGE", TutorialState);
             }
             else
             {
