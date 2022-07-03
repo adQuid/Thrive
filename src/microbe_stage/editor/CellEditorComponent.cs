@@ -2174,7 +2174,7 @@ public partial class CellEditorComponent :
             predictionDetailsText.Append(new LocalizedString("ENERGY_SOURCES"));
             predictionDetailsText.Append('\n');
 
-            foreach (var nicheInfo in energyResult.Value.PerNicheEnergy)
+            foreach (var nicheInfo in energyResult.Value.PerNicheEnergy.OrderByDescending(x => x.Value.CurrentSpeciesEnergy))
             {
                 var data = nicheInfo.Value;
                 predictionDetailsText.Append(new LocalizedString("FOOD_SOURCE_ENERGY_INFO", nicheInfo.Key,
