@@ -99,7 +99,7 @@ public class TransitionManager : ControlWithInput
         return true;
     }
 
-    public void PlaySequencesInSequentially(List<ITransition> transitions, Action? onFinishedCallback = null, bool skippable = true,
+    public void PlaySequencesSequentially(List<ITransition> transitions, Action? onFinishedCallback = null, bool skippable = true,
         bool skipPrevious = true)
     {
         if (transitions.Count == 1)
@@ -111,7 +111,7 @@ public class TransitionManager : ControlWithInput
             AddSequence(
                 transitions.GetRange(0, 1), () =>
                 {
-                    PlaySequencesInSequentially(transitions.GetRange(1, transitions.Count - 1), onFinishedCallback, skippable, skipPrevious);
+                    PlaySequencesSequentially(transitions.GetRange(1, transitions.Count - 1), onFinishedCallback, skippable, skipPrevious);
                 }
             );
         }

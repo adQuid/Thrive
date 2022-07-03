@@ -668,7 +668,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
         }
 
-        TransitionManager.Instance.PlaySequencesInSequentially(transitions, () =>
+        TransitionManager.Instance.PlaySequencesSequentially(transitions, () =>
         {
             // We don't free this here as the editor will return to this scene
             if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
