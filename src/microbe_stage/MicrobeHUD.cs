@@ -535,7 +535,6 @@ public class MicrobeHUD : Control
     public void Init(MicrobeStage stage)
     {
         this.stage = stage;
-        TutorialState = stage.TutorialState;
     }
 
     public override void _Notification(int what)

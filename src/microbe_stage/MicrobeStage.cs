@@ -385,6 +385,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         SpawnPlayer();
 
+        // TODO: Put this somewhere smarter
+        HUD.TutorialState = TutorialState;
         HUD.DisplayIntroMessage("INTRO_MESSAGE_2");
     }
 
