@@ -4777,7 +4777,7 @@ msgstr "Some come to the open sea, near the sun.\nBut no glucose floated here."
 
 #: ../src/microbe_stage/MicrobeEditor.cs:320
 msgid "EUKARYOTIC_INTRO_MESSAGE_1"
-msgstr "Break down compounds, make new ones, avoiding danger...\nBeing alive started to require so much knowledge."
+msgstr "Break down compounds. Make new ones.\nAvoid danger. Don't eat siblings.\nBeing alive now required so much knowledge."
 
 #: ../src/microbe_stage/MicrobeEditor.cs:320
 msgid "EUKARYOTIC_INTRO_MESSAGE_2"
