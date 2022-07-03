@@ -776,6 +776,11 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         var transitions = GetExitEditorTransitions();
 
+        if (transitions.Count > 0)
+        {
+            Jukebox.Instance.PlayCategory("Menu");
+        }
+
         TransitionManager.Instance.PlaySequencesSequentially(transitions, () =>
         {
             SceneManager.Instance.SwitchToScene(stage);
