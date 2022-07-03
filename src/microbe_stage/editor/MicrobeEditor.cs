@@ -325,11 +325,12 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     {
         List<ITransition> retval = new();
 
-        if (!CurrentGame.FreeBuild && !TutorialState.DisplayedMessages.Contains("EUKARYOTIC_INTRO_MESSAGE"))
+        if (!CurrentGame.FreeBuild && !TutorialState.DisplayedMessages.Contains("EUKARYOTIC_INTRO_MESSAGE_1"))
         {
-            retval.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EUKARYOTIC_INTRO_MESSAGE"));
+            retval.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EUKARYOTIC_INTRO_MESSAGE_1"));
+            retval.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EUKARYOTIC_INTRO_MESSAGE_2"));
 
-            TutorialState.DisplayedMessages.Add("EUKARYOTIC_INTRO_MESSAGE");
+            TutorialState.DisplayedMessages.Add("EUKARYOTIC_INTRO_MESSAGE_1");
         }
 
         return retval;
