@@ -666,7 +666,7 @@ public class MicrobeHUD : Control
     {
         if (Settings.Instance.PlayMicrobeIntroVideo)
         {
-            if (TutorialState.DisplayedMessages != null && !TutorialState.DisplayedMessages.Contains(message))
+            if (TutorialState != null && !TutorialState.DisplayedMessages.Contains(message))
             {
                 TutorialState.DisplayedMessages.Add(message);
                 DisplayMessage(message);
