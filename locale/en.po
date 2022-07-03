@@ -1000,7 +1000,7 @@ msgstr "{0} consumption"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr "Uniformly spread environmental food source of {0}"
+msgstr "{0}"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
 msgid "PREDATION_FOOD_SOURCE"
@@ -3504,11 +3504,11 @@ msgstr "N/A"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_IN_PATCH_FOR"
-msgstr "Energy in {0} for {1}"
+msgstr "In the {0}, {1} primarily survives on {2}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2156
 msgid "ENERGY_SUMMARY_LINE"
-msgstr "Total energy gathered is {0} with individual cost of {1} resulting in unadjusted population of {2}"
+msgstr "{0} total energy\nindividual cost of {1}\n= unadjusted population of {2}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2163
 msgid "ENERGY_SOURCES"
@@ -3516,7 +3516,7 @@ msgstr "Energy Sources:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2169
 msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr "{0} energy: {1} (fitness: {2}) total available energy: {3} (total fitness: {4})"
+msgstr "   (out of {0} available)"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:382
 msgid "MEMBRANE"
@@ -3653,7 +3653,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1324
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "This panel shows the numbers that the auto-evo prediction works from. The total energy a species is able to capture, and the cost per individual of the species, determines the final population. Auto-evo uses a simplified model of reality to calculate how well species are performing based on the energy they are able to gather. For each food source, it is shown much energy the species gains from it. Additionally the total energy that is available from that source is shown. The fraction the species gains out of the total energy is based on how large the fitness is compared to the total fitness. Fitness is a metric of how well the species can utilize that food source."
+msgstr "This panel shows a rough overview of how auto-evo works. The total energy a species is able to capture, and the cost per individual of the species, determine the final population. Auto-evo uses a simplified model of reality to calculate how well species are performing based on the energy they are able to gather. Each species is run through a function for each food source, resulting in a fitness score for obtaining that food source. The fraction the species gains out of the total energy is based on how large the fitness is compared to the total fitness."
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
