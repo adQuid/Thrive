@@ -4776,8 +4776,12 @@ msgid "EPIPELAGIC_INTRO_MESSAGE"
 msgstr "Some come to the open sea, near the sun.\nBut no glucose floated here."
 
 #: ../src/microbe_stage/MicrobeEditor.cs:320
-msgid "EUKARYOTIC_INTRO_MESSAGE"
-msgstr "Bruh you big now."
+msgid "EUKARYOTIC_INTRO_MESSAGE_1"
+msgstr "Break down compounds, make new ones, avoiding danger...\nBeing alive started to require so much knowledge."
+
+#: ../src/microbe_stage/MicrobeEditor.cs:320
+msgid "EUKARYOTIC_INTRO_MESSAGE_2"
+msgstr "Some species developed a tiny library.\nWith it, they could grow far grander."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
