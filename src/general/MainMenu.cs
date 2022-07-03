@@ -181,7 +181,7 @@ public class MainMenu : NodeWithInput
                 transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_1"));
             }
 
-            TransitionManager.Instance.PlaySequencesInOrder(transitions, () => StartNewGame(settings));
+            TransitionManager.Instance.PlaySequencesInSequentially(transitions, () => StartNewGame(settings));
         }
         else
         {

@@ -664,42 +664,22 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         {
             var text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_1" : "EDITOR_MESSAGE_1";
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
+
+            text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_2" : "EDITOR_MESSAGE_2";
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));            
         }
 
-        TransitionManager.Instance.AddSequence(transitions, () =>
+        TransitionManager.Instance.PlaySequencesInSequentially(transitions, () =>
         {
-            if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.HaveBeenToEditor || PityPopulation != null))
+            TutorialState.HaveBeenToEditor = true;
+
+            // We don't free this here as the editor will return to this scene
+            if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
             {
-                var transitions = new List<ITransition>();
-
-                var text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_2" : "EDITOR_MESSAGE_2";
-                transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
-
-                TransitionManager.Instance.AddSequence(transitions, () =>
-                {
-                    TutorialState.HaveBeenToEditor = true;
-
-                    // We don't free this here as the editor will return to this scene
-                    if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
-                    {
-                        throw new Exception("failed to keep the current scene root");
-                    }
-
-                    MovingToEditor = false;
-                });
+                throw new Exception("failed to keep the current scene root");
             }
-            else
-            {
-                TutorialState.HaveBeenToEditor = true;
 
-                // We don't free this here as the editor will return to this scene
-                if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
-                {
-                    throw new Exception("failed to keep the current scene root");
-                }
-
-                MovingToEditor = false;
-            }
+            MovingToEditor = false;
         });
     }
 
