@@ -1260,7 +1260,7 @@ public class MicrobeHUD : Control
     {
         engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall 
             && (!Settings.Instance.PlayMicrobeIntroVideo 
-                || (TutorialState.DisplayedMessages != null && TutorialState.DisplayedMessages.Contains("EDITOR_MESSAGE_1") && player.EngulfSize >= 2));
+                || (TutorialState != null && TutorialState.DisplayedMessages.Contains("EDITOR_MESSAGE_1") && player.EngulfSize >= 2));
         bindingModeHotkey.Visible = player.CanBind;
         fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;
         unbindAllHotkey.Visible = player.CanUnbind;
