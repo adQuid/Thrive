@@ -657,19 +657,17 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         var transitions = new List<ITransition>();
         transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.5f));
 
-        if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.HaveBeenToEditor || PityPopulation != null))
+        if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.DisplayedMessages.Contains("EDITOR_MESSAGE_1") || PityPopulation != null))
         {
             var text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_1" : "EDITOR_MESSAGE_1";
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
 
             text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_2" : "EDITOR_MESSAGE_2";
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));            
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
         }
 
         TransitionManager.Instance.PlaySequencesInSequentially(transitions, () =>
         {
-            TutorialState.HaveBeenToEditor = true;
-
             // We don't free this here as the editor will return to this scene
             if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
             {
