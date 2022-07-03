@@ -2147,6 +2147,27 @@ public partial class CellEditorComponent :
     {
         predictionDetailsText = new LocalizedStringBuilder(300);
 
+        // Show the player's current patch first
+        foreach (var energyResult in energyResults)
+        {
+            if (energyResult.Key == Editor.CurrentPatch && energyResult.Value.PerNicheEnergy.Count > 0)
+            {
+                AddSummaryForNiche(energyResult, playerSpeciesName);
+            }
+        }
+
+        // Then show all other patches
+        foreach (var energyResult in energyResults)
+        {
+            if (energyResult.Key != Editor.CurrentPatch && energyResult.Value.PerNicheEnergy.Count > 0)
+            {
+                AddSummaryForNiche(energyResult, playerSpeciesName);
+            }
+        }
+    }
+
+    private void AddSummaryForNiche(KeyValuePair<Patch, RunResults.SpeciesPatchEnergyResults> energyResult, string playerSpeciesName)
+    {
         double Round(float value)
         {
             if (value > 0.0005f)
@@ -2157,35 +2178,36 @@ public partial class CellEditorComponent :
             return Math.Round(value, 8);
         }
 
-        // This loop shows all the patches the player species is in. Could perhaps just show the current one
-        foreach (var energyResult in energyResults)
+        predictionDetailsText.Append(new LocalizedString("ENERGY_IN_PATCH_FOR",
+                    energyResult.Key.Name, playerSpeciesName,
+                    energyResult.Value.PerNicheEnergy.OrderByDescending(x => x.Value.CurrentSpeciesEnergy).First().Key));
+        predictionDetailsText.Append('\n');
+        predictionDetailsText.Append('\n');
+        predictionDetailsText.Append(new LocalizedString("ENERGY_SOURCES"));
+        predictionDetailsText.Append('\n');
+
+        var nicheInfoText = new List<string>();
+        foreach (var nicheInfo in energyResult.Value.PerNicheEnergy.OrderByDescending(x => x.Value.CurrentSpeciesEnergy))
         {
-            predictionDetailsText.Append(new LocalizedString("ENERGY_IN_PATCH_FOR",
-                energyResult.Key.Name, playerSpeciesName));
-            predictionDetailsText.Append('\n');
-
-            predictionDetailsText.Append(new LocalizedString("ENERGY_SUMMARY_LINE",
-                Round(energyResult.Value.TotalEnergyGathered), Round(energyResult.Value.IndividualCost),
-                energyResult.Value.UnadjustedPopulation));
-
-            predictionDetailsText.Append('\n');
-            predictionDetailsText.Append('\n');
-
-            predictionDetailsText.Append(new LocalizedString("ENERGY_SOURCES"));
-            predictionDetailsText.Append('\n');
-
-            foreach (var nicheInfo in energyResult.Value.PerNicheEnergy.OrderByDescending(x => x.Value.CurrentSpeciesEnergy))
-            {
-                var data = nicheInfo.Value;
-                predictionDetailsText.Append(new LocalizedString("FOOD_SOURCE_ENERGY_INFO", nicheInfo.Key,
-                    Round(data.CurrentSpeciesEnergy), Round(data.CurrentSpeciesFitness),
-                    Round(data.TotalAvailableEnergy),
-                    Round(data.TotalFitness)));
-                predictionDetailsText.Append('\n');
-            }
-
-            predictionDetailsText.Append('\n');
+            var data = nicheInfo.Value;
+            nicheInfoText.Add(nicheInfo.Key
+                + new String(' ', Math.Max(0, (int)Math.Round(1.7 * (50 - nicheInfo.Key.ToString().Length))))
+                + Round(data.CurrentSpeciesEnergy)
+                + new LocalizedString("FOOD_SOURCE_ENERGY_INFO", Round(data.TotalAvailableEnergy)));
         }
+
+        predictionDetailsText.Append(String.Join("\n+", nicheInfoText));
+
+        predictionDetailsText.Append("\n= " + energyResult.Value.TotalEnergyGathered);
+
+        predictionDetailsText.Append('\n');
+        predictionDetailsText.Append('\n');
+
+        predictionDetailsText.Append(new LocalizedString("ENERGY_SUMMARY_LINE", energyResult.Value.TotalEnergyGathered, energyResult.Value.IndividualCost, energyResult.Value.UnadjustedPopulation));
+
+        predictionDetailsText.Append('\n');
+        predictionDetailsText.Append('\n');
+        predictionDetailsText.Append('\n');
     }
 
     private void UpdateAutoEvoPredictionDetailsText()
