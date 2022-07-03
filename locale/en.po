@@ -3516,7 +3516,7 @@ msgstr "Energy Sources:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2169
 msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr "{0} energy: {2} out of {4} total fitness, earning {1} out of {3} total available energy"
+msgstr "{0}: species scored {2} out of {4} total fitness, earning {1} out of {3} total available energy\n"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:382
 msgid "MEMBRANE"
