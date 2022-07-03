@@ -4775,6 +4775,10 @@ msgstr "The larger bubbles could even\nconsume other, smaller species."
 msgid "EPIPELAGIC_INTRO_MESSAGE"
 msgstr "Some come to the open sea, near the sun.\nBut no glucose floated here."
 
+#: ../src/microbe_stage/MicrobeEditor.cs:320
+msgid "EUKARYOTIC_INTRO_MESSAGE"
+msgstr "Bruh you big now."
+
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
