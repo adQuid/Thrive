@@ -661,6 +661,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.DisplayedMessages.Contains("EDITOR_MESSAGE_1") || PityPopulation != null))
         {
+            TutorialState.DisplayedMessages.Add("EDITOR_MESSAGE_1");
             var text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_1" : "EDITOR_MESSAGE_1";
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
 
