@@ -779,9 +779,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         TransitionManager.Instance.PlaySequencesSequentially(transitions, () =>
         {
             SceneManager.Instance.SwitchToScene(stage);
-        });
 
-        stage.OnReturnFromEditor();
+            stage.OnReturnFromEditor();
+        });
     }
 
     protected abstract List<ITransition> GetExitEditorTransitions();
