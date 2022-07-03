@@ -109,7 +109,7 @@ public class TransitionManager : ControlWithInput
                 onFinishedCallback.Invoke();
             }
         }
-        if (transitions.Count == 1)
+        else if (transitions.Count == 1)
         {
             AddSequence(transitions, onFinishedCallback, skippable, skipPrevious);
         }
