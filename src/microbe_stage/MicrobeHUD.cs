@@ -379,6 +379,8 @@ public class MicrobeHUD : Control
         }
     }
 
+    public TutorialState TutorialState;
+
     public override void _Ready()
     {
         compoundBars = GetTree().GetNodesInGroup("CompoundBar");
@@ -660,11 +662,15 @@ public class MicrobeHUD : Control
         patchOverlayAnimator.Play("FadeInOut");
     }
 
-    public void DisplayMessageIfIntro(string message)
+    public void DisplayIntroMessage(string message)
     {
         if (Settings.Instance.PlayMicrobeIntroVideo)
         {
-            DisplayMessage(message);
+            if (!TutorialState.DisplayedMessages.Contains(message))
+            {
+                TutorialState.DisplayedMessages.Add(message);
+                DisplayMessage(message);
+            }
         }
     }
 
@@ -1252,7 +1258,7 @@ public class MicrobeHUD : Control
 
     private void UpdateAbilitiesHotBar(Microbe player)
     {
-        engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall && (!Settings.Instance.PlayMicrobeIntroVideo || (stage.TutorialState.HaveBeenToEditor && player.EngulfSize >= 2));
+        engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall && (!Settings.Instance.PlayMicrobeIntroVideo || (TutorialState.DisplayedMessages.Contains("EDITOR_MESSAGE_1") && player.EngulfSize >= 2));
         bindingModeHotkey.Visible = player.CanBind;
         fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;
         unbindAllHotkey.Visible = player.CanUnbind;

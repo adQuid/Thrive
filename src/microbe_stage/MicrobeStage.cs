@@ -385,7 +385,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         SpawnPlayer();
 
-        HUD.DisplayMessageIfIntro("INTRO_MESSAGE_2");
+        // TODO: Put this somewhere smarter
+        HUD.TutorialState = TutorialState;
+        HUD.DisplayIntroMessage("INTRO_MESSAGE_2");
     }
 
     public void StartMusic()
@@ -516,16 +518,13 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             // See if any states are active for displaying intro messages
             if (!TutorialState.EditorWelcome.TrustPlayer
-                && Player.Compounds.GetCompoundAmount(SimulationParameters.Instance.GetCompound("atp")) <= 0.1f
-                && !TutorialState.HaveShownATPMessage)
+                && Player.Compounds.GetCompoundAmount(SimulationParameters.Instance.GetCompound("atp")) <= 0.1f)
             {
-                HUD.DisplayMessageIfIntro("STARVATION_MESSAGE");
-                TutorialState.HaveShownATPMessage = true;
+                HUD.DisplayIntroMessage("STARVATION_MESSAGE");
             }
-            else if (!TutorialState.HasEngulfed && Player.State == Microbe.MicrobeState.Engulf)
+            else if (Player.State == Microbe.MicrobeState.Engulf)
             {
-                HUD.DisplayMessageIfIntro("ENGULF_MESSAGE");
-                TutorialState.HasEngulfed = true;
+                HUD.DisplayIntroMessage("ENGULF_MESSAGE");
             }
         }
         else
@@ -660,46 +659,25 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         var transitions = new List<ITransition>();
         transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.5f));
 
-        if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.HaveBeenToEditor || PityPopulation != null))
+        if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.DisplayedMessages.Contains("EDITOR_MESSAGE_1") || PityPopulation != null))
         {
             var text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_1" : "EDITOR_MESSAGE_1";
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
+
+            text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_2" : "EDITOR_MESSAGE_2";
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
         }
 
-        TransitionManager.Instance.AddSequence(transitions, () =>
+        TransitionManager.Instance.PlaySequencesInSequentially(transitions, () =>
         {
-            if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.HaveBeenToEditor || PityPopulation != null))
+            // We don't free this here as the editor will return to this scene
+            if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
             {
-                var transitions = new List<ITransition>();
-
-                var text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_2" : "EDITOR_MESSAGE_2";
-                transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
-
-                TransitionManager.Instance.AddSequence(transitions, () =>
-                {
-                    TutorialState.HaveBeenToEditor = true;
-
-                    // We don't free this here as the editor will return to this scene
-                    if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
-                    {
-                        throw new Exception("failed to keep the current scene root");
-                    }
-
-                    MovingToEditor = false;
-                });
+                throw new Exception("failed to keep the current scene root");
             }
-            else
-            {
-                TutorialState.HaveBeenToEditor = true;
 
-                // We don't free this here as the editor will return to this scene
-                if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
-                {
-                    throw new Exception("failed to keep the current scene root");
-                }
-
-                MovingToEditor = false;
-            }
+            TutorialState.DisplayedMessages.Add("EDITOR_MESSAGE_1");
+            MovingToEditor = false;
         });
     }
 
@@ -948,7 +926,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             if (!TutorialState.MicrobePressEditorButton.HasShownMessage && !CurrentGame.FreeBuild && player.Hitpoints == player.MaxHitpoints)
             {
-                HUD.DisplayMessageIfIntro("EDITOR_BUTTON_MESSAGE");
+                HUD.DisplayIntroMessage("EDITOR_BUTTON_MESSAGE");
                 TutorialState.MicrobePressEditorButton.HasShownMessage = true;
             }
         }
@@ -1002,10 +980,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // going back to the stage
         if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!) && promptPatchNameChange)
         {
-            if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && !TutorialState.HasBeenToEpipelagic && "epi".IsSubsequenceOf(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower()))
+            if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && "epi".IsSubsequenceOf(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower()))
             {
-                HUD.DisplayMessageIfIntro("EPIPELAGIC_INTRO_MESSAGE");
-                TutorialState.HasBeenToEpipelagic = true;
+                HUD.DisplayIntroMessage("EPIPELAGIC_INTRO_MESSAGE");
             }
             else
             {

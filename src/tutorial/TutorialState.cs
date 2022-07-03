@@ -70,16 +70,7 @@ public class TutorialState : ITutorialInput
     public float TotalElapsed { get; private set; }
 
     [JsonProperty]
-    public bool HaveBeenToEditor;
-
-    [JsonProperty]
-    public bool HaveShownATPMessage;
-
-    [JsonProperty]
-    public bool HasBeenToEpipelagic;
-
-    [JsonProperty]
-    public bool HasEngulfed;
+    public HashSet<string> DisplayedMessages = new();
 
     /// <summary>
     ///   True if any of the tutorials are active that want to pause the game

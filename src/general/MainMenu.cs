@@ -171,26 +171,17 @@ public class MainMenu : NodeWithInput
             var transitions = new List<ITransition>();
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.0f));
 
-            TransitionManager.Instance.AddSequence(transitions, () =>
+            if (settings.Origin == WorldGenerationSettings.LifeOrigin.Panspermia)
             {
-                Jukebox.Instance.PlayCategory("MicrobeStage");
-                var transitions = new List<ITransition>();
+                transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_PANSPERMIA"));
+                Settings.Instance.PlayMicrobeIntroVideo = new(false);
+            }
+            else
+            {
+                transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_1"));
+            }
 
-                if (settings.Origin == WorldGenerationSettings.LifeOrigin.Panspermia)
-                {
-                    transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_PANSPERMIA"));
-                    Settings.Instance.PlayMicrobeIntroVideo = new(false);
-                }
-                else
-                {
-                    transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_1"));
-                }
-
-                TransitionManager.Instance.AddSequence(transitions, () =>
-                {
-                    StartNewGame(settings);
-                });
-            });
+            TransitionManager.Instance.PlaySequencesInSequentially(transitions, () => StartNewGame(settings));
         }
         else
         {

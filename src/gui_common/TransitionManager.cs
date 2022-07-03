@@ -99,6 +99,24 @@ public class TransitionManager : ControlWithInput
         return true;
     }
 
+    public void PlaySequencesInSequentially(List<ITransition> transitions, Action? onFinishedCallback = null, bool skippable = true,
+        bool skipPrevious = true)
+    {
+        if (transitions.Count == 1)
+        {
+            AddSequence(transitions, onFinishedCallback, skippable, skipPrevious);
+        }
+        else
+        {
+            AddSequence(
+                transitions.GetRange(0, 1), () =>
+                {
+                    PlaySequencesInSequentially(transitions.GetRange(1, transitions.Count - 1), onFinishedCallback, skippable, skipPrevious);
+                }
+            );
+        }
+    }
+
     /// <summary>
     ///   Enqueues a new <see cref="Sequence"/> from the given list of transitions. This defaults to skipping any
     ///   previous sequences, can be changed with <paramref name="skipPrevious"/> parameter.
