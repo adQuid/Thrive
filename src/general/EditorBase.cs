@@ -778,7 +778,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         if (transitions.Count > 0)
         {
-            Jukebox.Instance.PlayCategory("Menu");
+            Jukebox.Instance.PlayCategory("StageTransition");
         }
 
         TransitionManager.Instance.PlaySequencesSequentially(transitions, () =>
