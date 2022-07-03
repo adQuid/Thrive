@@ -102,6 +102,13 @@ public class TransitionManager : ControlWithInput
     public void PlaySequencesSequentially(List<ITransition> transitions, Action? onFinishedCallback = null, bool skippable = true,
         bool skipPrevious = true)
     {
+        if (transitions.Count == 0)
+        {
+            if (onFinishedCallback != null)
+            {
+                onFinishedCallback.Invoke();
+            }
+        }
         if (transitions.Count == 1)
         {
             AddSequence(transitions, onFinishedCallback, skippable, skipPrevious);
