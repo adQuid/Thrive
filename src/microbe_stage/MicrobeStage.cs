@@ -385,7 +385,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         SpawnPlayer();
 
-        HUD.DisplayIntroMessage("INTRO_MESSAGE_2", TutorialState);
+        HUD.DisplayIntroMessage("INTRO_MESSAGE_2");
     }
 
     public void StartMusic()
@@ -518,11 +518,11 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             if (!TutorialState.EditorWelcome.TrustPlayer
                 && Player.Compounds.GetCompoundAmount(SimulationParameters.Instance.GetCompound("atp")) <= 0.1f)
             {
-                HUD.DisplayIntroMessage("STARVATION_MESSAGE", TutorialState);
+                HUD.DisplayIntroMessage("STARVATION_MESSAGE");
             }
             else if (Player.State == Microbe.MicrobeState.Engulf)
             {
-                HUD.DisplayIntroMessage("ENGULF_MESSAGE", TutorialState);
+                HUD.DisplayIntroMessage("ENGULF_MESSAGE");
             }
         }
         else
@@ -923,7 +923,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             if (!TutorialState.MicrobePressEditorButton.HasShownMessage && !CurrentGame.FreeBuild && player.Hitpoints == player.MaxHitpoints)
             {
-                HUD.DisplayIntroMessage("EDITOR_BUTTON_MESSAGE", TutorialState);
+                HUD.DisplayIntroMessage("EDITOR_BUTTON_MESSAGE");
                 TutorialState.MicrobePressEditorButton.HasShownMessage = true;
             }
         }
@@ -979,7 +979,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         {
             if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && "epi".IsSubsequenceOf(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower()))
             {
-                HUD.DisplayIntroMessage("EPIPELAGIC_INTRO_MESSAGE", TutorialState);
+                HUD.DisplayIntroMessage("EPIPELAGIC_INTRO_MESSAGE");
             }
             else
             {
