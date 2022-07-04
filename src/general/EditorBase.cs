@@ -774,11 +774,22 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         // This needs to be reset here to not free this when we exit the tree
         ReturnToStage = null;
 
-        SceneManager.Instance.SwitchToScene(stage);
+        var transitions = GetExitEditorTransitions();
 
-        stage.OnReturnFromEditor();
+        if (transitions.Count > 0)
+        {
+            Jukebox.Instance.PlayCategory("StageTransition");
+        }
+
+        TransitionManager.Instance.PlaySequencesSequentially(transitions, () =>
+        {
+            SceneManager.Instance.SwitchToScene(stage);
+
+            stage.OnReturnFromEditor();
+        });
     }
 
+    protected abstract List<ITransition> GetExitEditorTransitions();
     private void MakeSureEditorReturnIsGood()
     {
         if (currentGame == null)

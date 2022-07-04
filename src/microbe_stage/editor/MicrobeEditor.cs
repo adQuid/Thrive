@@ -320,6 +320,22 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         base.SetupEditedSpecies();
     }
 
+    // note: this isn't actually referentially transparent
+    protected override List<ITransition> GetExitEditorTransitions()
+    {
+        List<ITransition> retval = new();
+
+        if (!CurrentGame.FreeBuild && !editedSpecies.IsBacteria && !TutorialState.DisplayedMessages.Contains("EUKARYOTIC_INTRO_MESSAGE_1"))
+        {
+            retval.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EUKARYOTIC_INTRO_MESSAGE_1"));
+            retval.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "EUKARYOTIC_INTRO_MESSAGE_2"));
+
+            TutorialState.DisplayedMessages.Add("EUKARYOTIC_INTRO_MESSAGE_1");
+        }
+
+        return retval;
+    }
+
     private void CreateMutatedSpeciesCopy(Species species)
     {
         var newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);

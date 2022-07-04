@@ -16,6 +16,20 @@
             }
         ]
     },
+    "StageTransition": {
+        "ReturnType": "Reset",
+        "TrackLists": [
+            {
+                "TrackOrder": "Sequential",
+                "Tracks": [
+                    {
+                        "Volume": 0.5,
+                        "ResourcePath": "res://assets/sounds/main-menu-theme-1.ogg"
+                    }
+                ]
+            }
+        ]
+    },
     "ArtGallery": {
         "TrackLists": [
             {

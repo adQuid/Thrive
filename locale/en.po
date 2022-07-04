@@ -4779,6 +4779,22 @@ msgstr "The larger bubbles could even\nconsume other, smaller species."
 msgid "EPIPELAGIC_INTRO_MESSAGE"
 msgstr "Some come to the open sea, near the sun.\nBut no glucose floated here."
 
+#: ../src/microbe_stage/MicrobeEditor.cs:320
+msgid "EUKARYOTIC_INTRO_MESSAGE_1"
+msgstr "Break down compounds. Make new ones.\nAvoid danger. Don't eat siblings.\nBeing alive now required so much knowledge."
+
+#: ../src/microbe_stage/MicrobeEditor.cs:320
+msgid "EUKARYOTIC_INTRO_MESSAGE_2"
+msgstr "Some species developed a tiny library.\nIn it, they wrote for future generations."
+
+#: ../src/microbe_stage/MicrobeHUD.cs:1534
+msgid "MULTICELLULAR_INTRO_MESSAGE_1"
+msgstr "Genes mattered in evolution, not bodies.\nCells wanted similar cells to survive."
+
+#: ../src/microbe_stage/MicrobeHUD.cs:1534
+msgid "MULTICELLULAR_INTRO_MESSAGE_2"
+msgstr "Some species formed groups with one goal:\npreserve and spread a common blueprint."
+
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""

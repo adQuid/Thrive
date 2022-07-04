@@ -363,6 +363,11 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         base.SetupEditedSpecies();
     }
 
+    protected override List<ITransition> GetExitEditorTransitions()
+    {
+        return new();
+    }
+
     protected override void OnEditorExitTransitionFinished()
     {
         // Clear the edited cell type to avoid the cell editor applying the changes unnecessarily

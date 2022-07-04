@@ -1496,7 +1496,7 @@ public class MicrobeHUD : Control
             GUICommon.Instance.PlayButtonPressSound();
         }
 
-        multicellularConfirmPopup.PopupCenteredShrink();
+        OnBecomeMulticellularConfirmed();
     }
 
     private void OnBecomeMulticellularCancelled()
@@ -1527,7 +1527,13 @@ public class MicrobeHUD : Control
 
         EnsureGameIsUnpausedForEditor();
 
-        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMulticellular, false);
+        Jukebox.Instance.PlayCategory("StageTransition");
+        List<ITransition> transitions = new();
+        transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.3f));
+        transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "MULTICELLULAR_INTRO_MESSAGE_1"));
+        transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "MULTICELLULAR_INTRO_MESSAGE_2"));
+
+        TransitionManager.Instance.PlaySequencesSequentially(transitions, stage.MoveToMulticellular, true);
 
         stage.MovingToEditor = true;
     }
