@@ -1527,6 +1527,8 @@ public class MicrobeHUD : Control
 
         EnsureGameIsUnpausedForEditor();
 
+        Jukebox.Instance.PlayCategory("StageTransition");
+
         List<ITransition> transitions = new();
         transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.3f));
         transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "MULTICELLULAR_INTRO_MESSAGE_1"));
