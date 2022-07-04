@@ -306,6 +306,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     // Also begins a new game if one hasn't been started yet for easier debugging
     public void SetupStage()
     {
+        // Initialise the cloud system first so we can apply patch-specific brightness in OnGameStarted
+        Clouds.Init(FluidSystem);
+
         if (!IsLoadedFromSave)
         {
             spawner.Init();
@@ -336,7 +339,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         Clouds.Init(FluidSystem);
 
-        // If this is a new game, place some compounds to lure the player away form origin
+        // If this is a new game, place some phosphates as a learning tool
         if (!IsLoadedFromSave)
         {
             Clouds.AddCloud(phosphate, 30000.0f, new Vector3(40.0f, 0.0f, 0.0f));
