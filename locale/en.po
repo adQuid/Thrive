@@ -4785,15 +4785,15 @@ msgstr "Break down compounds. Make new ones.\nAvoid danger. Don't eat siblings.\
 
 #: ../src/microbe_stage/MicrobeEditor.cs:320
 msgid "EUKARYOTIC_INTRO_MESSAGE_2"
-msgstr "Some species developed a tiny library.\nWith it, they could grow far grander."
+msgstr "Some species developed a tiny library.\nWith it, they could grow far more complex."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1534
 msgid "MULTICELLULAR_INTRO_MESSAGE_1"
-msgstr "Bro you got more cells!"
+msgstr "There was only so much one cell could do,\nbut cells with similar genes had reason to cooperate."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1534
 msgid "MULTICELLULAR_INTRO_MESSAGE_2"
-msgstr "It's so many!"
+msgstr "In time they lost the power to live alone,\nbut in exchance they grew enormous."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
