@@ -4785,7 +4785,7 @@ msgstr "Break down compounds. Make new ones.\nAvoid danger. Don't eat siblings.\
 
 #: ../src/microbe_stage/MicrobeEditor.cs:320
 msgid "EUKARYOTIC_INTRO_MESSAGE_2"
-msgstr "Some species developed a tiny library.\nWith it, they could grow far more complex."
+msgstr "Some species developed a tiny library.\nIn it, they wrote for future generations."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1534
 msgid "MULTICELLULAR_INTRO_MESSAGE_1"
