@@ -1496,7 +1496,7 @@ public class MicrobeHUD : Control
             GUICommon.Instance.PlayButtonPressSound();
         }
 
-        multicellularConfirmPopup.PopupCenteredShrink();
+        OnBecomeMulticellularConfirmed();
     }
 
     private void OnBecomeMulticellularCancelled()
