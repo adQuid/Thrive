@@ -4789,11 +4789,11 @@ msgstr "Some species developed a tiny library.\nWith it, they could grow far mor
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1534
 msgid "MULTICELLULAR_INTRO_MESSAGE_1"
-msgstr "There was only so much one cell could do,\nbut cells with similar genes had reason to cooperate."
+msgstr "Genes mattered in evolution, not bodies.\nCells wanted similar cells to survive."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1534
 msgid "MULTICELLULAR_INTRO_MESSAGE_2"
-msgstr "In time they lost the power to live alone,\nbut in exchance they grew enormous."
+msgstr "Some species formed groups with one goal:\npreserve and spread a common blueprint."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
