@@ -60,6 +60,14 @@ public class BiomeConditions : ICloneable, ISaveLoadable
         LoadChunkScenes();
     }
 
+    public float GetDissolvedInBiome(Compound compound)
+    {
+        if (Compounds.TryGetValue(compound, out var environmentalCompoundProperties))
+            return 0;
+
+        return environmentalCompoundProperties.Dissolved;
+    }
+
     private void LoadChunkScenes()
     {
         foreach (var entry in Chunks)
