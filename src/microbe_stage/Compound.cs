@@ -90,6 +90,11 @@ public class Compound : IRegistryType
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
+    public static Compound ByName(string name)
+    {
+        return SimulationParameters.Instance.GetCompound(name);
+    }
+
     public void Resolve()
     {
         LoadedIcon = GD.Load<Texture>(IconPath);
