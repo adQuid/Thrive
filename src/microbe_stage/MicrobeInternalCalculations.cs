@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -426,6 +427,42 @@ public static class MicrobeInternalCalculations
         IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome)
     {
         return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
+    }
+
+    public static TweakedProcess EnvironmentModifiedProcess(float delta, BiomeConditions biome, BioProcess processData, CompoundBag bag, TweakedProcess origonalProcess,
+        SingleProcessStatistics? currentProcessStatistics)
+    {
+        // Can your cell do the process
+        bool canDoProcess = true;
+
+        // Throttle based on compounds in the environment
+        float environmentModifier = EnvironmentalAvailabilityThrottleFactor(processData, biome!, currentProcessStatistics);
+
+        if (environmentModifier <= MathUtils.EPSILON)
+            canDoProcess = false;
+
+        // Throttle based on compounds in the microbe
+        float availableInputsModifier = InputAvailabilityThrottleFactor(processData, biome!, currentProcessStatistics, bag, origonalProcess, environmentModifier);
+
+        // Throttle based on available space
+        float spaceConstraintModifier = OutputSpaceThrottleFactor(processData, biome!, currentProcessStatistics, bag, origonalProcess, environmentModifier, delta);
+
+        // Only carry out this process if you have all the required ingredients and enough space for the outputs
+        if (!canDoProcess)
+        {
+            if (currentProcessStatistics != null)
+                currentProcessStatistics.CurrentSpeed = 0;
+            return new TweakedProcess(origonalProcess.Process, 0.0f);
+        }
+
+        float totalModifier = origonalProcess.Rate * environmentModifier * Math.Min(availableInputsModifier, spaceConstraintModifier);
+
+        if (currentProcessStatistics != null)
+            currentProcessStatistics.CurrentSpeed = totalModifier;
+
+        totalModifier *= delta;
+
+        return new TweakedProcess(origonalProcess.Process, totalModifier);
     }
 
     public static float EnvironmentalAvailabilityThrottleFactor(BioProcess processData, BiomeConditions biome, SingleProcessStatistics? currentProcessStatistics)

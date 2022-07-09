@@ -113,9 +113,6 @@ public class ProcessSystem
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
         SingleProcessStatistics? currentProcessStatistics, float inverseDelta)
     {
-        // Can your cell do the process
-        bool canDoProcess = true;
-
         // Mark usefull compounds
         foreach (var entry in processData.Inputs)
         {
@@ -127,32 +124,8 @@ public class ProcessSystem
             bag.SetUseful(entry.Key);
         }
 
-        // Throttle based on compounds in the environment
-        float environmentModifier = MicrobeInternalCalculations.EnvironmentalAvailabilityThrottleFactor(processData, biome!, currentProcessStatistics);
-
-        if (environmentModifier <= MathUtils.EPSILON)
-            canDoProcess = false;
-
-        // Throttle based on compounds in the microbe
-        float availableInputsModifier = MicrobeInternalCalculations.InputAvailabilityThrottleFactor(processData, biome!, currentProcessStatistics, bag, process, environmentModifier);
-
-        // Throttle based on available space
-        float spaceConstraintModifier = MicrobeInternalCalculations.OutputSpaceThrottleFactor(processData, biome!, currentProcessStatistics, bag, process, environmentModifier, delta);
-
-        // Only carry out this process if you have all the required ingredients and enough space for the outputs
-        if (!canDoProcess)
-        {
-            if (currentProcessStatistics != null)
-                currentProcessStatistics.CurrentSpeed = 0;
-            return;
-        }
-
-        float totalModifier = process.Rate * environmentModifier * Math.Min(availableInputsModifier, spaceConstraintModifier);
-
-        if (currentProcessStatistics != null)
-            currentProcessStatistics.CurrentSpeed = totalModifier;
-
-        totalModifier *= delta;
+        TweakedProcess newProcess = MicrobeInternalCalculations.EnvironmentModifiedProcess( delta, biome!,  processData,  bag,  process,
+         currentProcessStatistics);
 
         // Consume inputs
         foreach (var entry in processData.Inputs)
@@ -160,7 +133,7 @@ public class ProcessSystem
             if (entry.Key.IsEnvironmental)
                 continue;
 
-            var inputRemoved = entry.Value * totalModifier;
+            var inputRemoved = entry.Value * newProcess.Rate;
 
             currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
 
@@ -174,7 +147,7 @@ public class ProcessSystem
             if (entry.Key.IsEnvironmental)
                 continue;
 
-            var outputGenerated = entry.Value * totalModifier;
+            var outputGenerated = entry.Value * newProcess.Rate;
 
             currentProcessStatistics?.AddOutputAmount(entry.Key, outputGenerated * inverseDelta);
 
