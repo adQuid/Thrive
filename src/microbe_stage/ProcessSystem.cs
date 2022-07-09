@@ -147,10 +147,12 @@ public class ProcessSystem
             return;
         }
 
-        float totalModifier = process.Rate * delta * environmentModifier * availableInputsModifier * spaceConstraintModifier;
+        float totalModifier = process.Rate * environmentModifier * availableInputsModifier * spaceConstraintModifier;
 
         if (currentProcessStatistics != null)
-            currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier * availableInputsModifier * spaceConstraintModifier;
+            currentProcessStatistics.CurrentSpeed = totalModifier;
+
+        totalModifier *= delta;
 
         // Consume inputs
         foreach (var entry in processData.Inputs)
