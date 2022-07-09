@@ -147,7 +147,7 @@ public class ProcessSystem
             return;
         }
 
-        float totalModifier = process.Rate * environmentModifier * availableInputsModifier * spaceConstraintModifier;
+        float totalModifier = process.Rate * environmentModifier * Math.Min(availableInputsModifier, spaceConstraintModifier);
 
         if (currentProcessStatistics != null)
             currentProcessStatistics.CurrentSpeed = totalModifier;
