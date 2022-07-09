@@ -7,7 +7,7 @@
 [node name="ProcessPanel" type="Popup"]
 process_priority = 5
 margin_right = 400.0
-rect_min_size = Vector2( 400, 600 )
+rect_min_size = Vector2( 400, 400 )
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
