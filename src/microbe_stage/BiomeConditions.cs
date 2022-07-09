@@ -62,7 +62,7 @@ public class BiomeConditions : ICloneable, ISaveLoadable
 
     public float GetDissolvedInBiome(Compound compound)
     {
-        if (Compounds.TryGetValue(compound, out var environmentalCompoundProperties))
+        if (!Compounds.TryGetValue(compound, out var environmentalCompoundProperties))
             return 0;
 
         return environmentalCompoundProperties.Dissolved;
