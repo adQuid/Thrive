@@ -135,8 +135,7 @@ public class ProcessSystem
         // fraction of the speed to allow the cell to still function well
         float spaceConstraintModifier = 1.0f;
 
-        // First check the environmental compounds so that we can build the right environment modifier for accurate
-        // check of normal compound input amounts
+        // Throttle based on compounds in the environment
         foreach (var entry in processData.Inputs)
         {
             // Set used compounds to be useful, we dont want to purge those
@@ -147,10 +146,9 @@ public class ProcessSystem
 
             var dissolved = GetDissolved(entry.Key);
 
-            // currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);
             currentProcessStatistics?.AddInputAmount(entry.Key, dissolved);
 
-            // do environmental modifier here, and save it for later
+            // Multiply envornment modifier by needed compound amounts, which compounds between different compounds
             environmentModifier *= dissolved / entry.Value;
 
             if (environmentModifier <= MathUtils.EPSILON)
@@ -160,7 +158,7 @@ public class ProcessSystem
         if (environmentModifier <= MathUtils.EPSILON)
             canDoProcess = false;
 
-        // Compute spaceConstraintModifier before updating the final use and input amounts
+        // Throttle based on compounds in the microbe
         foreach (var entry in processData.Inputs)
         {
             if (entry.Key.IsEnvironmental)
@@ -168,7 +166,6 @@ public class ProcessSystem
 
             var inputRemoved = entry.Value * process.Rate * environmentModifier;
 
-            // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
             // We don't multiply by delta here because we report the per-second values anyway. In the actual process
             // output numbers (computed after testing the speed), we need to multiply by inverse delta
             currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
@@ -179,7 +176,7 @@ public class ProcessSystem
             var availableAmount = bag.GetCompoundAmount(entry.Key);
             if (availableAmount < inputRemoved)
             {
-                bool canRun = false;
+                bool canRun = true;
 
                 if (availableAmount > MathUtils.EPSILON)
                 {
@@ -188,10 +185,12 @@ public class ProcessSystem
                     if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
                     {
                         spaceConstraintModifier = neededModifier;
-                        canRun = true;
-
                         // Due to rounding errors there can be very small disparity here between the amount available
                         // and what we will take with the modifiers. See the comment in outputs for more details
+                    }
+                    else
+                    {
+                        canRun = false;
                     }
                 }
 
@@ -203,6 +202,7 @@ public class ProcessSystem
             }
         }
 
+        // Throttle based on available space
         foreach (var entry in processData.Outputs)
         {
             // For now lets assume compounds we produce are also useful
@@ -210,7 +210,6 @@ public class ProcessSystem
 
             var outputAdded = entry.Value * process.Rate * environmentModifier;
 
-            // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
             currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded);
 
             outputAdded = outputAdded * delta * spaceConstraintModifier;
