@@ -488,6 +488,7 @@ public static class MicrobeInternalCalculations
 
                 if (!canRun)
                 {
+                    availableInputsModifier = 0.0f;
                     currentProcessStatistics?.AddLimitingFactor(entry.Key);
                 }
             }
@@ -533,6 +534,7 @@ public static class MicrobeInternalCalculations
 
                 if (!canRun)
                 {
+                    spaceConstraintModifier = 0.0f;
                     currentProcessStatistics?.AddCapacityProblem(entry.Key);
                 }
             }
