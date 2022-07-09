@@ -496,7 +496,7 @@ public static class MicrobeInternalCalculations
         return availableInputsModifier;
     }
 
-    public static float OutputSpaceThrottleFactor(BioProcess processData, BiomeConditions biome, SingleProcessStatistics? currentProcessStatistics, CompoundBag bag, TweakedProcess process, float environmentModifier)
+    public static float OutputSpaceThrottleFactor(BioProcess processData, BiomeConditions biome, SingleProcessStatistics? currentProcessStatistics, CompoundBag bag, TweakedProcess process, float environmentModifier, float delta)
     {
         float spaceConstraintModifier = 1.0f;
         foreach (var entry in processData.Outputs)
@@ -505,7 +505,7 @@ public static class MicrobeInternalCalculations
 
             currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded);
 
-            outputAdded = outputAdded * spaceConstraintModifier;
+            outputAdded = outputAdded * spaceConstraintModifier * delta;
 
             // if environmental right now this isn't released anywhere
             if (entry.Key.IsEnvironmental)

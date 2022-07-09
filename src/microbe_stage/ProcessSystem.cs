@@ -137,7 +137,7 @@ public class ProcessSystem
         float availableInputsModifier = MicrobeInternalCalculations.InputAvailabilityThrottleFactor(processData, biome!, currentProcessStatistics, bag, process, environmentModifier);
 
         // Throttle based on available space
-        float spaceConstraintModifier = MicrobeInternalCalculations.OutputSpaceThrottleFactor(processData, biome!, currentProcessStatistics, bag, process, environmentModifier);
+        float spaceConstraintModifier = MicrobeInternalCalculations.OutputSpaceThrottleFactor(processData, biome!, currentProcessStatistics, bag, process, environmentModifier, delta);
 
         // Only carry out this process if you have all the required ingredients and enough space for the outputs
         if (!canDoProcess)
