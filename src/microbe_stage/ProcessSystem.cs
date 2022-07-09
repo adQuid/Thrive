@@ -9,7 +9,6 @@ using Godot;
 /// </summary>
 public class ProcessSystem
 {
-    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private readonly List<Task> tasks = new();
 
     private readonly Node worldRoot;
