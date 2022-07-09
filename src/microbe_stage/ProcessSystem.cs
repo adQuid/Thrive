@@ -69,17 +69,6 @@ public class ProcessSystem
         biome = newBiome;
     }
 
-    /// <summary>
-    ///   Get the amount of environmental compound
-    /// </summary>
-    public float GetDissolved(Compound compound)
-    {
-        if (biome == null)
-            throw new InvalidOperationException("Biome needs to be set before getting dissolved compounds");
-
-        return biome.GetDissolvedInBiome(compound);
-    }
-
     private void ProcessNode(IProcessable? processor, float delta, float inverseDelta)
     {
         if (processor == null)
@@ -127,124 +116,28 @@ public class ProcessSystem
         // Can your cell do the process
         bool canDoProcess = true;
 
-        float environmentModifier = 1.0f;
-
-        // This modifies the process overall speed to allow really fast processes to run, for example if there are
-        // a ton of one organelle it might consume 100 glucose per go, which might be unlikely for the cell to have
-        // so if there is *some* but not enough space for results (and also inputs) this can run the process as
-        // fraction of the speed to allow the cell to still function well
-        float spaceConstraintModifier = 1.0f;
-
-        // Throttle based on compounds in the environment
+        // Mark usefull compounds
         foreach (var entry in processData.Inputs)
         {
-            // Set used compounds to be useful, we dont want to purge those
             bag.SetUseful(entry.Key);
-
-            if (!entry.Key.IsEnvironmental)
-                continue;
-
-            var dissolved = GetDissolved(entry.Key);
-
-            currentProcessStatistics?.AddInputAmount(entry.Key, dissolved);
-
-            // Multiply envornment modifier by needed compound amounts, which compounds between different compounds
-            environmentModifier *= dissolved / entry.Value;
-
-            if (environmentModifier <= MathUtils.EPSILON)
-                currentProcessStatistics?.AddLimitingFactor(entry.Key);
         }
+
+        foreach (var entry in processData.Outputs)
+        {
+            bag.SetUseful(entry.Key);
+        }
+
+        // Throttle based on compounds in the environment
+        float environmentModifier = MicrobeInternalCalculations.EnvironmentalAvailabilityThrottleFactor(processData, biome!, currentProcessStatistics);
 
         if (environmentModifier <= MathUtils.EPSILON)
             canDoProcess = false;
 
         // Throttle based on compounds in the microbe
-        foreach (var entry in processData.Inputs)
-        {
-            if (entry.Key.IsEnvironmental)
-                continue;
-
-            var inputRemoved = entry.Value * process.Rate * environmentModifier;
-
-            // We don't multiply by delta here because we report the per-second values anyway. In the actual process
-            // output numbers (computed after testing the speed), we need to multiply by inverse delta
-            currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
-
-            inputRemoved = inputRemoved * delta * spaceConstraintModifier;
-
-            // If not enough we can't run the process unless we can lower spaceConstraintModifier enough
-            var availableAmount = bag.GetCompoundAmount(entry.Key);
-            if (availableAmount < inputRemoved)
-            {
-                bool canRun = true;
-
-                if (availableAmount > MathUtils.EPSILON)
-                {
-                    var neededModifier = availableAmount / inputRemoved;
-
-                    if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
-                    {
-                        spaceConstraintModifier = neededModifier;
-                        // Due to rounding errors there can be very small disparity here between the amount available
-                        // and what we will take with the modifiers. See the comment in outputs for more details
-                    }
-                    else
-                    {
-                        canRun = false;
-                    }
-                }
-
-                if (!canRun)
-                {
-                    canDoProcess = false;
-                    currentProcessStatistics?.AddLimitingFactor(entry.Key);
-                }
-            }
-        }
+        float availableInputsModifier = MicrobeInternalCalculations.InputAvailabilityThrottleFactor(processData, biome!, currentProcessStatistics, bag, process, environmentModifier);
 
         // Throttle based on available space
-        foreach (var entry in processData.Outputs)
-        {
-            // For now lets assume compounds we produce are also useful
-            bag.SetUseful(entry.Key);
-
-            var outputAdded = entry.Value * process.Rate * environmentModifier;
-
-            currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded);
-
-            outputAdded = outputAdded * delta * spaceConstraintModifier;
-
-            // if environmental right now this isn't released anywhere
-            if (entry.Key.IsEnvironmental)
-                continue;
-
-            // If no space we can't do the process, if we can't adjust the space constraint modifier enough
-            var remainingSpace = bag.Capacity - bag.GetCompoundAmount(entry.Key);
-            if (outputAdded > remainingSpace)
-            {
-                bool canRun = false;
-
-                if (remainingSpace > MathUtils.EPSILON)
-                {
-                    var neededModifier = remainingSpace / outputAdded;
-
-                    if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
-                    {
-                        spaceConstraintModifier = neededModifier;
-                        canRun = true;
-                    }
-
-                    // With all of the modifiers we can lose a tiny bit of compound that won't fit due to rounding
-                    // errors, but we ignore that here
-                }
-
-                if (!canRun)
-                {
-                    canDoProcess = false;
-                    currentProcessStatistics?.AddCapacityProblem(entry.Key);
-                }
-            }
-        }
+        float spaceConstraintModifier = MicrobeInternalCalculations.OutputSpaceThrottleFactor(processData, biome!, currentProcessStatistics, bag, process, environmentModifier);
 
         // Only carry out this process if you have all the required ingredients and enough space for the outputs
         if (!canDoProcess)
@@ -254,10 +147,10 @@ public class ProcessSystem
             return;
         }
 
-        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier;
+        float totalModifier = process.Rate * delta * environmentModifier * availableInputsModifier * spaceConstraintModifier;
 
         if (currentProcessStatistics != null)
-            currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier;
+            currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier * availableInputsModifier * spaceConstraintModifier;
 
         // Consume inputs
         foreach (var entry in processData.Inputs)

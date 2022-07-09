@@ -428,6 +428,119 @@ public static class MicrobeInternalCalculations
         return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
     }
 
+    public static float EnvironmentalAvailabilityThrottleFactor(BioProcess processData, BiomeConditions biome, SingleProcessStatistics? currentProcessStatistics)
+    {
+        float environmentModifier = 1.0f;
+        foreach (var entry in processData.Inputs)
+        {
+            if (!entry.Key.IsEnvironmental)
+                continue;
+
+            currentProcessStatistics?.AddInputAmount(entry.Key, biome.GetDissolvedInBiome(entry.Key));
+
+            // Multiply envornment modifier by needed compound amounts, which compounds between different compounds
+            environmentModifier *= biome.GetDissolvedInBiome(entry.Key) / entry.Value;
+
+            if (environmentModifier <= MathUtils.EPSILON)
+                currentProcessStatistics?.AddLimitingFactor(entry.Key);
+        }
+
+        return environmentModifier;
+    }
+
+    public static float InputAvailabilityThrottleFactor(BioProcess processData, BiomeConditions biome, SingleProcessStatistics? currentProcessStatistics, CompoundBag bag, TweakedProcess process, float environmentModifier)
+    {
+        float availableInputsModifier = 1.0f;
+        foreach (var entry in processData.Inputs)
+        {
+            if (entry.Key.IsEnvironmental)
+                continue;
+
+            var inputRemoved = entry.Value * process.Rate * environmentModifier;
+
+            // We don't multiply by delta here because we report the per-second values anyway. In the actual process
+            // output numbers (computed after testing the speed), we need to multiply by inverse delta
+            currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
+
+            inputRemoved = inputRemoved;
+
+            // If not enough we can't run the process unless we can lower spaceConstraintModifier enough
+            var availableAmount = bag.GetCompoundAmount(entry.Key);
+            if (availableAmount < inputRemoved)
+            {
+                bool canRun = true;
+
+                if (availableAmount > MathUtils.EPSILON)
+                {
+                    var neededModifier = availableAmount / inputRemoved;
+
+                    if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
+                    {
+                        availableInputsModifier = neededModifier;
+                        // Due to rounding errors there can be very small disparity here between the amount available
+                        // and what we will take with the modifiers. See the comment in outputs for more details
+                    }
+                    else
+                    {
+                        canRun = false;
+                    }
+                }
+
+                if (!canRun)
+                {
+                    currentProcessStatistics?.AddLimitingFactor(entry.Key);
+                }
+            }
+        }
+
+        return availableInputsModifier;
+    }
+
+    public static float OutputSpaceThrottleFactor(BioProcess processData, BiomeConditions biome, SingleProcessStatistics? currentProcessStatistics, CompoundBag bag, TweakedProcess process, float environmentModifier)
+    {
+        float spaceConstraintModifier = 1.0f;
+        foreach (var entry in processData.Outputs)
+        {
+            var outputAdded = entry.Value * process.Rate * environmentModifier;
+
+            currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded);
+
+            outputAdded = outputAdded * spaceConstraintModifier;
+
+            // if environmental right now this isn't released anywhere
+            if (entry.Key.IsEnvironmental)
+                continue;
+
+            // If no space we can't do the process, if we can't adjust the space constraint modifier enough
+            var remainingSpace = bag.Capacity - bag.GetCompoundAmount(entry.Key);
+            if (outputAdded > remainingSpace)
+            {
+                bool canRun = false;
+
+                if (remainingSpace > MathUtils.EPSILON)
+                {
+                    var neededModifier = remainingSpace / outputAdded;
+
+                    if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
+                    {
+                        spaceConstraintModifier = neededModifier;
+                        canRun = true;
+                    }
+
+                    // With all of the modifiers we can lose a tiny bit of compound that won't fit due to rounding
+                    // errors, but we ignore that here
+                }
+
+                if (!canRun)
+                {
+                    currentProcessStatistics?.AddCapacityProblem(entry.Key);
+                }
+            }
+        }
+
+        return spaceConstraintModifier;
+    }
+
     private static float MovementForce(float movementForce, float directionFactor)
     {
         if (directionFactor < 0)
