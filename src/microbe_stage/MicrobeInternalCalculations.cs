@@ -282,7 +282,7 @@ public static class MicrobeInternalCalculations
     {
         var organellesList = organelles.ToList();
 
-        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
+        var maximumMovementDirection = MaximumSpeedDirection(organellesList);
         return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, worldSettings, isPlayer);
     }
 
@@ -314,7 +314,7 @@ public static class MicrobeInternalCalculations
         {
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
-                var processData = MicrobeInternalCalculations.CalculateProcessMaximumSpeed(process, biome);
+                var processData = CalculateProcessMaximumSpeed(process, biome);
 
                 if (processData.WritableInputs.TryGetValue(Compound.ByName("atp"), out var amount))
                 {
@@ -336,7 +336,7 @@ public static class MicrobeInternalCalculations
             {
                 var amount = Constants.FLAGELLA_ENERGY_COST;
 
-                var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(organelle);
+                var organelleDirection = GetOrganelleDirection(organelle);
                 if (organelleDirection.Dot(onlyMovementInDirection) > 0)
                 {
                     movementATPConsumption += amount;
@@ -359,12 +359,12 @@ public static class MicrobeInternalCalculations
         }
 
         // Add movement consumption together
-        result.BaseMovement = MicrobeInternalCalculations.MovementCost(organelles.Select(x => x.Definition), membrane);
+        result.BaseMovement = MovementCost(organelles.Select(x => x.Definition), membrane);
         result.AddConsumption("baseMovement", result.BaseMovement);
         var totalMovementConsumption = movementATPConsumption + result.BaseMovement;
 
         // Add osmoregulation
-        result.Osmoregulation = MicrobeInternalCalculations.OsmoregulationCost(organelles.Select(x => x.Definition), membrane);
+        result.Osmoregulation = OsmoregulationCost(organelles.Select(x => x.Definition), membrane);
 
         if (isPlayer && worldSettings != null)
         {
