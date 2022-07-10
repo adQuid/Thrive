@@ -217,16 +217,13 @@ public static class MicrobeInternalCalculations
         float speedFactor = 1.0f;
         float efficiency = 1.0f;
 
+        // Environmental compound that can limit the rate
+
+        var availableInEnvironment = EnvironmentalAvailabilityThrottleFactor(process.Process, biome, null);
+
         // Environmental inputs need to be processed first
         foreach (var input in process.Process.Inputs)
         {
-            if (!input.Key.IsEnvironmental)
-                continue;
-
-            // Environmental compound that can limit the rate
-
-            var availableInEnvironment = biome.GetDissolvedInBiome(input.Key);
-
             var availableRate = availableInEnvironment / input.Value;
 
             result.AvailableAmounts[input.Key] = availableInEnvironment;
