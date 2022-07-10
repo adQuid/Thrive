@@ -404,7 +404,7 @@ public static class MicrobeInternalCalculations
         {
             foreach (var process in organelle.RunnableProcesses)
             {
-                var speedAdjusted = MicrobeInternalCalculations.CalculateProcessMaximumSpeed(process, biome);
+                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome);
 
                 foreach (var input in speedAdjusted.Inputs)
                 {
