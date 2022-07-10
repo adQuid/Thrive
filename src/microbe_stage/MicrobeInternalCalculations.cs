@@ -226,7 +226,14 @@ public static class MicrobeInternalCalculations
         {
             var availableRate = availableInEnvironment / input.Value;
 
-            result.AvailableAmounts[input.Key] = availableInEnvironment;
+            if (!input.Key.IsEnvironmental)
+            {
+                result.AvailableAmounts[input.Key] = availableInEnvironment;
+            }
+            else
+            {
+                result.AvailableAmounts[input.Key] = biome.Compounds[input.Key].Dissolved;
+            }
 
             efficiency *= availableInEnvironment;
 
@@ -243,23 +250,11 @@ public static class MicrobeInternalCalculations
         speedFactor *= process.Rate;
 
         // Note that we don't consider storage constraints here so we don't use spaceConstraintModifier calculations
-
-        // So that the speed factor is available here
-        foreach (var entry in process.Process.Inputs)
-        {
-            if (entry.Key.IsEnvironmental)
-                continue;
-
-            // Normal, cloud input
-
-            result.WritableInputs.Add(entry.Key, entry.Value * speedFactor);
-        }
-
         foreach (var entry in process.Process.Outputs)
         {
-            var amount = entry.Value * speedFactor;
+            var amount = entry.Value;
 
-            result.WritableOutputs[entry.Key] = amount;
+            result.WritableOutputs[entry.Key] = amount * availableInEnvironment;
 
             if (amount <= 0)
                 result.WritableLimitingCompounds.Add(entry.Key);
