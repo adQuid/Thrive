@@ -84,15 +84,14 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
                         Invoke.Instance.Perform(
                             () => target.AddATPBlocker(Constants.GLYCOTOXY_DAMAGE * Amount));
                     }
-
                 }
             }
-        }
 
-        if (FadeTimeRemaining == null)
-        {
-            // We should probably get some *POP* effect here.
-            BeginDestroy();
+            if (FadeTimeRemaining == null)
+            {
+                // We should probably get some *POP* effect here.
+                BeginDestroy();
+            }
         }
     }
 
