@@ -55,7 +55,7 @@ public class ProcessPanel : CustomDialog
             processList.ProcessesToShow = null;
         }
 
-        atpLabel.Text = "Using "+Microbe.OsmoregulationCost(delta)+" ATP for osmoregulation, 0 ATP for movement";
+        atpLabel.Text = "Using " + Microbe.OsmoregulationCost(1.0f) + " ATP for osmoregulation, 0 ATP for movement";
     }
 
     protected override void OnHidden()
