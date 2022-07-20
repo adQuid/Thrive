@@ -7,6 +7,9 @@ using Godot;
 public class ProcessPanel : CustomDialog
 {
     [Export]
+    public NodePath ATPLabelPath = null!;
+
+    [Export]
     public NodePath ProcessListPath = null!;
 
     [Export]
@@ -14,6 +17,8 @@ public class ProcessPanel : CustomDialog
 
     [Export]
     public NodePath CloseButtonContainerPath = null!;
+
+    private Label atpLabel = null!;
 
     private ProcessList processList = null!;
 
@@ -27,6 +32,7 @@ public class ProcessPanel : CustomDialog
     public override void _Ready()
     {
         processList = GetNode<ProcessList>(ProcessListPath);
+        atpLabel = GetNode<Label>(ATPLabelPath);
         closeButtonContainer = GetNode<Container>(CloseButtonContainerPath);
 
         closeButtonContainer.Visible = ShowCustomCloseButton;
@@ -46,6 +52,8 @@ public class ProcessPanel : CustomDialog
         {
             processList.ProcessesToShow = null;
         }
+
+        atpLabel.Text = "Using 1 ATP for osmoregulation, 0 ATP for movement";
     }
 
     protected override void OnHidden()
