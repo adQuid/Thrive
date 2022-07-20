@@ -497,6 +497,11 @@ public partial class Microbe
         return result;
     }
 
+    public float OsmoregulationCost(float delta)
+    {
+        return MicrobeInternalCalculations.OsmoregulationCost(organelles.Select(x => x.Definition).ToList(), CellTypeProperties.MembraneType) * delta;
+    }
+
     private void HandleCompoundAbsorbing(float delta)
     {
         if (Dead)
@@ -832,7 +837,7 @@ public partial class Microbe
 
     private void HandleOsmoregulation(float delta)
     {
-        var osmoregulationCost = MicrobeInternalCalculations.OsmoregulationCost(organelles.Select(x => x.Definition).ToList(), CellTypeProperties.MembraneType) * delta;
+        var osmoregulationCost = OsmoregulationCost(delta);
 
         // 5% osmoregulation bonus per colony member
         if (Colony != null)

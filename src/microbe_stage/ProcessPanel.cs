@@ -27,6 +27,8 @@ public class ProcessPanel : CustomDialog
     [Signal]
     public delegate void OnClosed();
 
+    public Microbe Microbe { get; set; }
+
     public ProcessStatistics? ShownData { get; set; }
 
     public override void _Ready()
@@ -53,7 +55,7 @@ public class ProcessPanel : CustomDialog
             processList.ProcessesToShow = null;
         }
 
-        atpLabel.Text = "Using 1 ATP for osmoregulation, 0 ATP for movement";
+        atpLabel.Text = "Using "+Microbe.OsmoregulationCost(delta)+" ATP for osmoregulation, 0 ATP for movement";
     }
 
     protected override void OnHidden()

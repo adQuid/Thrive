@@ -1229,6 +1229,7 @@ public class MicrobeHUD : Control
         }
         else
         {
+            processPanel.Microbe = stage!.Player;
             processPanel.ShownData = stage.Player.ProcessStatistics;
         }
     }
