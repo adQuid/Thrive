@@ -52,7 +52,7 @@ public class ProcessPanel : CustomDialog
         {
             // Update the list object
             processList.ProcessesToShow = ShownData.Processes.Select(p => 
-                (IProcessDisplayInfo)new StaticProcessDisplayInfo(p.Value.Name, MicrobeInternalCalculations.EnvironmentModifiedProcess(1.0f, Biome, p.Key.Process, Microbe.Compounds, p.Key, null)))
+                (IProcessDisplayInfo)new StaticProcessDisplayInfo(p.Value.Name, ShownData.ProcessCounts[p.Key], MicrobeInternalCalculations.EnvironmentModifiedProcess(p.Key.Rate, Biome, p.Key.Process, Microbe.Compounds, p.Key, null)))
                 .ToList();
         }
         else
@@ -60,8 +60,13 @@ public class ProcessPanel : CustomDialog
             processList.ProcessesToShow = null;
         }
 
-        atpLabel.Text = "Using " + Mathf.Round(100 * Microbe.OsmoregulationCost(1.0f)) / 100 
-            + " ATP for osmoregulation, " + (Microbe.MovementDirection.Length() > 0.0f ? Mathf.Round(100 * Microbe.MovementCost()) / 100 : 0.0f) + " ATP for movement";
+        var osmoregulationCostDisplay = Mathf.Round(100 * Microbe.OsmoregulationCost(1.0f)) / 100;
+        var movementCostDisplay = (Microbe.MovementDirection.Length() > 0.0f ? Mathf.Round(100 * Microbe.MovementCost()) / 100 : 0.0f);
+
+        atpLabel.Text = "Using " + osmoregulationCostDisplay
+            + " ATP for osmoregulation\n"+
+            "Using " + movementCostDisplay + " ATP for movement\n"+
+            "Total: "+ (osmoregulationCostDisplay + movementCostDisplay);
     }
 
     protected override void OnHidden()
@@ -86,10 +91,10 @@ public class StaticProcessDisplayInfo : IProcessDisplayInfo
     float CurrentSpeed;
     List<Compound>? LimitingCompounds;
 
-    public StaticProcessDisplayInfo(string Name, TweakedProcess process)
+    public StaticProcessDisplayInfo(string Name, float count, TweakedProcess process)
     {
         this.Name = Name;
-        Inputs = process.Process.Inputs.Select(pair => new KeyValuePair<Compound, float>(pair.Key, pair.Key.IsEnvironmental ? pair.Value : pair.Value));
+        Inputs = process.Process.Inputs.Select(pair => new KeyValuePair<Compound, float>(pair.Key, pair.Key.IsEnvironmental ? pair.Value : pair.Value * count));
 
         var temp = process.Process.Inputs.Where(x => x.Key.IsEnvironmental);
         FullSpeedRequiredEnvironmentalInputs = new Dictionary<Compound, float>();
@@ -99,7 +104,7 @@ public class StaticProcessDisplayInfo : IProcessDisplayInfo
             //FullSpeedRequiredEnvironmentalInputs[pair.Key] = pair.Value;
         }
 
-        Outputs = process.Process.Outputs.Select(pair => new KeyValuePair<Compound, float>(pair.Key, pair.Value));
+        Outputs = process.Process.Outputs.Select(pair => new KeyValuePair<Compound, float>(pair.Key, pair.Value * count));
         CurrentSpeed = process.Rate;
         LimitingCompounds = null;
     }
