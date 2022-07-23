@@ -848,7 +848,7 @@ public partial class Microbe
         OnReproductionStatus?.Invoke(this, false);
     }
 
-    private void HandleOsmoregulation(float delta)
+    public void HandleOsmoregulation(float delta)
     {
         Compounds.TakeCompound(atp, OsmoregulationCost(delta));
     }
