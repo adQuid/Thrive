@@ -32,7 +32,7 @@ public class ProcessPanel : CustomDialog
 
     public Microbe Microbe { get; set; }
 
-    public ProcessStatistics? ShownData { get; set; }
+    public List<TweakedProcess>? ShownData { get; set; }
 
     public override void _Ready()
     {
@@ -51,8 +51,8 @@ public class ProcessPanel : CustomDialog
         if (ShownData != null)
         {
             // Update the list object
-            processList.ProcessesToShow = ShownData.Processes.Select(p => 
-                (IProcessDisplayInfo)new StaticProcessDisplayInfo(p.Value.Name, ShownData.ProcessCounts[p.Key], MicrobeInternalCalculations.EnvironmentModifiedProcess(p.Key.Rate, Biome, p.Key.Process, Microbe.Compounds, p.Key, null)))
+            processList.ProcessesToShow = ShownData.Select(p => 
+                (IProcessDisplayInfo)new StaticProcessDisplayInfo(p.Process.Name, 1.0f, MicrobeInternalCalculations.EnvironmentModifiedProcess(p.Rate, Biome, p.Process, Microbe.Compounds, p, null)))
                 .ToList();
         }
         else
@@ -61,7 +61,7 @@ public class ProcessPanel : CustomDialog
         }
 
         var osmoregulationCostDisplay = Mathf.Round(100 * Microbe.OsmoregulationCost(1.0f)) / 100;
-        var movementCostDisplay = (Microbe.MovementDirection.Length() > 0.0f ? Mathf.Round(100 * Microbe.MovementCost()) / 100 : 0.0f);
+        var movementCostDisplay = Microbe.MovementDirection.Length() > 0.0f ? Mathf.Round(100 * Microbe.MovementCost()) / 100 : 0.0f;
 
         atpLabel.Text = "Using " + osmoregulationCostDisplay
             + " ATP for osmoregulation\n"+
