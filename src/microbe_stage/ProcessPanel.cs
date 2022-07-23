@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -27,6 +28,8 @@ public class ProcessPanel : CustomDialog
     [Signal]
     public delegate void OnClosed();
 
+    public BiomeConditions Biome { get; set; }
+
     public Microbe Microbe { get; set; }
 
     public ProcessStatistics? ShownData { get; set; }
@@ -48,14 +51,16 @@ public class ProcessPanel : CustomDialog
         if (ShownData != null)
         {
             // Update the list object
-            processList.ProcessesToShow = ShownData.Processes.Select(p => p.Value.ComputeAverageValues()).ToList();
+            processList.ProcessesToShow = ShownData.Processes.Select(p => 
+                (IProcessDisplayInfo)new StaticProcessDisplayInfo(p.Value.Name, MicrobeInternalCalculations.EnvironmentModifiedProcess(1.0f, Biome, p.Key.Process, Microbe.Compounds, p.Key, null)))
+                .ToList();
         }
         else
         {
             processList.ProcessesToShow = null;
         }
 
-        atpLabel.Text = "Using " + Microbe.OsmoregulationCost(1.0f) + " ATP for osmoregulation, 0 ATP for movement";
+        atpLabel.Text = "Using " + Mathf.Round(100 * Microbe.OsmoregulationCost(1.0f)) / 100 + " ATP for osmoregulation, 0 ATP for movement";
     }
 
     protected override void OnHidden()
@@ -69,4 +74,46 @@ public class ProcessPanel : CustomDialog
         GUICommon.Instance.PlayButtonPressSound();
         CustomHide();
     }
+}
+
+public class StaticProcessDisplayInfo : IProcessDisplayInfo
+{
+    string Name;
+    IEnumerable<KeyValuePair<Compound, float>> Inputs;
+    Dictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs;
+    IEnumerable<KeyValuePair<Compound, float>> Outputs;
+    float CurrentSpeed;
+    List<Compound>? LimitingCompounds;
+
+    public StaticProcessDisplayInfo(string Name, TweakedProcess process)
+    {
+        this.Name = Name;
+        Inputs = process.Process.Inputs.Select(pair => new KeyValuePair<Compound, float>(pair.Key, pair.Key.IsEnvironmental ? pair.Value : pair.Value * process.Rate));
+
+        var temp = process.Process.Inputs.Where(x => x.Key.IsEnvironmental);
+        FullSpeedRequiredEnvironmentalInputs = new Dictionary<Compound, float>();
+
+        foreach (var pair in temp)
+        {
+            //FullSpeedRequiredEnvironmentalInputs[pair.Key] = pair.Value;
+        }
+
+        Outputs = process.Process.Outputs.Select(pair => new KeyValuePair<Compound, float>(pair.Key, pair.Value * process.Rate));
+        CurrentSpeed = process.Rate;
+        LimitingCompounds = null;
+    }
+
+    string IProcessDisplayInfo.Name => Name;
+
+    IEnumerable<KeyValuePair<Compound, float>> IProcessDisplayInfo.Inputs => Inputs.Where(x => !x.Key.IsEnvironmental);
+
+    IEnumerable<KeyValuePair<Compound, float>> IProcessDisplayInfo.EnvironmentalInputs => Inputs.Where(x => x.Key.IsEnvironmental);
+
+    IReadOnlyDictionary<Compound, float> IProcessDisplayInfo.FullSpeedRequiredEnvironmentalInputs => FullSpeedRequiredEnvironmentalInputs;
+
+    IEnumerable<KeyValuePair<Compound, float>> IProcessDisplayInfo.Outputs => Outputs;
+
+    float IProcessDisplayInfo.CurrentSpeed => CurrentSpeed;
+
+    IReadOnlyList<Compound>? IProcessDisplayInfo.LimitingCompounds => LimitingCompounds;
 }

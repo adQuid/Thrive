@@ -1229,6 +1229,7 @@ public class MicrobeHUD : Control
         }
         else
         {
+            processPanel.Biome = stage!.GameWorld.Map.CurrentPatch.Biome;
             processPanel.Microbe = stage!.Player;
             processPanel.ShownData = stage.Player.ProcessStatistics;
         }
