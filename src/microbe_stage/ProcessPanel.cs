@@ -61,7 +61,7 @@ public class ProcessPanel : CustomDialog
         }
 
         atpLabel.Text = "Using " + Mathf.Round(100 * Microbe.OsmoregulationCost(1.0f)) / 100 
-            + " ATP for osmoregulation, " + (Microbe.MovementFactor > 0.0f ? Mathf.Round(100 * Microbe.MovementCost()) / 100 : 0.0f) + " ATP for movement";
+            + " ATP for osmoregulation, " + (Microbe.MovementDirection.Length() > 0.0f ? Mathf.Round(100 * Microbe.MovementCost()) / 100 : 0.0f) + " ATP for movement";
     }
 
     protected override void OnHidden()
