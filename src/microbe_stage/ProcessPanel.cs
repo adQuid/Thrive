@@ -89,7 +89,7 @@ public class StaticProcessDisplayInfo : IProcessDisplayInfo
     public StaticProcessDisplayInfo(string Name, TweakedProcess process)
     {
         this.Name = Name;
-        Inputs = process.Process.Inputs.Select(pair => new KeyValuePair<Compound, float>(pair.Key, pair.Key.IsEnvironmental ? pair.Value : pair.Value * process.Rate));
+        Inputs = process.Process.Inputs.Select(pair => new KeyValuePair<Compound, float>(pair.Key, pair.Key.IsEnvironmental ? pair.Value : pair.Value));
 
         var temp = process.Process.Inputs.Where(x => x.Key.IsEnvironmental);
         FullSpeedRequiredEnvironmentalInputs = new Dictionary<Compound, float>();
@@ -99,7 +99,7 @@ public class StaticProcessDisplayInfo : IProcessDisplayInfo
             //FullSpeedRequiredEnvironmentalInputs[pair.Key] = pair.Value;
         }
 
-        Outputs = process.Process.Outputs.Select(pair => new KeyValuePair<Compound, float>(pair.Key, pair.Value * process.Rate));
+        Outputs = process.Process.Outputs.Select(pair => new KeyValuePair<Compound, float>(pair.Key, pair.Value));
         CurrentSpeed = process.Rate;
         LimitingCompounds = null;
     }
