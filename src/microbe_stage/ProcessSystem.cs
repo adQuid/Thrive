@@ -124,7 +124,7 @@ public class ProcessSystem
             bag.SetUseful(entry.Key);
         }
 
-        TweakedProcess newProcess = MicrobeInternalCalculations.EnvironmentModifiedProcess( delta, biome!,  processData,  bag,  process,
+        TweakedProcess newProcess = MicrobeInternalCalculations.EnvironmentModifiedProcess(delta, biome!,  processData,  bag,  process,
          currentProcessStatistics);
 
         // Consume inputs
