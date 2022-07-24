@@ -491,8 +491,6 @@ public static class MicrobeInternalCalculations
             // output numbers (computed after testing the speed), we need to multiply by inverse delta
             currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
 
-            inputRemoved = inputRemoved;
-
             // If not enough we can't run the process unless we can lower spaceConstraintModifier enough
             var availableAmount = bag.GetCompoundAmount(entry.Key);
             if (availableAmount < inputRemoved)
@@ -505,7 +503,7 @@ public static class MicrobeInternalCalculations
 
                     if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
                     {
-                        availableInputsModifier = neededModifier;
+                        availableInputsModifier = Math.Min(neededModifier, availableInputsModifier);
                         // Due to rounding errors there can be very small disparity here between the amount available
                         // and what we will take with the modifiers. See the comment in outputs for more details
                     }
@@ -513,6 +511,10 @@ public static class MicrobeInternalCalculations
                     {
                         canRun = false;
                     }
+                }
+                else
+                {
+                    canRun = false;
                 }
 
                 if (!canRun)

@@ -923,14 +923,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     }
 
     // Computes what movement would cost, reguardless of if the microbe is actually moving right now.
-    public float MovementCost()
+    public float MovementCost(float delta)
     {
-        return MicrobeInternalCalculations.MovementCost(organelles.Organelles.Select(x => x.Definition), Membrane.Type);
+        return delta * MicrobeInternalCalculations.MovementCost(organelles.Organelles.Select(x => x.Definition), Membrane.Type);
     }
 
     private Vector3 DoBaseMovementForce(float delta)
     {
-        var cost = MovementCost() * delta;
+        var cost = MovementCost(delta);
 
         var got = Compounds.TakeCompound(atp, cost);
 
