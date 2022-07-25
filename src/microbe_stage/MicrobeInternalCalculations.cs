@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -178,6 +179,399 @@ public static class MicrobeInternalCalculations
     public static float MovementCost(IEnumerable<OrganelleDefinition> organelles, MembraneType membrane)
     {
         return Constants.BASE_MOVEMENT_ATP_COST * organelles.Select(x => x.HexCount).Sum() + organelles.Select(x => x.Mass).Sum();
+    }
+
+    /// <summary>
+    ///   Computes the process efficiency numbers for given organelles
+    ///   given the active biome data.
+    /// </summary>
+    public static Dictionary<string, OrganelleEfficiency> ComputeOrganelleProcessEfficiencies(
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome)
+    {
+        var result = new Dictionary<string, OrganelleEfficiency>();
+
+        foreach (var organelle in organelles)
+        {
+            var info = new OrganelleEfficiency(organelle);
+
+            foreach (var process in organelle.RunnableProcesses)
+            {
+                info.Processes.Add(CalculateProcessMaximumSpeed(process, biome));
+            }
+
+            result[organelle.InternalName] = info;
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    ///   Calculates the maximum speed a process can run at in a biome
+    ///   based on the environmental compounds.
+    /// </summary>
+    public static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
+        BiomeConditions biome)
+    {
+        var result = new ProcessSpeedInformation(process.Process);
+
+        float speedFactor = 1.0f;
+        float efficiency = 1.0f;
+
+        // Environmental compound that can limit the rate
+
+        var availableInEnvironment = EnvironmentalAvailabilityThrottleFactor(process.Process, biome, null);
+
+        // Environmental inputs need to be processed first
+        foreach (var input in process.Process.Inputs)
+        {
+            var availableRate = availableInEnvironment / input.Value;
+
+            if (!input.Key.IsEnvironmental)
+            {
+                result.AvailableAmounts[input.Key] = availableInEnvironment;
+            }
+            else
+            {
+                result.AvailableAmounts[input.Key] = biome.Compounds[input.Key].Dissolved;
+            }
+
+            efficiency *= availableInEnvironment;
+
+            // More than needed environment value boosts the effectiveness
+            result.AvailableRates[input.Key] = availableRate;
+
+            speedFactor *= availableRate;
+
+            result.WritableInputs[input.Key] = input.Value;
+        }
+
+        result.Efficiency = efficiency;
+
+        speedFactor *= process.Rate;
+
+        // Note that we don't consider storage constraints here so we don't use spaceConstraintModifier calculations
+        foreach (var entry in process.Process.Outputs)
+        {
+            var amount = entry.Value;
+
+            result.WritableOutputs[entry.Key] = amount * availableInEnvironment;
+
+            if (amount <= 0)
+                result.WritableLimitingCompounds.Add(entry.Key);
+        }
+
+        result.CurrentSpeed = speedFactor;
+
+        return result;
+    }
+
+    /// <summary>
+    ///   Computes the energy balance for the given organelles in biome
+    /// </summary>
+    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
+        BiomeConditions biome, MembraneType membrane, WorldGenerationSettings? worldSettings = null,
+        bool isPlayer = false)
+    {
+        var organellesList = organelles.ToList();
+
+        var maximumMovementDirection = MaximumSpeedDirection(organellesList);
+        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, worldSettings, isPlayer);
+    }
+
+    /// <summary>
+    ///   Computes the energy balance for the given organelles in biome
+    /// </summary>
+    /// <param name="organelles">The organelles to compute the balance with</param>
+    /// <param name="biome">The conditions the organelles are simulated in</param>
+    /// <param name="membrane">The membrane type to adjust the energy balance with</param>
+    /// <param name="onlyMovementInDirection">
+    ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
+    ///   movement organelles are assumed to be inactive in the balance calculation.
+    /// </param>
+    /// <param name="worldSettings">The wprld generation settings for this game</param>
+    /// <param name="isPlayer">Whether this microbe is the player cell</param>
+    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
+        BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
+        WorldGenerationSettings? worldSettings, bool isPlayer = false)
+    {
+        var result = new EnergyBalanceInfo();
+
+        float processATPProduction = 0.0f;
+        float processATPConsumption = 0.0f;
+        float movementATPConsumption = 0.0f;
+
+        int hexCount = 0;
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var process in organelle.Definition.RunnableProcesses)
+            {
+                var processData = CalculateProcessMaximumSpeed(process, biome);
+
+                if (processData.WritableInputs.TryGetValue(Compound.ByName("atp"), out var amount))
+                {
+                    processATPConsumption += amount;
+
+                    result.AddConsumption(organelle.Definition.InternalName, amount);
+                }
+
+                if (processData.WritableOutputs.TryGetValue(Compound.ByName("atp"), out amount))
+                {
+                    processATPProduction += amount;
+
+                    result.AddProduction(organelle.Definition.InternalName, amount);
+                }
+            }
+
+            // Take special cell components that take energy into account
+            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
+            {
+                var amount = Constants.FLAGELLA_ENERGY_COST;
+
+                var organelleDirection = GetOrganelleDirection(organelle);
+                if (organelleDirection.Dot(onlyMovementInDirection) > 0)
+                {
+                    movementATPConsumption += amount;
+                    result.Flagella += amount;
+                    result.AddConsumption(organelle.Definition.InternalName, amount);
+                }
+            }
+
+            if (organelle.Definition.HasComponentFactory<CiliaComponentFactory>())
+            {
+                var amount = Constants.CILIA_ENERGY_COST;
+
+                movementATPConsumption += amount;
+                result.Cilia += amount;
+                result.AddConsumption(organelle.Definition.InternalName, amount);
+            }
+
+            // Store hex count
+            hexCount += organelle.Definition.HexCount;
+        }
+
+        // Add movement consumption together
+        result.BaseMovement = MovementCost(organelles.Select(x => x.Definition), membrane);
+        result.AddConsumption("baseMovement", result.BaseMovement);
+        var totalMovementConsumption = movementATPConsumption + result.BaseMovement;
+
+        // Add osmoregulation
+        result.Osmoregulation = OsmoregulationCost(organelles.Select(x => x.Definition), membrane);
+
+        if (isPlayer && worldSettings != null)
+        {
+            result.Osmoregulation *= (float)worldSettings.OsmoregulationMultiplier;
+        }
+
+        result.AddConsumption("osmoregulation", result.Osmoregulation);
+
+        // Compute totals
+        result.TotalProduction = processATPProduction;
+        result.TotalConsumptionStationary = processATPConsumption + result.Osmoregulation;
+        result.TotalConsumption = result.TotalConsumptionStationary + totalMovementConsumption;
+
+        result.FinalBalance = result.TotalProduction - result.TotalConsumption;
+        result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
+
+        return result;
+    }
+
+    /// <summary>
+    ///   Computes the compound balances for given organelle list in a patch
+    /// </summary>
+    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome)
+    {
+        var result = new Dictionary<Compound, CompoundBalance>();
+
+        void MakeSureResultExists(Compound compound)
+        {
+            if (!result.ContainsKey(compound))
+            {
+                result[compound] = new CompoundBalance();
+            }
+        }
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var process in organelle.RunnableProcesses)
+            {
+                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome);
+
+                foreach (var input in speedAdjusted.Inputs)
+                {
+                    MakeSureResultExists(input.Key);
+                    result[input.Key].AddConsumption(organelle.InternalName, input.Value);
+                }
+
+                foreach (var output in speedAdjusted.Outputs)
+                {
+                    MakeSureResultExists(output.Key);
+                    result[output.Key].AddProduction(organelle.InternalName, output.Value);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
+        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome)
+    {
+        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
+    }
+
+    public static TweakedProcess EnvironmentModifiedProcess(float delta, BiomeConditions biome, BioProcess processData, CompoundBag bag, TweakedProcess origonalProcess,
+        SingleProcessStatistics? currentProcessStatistics)
+    {
+        // Can your cell do the process
+        bool canDoProcess = true;
+
+        // Throttle based on compounds in the environment
+        float environmentModifier = EnvironmentalAvailabilityThrottleFactor(processData, biome!, currentProcessStatistics);
+
+        if (environmentModifier <= MathUtils.EPSILON)
+            canDoProcess = false;
+
+        // Throttle based on compounds in the microbe
+        float availableInputsModifier = InputAvailabilityThrottleFactor(processData, biome!, currentProcessStatistics, bag, origonalProcess, environmentModifier);
+
+        // Throttle based on available space
+        float spaceConstraintModifier = OutputSpaceThrottleFactor(processData, biome!, currentProcessStatistics, bag, origonalProcess, environmentModifier, delta);
+
+        // Only carry out this process if you have all the required ingredients and enough space for the outputs
+        if (!canDoProcess)
+        {
+            if (currentProcessStatistics != null)
+                currentProcessStatistics.CurrentSpeed = 0;
+            return new TweakedProcess(origonalProcess.Process, 0.0f);
+        }
+
+        float totalModifier = origonalProcess.Rate * environmentModifier * Math.Min(availableInputsModifier, spaceConstraintModifier);
+
+        if (currentProcessStatistics != null)
+            currentProcessStatistics.CurrentSpeed = totalModifier;
+
+        totalModifier *= delta;
+
+        return new TweakedProcess(origonalProcess.Process, totalModifier);
+    }
+
+    public static float EnvironmentalAvailabilityThrottleFactor(BioProcess processData, BiomeConditions biome, SingleProcessStatistics? currentProcessStatistics)
+    {
+        float environmentModifier = 1.0f;
+        foreach (var entry in processData.Inputs)
+        {
+            if (!entry.Key.IsEnvironmental)
+                continue;
+
+            currentProcessStatistics?.AddInputAmount(entry.Key, biome.GetDissolvedInBiome(entry.Key));
+
+            // Multiply envornment modifier by needed compound amounts, which compounds between different compounds
+            environmentModifier *= biome.GetDissolvedInBiome(entry.Key) / entry.Value;
+
+            if (environmentModifier <= MathUtils.EPSILON)
+                currentProcessStatistics?.AddLimitingFactor(entry.Key);
+        }
+
+        return environmentModifier;
+    }
+
+    public static float InputAvailabilityThrottleFactor(BioProcess processData, BiomeConditions biome, SingleProcessStatistics? currentProcessStatistics, CompoundBag bag, TweakedProcess process, float environmentModifier)
+    {
+        float availableInputsModifier = 1.0f;
+        foreach (var entry in processData.Inputs)
+        {
+            if (entry.Key.IsEnvironmental)
+                continue;
+
+            var inputRemoved = entry.Value * process.Rate * environmentModifier;
+
+            // We don't multiply by delta here because we report the per-second values anyway. In the actual process
+            // output numbers (computed after testing the speed), we need to multiply by inverse delta
+            currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
+
+            // If not enough we can't run the process unless we can lower spaceConstraintModifier enough
+            var availableAmount = bag.GetCompoundAmount(entry.Key);
+            if (availableAmount < inputRemoved)
+            {
+                bool canRun = true;
+
+                if (availableAmount > MathUtils.EPSILON)
+                {
+                    var neededModifier = availableAmount / inputRemoved;
+
+                    if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
+                    {
+                        availableInputsModifier = Math.Min(neededModifier, availableInputsModifier);
+                        // Due to rounding errors there can be very small disparity here between the amount available
+                        // and what we will take with the modifiers. See the comment in outputs for more details
+                    }
+                    else
+                    {
+                        canRun = false;
+                    }
+                }
+                else
+                {
+                    canRun = false;
+                }
+
+                if (!canRun)
+                {
+                    availableInputsModifier = 0.0f;
+                    currentProcessStatistics?.AddLimitingFactor(entry.Key);
+                }
+            }
+        }
+
+        return availableInputsModifier;
+    }
+
+    public static float OutputSpaceThrottleFactor(BioProcess processData, BiomeConditions biome, SingleProcessStatistics? currentProcessStatistics, CompoundBag bag, TweakedProcess process, float environmentModifier, float delta)
+    {
+        float spaceConstraintModifier = 1.0f;
+        foreach (var entry in processData.Outputs)
+        {
+            var outputAdded = entry.Value * process.Rate * environmentModifier;
+
+            currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded);
+
+            outputAdded = outputAdded * spaceConstraintModifier * delta;
+
+            // if environmental right now this isn't released anywhere
+            if (entry.Key.IsEnvironmental)
+                continue;
+
+            // If no space we can't do the process, if we can't adjust the space constraint modifier enough
+            var remainingSpace = bag.Capacity - bag.GetCompoundAmount(entry.Key);
+            if (outputAdded > remainingSpace)
+            {
+                bool canRun = false;
+
+                if (remainingSpace > MathUtils.EPSILON)
+                {
+                    var neededModifier = remainingSpace / outputAdded;
+
+                    if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
+                    {
+                        spaceConstraintModifier = neededModifier;
+                        canRun = true;
+                    }
+
+                    // With all of the modifiers we can lose a tiny bit of compound that won't fit due to rounding
+                    // errors, but we ignore that here
+                }
+
+                if (!canRun)
+                {
+                    spaceConstraintModifier = 0.0f;
+                    currentProcessStatistics?.AddCapacityProblem(entry.Key);
+                }
+            }
+        }
+
+        return spaceConstraintModifier;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)

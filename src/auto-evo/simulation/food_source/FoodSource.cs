@@ -38,7 +38,7 @@
                 {
                     if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
                     {
-                        var processEfficiency = ProcessSystem.CalculateProcessMaximumSpeed(
+                        var processEfficiency = MicrobeInternalCalculations.CalculateProcessMaximumSpeed(
                             process, patch.Biome).Efficiency;
 
                         if (process.Process.Outputs.TryGetValue(glucose, out var glucoseAmount))

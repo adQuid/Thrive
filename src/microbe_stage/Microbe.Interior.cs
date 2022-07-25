@@ -497,6 +497,24 @@ public partial class Microbe
         return result;
     }
 
+    public float OsmoregulationCost(float delta)
+    {
+        var retval = MicrobeInternalCalculations.OsmoregulationCost(organelles.Select(x => x.Definition).ToList(), CellTypeProperties.MembraneType) * delta;
+
+        // 5% osmoregulation bonus per colony member
+        if (Colony != null)
+        {
+            retval *= 20f / (20f + Colony.ColonyMembers.Count);
+        }
+
+        if (IsPlayerMicrobe)
+        {
+            retval *= (float)CurrentGame.WorldSettings.OsmoregulationMultiplier;
+        }
+
+        return retval;
+    }
+
     private void HandleCompoundAbsorbing(float delta)
     {
         if (Dead)
@@ -830,22 +848,9 @@ public partial class Microbe
         OnReproductionStatus?.Invoke(this, false);
     }
 
-    private void HandleOsmoregulation(float delta)
+    public void HandleOsmoregulation(float delta)
     {
-        var osmoregulationCost = MicrobeInternalCalculations.OsmoregulationCost(organelles.Select(x => x.Definition).ToList(), CellTypeProperties.MembraneType) * delta;
-
-        // 5% osmoregulation bonus per colony member
-        if (Colony != null)
-        {
-            osmoregulationCost *= 20f / (20f + Colony.ColonyMembers.Count);
-        }
-
-        if (IsPlayerMicrobe)
-        {
-            osmoregulationCost *= (float)CurrentGame.WorldSettings.OsmoregulationMultiplier;
-        }
-
-        Compounds.TakeCompound(atp, osmoregulationCost);
+        Compounds.TakeCompound(atp, OsmoregulationCost(delta));
     }
 
     private void HandleMovement(float delta)

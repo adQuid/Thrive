@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Nito.Collections;
 
 /// <summary>
@@ -9,12 +10,14 @@ using Nito.Collections;
 public class ProcessStatistics
 {
     public Dictionary<TweakedProcess, SingleProcessStatistics> Processes { get; } = new();
+    public Dictionary<TweakedProcess, float> ProcessCounts { get; } = new();
 
     public void MarkAllUnused()
     {
         foreach (var entry in Processes)
         {
             entry.Value.Used = false;
+            ProcessCounts[entry.Key] = 0;
         }
     }
 
@@ -23,6 +26,7 @@ public class ProcessStatistics
         foreach (var item in Processes.Where(p => !p.Value.Used).ToList())
         {
             Processes.Remove(item.Key);
+            ProcessCounts.Remove(item.Key);
         }
     }
 
@@ -31,11 +35,13 @@ public class ProcessStatistics
         if (Processes.TryGetValue(forProcess, out var entry))
         {
             entry.Used = true;
+            ProcessCounts[forProcess] = ProcessCounts[forProcess] + forProcess.Rate;
             return entry;
         }
 
         entry = new SingleProcessStatistics(forProcess.Process);
         Processes[forProcess] = entry;
+        ProcessCounts[forProcess] = forProcess.Rate;
         entry.Used = true;
         return entry;
     }

@@ -834,7 +834,7 @@ public partial class CellEditorComponent :
     {
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
-        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
+        var result = MicrobeInternalCalculations.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
 
         UpdateOrganelleEfficiencies(result);
     }
@@ -1376,7 +1376,7 @@ public partial class CellEditorComponent :
     {
         patch ??= Editor.CurrentPatch;
 
-        UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, patch.Biome, membrane,
+        UpdateEnergyBalance(MicrobeInternalCalculations.ComputeEnergyBalance(organelles, patch.Biome, membrane,
             Editor.CurrentGame.WorldSettings, true));
     }
 
@@ -1384,7 +1384,7 @@ public partial class CellEditorComponent :
     {
         patch ??= Editor.CurrentPatch;
 
-        var result = ProcessSystem.ComputeCompoundBalance(organelles, patch.Biome);
+        var result = MicrobeInternalCalculations.ComputeCompoundBalance(organelles, patch.Biome);
 
         UpdateCompoundBalances(result);
     }

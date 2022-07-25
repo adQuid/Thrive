@@ -3,11 +3,12 @@
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/microbe_stage/ProcessList.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/microbe_stage/ProcessPanel.cs" type="Script" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=4]
 
 [node name="ProcessPanel" type="Popup"]
 process_priority = 5
 margin_right = 400.0
-rect_min_size = Vector2( 400, 600 )
+rect_min_size = Vector2( 400, 400 )
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -15,6 +16,7 @@ __meta__ = {
 }
 WindowTitle = "PROCESS_PANEL_TITLE"
 Resizable = true
+ATPLabelPath = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Label")
 ProcessListPath = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ProcessList")
 CloseButtonContainerPath = NodePath("MarginContainer/VBoxContainer/BottomButtonContainer")
 
@@ -51,6 +53,20 @@ margin_right = 70.0
 margin_bottom = 4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_left = 36.0
+margin_top = 6.0
+margin_right = 1280.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Process name goes here..."
+autowrap = true
+max_lines_visible = 5
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="ProcessList" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0

@@ -23,6 +23,16 @@ public class CompoundBag : ICompoundStorage
         Capacity = capacity;
     }
 
+    public CompoundBag(CompoundBag other)
+    {
+        Capacity = other.Capacity;
+
+        foreach(var compound in other.Compounds)
+        {
+            AddCompound(compound.Key, compound.Value);
+        }
+    }
+
     /// <summary>
     ///   How much of each compound this bag can store.
     ///   Currently a CompoundBag can hold the same amount of each compound.
