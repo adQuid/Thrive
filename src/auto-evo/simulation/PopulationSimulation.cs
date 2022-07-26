@@ -16,10 +16,14 @@
         private static readonly Compound Iron = SimulationParameters.Instance.GetCompound("iron");
         private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
-        public static void Simulate(SimulationConfiguration parameters)
+        public static void Simulate(SimulationConfiguration parameters, SimulationCache? existingCache)
         {
+
+            // This only seems to help a bit, so caching entirely in an auto-evo task by adding the cache parameter
+            // to IRunStep.RunStep might not be worth the effort at all
+            var cache = existingCache ?? new SimulationCache();
+
             var random = new Random();
-            var cache = new SimulationCache();
 
             var speciesToSimulate = CopyInitialPopulationsToResults(parameters);
 
@@ -60,12 +64,23 @@
             // Copy extra species
             species.AddRange(parameters.ExtraSpecies);
 
-            // Prepare population numbers for each patch for each of the included species
-            foreach (var entry in parameters.OriginalMap.Patches)
+            foreach (var entry in species)
             {
-                var patch = entry.Value;
+                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
+                if (entry == null)
+                    throw new Exception("Species in a simulation run is null");
+            }
 
-                foreach (var currentSpecies in species)
+            // Prepare population numbers for each patch for each of the included species
+            var patches = parameters.OriginalMap.Patches.Values;
+
+            var results = parameters.Results;
+
+            foreach (var currentSpecies in species)
+            {
+                var currentResult = results.GetSpeciesResultForInternalUse(currentSpecies);
+
+                foreach (var patch in patches)
                 {
                     long currentPopulation = patch.GetSpeciesPopulation(currentSpecies);
 
@@ -112,15 +127,8 @@
 
                     // All species even ones not in a patch need to have their population numbers added
                     // as the simulation expects to be able to get the populations
-                    parameters.Results.AddPopulationResultForSpecies(currentSpecies, patch, currentPopulation);
+                    currentResult.NewPopulationInPatches[patch] = currentPopulation;
                 }
-            }
-
-            foreach (var entry in species)
-            {
-                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
-                if (entry == null)
-                    throw new Exception("Species in a simulation run is null");
             }
 
             return species;
@@ -181,7 +189,7 @@
 
             foreach (var currentSpecies in species)
             {
-                niches.Add(new HeterotrophicFoodSource(patch, currentSpecies));
+                niches.Add(new HeterotrophicFoodSource(patch, currentSpecies, cache));
             }
 
             foreach (var niche in niches)
@@ -239,7 +247,7 @@
 
             foreach (var currentSpecies in species)
             {
-                var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(currentSpecies, patch);
+                var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(currentSpecies, patch.Biome);
                 var individualCost = energyBalanceInfo.TotalConsumptionStationary;
 
                 // Modify populations based on energy

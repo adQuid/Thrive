@@ -219,6 +219,11 @@ public class OrganelleDefinition : IRegistryType
 
     public string InternalName { get; set; } = null!;
 
+    // Faster checks for specific components
+    public bool HasPilusComponent { get; private set; }
+    public bool HasMovementComponent { get; private set; }
+    public bool HasCiliaComponent { get; private set; }
+
     [JsonIgnore]
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
@@ -284,7 +289,9 @@ public class OrganelleDefinition : IRegistryType
     /// <remarks>
     ///   <para>
     ///     The <see cref="PlacedOrganelle.HasComponent{T}"/> method checks for the actual component class this checks
-    ///     for the *factory* class.
+    ///     for the *factory* class. For performance reasons a few components are available as direct boolean
+    ///     properties, if a component you want to check for has such a boolean defined for it, use those instead of
+    ///     this general interface.
     ///   </para>
     /// </remarks>
     public bool HasComponentFactory<T>()
@@ -416,6 +423,8 @@ public class OrganelleDefinition : IRegistryType
         {
             GetRotatedHexes(i);
         }
+
+        ComputeFactoryCache();
     }
 
     public void ApplyTranslations()
@@ -426,6 +435,13 @@ public class OrganelleDefinition : IRegistryType
     public override string ToString()
     {
         return Name + " Organelle";
+    }
+
+    private void ComputeFactoryCache()
+    {
+        HasPilusComponent = HasComponentFactory<PilusComponentFactory>();
+        HasMovementComponent = HasComponentFactory<MovementComponentFactory>();
+        HasCiliaComponent = HasComponentFactory<CiliaComponentFactory>();
     }
 
     public class OrganelleComponentFactoryInfo
