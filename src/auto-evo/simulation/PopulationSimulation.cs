@@ -18,7 +18,6 @@
 
         public static void Simulate(SimulationConfiguration parameters, SimulationCache? existingCache)
         {
-
             // This only seems to help a bit, so caching entirely in an auto-evo task by adding the cache parameter
             // to IRunStep.RunStep might not be worth the effort at all
             var cache = existingCache ?? new SimulationCache();
