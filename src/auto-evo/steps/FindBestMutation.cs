@@ -14,6 +14,7 @@
         private readonly Species species;
         private readonly float splitThresholdFraction;
         private readonly int splitThresholdAmount;
+        private readonly SimulationCache cache;
 
         private readonly Mutations mutations = new();
 
@@ -31,6 +32,7 @@
             this.species = species;
             this.splitThresholdFraction = splitThresholdFraction;
             this.splitThresholdAmount = splitThresholdAmount;
+            cache = new SimulationCache();
         }
 
         public override bool CanRunConcurrently => true;
@@ -52,7 +54,7 @@
 
             config.SetPatchesToRunBySpeciesPresence(species);
 
-            PopulationSimulation.Simulate(config);
+            PopulationSimulation.Simulate(config, cache);
 
             return new AttemptResult(null, config.Results.GetPopulationInPatches(species));
         }
@@ -69,7 +71,7 @@
             config.ExcludedSpecies.Add(species);
             config.ExtraSpecies.Add(mutated);
 
-            PopulationSimulation.Simulate(config);
+            PopulationSimulation.Simulate(config, cache);
 
             return new AttemptResult(mutated, config.Results.GetPopulationInPatches(mutated));
         }
