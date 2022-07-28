@@ -288,8 +288,8 @@ public class GameWorld : ISaveLoadable
     ///   If true applied immediately. Should only be used for the player dying
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
-    public void AlterSpeciesPopulation(Species species, int constant, string description, Patch patch = null,
-        bool immediate = false, float coefficient = 1)
+    public void AlterSpeciesPopulation(Species species, int constant, string description,
+        bool immediate = false, float coefficient = 1, Patch patch = null)
     {
         if (patch == null)
             patch = Map.CurrentPatch;
