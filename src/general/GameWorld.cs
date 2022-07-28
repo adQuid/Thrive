@@ -288,9 +288,12 @@ public class GameWorld : ISaveLoadable
     ///   If true applied immediately. Should only be used for the player dying
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
-    public void AlterSpeciesPopulation(Species species, int constant, string description,
+    public void AlterSpeciesPopulation(Species species, int constant, string description, Patch patch = null,
         bool immediate = false, float coefficient = 1)
     {
+        if (patch == null)
+            patch = Map.CurrentPatch;
+
         if (constant == 0 || coefficient == 0)
             return;
 
@@ -310,7 +313,7 @@ public class GameWorld : ISaveLoadable
 
         CreateRunIfMissing();
 
-        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description);
+        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description, patch);
     }
 
     public void RemoveSpecies(Species species)
