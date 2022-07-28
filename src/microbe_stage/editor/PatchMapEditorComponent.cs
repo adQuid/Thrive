@@ -25,6 +25,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     public NodePath PatchDetailsPath = null!;
 
     [Export]
+    public NodePath SeedLabelPath = null!;
+
+    [Export]
     public NodePath PatchNamePath = null!;
 
     [Export]
@@ -133,6 +136,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     private Label patchIron = null!;
     private CollapsibleList speciesListBox = null!;
     private Button moveToPatchButton = null!;
+    private Label seedLabel = null!;
 
     private TextureRect patchTemperatureSituation = null!;
     private TextureRect patchLightSituation = null!;
@@ -172,6 +176,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         mapDrawer = GetNode<PatchMapDrawer>(MapDrawerPath);
         patchNothingSelected = GetNode<Control>(PatchNothingSelectedPath);
         patchDetails = GetNode<Control>(PatchDetailsPath);
+        seedLabel = GetNode<Label>(SeedLabelPath);
         patchName = GetNode<Label>(PatchNamePath);
         patchPlayerHere = GetNode<Control>(PatchPlayerHerePath);
         patchBiome = GetNode<Label>(PatchBiomePath);
@@ -233,6 +238,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             canStillMove = true;
             UpdatePlayerPatch(playerPatchOnEntry);
         }
+
+        seedLabel.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SEED_LABEL"),
+            owningEditor.CurrentGame.GameWorld.WorldSettings.Seed);
     }
 
     public void SetMap(PatchMap map)
