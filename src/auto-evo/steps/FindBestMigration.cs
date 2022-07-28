@@ -21,7 +21,7 @@
             this.map = map;
             this.species = species;
             this.random = new Random(random.Next());
-            cache = new SimulationCache(worldSettings);
+            cache = new SimulationCache();
         }
 
         public override bool CanRunConcurrently => true;

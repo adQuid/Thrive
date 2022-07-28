@@ -32,7 +32,7 @@
             this.species = species;
             this.splitThresholdFraction = splitThresholdFraction;
             this.splitThresholdAmount = splitThresholdAmount;
-            cache = new SimulationCache(worldSettings);
+            cache = new SimulationCache();
         }
 
         public override bool CanRunConcurrently => true;

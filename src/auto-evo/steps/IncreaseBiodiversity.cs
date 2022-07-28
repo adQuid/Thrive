@@ -31,7 +31,7 @@
             this.patch = patch;
             this.configuration = configuration;
             this.random = new Random(random.Next());
-            cache = new SimulationCache(worldSettings);
+            cache = new SimulationCache();
         }
 
         public int TotalSteps => 2;
