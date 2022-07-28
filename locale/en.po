@@ -5037,6 +5037,11 @@ msgstr "View Now"
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Patch: {0}"
 
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:133
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:88
+msgid "SEED_LABEL"
+msgstr "Planet seed: {0}"
+
 #~ msgid "#"
 #~ msgstr "#"
 
