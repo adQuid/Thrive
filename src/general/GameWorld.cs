@@ -289,8 +289,11 @@ public class GameWorld : ISaveLoadable
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
     public void AlterSpeciesPopulation(Species species, int constant, string description,
-        bool immediate = false, float coefficient = 1)
+        bool immediate = false, float coefficient = 1, Patch patch = null)
     {
+        if (patch == null)
+            patch = Map.CurrentPatch;
+
         if (constant == 0 || coefficient == 0)
             return;
 
@@ -310,7 +313,7 @@ public class GameWorld : ISaveLoadable
 
         CreateRunIfMissing();
 
-        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description);
+        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description, patch);
     }
 
     public void RemoveSpecies(Species species)

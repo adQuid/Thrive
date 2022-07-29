@@ -902,6 +902,10 @@ msgstr "Starting"
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} population changed by {1} because of: {2}"
 
+#: ../src/auto-evo/AutoEvoRun.cs:288
+msgid "AUTO-EVO_POPULATION_CHANGED_2"
+msgstr "{0} population changed by {1} in {2} because of: {3}"
+
 #: ../src/auto-evo/RunResults.cs:554
 msgid "POPULATION_COLON"
 msgstr "population:"

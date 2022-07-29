@@ -5,12 +5,13 @@
 /// </summary>
 public class ExternalEffect
 {
-    public ExternalEffect(Species species, int constant, float coefficient, string eventType)
+    public ExternalEffect(Species species, int constant, float coefficient, string eventType, Patch patch)
     {
         Species = species;
         Constant = constant;
         Coefficient = coefficient;
         EventType = eventType;
+        Patch = patch;
     }
 
     [JsonProperty]
@@ -24,4 +25,10 @@ public class ExternalEffect
 
     [JsonProperty]
     public string EventType { get; set; }
+
+    /// <summary>
+    ///   The patch this effect affects.
+    /// </summary>
+    [JsonProperty]
+    public Patch Patch { get; set; }
 }
