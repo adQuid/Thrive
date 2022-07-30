@@ -22,7 +22,7 @@ public class FloatingChunkSystem
         clouds = cloudSystem;
     }
 
-    public void Process(float delta, Vector3? playerPosition)
+    public void Process(float delta, Random random, Vector3? playerPosition)
     {
         if (playerPosition != null)
             latestPlayerPosition = playerPosition.Value;
@@ -35,28 +35,11 @@ public class FloatingChunkSystem
         foreach (var chunk in chunks)
         {
             chunk.ProcessChunk(delta, clouds);
-        }
 
-        var findTooManyChunksTask = new Task<IEnumerable<FloatingChunk>>(() =>
-        {
-            int tooManyChunks =
-                Math.Min(Constants.MAX_DESPAWNS_PER_FRAME, chunks.Count - Constants.FLOATING_CHUNK_MAX_COUNT);
-
-            if (tooManyChunks < 1)
-                return Array.Empty<FloatingChunk>();
-
-            var comparePosition = latestPlayerPosition;
-
-            return chunks.OrderByDescending(c => c.Translation.DistanceSquaredTo(comparePosition))
-                .Take(tooManyChunks);
-        });
-
-        TaskExecutor.Instance.AddTask(findTooManyChunksTask);
-
-        findTooManyChunksTask.Wait();
-        foreach (var toDespawn in findTooManyChunksTask.Result)
-        {
-            toDespawn.PopImmediately(clouds);
+            if (random.Next() < 0.25 * delta)
+            {
+                chunk.PopImmediately(clouds);
+            }
         }
     }
 }
