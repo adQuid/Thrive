@@ -77,6 +77,9 @@ public class MicrobeAI
     [JsonProperty]
     private bool hasBeenNearPlayer;
 
+    [JsonProperty]
+    private Vector3 playerPositionAtSpawn;
+
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
@@ -238,13 +241,20 @@ public class MicrobeAI
             var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
             if (player != null)
             {
-                if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f)
+                if (playerPositionAtSpawn == null)
                 {
-                    MoveToLocation(player.GlobalTransform.origin);
-                    return;
+                    playerPositionAtSpawn = player.GlobalTransform.origin;
                 }
 
-                hasBeenNearPlayer = true;
+                if (DistanceFromMe(playerPositionAtSpawn) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f)
+                {
+                    MoveToLocation(playerPositionAtSpawn);
+                    return;
+                }
+                else
+                {
+                    hasBeenNearPlayer = true;
+                }
             }
         }
 
