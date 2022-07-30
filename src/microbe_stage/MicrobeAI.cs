@@ -722,7 +722,7 @@ public class MicrobeAI
         {
             if (CanShootToxin())
             {
-                microbe.LookAtPoint = target;
+                microbe.AgentFirePoint = target;
                 microbe.QueueEmitToxin(oxytoxy);
                 microbe.QueueEmitToxin(glycotoxy);
             }
