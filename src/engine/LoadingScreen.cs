@@ -180,7 +180,7 @@ public class LoadingScreen : Control
         var gameStateName = CurrentlyLoadingGameState.ToString();
         var gallery = SimulationParameters.Instance.GetGallery("ConceptArt");
 
-        var category = gallery.AssetCategories.ContainsKey(gameStateName) ? gameStateName : "General";
+        var category = gallery.AssetCategories.ContainsKey(gameStateName) ? gameStateName : "Default";
         var artwork = gallery.AssetCategories[category].Assets.Random(random);
 
         artworkRect.Texture = GD.Load<Texture>(artwork.ResourcePath);

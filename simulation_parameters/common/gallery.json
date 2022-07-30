@@ -116,9 +116,18 @@
                         "ResourcePath": "res://assets/concept_art/tribe-gang.jpg"
                     }
                 ]
+            },
+            "Default": {
+                "Name": "DEFAULT",
+                "Assets": [
+                    {
+                        "Title": "Menu Background 1",
+                        "Artist": "kertit",
+                        "ResourcePath": "res://assets/textures/gui/BG_Menu01.png"
+                    }
+                ]
             }
-        }
-    },
+        },
     "Models": {
         "Name": "MODELS",
         "AssetCategories": {
