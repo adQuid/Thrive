@@ -334,7 +334,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             }
         }
 
-        this.DestroyDetachAndQueueFree();
+        DissolveOrRemove();
     }
 
     public void OnDestroyed()

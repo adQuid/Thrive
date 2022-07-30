@@ -36,7 +36,7 @@ public class FloatingChunkSystem
         {
             chunk.ProcessChunk(delta, clouds);
 
-            if (random.Next() < 0.25 * delta)
+            if (random.NextDouble() < 0.25 * delta)
             {
                 chunk.PopImmediately(clouds);
             }
