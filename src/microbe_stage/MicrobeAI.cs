@@ -249,6 +249,7 @@ public class MicrobeAI
                 if (DistanceFromMe(playerPositionAtSpawn) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f)
                 {
                     MoveToLocation(playerPositionAtSpawn);
+                    return;
                 }
                 else
                 {
