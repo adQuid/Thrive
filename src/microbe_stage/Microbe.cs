@@ -25,6 +25,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     public Vector3 MovementDirection = new(0, 0, 0);
 
+    /// <summary>
+    ///   The Point towards which agents will be fired
+    /// </summary>
+    public Vector3 AgentFirePoint = new(0, 0, -1);
+
     private HybridAudioPlayer engulfAudio = null!;
     private HybridAudioPlayer bindingAudio = null!;
     private HybridAudioPlayer movementAudio = null!;

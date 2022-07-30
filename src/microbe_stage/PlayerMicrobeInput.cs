@@ -59,6 +59,7 @@ public class PlayerMicrobeInput : NodeWithInput
             stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
 
             stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
+            stage.Player.AgentFirePoint = stage.Camera.CursorWorldPos;
         }
     }
 
