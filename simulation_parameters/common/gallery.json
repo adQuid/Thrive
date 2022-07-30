@@ -127,7 +127,8 @@
                     }
                 ]
             }
-        },
+        }
+    },
     "Models": {
         "Name": "MODELS",
         "AssetCategories": {
