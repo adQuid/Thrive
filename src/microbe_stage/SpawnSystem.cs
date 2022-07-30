@@ -323,13 +323,12 @@ public class SpawnSystem
         var spawns = 0;
         foreach (var spawnType in spawnTypes)
         {
-            if (spawnType is MicrobeSpawner)
+            if (spawnType is MicrobeSpawner
+                && ((MicrobeSpawner)spawnType).Species.BaseSpeed > MathUtils.EPSILON)
             {
-                
                     spawns += SpawnWithSpawner(spawnType,
                         playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
                             Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
-                
             }
         }
 
@@ -423,43 +422,6 @@ public class SpawnSystem
         entity.DespawnRadiusSquared = (int)(radius * radius);
 
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
-    }
-
-    /// <summary>
-    ///   Returns a random rotation (in radians)
-    ///   If weighted, it is more likely to return a rotation closer to the target rotation than not
-    /// </summary>
-    private float ComputeRandomRadianRotation(float targetRotation, bool weighted)
-    {
-        float rotation1 = random.NextFloat() * 2 * Mathf.Pi;
-
-        if (weighted)
-        {
-            targetRotation = WithNegativesToNormalRadians(targetRotation);
-            float rotation2 = random.NextFloat() * 2 * Mathf.Pi;
-
-            if (DistanceBetweenRadians(rotation2, targetRotation) < DistanceBetweenRadians(rotation1, targetRotation))
-                return NormalToWithNegativesRadians(rotation2);
-        }
-
-        return NormalToWithNegativesRadians(rotation1);
-    }
-
-    // TODO Could use to be moved to mathUtils?
-    private float NormalToWithNegativesRadians(float radian)
-    {
-        return radian <= Math.PI ? radian : radian - (float)(2 * Math.PI);
-    }
-
-    private float WithNegativesToNormalRadians(float radian)
-    {
-        return radian >= 0 ? radian : (float)(2 * Math.PI) - radian;
-    }
-
-    private float DistanceBetweenRadians(float p1, float p2)
-    {
-        float distance = Math.Abs(p1 - p2);
-        return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
     }
 
     private class QueuedSpawn
