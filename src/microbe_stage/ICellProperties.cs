@@ -18,7 +18,7 @@ public interface ICellProperties
     ///   Calculates the rotation speed of a cell. This is and <see cref="RepositionToOrigin"/> are separately here
     ///   to allow the cell editor to skip some stuff <see cref="Species.OnEdited"/> does.
     /// </summary>
-    public void CalculateRotationSpeed();
+    public void CalculateSpeedValues();
 
     public void RepositionToOrigin();
     public void UpdateNameIfValid(string newName);
