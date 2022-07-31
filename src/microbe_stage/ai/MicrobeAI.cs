@@ -19,8 +19,6 @@ using Newtonsoft.Json;
 public class MicrobeAI
 {
     private readonly Compound atp;
-    private readonly Compound glucose;
-    private readonly Compound iron;
     private readonly Compound oxytoxy;
     private readonly Compound glycotoxy;
     private readonly Compound ammonia;
@@ -85,8 +83,6 @@ public class MicrobeAI
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
 
         atp = SimulationParameters.Instance.GetCompound("atp");
-        glucose = SimulationParameters.Instance.GetCompound("glucose");
-        iron = SimulationParameters.Instance.GetCompound("iron");
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         glycotoxy = SimulationParameters.Instance.GetCompound("glycotoxy");
         ammonia = SimulationParameters.Instance.GetCompound("ammonia");
@@ -188,7 +184,7 @@ public class MicrobeAI
         if (atpThreshold > 0.0f)
         {
             if (microbe.Compounds.GetCompoundAmount(atp) < microbe.Compounds.Capacity * atpThreshold
-                && microbe.Compounds.Where(compound => IsVitalCompound(compound.Key) && compound.Value > 0.0f)
+                && microbe.Compounds.Where(compound => MicrobeAIFunctions.IsVitalCompound(microbe, compound.Key) && compound.Value > 0.0f)
                     .Count() > 0)
             {
                 SetMoveSpeed(0.0f);
@@ -412,7 +408,7 @@ public class MicrobeAI
             {
                 if (DistanceFromMe(otherMicrobe.GlobalTransform.origin) <
                     (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGGRESSION)
-                    && CanTryToEatMicrobe(otherMicrobe))
+                    && MicrobeAIFunctions.CanTryToEatMicrobe(microbe, otherMicrobe))
                 {
                     if (chosenPrey == null ||
                         (chosenPrey.GlobalTransform.origin - microbe.Translation).LengthSquared() >
@@ -522,7 +518,7 @@ public class MicrobeAI
         microbe.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
         targetPosition = target;
         microbe.LookAtPoint = targetPosition;
-        if (CanShootToxin())
+        if (MicrobeAIFunctions.CanShootToxin(microbe))
         {
             TryToLaunchToxin(target);
 
@@ -682,7 +678,7 @@ public class MicrobeAI
 
         // If this microbe lacks vital compounds don't bother with ammonia and phosphate
         if (usefulCompounds.Any(
-                compound => IsVitalCompound(compound) &&
+                compound => MicrobeAIFunctions.IsVitalCompound(microbe, compound) &&
                     microbe.Compounds.GetCompoundAmount(compound) < 0.5f * microbe.Compounds.Capacity))
         {
             usefulCompounds = usefulCompounds.Where(x => x != ammonia && x != phosphates);
@@ -697,18 +693,6 @@ public class MicrobeAI
 
             compoundsSearchWeights.Add(compound, compoundPriority);
         }
-    }
-
-    /// <summary>
-    ///   Tells if a compound is vital to this microbe.
-    ///   Vital compounds are *direct* ATP producers
-    ///   TODO: what is used here is a shortcut linked to the current game state:
-    ///     such compounds could be used for other processes in future versions
-    /// </summary>
-    private bool IsVitalCompound(Compound compound)
-    {
-        return microbe.Compounds.IsUseful(compound) &&
-            (compound == glucose || compound == iron);
     }
 
     private void SetEngulfIfClose()
@@ -730,7 +714,7 @@ public class MicrobeAI
         if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
             (microbe.Translation - target).LengthSquared() <= SpeciesFocus + microbe.EngulfSize * 10.0f)
         {
-            if (CanShootToxin())
+            if (MicrobeAIFunctions.CanShootToxin(microbe))
             {
                 microbe.AgentFirePoint = target;
                 microbe.QueueEmitToxin(oxytoxy);
@@ -811,24 +795,6 @@ public class MicrobeAI
     private void LowerPursuitThreshold()
     {
         pursuitThreshold *= 0.95f;
-    }
-
-    private bool CanTryToEatMicrobe(Microbe targetMicrobe)
-    {
-        var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
-
-        return targetMicrobe.Species != microbe.Species && (
-            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin())
-            || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
-    }
-
-    private bool CanShootToxin()
-    {
-        return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT +
-            Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS
-            ||
-            microbe.Compounds.GetCompoundAmount(glycotoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT +
-            Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
     }
 
     private float DistanceFromMe(Vector3 target)
