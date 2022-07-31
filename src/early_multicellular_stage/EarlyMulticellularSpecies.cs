@@ -22,6 +22,8 @@ public class EarlyMulticellularSpecies : Species
     [JsonProperty]
     public List<CellType> CellTypes { get; private set; } = new();
 
+    public override float BaseSpeed => CellTypes.First().BaseSpeed;
+
     /// <summary>
     ///   All organelles in all of the species' placed cells (there can be a lot of duplicates in this list)
     /// </summary>
@@ -39,7 +41,7 @@ public class EarlyMulticellularSpecies : Species
         // Make certain these are all up to date
         foreach (var cellType in CellTypes)
         {
-            cellType.CalculateRotationSpeed();
+            cellType.CalculateSpeedValues();
         }
     }
 

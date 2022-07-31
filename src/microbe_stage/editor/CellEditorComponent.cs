@@ -674,7 +674,7 @@ public partial class CellEditorComponent :
         }
 
         editedProperties.RepositionToOrigin();
-        editedProperties.CalculateRotationSpeed();
+        editedProperties.CalculateSpeedValues();
 
         // Update bacteria status
         editedProperties.IsBacteria = !HasNucleus;
