@@ -78,7 +78,7 @@ public class MicrobeAI
     private bool hasBeenNearPlayer;
 
     [JsonProperty]
-    private Vector3 playerPositionAtSpawn;
+    private Vector3? playerPositionAtSpawn = null;
 
     public MicrobeAI(Microbe microbe)
     {
@@ -238,7 +238,7 @@ public class MicrobeAI
         // If I'm very far from the player, and I have not been near the player yet, get on stage
         if (!hasBeenNearPlayer)
         {
-            var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
+            var player = data.AllMicrobes.Where(otherMicrobe => !otherMicrobe.Dead && otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
             if (player != null)
             {
                 if (playerPositionAtSpawn == null)
@@ -246,9 +246,9 @@ public class MicrobeAI
                     playerPositionAtSpawn = player.GlobalTransform.origin;
                 }
 
-                if (DistanceFromMe(playerPositionAtSpawn) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f)
+                if (DistanceFromMe((Vector3)playerPositionAtSpawn) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f)
                 {
-                    MoveToLocation(playerPositionAtSpawn);
+                    MoveToLocation((Vector3)playerPositionAtSpawn);
                     return;
                 }
                 else
