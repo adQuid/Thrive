@@ -57,7 +57,7 @@ public class MicrobeSpecies : Species, ICellProperties
     // Even though these properties say "base" it includes the specialized organelle factors. Base refers here to
     // the fact that these are the values when a cell is freshly spawned and has no reproduction progress.
     [JsonIgnore]
-    public float BaseSpeed => MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
+    public override float BaseSpeed => MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
 
     [JsonProperty]
     public float BaseRotationSpeed { get; set; } = Constants.CELL_BASE_ROTATION;

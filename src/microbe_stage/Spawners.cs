@@ -249,7 +249,7 @@ public class MicrobeSpawner : Spawner
         random = new Random();
     }
 
-    public MicrobeSpecies Species { get; }
+    public Species Species { get; }
 
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {

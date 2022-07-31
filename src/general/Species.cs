@@ -46,6 +46,8 @@ public abstract class Species : ICloneable
     [JsonProperty]
     public BehaviourDictionary Behaviour { get; set; } = new();
 
+    public abstract float BaseSpeed { get; }
+
     /// <summary>
     ///   This is the global population (the sum of population in all patches)
     /// </summary>

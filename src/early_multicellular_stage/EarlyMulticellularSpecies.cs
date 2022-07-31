@@ -22,6 +22,8 @@ public class EarlyMulticellularSpecies : Species
     [JsonProperty]
     public List<CellType> CellTypes { get; private set; } = new();
 
+    public override float BaseSpeed => throw new System.NotImplementedException();
+
     /// <summary>
     ///   All organelles in all of the species' placed cells (there can be a lot of duplicates in this list)
     /// </summary>
