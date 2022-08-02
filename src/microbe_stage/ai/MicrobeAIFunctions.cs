@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-class MicrobeAIFunctions
+﻿
+public class MicrobeAIFunctions
 {
     /// <summary>
     ///   Tells if a compound is vital to this microbe.

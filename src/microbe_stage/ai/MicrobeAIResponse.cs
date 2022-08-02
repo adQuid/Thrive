@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Godot;
 
-class MicrobeAIResponse
+public class MicrobeAIResponse
 {
-
+    public Vector3? MovementTarget;
+    public Vector3? ToxinShootTarget;
+    public bool Engulf;
+    public bool Bind;
 }
