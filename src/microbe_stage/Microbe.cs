@@ -749,23 +749,24 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
     }
 
-    public void AIThink(float delta, Random random, MicrobeAICommonData data)
+    public MicrobeAIResponse? AIThink(float delta, Random random, MicrobeAICommonData data)
     {
         if (IsPlayerMicrobe)
             throw new InvalidOperationException("AI can't run on the player microbe");
 
         if (Dead)
-            return;
+            return null;
 
         try
         {
-            ai!.Think(delta, random, data);
+            return ai!.Think(delta, random, data);
         }
 #pragma warning disable CA1031 // AI needs to be boxed good
         catch (Exception e)
 #pragma warning restore CA1031
         {
             GD.PrintErr("Microbe AI failure! ", e);
+            return null;
         }
     }
 

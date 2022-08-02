@@ -104,15 +104,17 @@ public class MicrobeAI
     private float SpeciesFocus => microbe.Species.Behaviour.Focus;
     private float SpeciesOpportunism => microbe.Species.Behaviour.Opportunism;
 
-    public void Think(float delta, Random random, MicrobeAICommonData data)
+    public MicrobeAIResponse? Think(float delta, Random random, MicrobeAICommonData data)
     {
         // Disable most AI in a colony
         if (microbe.ColonyParent != null)
-            return;
+            return null;
 
         // For now don't think if immobile
         if (MicrobeInternalCalculations.CalculateSpeed(((MicrobeSpecies)microbe.Species).Organelles, microbe.Membrane.Type, ((MicrobeSpecies)microbe.Species).MembraneRigidity) <= 0.0f)
-            return;
+            return null;
+
+        MicrobeAIResponse retval = new MicrobeAIResponse();
 
         timeSinceSignalSniffing += delta;
 
@@ -142,6 +144,8 @@ public class MicrobeAI
 
         // We clear here for update, this is why we stored above!
         microbe.TotalAbsorbedCompounds.Clear();
+
+        return retval;
     }
 
     /// <summary>
