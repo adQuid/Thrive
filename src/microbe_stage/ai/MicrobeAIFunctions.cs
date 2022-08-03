@@ -31,6 +31,16 @@ public class MicrobeAIFunctions
             Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * NormalizedFocus(microbe);
     }
 
+    public static bool IsAfraidOf(Microbe microbe, Microbe otherMicrobe)
+    {
+        var fleeThreshold = 3.0f - (2 * NormalizedFear(microbe) *
+            (10 - (9 * microbe.Hitpoints / microbe.MaxHitpoints)));
+
+        return otherMicrobe.Species != microbe.Species
+                && !otherMicrobe.Dead
+                && otherMicrobe.EngulfSize > microbe.EngulfSize * fleeThreshold;
+    }
+
     private static float NormalizedFocus(Microbe microbe)
     {
         return microbe.Species.Behaviour.Focus / Constants.MAX_SPECIES_FOCUS;
@@ -39,5 +49,10 @@ public class MicrobeAIFunctions
     private static float NormalizedOpportunism(Microbe microbe)
     {
         return microbe.Species.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+    }
+
+    private static float NormalizedFear(Microbe microbe)
+    {
+        return microbe.Species.Behaviour.Fear / Constants.MAX_SPECIES_FEAR;
     }
 }

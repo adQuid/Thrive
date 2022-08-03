@@ -115,9 +115,5 @@ public class MicrobeAISystem
                 microbe.QueueEmitToxin(Compound.ByName("glycotoxy"));
             }
         }
-        else
-        {
-            GD.Print("AI didn't return response for " + microbe.Species.FormattedName + " is player = " + microbe.IsPlayerMicrobe);
-        }
     }
 }
