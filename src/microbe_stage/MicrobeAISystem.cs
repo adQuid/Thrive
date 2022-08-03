@@ -94,23 +94,30 @@ public class MicrobeAISystem
         var response = microbe.AIThink(Constants.MICROBE_AI_THINK_INTERVAL, random, data);
 
         // Apply results of AI think
-        microbe.State = response.State;
-
-        if (response.LookTarget != null)
+        if (response != null)
         {
-            microbe.LookAtPoint = (Vector3)response.LookTarget;
+            microbe.State = response.State;
+
+            if (response.LookTarget != null)
+            {
+                microbe.LookAtPoint = (Vector3)response.LookTarget;
+            }
+
+            if (response.MovementTarget != null)
+            {
+                microbe.MovementDirection = (Vector3)response.MovementTarget;
+            }
+
+            if (response.ToxinShootTarget != null)
+            {
+                microbe.AgentFirePoint = (Vector3)response.ToxinShootTarget;
+                microbe.QueueEmitToxin(Compound.ByName("oxytoxy"));
+                microbe.QueueEmitToxin(Compound.ByName("glycotoxy"));
+            }
         }
-
-        if (response.MovementTarget != null)
+        else
         {
-            microbe.MovementDirection = (Vector3)response.MovementTarget;
-        }
-
-        if (response.ToxinShootTarget != null)
-        {
-            microbe.AgentFirePoint = (Vector3)response.ToxinShootTarget;
-            microbe.QueueEmitToxin(Compound.ByName("oxytoxy"));
-            microbe.QueueEmitToxin(Compound.ByName("glycotoxy"));
+            GD.Print("AI didn't return response for " + microbe.Species.FormattedName + " is player = " + microbe.IsPlayerMicrobe);
         }
     }
 }
