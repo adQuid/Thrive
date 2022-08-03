@@ -346,7 +346,6 @@
     <Compile Include="src\microbe_stage\ProcessSystem.cs" />
     <Compile Include="src\microbe_stage\IProcessable.cs" />
     <Compile Include="src\microbe_stage\MicrobeAISystem.cs" />
-    <Compile Include="src\microbe_stage\ai\IMicrobeAI.cs" />
     <Compile Include="src\microbe_stage\Patch.cs" />
     <Compile Include="src\microbe_stage\PatchMap.cs" />
     <Compile Include="src\microbe_stage\PatchMapGenerator.cs" />
