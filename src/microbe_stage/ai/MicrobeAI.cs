@@ -222,12 +222,12 @@ public class MicrobeAI
             case MicrobeSignalCommand.FleeFromMe:
                 if (signaler != null && DistanceFromMe(signaler.Translation) < Constants.AI_FLEE_DISTANCE_SQUARED)
                 {
-                    microbe.State = Microbe.MicrobeState.Normal;
+                    response.State = Microbe.MicrobeState.Normal;
                     MoveFullSpeed(response);
 
                     // Direction is calculated to be the opposite from where we should flee
                     targetPosition = microbe.Translation + (microbe.Translation - signaler.Translation);
-                    microbe.LookAtPoint = targetPosition;
+                    response.LookTarget = targetPosition;
                     MoveFullSpeed(response);
                     return;
                 }
@@ -282,7 +282,7 @@ public class MicrobeAI
         }
 
         // There is no reason to be engulfing at this stage
-        microbe.State = Microbe.MicrobeState.Normal;
+        response.State = Microbe.MicrobeState.Normal;
 
         // Otherwise just wander around and look for compounds
         if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
@@ -469,8 +469,8 @@ public class MicrobeAI
     {
         // This is a slight offset of where the chunk is, to avoid a forward-facing part blocking it
         targetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
-        microbe.LookAtPoint = targetPosition;
-        SetEngulfIfClose();
+        response.LookTarget = targetPosition;
+        SetEngulfIfClose(response);
 
         // Just in case something is obstructing chunk engulfing, wiggle a little sometimes
         if (random.NextDouble() < 0.05)
@@ -491,11 +491,11 @@ public class MicrobeAI
 
     private void FleeFromPredators(Random random, Vector3 predatorLocation, MicrobeAIResponse response)
     {
-        microbe.State = Microbe.MicrobeState.Normal;
+        response.State = Microbe.MicrobeState.Normal;
 
         targetPosition = (2 * (microbe.Translation - predatorLocation)) + microbe.Translation;
 
-        microbe.LookAtPoint = targetPosition;
+        response.LookTarget = targetPosition;
 
         // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
         if (DistanceFromMe(predatorLocation) < 100.0f &&
@@ -510,7 +510,7 @@ public class MicrobeAI
             300.0f - (5.0f * SpeciesAggression) + (6.0f * SpeciesFear) &&
             RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
         {
-            TryToLaunchToxin(predatorLocation);
+            TryToLaunchToxin(predatorLocation, response);
         }
 
         // No matter what, I want to make sure I'm moving
@@ -519,12 +519,12 @@ public class MicrobeAI
 
     private void EngagePrey(Vector3 target, Random random, bool engulf, MicrobeAIResponse response)
     {
-        microbe.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
+        response.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
         targetPosition = target;
-        microbe.LookAtPoint = targetPosition;
+        response.LookTarget = targetPosition;
         if (MicrobeAIFunctions.CanShootToxin(microbe))
         {
-            TryToLaunchToxin(target);
+            TryToLaunchToxin(target, response);
 
             if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION / 5, random))
             {
@@ -568,7 +568,7 @@ public class MicrobeAI
             if (distance > 3.0f)
             {
                 targetPosition = lastSmelledCompoundPosition.Value;
-                microbe.LookAtPoint = targetPosition;
+                response.LookTarget = targetPosition;
             }
             else
             {
@@ -699,30 +699,28 @@ public class MicrobeAI
         }
     }
 
-    private void SetEngulfIfClose()
+    private void SetEngulfIfClose(MicrobeAIResponse response)
     {
         // Turn on engulf mode if close
         // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
         if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize * 2.0f)
         {
-            microbe.State = Microbe.MicrobeState.Engulf;
+            response.State = Microbe.MicrobeState.Engulf;
         }
         else
         {
-            microbe.State = Microbe.MicrobeState.Normal;
+            response.State = Microbe.MicrobeState.Normal;
         }
     }
 
-    private void TryToLaunchToxin(Vector3 target)
+    private void TryToLaunchToxin(Vector3 target, MicrobeAIResponse response)
     {
         if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
             (microbe.Translation - target).LengthSquared() <= SpeciesFocus + microbe.EngulfSize * 10.0f)
         {
             if (MicrobeAIFunctions.CanShootToxin(microbe))
             {
-                microbe.AgentFirePoint = target;
-                microbe.QueueEmitToxin(oxytoxy);
-                microbe.QueueEmitToxin(glycotoxy);
+                response.ToxinShootTarget = target;
             }
         }
     }
@@ -741,15 +739,15 @@ public class MicrobeAI
                 0,
                 Mathf.Sin(previousAngle + turn) * randDist);
         previousAngle += turn;
-        microbe.LookAtPoint = targetPosition;
+        response.LookTarget = targetPosition;
         MoveFullSpeed(response);
     }
 
     private void MoveToLocation(Vector3 location, MicrobeAIResponse response)
     {
-        microbe.State = Microbe.MicrobeState.Normal;
+        response.State = Microbe.MicrobeState.Normal;
         targetPosition = location;
-        microbe.LookAtPoint = targetPosition;
+        response.LookTarget = targetPosition;
         MoveFullSpeed(response);
     }
 

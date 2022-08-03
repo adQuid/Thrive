@@ -27,7 +27,7 @@ public class MicrobeAISystem
         if (CheatManager.NoAI)
             return;
 
-        var nodes = worldRoot.GetChildrenToProcess<IMicrobeAI>(Constants.AI_GROUP).ToList();
+        var nodes = worldRoot.GetChildrenToProcess<Microbe>(Constants.AI_GROUP).ToList();
 
         // TODO: it would be nice to only rebuild these lists if some AI think interval has elapsed and these are needed
         var allMicrobes = worldRoot.GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
@@ -68,29 +68,49 @@ public class MicrobeAISystem
     /// <summary>
     ///   Main AI think function for cells
     /// </summary>
-    /// <param name="ai">The thing with AI interface implemented</param>
+    /// <param name="microbe">The thing with AI interface implemented</param>
     /// <param name="delta">Passed time</param>
     /// <param name="random">Randomness source</param>
     /// <param name="data">Common data for AI agents, should not be modified</param>
-    private void RunAIFor(IMicrobeAI? ai, float delta, Random random, MicrobeAICommonData data)
+    private void RunAIFor(Microbe microbe, float delta, Random random, MicrobeAICommonData data)
     {
-        if (ai == null)
+        if (microbe == null)
         {
             GD.PrintErr("A node has been put in the ai group but it isn't derived from IMicrobeAI");
             return;
         }
 
         // Limit how often the AI is run
-        ai.TimeUntilNextAIUpdate -= delta;
+        microbe.TimeUntilNextAIUpdate -= delta;
 
-        if (ai.TimeUntilNextAIUpdate > 0)
+        if (microbe.TimeUntilNextAIUpdate > 0)
             return;
 
         // TODO: would be nice to add a tiny bit of randomness to the times here so that not all cells think at once
-        ai.TimeUntilNextAIUpdate = Constants.MICROBE_AI_THINK_INTERVAL;
+        microbe.TimeUntilNextAIUpdate = Constants.MICROBE_AI_THINK_INTERVAL;
 
         // As the AI think interval is made constant, we pass that value as the delta to make time keeping be actually
         // (mostly) consistent in the AI code
-        ai.AIThink(Constants.MICROBE_AI_THINK_INTERVAL, random, data);
+        var response = microbe.AIThink(Constants.MICROBE_AI_THINK_INTERVAL, random, data);
+
+        // Apply results of AI think
+        microbe.State = response.State;
+
+        if (response.LookTarget != null)
+        {
+            microbe.LookAtPoint = (Vector3)response.LookTarget;
+        }
+
+        if (response.MovementTarget != null)
+        {
+            microbe.MovementDirection = (Vector3)response.MovementTarget;
+        }
+
+        if (response.ToxinShootTarget != null)
+        {
+            microbe.AgentFirePoint = (Vector3)response.ToxinShootTarget;
+            microbe.QueueEmitToxin(Compound.ByName("oxytoxy"));
+            microbe.QueueEmitToxin(Compound.ByName("glycotoxy"));
+        }
     }
 }
