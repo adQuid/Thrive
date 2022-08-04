@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/Microbe.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked
+public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked
 {
     /// <summary>
     ///   The point towards which the microbe will move to point to
@@ -749,23 +749,24 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
     }
 
-    public void AIThink(float delta, Random random, MicrobeAICommonData data)
+    public MicrobeAIResponse? AIThink(float delta, Random random, MicrobeAICommonData data)
     {
         if (IsPlayerMicrobe)
             throw new InvalidOperationException("AI can't run on the player microbe");
 
         if (Dead)
-            return;
+            return null;
 
         try
         {
-            ai!.Think(delta, random, data);
+            return ai!.Think(delta, random, data);
         }
 #pragma warning disable CA1031 // AI needs to be boxed good
         catch (Exception e)
 #pragma warning restore CA1031
         {
             GD.PrintErr("Microbe AI failure! ", e);
+            return null;
         }
     }
 

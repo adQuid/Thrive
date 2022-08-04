@@ -210,6 +210,8 @@
     <Compile Include="src\general\NewGameSettings.cs" />
     <Compile Include="src\general\SceneDisplayer.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
+    <Compile Include="src\microbe_stage\ai\MicrobeAIFunctions.cs" />
+    <Compile Include="src\microbe_stage\ai\MicrobeAIResponse.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\HexMoveActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\BehaviourActionData.cs" />
@@ -344,7 +346,6 @@
     <Compile Include="src\microbe_stage\ProcessSystem.cs" />
     <Compile Include="src\microbe_stage\IProcessable.cs" />
     <Compile Include="src\microbe_stage\MicrobeAISystem.cs" />
-    <Compile Include="src\microbe_stage\IMicrobeAI.cs" />
     <Compile Include="src\microbe_stage\Patch.cs" />
     <Compile Include="src\microbe_stage\PatchMap.cs" />
     <Compile Include="src\microbe_stage\PatchMapGenerator.cs" />
@@ -379,8 +380,8 @@
     <Compile Include="src\auto-evo\ExternalEffect.cs" />
     <Compile Include="src\general\Jukebox.cs" />
     <Compile Include="src\general\MusicCategory.cs" />
-    <Compile Include="src\microbe_stage\MicrobeAI.cs" />
-    <Compile Include="src\microbe_stage\MicrobeAICommonData.cs" />
+    <Compile Include="src\microbe_stage\ai\MicrobeAI.cs" />
+    <Compile Include="src\microbe_stage\ai\MicrobeAICommonData.cs" />
     <Compile Include="src\modding\FullModDetails.cs" />
     <Compile Include="src\modding\IMod.cs" />
     <Compile Include="src\modding\ModInfo.cs" />
