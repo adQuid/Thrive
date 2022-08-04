@@ -103,9 +103,9 @@ public class MicrobeAISystem
                 microbe.LookAtPoint = (Vector3)response.LookTarget;
             }
 
-            if (response.MovementTarget != null)
+            if (response.MovementDirection != null)
             {
-                microbe.MovementDirection = (Vector3)response.MovementTarget;
+                microbe.MovementDirection = (Vector3)response.MovementDirection;
             }
 
             if (response.ToxinShootTarget != null)

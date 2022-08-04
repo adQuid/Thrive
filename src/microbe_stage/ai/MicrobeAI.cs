@@ -786,12 +786,12 @@ public class MicrobeAI
 
     private void MoveFullSpeed(MicrobeAIResponse response)
     {
-        microbe.MovementDirection = new Vector3(0, 0, -Constants.AI_BASE_MOVEMENT);
+        response.MovementDirection = new Vector3(0, 0, -Constants.AI_BASE_MOVEMENT);
     }
 
     private void Stop(MicrobeAIResponse response)
     {
-        response.MovementTarget = null;
+        response.MovementDirection = null;
     }
 
     private void LowerPursuitThreshold()
