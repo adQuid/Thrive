@@ -123,7 +123,10 @@ public partial class CellEditorComponent :
     public NodePath OrganelleMenuPath = null!;
 
     [Export]
-    public NodePath CompoundBalancePath = null!;
+    public NodePath CompoundBalancePathStationary = null!;
+
+    [Export]
+    public NodePath CompoundBalancePathMoving = null!;
 
     [Export]
     public NodePath AutoEvoPredictionExplanationPopupPath = null!;
@@ -183,7 +186,8 @@ public partial class CellEditorComponent :
     private OrganellePopupMenu organelleMenu = null!;
     private OrganelleUpgradeGUI organelleUpgradeGUI = null!;
 
-    private CompoundBalanceDisplay compoundBalance = null!;
+    private CompoundBalanceDisplay compoundBalanceStationary = null!;
+    private CompoundBalanceDisplay compoundBalanceMoving = null!;
 
     private CustomDialog autoEvoPredictionExplanationPopup = null!;
     private Label autoEvoPredictionExplanationLabel = null!;
@@ -599,7 +603,8 @@ public partial class CellEditorComponent :
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
         organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
 
-        compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
+        compoundBalanceStationary = GetNode<CompoundBalanceDisplay>(CompoundBalancePathStationary);
+        compoundBalanceMoving = GetNode<CompoundBalanceDisplay>(CompoundBalancePathMoving);
 
         autoEvoPredictionExplanationPopup = GetNode<CustomDialog>(AutoEvoPredictionExplanationPopupPath);
         autoEvoPredictionExplanationLabel = GetNode<Label>(AutoEvoPredictionExplanationLabelPath);
