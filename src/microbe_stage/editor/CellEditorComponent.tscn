@@ -1009,7 +1009,7 @@ margin_bottom = 275.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 254.0
-margin_right = 246.0
+margin_right = 146.0
 margin_bottom = 275.0
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
