@@ -421,6 +421,58 @@ public static class MicrobeInternalCalculations
         return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
     }
 
+    public static IEnumerable<TweakedProcess> SlicedProcesses(Microbe microbe, BiomeConditions biome, float totalCost)
+    {
+        var samplingCount = 10f;
+
+        // Pretend we have one second of osmoregulation less so we report the processes that must have happened
+        var modifiedCompoundBag = new CompoundBag(microbe.Compounds);
+
+        var allProcesses = new List<TweakedProcess>();
+        for (var iteration = 0; iteration < samplingCount; iteration++)
+        {
+            if (modifiedCompoundBag.Compounds.ContainsKey(Compound.ByName("atp")))
+            {
+                // Not using the normal method here in order to allow negative values
+                modifiedCompoundBag.Compounds[Compound.ByName("atp")] -= totalCost / samplingCount;
+            }
+
+            foreach (var data in microbe.ActiveProcesses)
+            {
+                var proc = EnvironmentModifiedProcess(1 / samplingCount, biome, data.Process, modifiedCompoundBag, data, null);
+
+                // Consume inputs
+                foreach (var entry in proc.Process.Inputs)
+                {
+                    if (entry.Key.IsEnvironmental)
+                        continue;
+
+                    var inputRemoved = entry.Value * proc.Rate;
+
+                    // This should always succeed (due to the earlier check) so it is always assumed here that this succeeded
+                    modifiedCompoundBag.TakeCompound(entry.Key, inputRemoved);
+                }
+
+                // Add outputs
+                foreach (var entry in proc.Process.Outputs)
+                {
+                    if (entry.Key.IsEnvironmental)
+                        continue;
+
+                    var outputGenerated = entry.Value * proc.Rate;
+
+                    modifiedCompoundBag.AddCompound(entry.Key, outputGenerated);
+                }
+
+                allProcesses.Add(proc);
+            }
+        }
+
+        var temp = allProcesses.GroupBy(process => process.Process.Name).Select(group => group.First());
+
+        return temp;
+    }
+
     public static TweakedProcess EnvironmentModifiedProcess(float delta, BiomeConditions biome, BioProcess processData, CompoundBag bag, TweakedProcess origonalProcess,
         SingleProcessStatistics? currentProcessStatistics)
     {

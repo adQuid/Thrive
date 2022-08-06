@@ -52,74 +52,19 @@ public class ProcessPanel : CustomDialog
         {
             var samplingCount = 10f;
 
-            var osmoregulationCost = Microbe.OsmoregulationCost(1/samplingCount);
-            var movementCost = Microbe.MovementDirection.Length() > 0.0f ? Microbe.MovementCost(1 / samplingCount) : 0.0f;
+            var osmoregulationCost = Microbe.OsmoregulationCost(1);
+            var movementCost = Microbe.MovementDirection.Length() > 0.0f ? Microbe.MovementCost(1) : 0.0f;
             var totalCost = osmoregulationCost + movementCost;
 
-            // Pretend we have one second of osmoregulation less so we report the processes that must have happened
-            var modifiedCompoundBag = new CompoundBag(Microbe.Compounds);
-
-            var osmoregulationCostDisplay = Mathf.Round(100 * osmoregulationCost * samplingCount) / 100;
-            var movementCostDisplay = Mathf.Round(100 * movementCost * samplingCount) / 100;
+            var osmoregulationCostDisplay = Mathf.Round(100 * osmoregulationCost) / 100;
+            var movementCostDisplay = Mathf.Round(100 * movementCost) / 100;
 
             atpLabel.Text = "Using " + osmoregulationCostDisplay
                 + " ATP for osmoregulation\n" +
                 "Using " + movementCostDisplay + " ATP for movement\n" +
                 "Total: " + (osmoregulationCostDisplay + movementCostDisplay);
 
-            var allProcesses = new List<TweakedProcess>();
-            for (var iteration = 0; iteration < samplingCount; iteration++)
-            {
-                if (modifiedCompoundBag.Compounds.ContainsKey(Compound.ByName("atp")))
-                {
-                    // Not using the normal method here in order to allow negative values
-                    modifiedCompoundBag.Compounds[Compound.ByName("atp")] -= totalCost;
-                }
-
-                foreach (var data in ShownData)
-                {
-                    var proc = MicrobeInternalCalculations
-                    .EnvironmentModifiedProcess(1 / samplingCount, Biome, data.Process, modifiedCompoundBag, data, null);
-
-                    // Consume inputs
-                    foreach (var entry in proc.Process.Inputs)
-                    {
-                        if (entry.Key.IsEnvironmental)
-                            continue;
-
-                        var inputRemoved = entry.Value * proc.Rate;
-
-                        // This should always succeed (due to the earlier check) so it is always assumed here that this succeeded
-                        modifiedCompoundBag.TakeCompound(entry.Key, inputRemoved);
-                    }
-
-                    // Add outputs
-                    foreach (var entry in proc.Process.Outputs)
-                    {
-                        if (entry.Key.IsEnvironmental)
-                            continue;
-
-                        var outputGenerated = entry.Value * proc.Rate;
-
-                        modifiedCompoundBag.AddCompound(entry.Key, outputGenerated);
-                    }
-
-                    allProcesses.Add(proc);
-                }
-            }
-
-            var temp = allProcesses.GroupBy(process => process.Process.Name).Select(group => group.First());
-            var newRates = new Dictionary<TweakedProcess, float>();
-
-            foreach (var process in temp)
-            {
-                newRates[process] = allProcesses.Where(x => process.Process.InternalName == x.Process.InternalName).Sum(x => x.Rate);
-            }
-
-            foreach (var pair in newRates)
-            {
-                pair.Key.Rate = pair.Value;
-            }
+            var temp = MicrobeInternalCalculations.SlicedProcesses(Microbe, Biome, totalCost);
 
             // Update the list object
             processList.ProcessesToShow = temp.Select(x => (IProcessDisplayInfo) new StaticProcessDisplayInfo(x.Process.Name, x)).ToList();
