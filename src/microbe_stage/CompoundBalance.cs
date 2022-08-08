@@ -14,6 +14,12 @@ public class CompoundBalance
     /// </summary>
     public float Balance;
 
+    public CompoundBalance(float consumption, float production)
+    {
+        AddConsumption("all", consumption);
+        AddProduction("all", production);
+    }
+
     public void AddConsumption(string organelleName, float amount)
     {
         Consumption.TryGetValue(organelleName, out var existing);

@@ -64,7 +64,7 @@ public class ProcessPanel : CustomDialog
                 "Using " + movementCostDisplay + " ATP for movement\n" +
                 "Total: " + (osmoregulationCostDisplay + movementCostDisplay);
 
-            var temp = MicrobeInternalCalculations.SlicedProcesses(Microbe, Biome, totalCost);
+            var temp = MicrobeInternalCalculations.SlicedProcesses(Microbe.Compounds, Microbe.organelles.Select(x => x.Definition), Biome, totalCost);
 
             // Update the list object
             processList.ProcessesToShow = temp.Select(x => (IProcessDisplayInfo) new StaticProcessDisplayInfo(x.Process.Name, x)).ToList();

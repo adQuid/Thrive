@@ -437,6 +437,16 @@ public class OrganelleDefinition : IRegistryType
         return Name + " Organelle";
     }
 
+    public float Storage()
+    {
+        if (Components.Storage != null)
+        {
+            return ((StorageComponentFactory)Components.Storage).Capacity;
+        }
+
+        return 0.0f;
+    }
+
     private void ComputeFactoryCache()
     {
         HasPilusComponent = HasComponentFactory<PilusComponentFactory>();

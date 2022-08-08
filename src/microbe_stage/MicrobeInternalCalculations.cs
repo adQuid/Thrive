@@ -388,27 +388,28 @@ public static class MicrobeInternalCalculations
         {
             if (!result.ContainsKey(compound))
             {
-                result[compound] = new CompoundBalance();
+                result[compound] = new CompoundBalance(0.0f, 0.0f);
             }
         }
 
-        foreach (var organelle in organelles)
+        var compoundBag = new CompoundBag(organelles.Sum(x => x.Storage()));
+
+        compoundBag.AddCompound(Compound.ByName("glucose"), compoundBag.Capacity / 2);
+        compoundBag.AddCompound(Compound.ByName("iron"), compoundBag.Capacity / 2);
+        compoundBag.AddCompound(Compound.ByName("hydrogensulfide"), compoundBag.Capacity / 2);
+
+        var tweekedProcesses = SlicedProcesses(compoundBag, organelles, biome, compoundBag.Capacity);
+
+        foreach (var process in tweekedProcesses)
         {
-            foreach (var process in organelle.RunnableProcesses)
+            foreach (var input in process.Process.Inputs)
             {
-                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome);
+                result[input.Key].AddConsumption("all", input.Value * process.Rate);
+            }
 
-                foreach (var input in speedAdjusted.Inputs)
-                {
-                    MakeSureResultExists(input.Key);
-                    result[input.Key].AddConsumption(organelle.InternalName, input.Value);
-                }
-
-                foreach (var output in speedAdjusted.Outputs)
-                {
-                    MakeSureResultExists(output.Key);
-                    result[output.Key].AddProduction(organelle.InternalName, output.Value);
-                }
+            foreach (var output in process.Process.Outputs)
+            {
+                result[output.Key].AddProduction("all", output.Value * process.Rate);
             }
         }
 
@@ -421,12 +422,12 @@ public static class MicrobeInternalCalculations
         return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
     }
 
-    public static IEnumerable<TweakedProcess> SlicedProcesses(Microbe microbe, BiomeConditions biome, float totalCost)
+    public static IEnumerable<TweakedProcess> SlicedProcesses(CompoundBag compoundBag, IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, float totalCost)
     {
         var samplingCount = 10f;
 
         // Pretend we have one second of osmoregulation less so we report the processes that must have happened
-        var modifiedCompoundBag = new CompoundBag(microbe.Compounds);
+        var modifiedCompoundBag = new CompoundBag(compoundBag);
 
         var allProcesses = new List<TweakedProcess>();
         for (var iteration = 0; iteration < samplingCount; iteration++)
@@ -437,9 +438,9 @@ public static class MicrobeInternalCalculations
                 modifiedCompoundBag.Compounds[Compound.ByName("atp")] -= totalCost / samplingCount;
             }
 
-            foreach (var data in microbe.ActiveProcesses)
+            foreach (var tweakedProcess in organelles.Select(o => o.RunnableProcesses).SelectMany(i => i))
             {
-                var proc = EnvironmentModifiedProcess(1 / samplingCount, biome, data.Process, modifiedCompoundBag, data, null);
+                var proc = EnvironmentModifiedProcess(1 / samplingCount, biome, tweakedProcess.Process, modifiedCompoundBag, tweakedProcess, null);
 
                 // Consume inputs
                 foreach (var entry in proc.Process.Inputs)
