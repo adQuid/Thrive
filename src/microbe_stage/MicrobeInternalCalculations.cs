@@ -404,11 +404,13 @@ public static class MicrobeInternalCalculations
         {
             foreach (var input in process.Process.Inputs)
             {
+                MakeSureResultExists(input.Key);
                 result[input.Key].AddConsumption("all", input.Value * process.Rate);
             }
 
             foreach (var output in process.Process.Outputs)
             {
+                MakeSureResultExists(output.Key);
                 result[output.Key].AddProduction("all", output.Value * process.Rate);
             }
         }
