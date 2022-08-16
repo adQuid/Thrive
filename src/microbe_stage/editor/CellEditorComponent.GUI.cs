@@ -353,8 +353,8 @@ public partial class CellEditorComponent
 
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balancesStationary, Dictionary<Compound, CompoundBalance> balancesMoving)
     {
-        compoundBalanceStationary.UpdateBalances(balancesStationary, true);
-        compoundBalanceMoving.UpdateBalances(balancesMoving, false);
+        compoundBalanceStationary.UpdateBalances(balancesStationary, false);
+        compoundBalanceMoving.UpdateBalances(balancesMoving, true);
     }
 
     private void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
