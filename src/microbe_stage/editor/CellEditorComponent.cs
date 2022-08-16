@@ -829,7 +829,7 @@ public partial class CellEditorComponent :
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, Editor.CurrentPatch);
 
-        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, Editor.CurrentPatch);
+        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, Membrane, Editor.CurrentPatch);
     }
 
     /// <summary>
@@ -1385,11 +1385,11 @@ public partial class CellEditorComponent :
             Editor.CurrentGame.WorldSettings, true));
     }
 
-    private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles, Patch? patch = null)
+    private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membrane, Patch? patch = null)
     {
         patch ??= Editor.CurrentPatch;
 
-        var result = MicrobeInternalCalculations.ComputeCompoundBalance(organelles, patch.Biome);
+        var result = MicrobeInternalCalculations.ComputeCompoundBalance(organelles, membrane, patch.Biome);
 
         UpdateCompoundBalances(result);
     }

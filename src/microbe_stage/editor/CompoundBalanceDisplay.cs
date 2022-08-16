@@ -42,6 +42,10 @@ public class CompoundBalanceDisplay : VBoxContainer
 
         foreach (var entry in balances)
         {
+            if (entry.Key.IsEnvironmental)
+            {
+                continue;
+            }
             var compoundControl = childCache.GetChild(entry.Key);
             var amount = entry.Value.Production.SumValues() > 0.0f ?
                 entry.Value.Production.SumValues() - entry.Value.Consumption.SumValues() / 2.0f

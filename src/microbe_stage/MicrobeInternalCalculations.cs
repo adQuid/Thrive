@@ -380,7 +380,7 @@ public static class MicrobeInternalCalculations
     ///   Computes the compound balances for given organelle list in a patch
     /// </summary>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome)
+        IEnumerable<OrganelleDefinition> organelles, MembraneType membrane, BiomeConditions biome)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
 
@@ -397,21 +397,24 @@ public static class MicrobeInternalCalculations
         compoundBag.AddCompound(Compound.ByName("glucose"), compoundBag.Capacity / 2);
         compoundBag.AddCompound(Compound.ByName("iron"), compoundBag.Capacity / 2);
         compoundBag.AddCompound(Compound.ByName("hydrogensulfide"), compoundBag.Capacity / 2);
+        compoundBag.AddCompound(Compound.ByName("atp"), compoundBag.Capacity - OsmoregulationCost(organelles, membrane));
 
-        var tweekedProcesses = SlicedProcesses(compoundBag, organelles, biome, compoundBag.Capacity);
+        var tweekedProcesses = SlicedProcesses(compoundBag, organelles, biome, OsmoregulationCost(organelles, membrane));
 
         foreach (var process in tweekedProcesses)
         {
+            GD.Print(process.Process.Name + " x " + process.Rate);
+
             foreach (var input in process.Process.Inputs)
             {
                 MakeSureResultExists(input.Key);
-                result[input.Key].AddConsumption("all", input.Value * process.Rate);
+                result[input.Key].AddConsumption("all" + new Random().NextFloat(), input.Value * process.Rate);
             }
 
             foreach (var output in process.Process.Outputs)
             {
                 MakeSureResultExists(output.Key);
-                result[output.Key].AddProduction("all", output.Value * process.Rate);
+                result[output.Key].AddProduction("all" + new Random().NextFloat(), output.Value * process.Rate);
             }
         }
 
@@ -419,9 +422,9 @@ public static class MicrobeInternalCalculations
     }
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome)
+        IEnumerable<OrganelleTemplate> organelles, MembraneType membrane, BiomeConditions biome)
     {
-        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
+        return ComputeCompoundBalance(organelles.Select(o => o.Definition), membrane, biome);
     }
 
     public static IEnumerable<TweakedProcess> SlicedProcesses(CompoundBag compoundBag, IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, float totalCost)
@@ -472,6 +475,11 @@ public static class MicrobeInternalCalculations
         }
 
         var temp = allProcesses.GroupBy(process => process.Process.Name).Select(group => group.First());
+
+        foreach (var entry in temp)
+        {
+            entry.Rate = allProcesses.Where(process => process.Process.Name == entry.Process.Name).Sum(process => process.Rate);
+        }
 
         return temp;
     }
