@@ -380,7 +380,7 @@ public static class MicrobeInternalCalculations
     ///   Computes the compound balances for given organelle list in a patch
     /// </summary>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleDefinition> organelles, MembraneType membrane, BiomeConditions biome)
+        IEnumerable<OrganelleDefinition> organelles, MembraneType membrane, BiomeConditions biome, bool moving)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
 
@@ -393,13 +393,14 @@ public static class MicrobeInternalCalculations
         }
 
         var compoundBag = new CompoundBag(organelles.Sum(x => x.Storage()));
+        var totalCost = moving ? MovementCost(organelles, membrane) + OsmoregulationCost(organelles, membrane) : OsmoregulationCost(organelles, membrane);
 
         compoundBag.AddCompound(Compound.ByName("glucose"), compoundBag.Capacity / 2);
         compoundBag.AddCompound(Compound.ByName("iron"), compoundBag.Capacity / 2);
         compoundBag.AddCompound(Compound.ByName("hydrogensulfide"), compoundBag.Capacity / 2);
-        compoundBag.AddCompound(Compound.ByName("atp"), compoundBag.Capacity - OsmoregulationCost(organelles, membrane));
+        compoundBag.AddCompound(Compound.ByName("atp"), compoundBag.Capacity - totalCost);
 
-        var tweekedProcesses = SlicedProcesses(compoundBag, organelles, biome, OsmoregulationCost(organelles, membrane));
+        var tweekedProcesses = SlicedProcesses(compoundBag, organelles, biome, totalCost);
 
         foreach (var process in tweekedProcesses)
         {
@@ -422,9 +423,9 @@ public static class MicrobeInternalCalculations
     }
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleTemplate> organelles, MembraneType membrane, BiomeConditions biome)
+        IEnumerable<OrganelleTemplate> organelles, MembraneType membrane, BiomeConditions biome, bool moving)
     {
-        return ComputeCompoundBalance(organelles.Select(o => o.Definition), membrane, biome);
+        return ComputeCompoundBalance(organelles.Select(o => o.Definition), membrane, biome, moving);
     }
 
     public static IEnumerable<TweakedProcess> SlicedProcesses(CompoundBag compoundBag, IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, float totalCost)

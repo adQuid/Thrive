@@ -1389,9 +1389,10 @@ public partial class CellEditorComponent :
     {
         patch ??= Editor.CurrentPatch;
 
-        var result = MicrobeInternalCalculations.ComputeCompoundBalance(organelles, membrane, patch.Biome);
+        var stationary = MicrobeInternalCalculations.ComputeCompoundBalance(organelles, membrane, patch.Biome, false);
+        var moving = MicrobeInternalCalculations.ComputeCompoundBalance(organelles, membrane, patch.Biome, true);
 
-        UpdateCompoundBalances(result);
+        UpdateCompoundBalances(stationary, moving);
     }
 
     /// <summary>
