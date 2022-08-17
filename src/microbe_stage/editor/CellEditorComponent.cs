@@ -123,7 +123,10 @@ public partial class CellEditorComponent :
     public NodePath OrganelleMenuPath = null!;
 
     [Export]
-    public NodePath CompoundBalancePath = null!;
+    public NodePath CompoundBalancePathStationary = null!;
+
+    [Export]
+    public NodePath CompoundBalancePathMoving = null!;
 
     [Export]
     public NodePath AutoEvoPredictionExplanationPopupPath = null!;
@@ -183,7 +186,8 @@ public partial class CellEditorComponent :
     private OrganellePopupMenu organelleMenu = null!;
     private OrganelleUpgradeGUI organelleUpgradeGUI = null!;
 
-    private CompoundBalanceDisplay compoundBalance = null!;
+    private CompoundBalanceDisplay compoundBalanceStationary = null!;
+    private CompoundBalanceDisplay compoundBalanceMoving = null!;
 
     private CustomDialog autoEvoPredictionExplanationPopup = null!;
     private Label autoEvoPredictionExplanationLabel = null!;
@@ -599,7 +603,8 @@ public partial class CellEditorComponent :
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
         organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
 
-        compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
+        compoundBalanceStationary = GetNode<CompoundBalanceDisplay>(CompoundBalancePathStationary);
+        compoundBalanceMoving = GetNode<CompoundBalanceDisplay>(CompoundBalancePathMoving);
 
         autoEvoPredictionExplanationPopup = GetNode<CustomDialog>(AutoEvoPredictionExplanationPopupPath);
         autoEvoPredictionExplanationLabel = GetNode<Label>(AutoEvoPredictionExplanationLabelPath);
@@ -824,7 +829,7 @@ public partial class CellEditorComponent :
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, Editor.CurrentPatch);
 
-        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, Editor.CurrentPatch);
+        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, Membrane, Editor.CurrentPatch);
     }
 
     /// <summary>
@@ -1380,13 +1385,14 @@ public partial class CellEditorComponent :
             Editor.CurrentGame.WorldSettings, true));
     }
 
-    private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles, Patch? patch = null)
+    private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membrane, Patch? patch = null)
     {
         patch ??= Editor.CurrentPatch;
 
-        var result = MicrobeInternalCalculations.ComputeCompoundBalance(organelles, patch.Biome);
+        var stationary = MicrobeInternalCalculations.ComputeCompoundBalance(organelles, membrane, patch.Biome, false);
+        var moving = MicrobeInternalCalculations.ComputeCompoundBalance(organelles, membrane, patch.Biome, true);
 
-        UpdateCompoundBalances(result);
+        UpdateCompoundBalances(stationary, moving);
     }
 
     /// <summary>

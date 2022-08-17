@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Balance of a given compound. Lists the organelles that contribute to the balance
@@ -13,6 +14,12 @@ public class CompoundBalance
     ///   Total balance of this compound
     /// </summary>
     public float Balance;
+
+    public CompoundBalance(float consumption, float production)
+    {
+        AddConsumption("all", consumption);
+        AddProduction("all", production);
+    }
 
     public void AddConsumption(string organelleName, float amount)
     {

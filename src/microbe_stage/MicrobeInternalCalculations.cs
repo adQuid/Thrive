@@ -380,7 +380,7 @@ public static class MicrobeInternalCalculations
     ///   Computes the compound balances for given organelle list in a patch
     /// </summary>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome)
+        IEnumerable<OrganelleDefinition> organelles, MembraneType membrane, BiomeConditions biome, bool moving)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
 
@@ -388,27 +388,34 @@ public static class MicrobeInternalCalculations
         {
             if (!result.ContainsKey(compound))
             {
-                result[compound] = new CompoundBalance();
+                result[compound] = new CompoundBalance(0.0f, 0.0f);
             }
         }
 
-        foreach (var organelle in organelles)
+        var compoundBag = new CompoundBag(organelles.Sum(x => x.Storage()));
+        var totalCost = moving ? MovementCost(organelles, membrane) + OsmoregulationCost(organelles, membrane) : OsmoregulationCost(organelles, membrane);
+
+        compoundBag.AddCompound(Compound.ByName("glucose"), compoundBag.Capacity / 2);
+        compoundBag.AddCompound(Compound.ByName("iron"), compoundBag.Capacity / 2);
+        compoundBag.AddCompound(Compound.ByName("hydrogensulfide"), compoundBag.Capacity / 2);
+        compoundBag.AddCompound(Compound.ByName("atp"), compoundBag.Capacity - totalCost);
+
+        var tweekedProcesses = SlicedProcesses(compoundBag, organelles, biome, totalCost);
+
+        foreach (var process in tweekedProcesses)
         {
-            foreach (var process in organelle.RunnableProcesses)
+            GD.Print(process.Process.Name + " x " + process.Rate);
+
+            foreach (var input in process.Process.Inputs)
             {
-                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome);
+                MakeSureResultExists(input.Key);
+                result[input.Key].AddConsumption("all" + new Random().NextFloat(), input.Value * process.Rate);
+            }
 
-                foreach (var input in speedAdjusted.Inputs)
-                {
-                    MakeSureResultExists(input.Key);
-                    result[input.Key].AddConsumption(organelle.InternalName, input.Value);
-                }
-
-                foreach (var output in speedAdjusted.Outputs)
-                {
-                    MakeSureResultExists(output.Key);
-                    result[output.Key].AddProduction(organelle.InternalName, output.Value);
-                }
+            foreach (var output in process.Process.Outputs)
+            {
+                MakeSureResultExists(output.Key);
+                result[output.Key].AddProduction("all" + new Random().NextFloat(), output.Value * process.Rate);
             }
         }
 
@@ -416,9 +423,66 @@ public static class MicrobeInternalCalculations
     }
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome)
+        IEnumerable<OrganelleTemplate> organelles, MembraneType membrane, BiomeConditions biome, bool moving)
     {
-        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
+        return ComputeCompoundBalance(organelles.Select(o => o.Definition), membrane, biome, moving);
+    }
+
+    public static IEnumerable<TweakedProcess> SlicedProcesses(CompoundBag compoundBag, IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, float totalCost)
+    {
+        var samplingCount = 10f;
+
+        // Pretend we have one second of osmoregulation less so we report the processes that must have happened
+        var modifiedCompoundBag = new CompoundBag(compoundBag);
+
+        var allProcesses = new List<TweakedProcess>();
+        for (var iteration = 0; iteration < samplingCount; iteration++)
+        {
+            if (modifiedCompoundBag.Compounds.ContainsKey(Compound.ByName("atp")))
+            {
+                // Not using the normal method here in order to allow negative values
+                modifiedCompoundBag.Compounds[Compound.ByName("atp")] -= totalCost / samplingCount;
+            }
+
+            foreach (var tweakedProcess in organelles.Select(o => o.RunnableProcesses).SelectMany(i => i))
+            {
+                var proc = EnvironmentModifiedProcess(1 / samplingCount, biome, tweakedProcess.Process, modifiedCompoundBag, tweakedProcess, null);
+
+                // Consume inputs
+                foreach (var entry in proc.Process.Inputs)
+                {
+                    if (entry.Key.IsEnvironmental)
+                        continue;
+
+                    var inputRemoved = entry.Value * proc.Rate;
+
+                    // This should always succeed (due to the earlier check) so it is always assumed here that this succeeded
+                    modifiedCompoundBag.TakeCompound(entry.Key, inputRemoved);
+                }
+
+                // Add outputs
+                foreach (var entry in proc.Process.Outputs)
+                {
+                    if (entry.Key.IsEnvironmental)
+                        continue;
+
+                    var outputGenerated = entry.Value * proc.Rate;
+
+                    modifiedCompoundBag.AddCompound(entry.Key, outputGenerated);
+                }
+
+                allProcesses.Add(proc);
+            }
+        }
+
+        var temp = allProcesses.GroupBy(process => process.Process.Name).Select(group => group.First());
+
+        foreach (var entry in temp)
+        {
+            entry.Rate = allProcesses.Where(process => process.Process.Name == entry.Process.Name).Sum(process => process.Rate);
+        }
+
+        return temp;
     }
 
     public static TweakedProcess EnvironmentModifiedProcess(float delta, BiomeConditions biome, BioProcess processData, CompoundBag bag, TweakedProcess origonalProcess,
