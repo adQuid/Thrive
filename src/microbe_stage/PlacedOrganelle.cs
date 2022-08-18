@@ -43,6 +43,14 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         Orientation = orientation;
     }
 
+    public OrganelleTemplate Template
+    {
+        get
+        {
+            return new OrganelleTemplate(Definition, Position, Orientation);
+        }
+    }
+
     public OrganelleDefinition Definition { get; set; }
 
     public Hex Position { get; set; }

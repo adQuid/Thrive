@@ -85,7 +85,7 @@ public class MicrobeSpecies : Species, ICellProperties
 
     public void CalculateSpeedValues()
     {
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles, MembraneType, MembraneRigidity);
     }
 
     public void SetInitialCompoundsForDefault()
