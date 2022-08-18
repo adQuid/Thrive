@@ -440,6 +440,8 @@ public class AutoEvoRun
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
 
         steps.Enqueue(new ForceExtinction(map.Patches.Values.ToList(), autoEvoConfiguration));
+
+        AutoEvoGlobals.RunResults = results;
     }
 
     /// <summary>
