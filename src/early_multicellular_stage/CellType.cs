@@ -65,7 +65,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public void CalculateSpeedValues()
     {
         BaseSpeed = MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles, MembraneType, MembraneRigidity);
     }
 
     public void UpdateNameIfValid(string newName)

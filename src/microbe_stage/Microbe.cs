@@ -160,7 +160,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTra
     [JsonIgnore]
     public float RotationSpeed => cachedRotationSpeed ??=
         MicrobeInternalCalculations.CalculateRotationSpeed(organelles ??
-            throw new InvalidOperationException("Organelles not initialized yet"));
+            throw new InvalidOperationException("Organelles not initialized yet"), Membrane.Type, ((MicrobeSpecies)Species).MembraneRigidity);
 
     [JsonIgnore]
     public float MassFromOrganelles => organelles?.Sum(o => o.Definition.Mass) ??
