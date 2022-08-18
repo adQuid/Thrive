@@ -118,9 +118,9 @@ public static class MicrobeInternalCalculations
     ///     TODO: should this also be affected by the membrane type?
     ///   </para>
     /// </remarks>
-    public static float CalculateRotationSpeed(IEnumerable<IPositionedOrganelle> organelles, MembraneType membraneType, float membraneRigidity)
+    public static float CalculateRotationSpeed(IEnumerable<OrganelleTemplate> organelles, MembraneType membraneType, float membraneRigidity)
     {
-        if(CalculateSpeed(organelles.Select(x => (OrganelleTemplate)x), membraneType, membraneRigidity) <= 0.0f)
+        if(CalculateSpeed(organelles.Select(x => x), membraneType, membraneRigidity) <= 0.0f)
         {
             return 0.0f;
         }
