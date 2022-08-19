@@ -76,7 +76,7 @@
             }
         ],
         "processes": {
-            "glycolysis_cytoplasm": 0.8,
+            "glycolysis": 1.0,
             "nitrogenaseReaction": 1
         },
         "components": {
@@ -147,7 +147,7 @@
             }
         ],
         "processes": {
-            "glycolysis_cytoplasm": 0.8,
+            "glycolysis": 1.0,
             "bacterial_ChemoSynthesis": 1
         },
         "components": {
@@ -184,7 +184,7 @@
             }
         ],
         "processes": {
-            "glycolysis_cytoplasm": 0.8,
+            "glycolysis": 1.0,
             "bacterial_oxytoxySynthesis": 1
         },
         "components": {
@@ -225,7 +225,7 @@
             }
         ],
         "processes": {
-            "glycolysis_cytoplasm": 0.3,
+            "glycolysis": 1.0,
             "chromatophore_photosynthesis": 1
         },
         "components": {

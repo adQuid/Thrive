@@ -12,7 +12,7 @@
     "glycolysis": {
         "name": "GLYCOLYSIS",
         "inputs": {
-            "glucose": 0.001
+            "glucose": 0.02
         },
         "outputs": {
             "atp": 2
@@ -125,7 +125,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.006
+            "glucose": 0.004
         }
     },
     "iron_chemolithoautotrophy": {
