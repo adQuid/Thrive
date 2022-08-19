@@ -107,6 +107,10 @@ public class MicrobeAISystem
             {
                 microbe.MovementDirection = (Vector3)response.MovementDirection;
             }
+            else
+            {
+                microbe.MovementDirection = new();
+            }
 
             if (response.ToxinShootTarget != null)
             {
