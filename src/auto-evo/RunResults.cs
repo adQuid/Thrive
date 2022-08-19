@@ -495,7 +495,14 @@
 
         public Dictionary<Patch, SpeciesPatchEnergyResults> GetPatchEnergyResults(Species species)
         {
-            return results[species].EnergyResults;
+            if (results.ContainsKey(species))
+            {
+                return results[species].EnergyResults;
+            }
+            else
+            {
+                return new Dictionary<Patch, SpeciesPatchEnergyResults>();
+            }
         }
 
         /// <summary>
