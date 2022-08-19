@@ -236,11 +236,9 @@
 
                     energyBySpecies[currentSpecies] += energy;
 
-                    if (trackEnergy)
-                    {
-                        populations.AddTrackedEnergyForSpecies(currentSpecies, patch, niche,
-                            fitnessBySpecies[currentSpecies], energy, totalNicheFitness);
-                    }
+                    populations.AddTrackedEnergyForSpecies(currentSpecies, patch, niche,
+                        fitnessBySpecies[currentSpecies], energy, totalNicheFitness);
+                    
                 }
             }
 
@@ -253,11 +251,8 @@
                 var newPopulation = (long)(energyBySpecies[currentSpecies]
                     / individualCost);
 
-                if (trackEnergy)
-                {
-                    populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch, newPopulation,
-                        energyBySpecies[currentSpecies], individualCost);
-                }
+                populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch, newPopulation,
+                    energyBySpecies[currentSpecies], individualCost);                
 
                 // TODO: this is a hack for now to make the player experience better, try to get the same rules working
                 // for the player and AI species in the future.
