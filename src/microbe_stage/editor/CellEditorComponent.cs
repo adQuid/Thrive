@@ -886,6 +886,8 @@ public partial class CellEditorComponent :
 
         // In case the action failed, we need to make sure the membrane buttons are updated properly
         UpdateMembraneButtons(Membrane.InternalName);
+
+        UpdatePatchDependentBalanceData();
     }
 
     public void OnRigidityChanged(int rigidity)
