@@ -80,7 +80,7 @@
             }
 
             // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-            return behaviourScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
+            return behaviourScore * (pilusScore + engulfScore + oxytoxyScore);
         }
 
         public override IFormattable GetDescription()
