@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
-using Array = Godot.Collections.Array;
+using System.Linq;
+using Godot.Collections;
 
 /// <summary>
 ///   Manages the microbe HUD
@@ -303,7 +304,7 @@ public class MicrobeHUD : Control
 
     private RadialPopup microbeControlRadial = null!;
 
-    private Array compoundBars = null!;
+    private Godot.Collections.Array compoundBars = null!;
 
     private ProcessPanel processPanel = null!;
     private TextureButton processPanelButton = null!;
@@ -996,7 +997,25 @@ public class MicrobeHUD : Control
             }
             else
             {
-                AddHoveredCellLabel(hoveredSpeciesCount.Key.FormattedName);
+                var autoEvoResults = "";
+
+                if (AutoEvoGlobals.RunResults != null)
+                {
+                    if (AutoEvoGlobals.RunResults.GetPatchEnergyResults(hoveredSpeciesCount.Key).ContainsKey(stage!.GameWorld.Map.CurrentPatch))
+                    {
+                        var autoEvoList = new List<KeyValuePair<IFormattable, AutoEvo.RunResults.SpeciesPatchEnergyResults.NicheInfo>>();
+
+                        foreach (var nicheInfo in AutoEvoGlobals.RunResults.GetPatchEnergyResults(hoveredSpeciesCount.Key)[stage!.GameWorld.Map.CurrentPatch].PerNicheEnergy
+                            .OrderByDescending(x => x.Value.CurrentSpeciesEnergy))
+                        {
+                            autoEvoResults += "\n  " + nicheInfo.Key + ": " + nicheInfo.Value.CurrentSpeciesEnergy;
+                        }
+
+
+                    }
+                }
+
+                AddHoveredCellLabel(hoveredSpeciesCount.Key.FormattedName + autoEvoResults);
             }
         }
 
@@ -1092,8 +1111,8 @@ public class MicrobeHUD : Control
     {
         // Get player reproduction progress
         player.CalculateReproductionProgress(
-            out Dictionary<Compound, float> gatheredCompounds,
-            out Dictionary<Compound, float> totalNeededCompounds);
+            out System.Collections.Generic.Dictionary<Compound, float> gatheredCompounds,
+            out System.Collections.Generic.Dictionary<Compound, float> totalNeededCompounds);
 
         float fractionOfAmmonia = 0;
         float fractionOfPhosphates = 0;
