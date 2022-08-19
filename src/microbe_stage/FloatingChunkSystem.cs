@@ -36,7 +36,7 @@ public class FloatingChunkSystem
         {
             chunk.ProcessChunk(delta, clouds);
 
-            if (chunk.ContainedCompounds.Sum(x => x.Value) < 10.0f && random.NextDouble() < 0.25 * delta)
+            if (chunk.ContainedCompounds != null && chunk.ContainedCompounds.Sum(x => x.Value) < 10.0f && random.NextDouble() < 0.25 * delta)
             {
                 chunk.PopImmediately(clouds);
             }
