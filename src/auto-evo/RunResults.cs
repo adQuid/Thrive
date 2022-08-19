@@ -329,7 +329,7 @@
         /// </summary>
         public long? GetPopulationInPatchIfExists(Species species, Patch patch)
         {
-            if (results[species].NewPopulationInPatches.TryGetValue(patch, out long population))
+            if (results.ContainsKey(species) && results[species].NewPopulationInPatches.TryGetValue(patch, out long population))
             {
                 return Math.Max(population, 0);
             }
@@ -411,7 +411,7 @@
                 if (patchPopulationEntry.Value <= 0)
                     continue;
 
-                if (resolveSplits && results[species].SplitOffPatches?.Contains(patchPopulationEntry.Key) == true)
+                if (resolveSplits && results.ContainsKey(species) && results[species].SplitOffPatches?.Contains(patchPopulationEntry.Key) == true)
                     continue;
 
                 populationResults[patchPopulationEntry.Key] = patchPopulationEntry.Value;
