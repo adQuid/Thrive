@@ -3,10 +3,10 @@
         "name": "RESPIRATION",
         "inputs": {
             "oxygen": 1,
-            "glucose": 0.09
+            "glucose": 0.11
         },
         "outputs": {
-            "atp": 87
+            "atp": 92
         }
     },
     "glycolysis": {
