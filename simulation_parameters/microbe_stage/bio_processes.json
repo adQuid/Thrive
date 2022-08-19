@@ -3,16 +3,16 @@
         "name": "RESPIRATION",
         "inputs": {
             "oxygen": 1,
-            "glucose": 0.09
+            "glucose": 0.11
         },
         "outputs": {
-            "atp": 87
+            "atp": 92
         }
     },
     "glycolysis": {
         "name": "GLYCOLYSIS",
         "inputs": {
-            "glucose": 0.001
+            "glucose": 0.02
         },
         "outputs": {
             "atp": 2
@@ -34,7 +34,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.03
+            "glucose": 0.010
         }
     },
     "oxytoxySynthesis": {
@@ -125,7 +125,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.008
+            "glucose": 0.004
         }
     },
     "iron_chemolithoautotrophy": {
