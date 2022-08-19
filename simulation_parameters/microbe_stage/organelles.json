@@ -225,7 +225,7 @@
             }
         ],
         "processes": {
-            "glycolysis_cytoplasm": 0.6,
+            "glycolysis_cytoplasm": 0.3,
             "chromatophore_photosynthesis": 1
         },
         "components": {

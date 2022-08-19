@@ -125,7 +125,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.004
+            "glucose": 0.006
         }
     },
     "iron_chemolithoautotrophy": {
