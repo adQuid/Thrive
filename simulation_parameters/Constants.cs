@@ -380,9 +380,9 @@ public static class Constants
     public const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
 
     public const int PLAYER_DEATH_POPULATION_LOSS_CONSTANT = -20;
-    public const float PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT = 1 / 1.5f;
+    public const float PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT = 1 / 2.5f;
     public const int PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT = 50;
-    public const float PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT = 1.2f;
+    public const float PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT = 1.1f;
 
     /// <summary>
     ///   How often a microbe can get the engulf escape population bonus
