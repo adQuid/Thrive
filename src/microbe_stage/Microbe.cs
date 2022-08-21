@@ -158,10 +158,26 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTra
     }
 
     [JsonIgnore]
-    public float RotationSpeed => cachedRotationSpeed ??=
-        MicrobeInternalCalculations.CalculateRotationSpeed(organelles.Select(x => x.Template) ??
+    public float RotationSpeed
+    {
+        get
+        {
+            if (cachedRotationSpeed != null)
+            {
+                return (float)cachedRotationSpeed;
+            }
+            else if (Species is EarlyMulticellularSpecies)
+            {
+                return ((EarlyMulticellularSpecies)Species).Cells.First().BaseRotationSpeed;
+            }
+            else
+            {
+                return MicrobeInternalCalculations.CalculateRotationSpeed(organelles.Select(x => x.Template) ??
             throw new InvalidOperationException("Organelles not initialized yet"), Membrane.Type, ((MicrobeSpecies)Species).MembraneRigidity);
-
+            }
+        }
+    }
+    
     [JsonIgnore]
     public float MassFromOrganelles => organelles?.Sum(o => o.Definition.Mass) ??
         throw new InvalidOperationException("organelles not initialized");
