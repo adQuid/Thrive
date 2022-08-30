@@ -395,7 +395,7 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    steps.Enqueue(new ModifyExistingSpecies(speciesEntry.Key));
+                    steps.Enqueue(new ModifyExistingSpecies(speciesEntry.Key, entry.Value));
                     /*steps.Enqueue(new FindBestMutation(autoEvoConfiguration,
                         Parameters.World.WorldSettings, map, speciesEntry.Key,
                         autoEvoConfiguration.AllowNoMigration));*/

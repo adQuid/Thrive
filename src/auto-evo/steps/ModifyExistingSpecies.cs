@@ -8,10 +8,12 @@ using AutoEvo;
 class ModifyExistingSpecies : IRunStep
 {
     public Species Species;
+    public Patch Patch;
 
-    public ModifyExistingSpecies(Species species)
+    public ModifyExistingSpecies(Species species, Patch patch)
     {
         Species = species;
+        Patch = patch;
     }
 
     public int TotalSteps => 1;
@@ -22,9 +24,11 @@ class ModifyExistingSpecies : IRunStep
     {
         var variantSpecies = (MicrobeSpecies)Species.Clone();
 
-        var strategy = new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins"));
+        var selection = new AutotrophEnergyEfficiencyPressure(Patch);
 
-        variantSpecies = strategy.MutationsOf(variantSpecies).First();
+        //var strategy = new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins"));
+
+        variantSpecies = selection.MicrobeMutations.First().MutationsOf(variantSpecies).First();
 
         results.AddMutationResultForSpecies(Species, variantSpecies);
         return true;
