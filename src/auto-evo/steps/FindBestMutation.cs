@@ -50,7 +50,7 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            return TryForSpecies(species);
+            return TryForSpecies(species, false);
         }
 
         protected override IAttemptResult TryVariant()
@@ -59,15 +59,15 @@
             mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated, settings.AIMutationMultiplier,
                 settings.Lawk);
 
-            return TryForSpecies(mutated);
+            return TryForSpecies(mutated, true);
         }
 
-        private IAttemptResult TryForSpecies(Species speciesToTry)
+        private IAttemptResult TryForSpecies(Species speciesToTry, bool variant)
         {
             var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
             config.SetPatchesToRunBySpeciesPresence(species);
 
-            if (speciesToTry != species)
+            if (variant)
             {
                 config.ExcludedSpecies.Add(species);
                 config.ExtraSpecies.Add(speciesToTry);
