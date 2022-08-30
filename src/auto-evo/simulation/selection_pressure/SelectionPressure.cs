@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoEvo;
 
-abstract class SelectionPressure
+public abstract class SelectionPressure
 {
     public float Strength;
     public List<IMutationStrategy<MicrobeSpecies>> MicrobeMutations;
