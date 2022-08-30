@@ -39,6 +39,7 @@
     <Compile Include="src\auto-evo\simulation\SimulationCache.cs" />
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
+    <Compile Include="src\auto-evo\steps\ModifyExistingSpecies.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
     <Compile Include="src\early_multicellular_stage\CellLayout.cs" />
     <Compile Include="src\early_multicellular_stage\CellTemplate.cs" />
@@ -496,7 +497,6 @@
   <ItemGroup>
     <Folder Include="shaders\" />
     <Folder Include="src\microbe_stage\organelle_components\" />
-    <Folder Include="src\auto-evo\steps\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
