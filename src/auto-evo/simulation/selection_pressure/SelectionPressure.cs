@@ -11,11 +11,11 @@ abstract class SelectionPressure
     public List<IMutationStrategy<MicrobeSpecies>> MicrobeMutations;
     public List<IMutationStrategy<EarlyMulticellularSpecies>> MulticellularMutations;
 
-    public SelectionPressure(float Strength, List<IMutationStrategy<MicrobeSpecies>> MicrobeMutations, List<IMutationStrategy<EarlyMulticellularSpecies>> MulticellularMutations)
+    public SelectionPressure(float strength, List<IMutationStrategy<MicrobeSpecies>> microbeMutations, List<IMutationStrategy<EarlyMulticellularSpecies>> multicellularMutations)
     {
-        this.Strength = Strength;
-        this.MicrobeMutations = MicrobeMutations;
-        this.MulticellularMutations = MulticellularMutations;
+        Strength = strength;
+        MicrobeMutations = microbeMutations;
+        MulticellularMutations = multicellularMutations;
     }
 
     public abstract float Score(Species species, SimulationCache cache);
