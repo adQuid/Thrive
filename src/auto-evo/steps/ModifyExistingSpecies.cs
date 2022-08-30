@@ -22,7 +22,9 @@ class ModifyExistingSpecies : IRunStep
     {
         var variantSpecies = (MicrobeSpecies)Species.Clone();
 
-        variantSpecies.Colour = new Godot.Color(255.0f, 0.0f, 255.0f);
+        var strategy = new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins"));
+
+        variantSpecies = strategy.MutationsOf(variantSpecies).First();
 
         results.AddMutationResultForSpecies(Species, variantSpecies);
         return true;
