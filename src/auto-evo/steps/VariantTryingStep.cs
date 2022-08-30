@@ -36,9 +36,7 @@
 
             if (tryCurrentVariant)
             {
-                var result = TryCurrentVariant();
-
-                CheckScore(result);
+                CheckScore(TryCurrentVariant());
 
                 tryCurrentVariant = false;
                 ran = true;
@@ -46,9 +44,7 @@
 
             if (variantsToTry > 0 && !ran)
             {
-                var result = TryVariant();
-
-                CheckScore(result);
+                CheckScore(TryVariant());
 
                 --variantsToTry;
             }

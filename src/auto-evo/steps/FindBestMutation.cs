@@ -50,13 +50,7 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
-
-            config.SetPatchesToRunBySpeciesPresence(species);
-
-            PopulationSimulation.Simulate(config, cache);
-
-            return new AttemptResult(null, config.Results.GetPopulationInPatches(species));
+            return TryForSpecies(species);
         }
 
         protected override IAttemptResult TryVariant()
@@ -65,15 +59,23 @@
             mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated, settings.AIMutationMultiplier,
                 settings.Lawk);
 
-            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            return TryForSpecies(mutated);
+        }
 
+        private IAttemptResult TryForSpecies(Species speciesToTry)
+        {
+            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
             config.SetPatchesToRunBySpeciesPresence(species);
-            config.ExcludedSpecies.Add(species);
-            config.ExtraSpecies.Add(mutated);
+
+            if (speciesToTry != species)
+            {
+                config.ExcludedSpecies.Add(species);
+                config.ExtraSpecies.Add(speciesToTry);
+            }
 
             PopulationSimulation.Simulate(config, cache);
 
-            return new AttemptResult(mutated, config.Results.GetPopulationInPatches(mutated));
+            return new AttemptResult(speciesToTry, config.Results.GetPopulationInPatches(speciesToTry));
         }
 
         /// <summary>
