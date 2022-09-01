@@ -15,7 +15,9 @@ class RemoveAnyOrganelle : IMutationStrategy<MicrobeSpecies>
 
         if (newSpecies.Organelles.Count() > 1)
         {
-            newSpecies.Organelles.ToList().RemoveAt(random.Next(0, newSpecies.Organelles.Count()));
+            newSpecies.Organelles.RemoveHexAt(
+                newSpecies.Organelles.ToList().ElementAt(random.Next(0, newSpecies.Organelles.Count())).Position
+            );
         }
 
         return new List<MicrobeSpecies>

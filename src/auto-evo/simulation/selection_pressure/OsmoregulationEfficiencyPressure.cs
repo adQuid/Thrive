@@ -12,7 +12,7 @@ public class OsmoregulationEfficiencyPressure : SelectionPressure
     public OsmoregulationEfficiencyPressure(Patch patch) : base(true,
         1.0f,
         new List<IMutationStrategy<MicrobeSpecies>> {
-            new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins"))
+            new RemoveAnyOrganelle()
         },
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )
