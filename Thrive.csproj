@@ -37,8 +37,10 @@
     <Compile Include="src\auto-evo\simulation\MutationStrategy\AddOrganelleAnywhere.cs" />
     <Compile Include="src\auto-evo\simulation\MutationStrategy\CommonMutationFunctions.cs" />
     <Compile Include="src\auto-evo\simulation\MutationStrategy\IMutationStrategy.cs" />
+    <Compile Include="src\auto-evo\simulation\MutationStrategy\RemoveAnyOrganelle.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\AutotrophEnergyEfficiencyPressure.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\CommonSelectionFunctions.cs" />
+    <Compile Include="src\auto-evo\simulation\selection_pressure\OsmoregulationEfficiencyPressure.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\SelectionPressure.cs" />
     <Compile Include="src\auto-evo\simulation\SimulationCache.cs" />
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
