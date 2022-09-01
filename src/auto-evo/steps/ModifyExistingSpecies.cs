@@ -24,13 +24,16 @@ class ModifyExistingSpecies : IRunStep
     {
         var variantSpecies = (MicrobeSpecies)Species.Clone();
 
-        var selection1 = new AutotrophEnergyEfficiencyPressure(Patch, 0.8f);
-        var selection2 = new OsmoregulationEfficiencyPressure(Patch, 0.8f);
+        var selectionPressures = new List<SelectionPressure>
+        {
+            new OsmoregulationEfficiencyPressure(Patch, 10.0f),
+            new AutotrophEnergyEfficiencyPressure(Patch, 0.8f),
+        };
 
-        //var strategy = new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins"));
-
-        variantSpecies = selection1.MicrobeMutations.First().MutationsOf(variantSpecies).First();
-        variantSpecies = selection2.MicrobeMutations.First().MutationsOf(variantSpecies).First();
+        foreach (var curPressure in selectionPressures)
+        {
+            variantSpecies = curPressure.MicrobeMutations.First().MutationsOf(variantSpecies).First();
+        }
 
         results.AddMutationResultForSpecies(Species, variantSpecies);
         return true;
