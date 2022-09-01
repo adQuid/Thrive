@@ -52,4 +52,57 @@ class CommonMutationFunctions
         throw new ArgumentException("Mutation code could not find a good position " +
             "for a new organelle");
     }
+
+    public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles)
+    {
+        var islandHexes = organelles.GetIslandHexes();
+
+        // Attach islands
+        while (islandHexes.Count > 0)
+        {
+            var mainHexes = organelles.ComputeHexCache().Except(islandHexes);
+
+            // Compute shortest hex distance
+            Hex minSubHex = default;
+            int minDistance = int.MaxValue;
+            foreach (var mainHex in mainHexes)
+            {
+                foreach (var islandHex in islandHexes)
+                {
+                    var sub = islandHex - mainHex;
+                    int distance = (Math.Abs(sub.Q) + Math.Abs(sub.Q + sub.R) + Math.Abs(sub.R)) / 2;
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        minSubHex = sub;
+
+                        // early exit if minDistance == 2 (distance 1 == direct neighbour => not an island)
+                        if (minDistance == 2)
+                            break;
+                    }
+                }
+
+                // early exit if minDistance == 2 (distance 1 == direct neighbour => not an island)
+                if (minDistance == 2)
+                    break;
+            }
+
+            // Calculate the path to move island organelles.
+            // If statement is there because otherwise the path could be (0, 0).
+            if (minSubHex.Q != minSubHex.R)
+                minSubHex.Q = (int)(minSubHex.Q * (minDistance - 1.0) / minDistance);
+
+            minSubHex.R = (int)(minSubHex.R * (minDistance - 1.0) / minDistance);
+
+            // Move all island organelles by minSubHex
+            foreach (var organelle in organelles.Where(
+                         o => islandHexes.Any(h =>
+                             o.Definition.GetRotatedHexes(o.Orientation).Contains(h - o.Position))))
+            {
+                organelle.Position -= minSubHex;
+            }
+
+            islandHexes = organelles.GetIslandHexes();
+        }
+    }
 }

@@ -24,8 +24,8 @@ class ModifyExistingSpecies : IRunStep
     {
         var variantSpecies = (MicrobeSpecies)Species.Clone();
 
-        var selection1 = new AutotrophEnergyEfficiencyPressure(Patch);
-        var selection2 = new OsmoregulationEfficiencyPressure(Patch);
+        var selection1 = new AutotrophEnergyEfficiencyPressure(Patch, 0.8f);
+        var selection2 = new OsmoregulationEfficiencyPressure(Patch, 0.8f);
 
         //var strategy = new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins"));
 
