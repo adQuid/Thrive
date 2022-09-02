@@ -43,7 +43,7 @@ public class ModifyExistingSpecies : IRunStep
 
         foreach (var curPressure in selectionPressures)
         {
-            var previousPressures = selectionPressures.GetRange(0, selectionPressures.IndexOf(curPressure) - 1);
+            var previousPressures = selectionPressures.IndexOf(curPressure) > 0 ? selectionPressures.GetRange(0, selectionPressures.IndexOf(curPressure) - 1) : new List<SelectionPressure>();
             previousPressures.Reverse();
 
             // For each viable variant, get a new variants that at least improve score a little bit
