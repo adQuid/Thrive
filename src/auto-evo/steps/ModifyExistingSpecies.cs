@@ -30,6 +30,7 @@ public class ModifyExistingSpecies : IRunStep
         var selectionPressures = new List<SelectionPressure>
         {
             new AutotrophEnergyEfficiencyPressure(Patch, 10.0f),
+            new OsmoregulationEfficiencyPressure(Patch, 5.0f),
         };
 
         // find the initial scores
