@@ -30,7 +30,6 @@ public class ModifyExistingSpecies : IRunStep
         var selectionPressures = new List<SelectionPressure>
         {
             new AutotrophEnergyEfficiencyPressure(Patch, 10.0f),
-            new OsmoregulationEfficiencyPressure(Patch, 5.0f),
         };
 
         // find the initial scores
@@ -75,16 +74,12 @@ public class ModifyExistingSpecies : IRunStep
             }
         }
 
-        // TODO: remove
-        if (viableVariants.Count() > 1)
-        {
-            viableVariants.Remove(modifiedSpecies);
-        }
+        viableVariants = viableVariants.OrderByDescending(x => selectionPressures.Select(pressure => pressure.Score(x, Cache)).Sum()).ToList();
 
         // TODO: pass this in
         var random = new Random();
 
-        results.AddMutationResultForSpecies(Species, viableVariants[random.Next(viableVariants.Count())]);
+        results.AddMutationResultForSpecies(Species, viableVariants.First());
         return true;
     }
 }
