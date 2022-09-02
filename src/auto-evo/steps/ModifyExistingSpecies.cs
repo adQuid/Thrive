@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoEvo;
+using Godot;
 
 public class ModifyExistingSpecies : IRunStep
 {
@@ -48,10 +49,7 @@ public class ModifyExistingSpecies : IRunStep
 
             // For each viable variant, get a new variants that at least improve score a little bit
             var potentialVariants = viableVariants.Select(x =>
-                curPressure.MicrobeMutations.First().MutationsOf(x).Where(x => curPressure.Score(x, Cache) > pressureScores[curPressure])).SelectMany(x => x);
-
-            // Clear the last round's variants
-            viableVariants = new List<MicrobeSpecies> { modifiedSpecies };
+                curPressure.MicrobeMutations.First().MutationsOf(x).Where(x => curPressure.Score(x, Cache) > pressureScores[curPressure])).SelectMany(x => x).ToList();
 
             // Prune variants that don't hurt the previous scores too much
             foreach (var potentialVariant in potentialVariants)
@@ -75,6 +73,12 @@ public class ModifyExistingSpecies : IRunStep
                     viableVariants.Add(potentialVariant);
                 }
             }
+        }
+
+        // TODO: remove
+        if (viableVariants.Count() > 1)
+        {
+            viableVariants.Remove(modifiedSpecies);
         }
 
         // TODO: pass this in
