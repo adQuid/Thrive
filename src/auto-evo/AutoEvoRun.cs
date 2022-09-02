@@ -395,7 +395,8 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    steps.Enqueue(new ModifyExistingSpecies(speciesEntry.Key, entry.Value));
+                    // TODO: should I really be declaring a simulation cache here?
+                    steps.Enqueue(new ModifyExistingSpecies(speciesEntry.Key, entry.Value, new SimulationCache()));
                     /*steps.Enqueue(new FindBestMutation(autoEvoConfiguration,
                         Parameters.World.WorldSettings, map, speciesEntry.Key,
                         autoEvoConfiguration.AllowNoMigration));*/
