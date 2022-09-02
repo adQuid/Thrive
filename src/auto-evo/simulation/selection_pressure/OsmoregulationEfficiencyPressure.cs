@@ -12,7 +12,9 @@ public class OsmoregulationEfficiencyPressure : SelectionPressure
     public OsmoregulationEfficiencyPressure(Patch patch, float weight) : base(true,
         weight,
         new List<IMutationStrategy<MicrobeSpecies>> {
-            new RemoveAnyOrganelle()
+            new RemoveAnyOrganelle(),
+            new RemoveAnyOrganelle(),
+            new RemoveAnyOrganelle(),
         },
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )
