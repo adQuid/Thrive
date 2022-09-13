@@ -26,15 +26,18 @@ class PullSpeciesForPatch : IRunStep
         {
             var variants = ModifyExistingSpecies.ViableVariants(species, Patch, Cache);
 
-            results.AddNewSpecies(
-                variants.First(),
-                new[]
-                {
+            if (variants.Count > 0)
+            {
+                results.AddNewSpecies(
+                    variants.First(),
+                    new[]
+                    {
                     new KeyValuePair<Patch, long>(Patch, 100),
-                },
-                RunResults.NewSpeciesType.FillNiche,
-                species
-            );
+                    },
+                    RunResults.NewSpeciesType.FillNiche,
+                    species
+                );
+            }
         }
 
         return true;

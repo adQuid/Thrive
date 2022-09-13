@@ -428,6 +428,8 @@ public class AutoEvoRun
                 /*steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, Parameters.World.WorldSettings,
                     map, entry.Value, random));*/
             }
+
+            steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache()));
         }
 
         // The new populations don't depend on the mutations, this is so that when
