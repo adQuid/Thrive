@@ -24,6 +24,11 @@ public class OsmoregulationEfficiencyPressure : SelectionPressure
 
     public override float Score(Species species, SimulationCache cache)
     {
-        return -cache.GetEnergyBalanceForSpecies((MicrobeSpecies)species, Patch.Biome).TotalConsumptionStationary;
+        return 1 / cache.GetEnergyBalanceForSpecies((MicrobeSpecies)species, Patch.Biome).TotalConsumptionStationary;
+    }
+
+    public override string Name()
+    {
+        return "Osmoregulation Efficiency";
     }
 }

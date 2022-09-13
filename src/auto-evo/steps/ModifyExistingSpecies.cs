@@ -25,19 +25,30 @@ public class ModifyExistingSpecies : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        var modifiedSpecies = (MicrobeSpecies)Species.Clone();
+        var viableVariants = ViableVariants(Species, Patch, Cache);
+
+        // TODO: pass this in
+        var random = new Random();
+
+        results.AddMutationResultForSpecies(Species, viableVariants.First());
+        return true;
+    }
+
+    public static List<MicrobeSpecies> ViableVariants(Species species, Patch patch, SimulationCache cache)
+    {
+        var modifiedSpecies = (MicrobeSpecies)species.Clone();
 
         var selectionPressures = new List<SelectionPressure>
         {
-            new AutotrophEnergyEfficiencyPressure(Patch, 10.0f),
-            new OsmoregulationEfficiencyPressure(Patch, 5.0f),
+            new AutotrophEnergyEfficiencyPressure(patch, 10.0f),
+            new OsmoregulationEfficiencyPressure(patch, 5.0f),
         };
 
         // find the initial scores
         var pressureScores = new Dictionary<SelectionPressure, float>();
         foreach (var curPressure in selectionPressures)
         {
-            pressureScores[curPressure] = curPressure.Score(modifiedSpecies, Cache);
+            pressureScores[curPressure] = curPressure.Score(modifiedSpecies, cache);
         }
 
         var viableVariants = new List<MicrobeSpecies> { modifiedSpecies };
@@ -47,19 +58,27 @@ public class ModifyExistingSpecies : IRunStep
             var previousPressures = selectionPressures.IndexOf(curPressure) > 0 ? selectionPressures.GetRange(0, selectionPressures.IndexOf(curPressure) - 1) : new List<SelectionPressure>();
             previousPressures.Reverse();
 
+            GD.Print(viableVariants.Count() + " starting variants");
+
             // For each viable variant, get a new variants that at least improve score a little bit
-            var potentialVariants = viableVariants.Select(x =>
-                curPressure.MicrobeMutations.First().MutationsOf(x).Where(x => curPressure.Score(x, Cache) > pressureScores[curPressure])).SelectMany(x => x).ToList();
+            var potentialVariants = viableVariants.Select(startVariant =>
+                curPressure.MicrobeMutations.Select(mutationStrategy => mutationStrategy.MutationsOf(startVariant))
+                .SelectMany(x => x)
+                .Where(x => curPressure.Score(x, cache) >= curPressure.Score(startVariant, cache))
+                )
+                .SelectMany(x => x).ToList();
+
+            GD.Print(potentialVariants.Count() + " potential variants");
 
             // Prune variants that don't hurt the previous scores too much
             foreach (var potentialVariant in potentialVariants)
             {
-                var currentImprovement = curPressure.Score(potentialVariant, Cache) / pressureScores[curPressure];
+                var currentImprovement = curPressure.Score(potentialVariant, cache) / pressureScores[curPressure];
 
                 var viable = true;
                 foreach (var pastPressure in previousPressures)
                 {
-                    var pastImprovement = pastPressure.Score(potentialVariant, Cache) / pressureScores[pastPressure];
+                    var pastImprovement = pastPressure.Score(potentialVariant, cache) / pressureScores[pastPressure];
 
                     // If, proportional to weights, the improvement to the current pressure doesn't outweigh the loss to the other pressures, this is still viable.
                     if (currentImprovement * curPressure.Strength + pastImprovement * pastPressure.Strength < curPressure.Strength + pastPressure.Strength)
@@ -71,16 +90,18 @@ public class ModifyExistingSpecies : IRunStep
                 if (viable)
                 {
                     viableVariants.Add(potentialVariant);
+                    GD.Print("adding variant in pressure " + curPressure.Name());
                 }
             }
         }
 
-        viableVariants = viableVariants.OrderByDescending(x => selectionPressures.Select(pressure => pressure.Score(x, Cache)).Sum()).ToList();
+        var str = "";
+        foreach (var variant in viableVariants)
+        {
+            str += String.Join(",", selectionPressures.Select(pressure => (pressure.Score(variant, cache) / pressureScores[pressure]) * pressure.Strength).ToList()) + ";\n  ";
+        }
+        GD.Print(str);
 
-        // TODO: pass this in
-        var random = new Random();
-
-        results.AddMutationResultForSpecies(Species, viableVariants.First());
-        return true;
+        return viableVariants.OrderByDescending(x => selectionPressures.Select(pressure => (pressure.Score(x, cache) / pressureScores[pressure]) * pressure.Strength).Sum()).ToList();
     }
 }

@@ -24,4 +24,9 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
     {
         return CommonSelectionFunctions.EnergyGenerationScore((MicrobeSpecies)species, Compound.ByName("hydrogensulfide"), Patch, cache);
     }
+
+    public override string Name()
+    {
+        return "Autotroph Energy Efficiency";
+    }
 }

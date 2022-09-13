@@ -21,4 +21,6 @@ public abstract class SelectionPressure
     }
 
     public abstract float Score(Species species, SimulationCache cache);
+
+    public abstract string Name();
 }
