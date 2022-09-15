@@ -36,7 +36,7 @@ class ExcludeSpecies : IRunStep
         {
             foreach (var species in Patch.SpeciesInPatch.Keys)
             {
-                if (bestBySelection[pressure] == null ||
+                if (!bestBySelection.ContainsKey(pressure) ||
                     pressure.Score(species, Cache) > bestBySelection[pressure].Item2)
                 {
                     bestBySelection[pressure] = new Tuple<Species, double>(species, pressure.Score(species, Cache));
