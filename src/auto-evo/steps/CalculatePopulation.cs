@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     ///   Step that calculate the populations for all species
@@ -46,8 +47,12 @@
                 config.ExcludedSpecies = excludedSpecies;
 
             // Directly feed the population results to the main results object
-
             PopulationSimulation.Simulate(config, null);
+
+            foreach (var species in results.results.Values.Where(x => x.Kill).Select(x => x.Species))
+            {
+                results.AddPopulationResultForSpecies(species, map.CurrentPatch, 0);
+            }
 
             return true;
         }

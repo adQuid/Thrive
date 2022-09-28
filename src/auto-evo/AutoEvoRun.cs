@@ -376,6 +376,11 @@ public class AutoEvoRun
             // TODO: No one should be allowed to update the SpeciesInPatch.
             // If this happens, the root cause must be addressed.
 
+            foreach (var species in entry.Value.SpeciesInPatch)
+            {
+                results.AddPopulationResultForSpecies(species.Key, entry.Value, species.Value);
+            }
+
             // Iterate over a copy to be secure from changes to the dictionary.
             var speciesInPatchCopy = entry.Value.SpeciesInPatch.ToList();
             foreach (var speciesEntry in speciesInPatchCopy)

@@ -126,6 +126,7 @@
             AddPopulationResultForSpecies(species, patch, 0);
 
             var speciesResult = results[species];
+            speciesResult.Kill = true;
 
             // We copy migration list to be able to modify it
             foreach (var migration in speciesResult.SpreadToPatches.ToList())
@@ -352,7 +353,7 @@
         /// </remarks>
         public long GetGlobalPopulation(Species species, bool resolveMigrations = false, bool resolveSplits = false)
         {
-            return GetSpeciesPopulationsByPatch(species, resolveMigrations, resolveSplits).Sum(e => e.Value);
+             return GetSpeciesPopulationsByPatch(species, resolveMigrations, resolveSplits).Sum(e => e.Value);
         }
 
         /// <summary>
@@ -1067,6 +1068,8 @@
         public class SpeciesResult
         {
             public Species Species;
+
+            public bool Kill = false;
 
             /// <summary>
             ///   Dictionary of the new species population for relevant patches,

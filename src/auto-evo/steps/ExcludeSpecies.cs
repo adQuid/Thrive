@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoEvo;
+using Godot;
 
 class ExcludeSpecies : IRunStep
 {
@@ -31,10 +32,13 @@ class ExcludeSpecies : IRunStep
 
         var bestBySelection = new Dictionary<SelectionPressure, Tuple<Species, double>>();
 
+        var allSpecies = Patch.SpeciesInPatch.Keys.ToList();
+        allSpecies.AddRange(results.results.Values.Select(x => x.Species));
+
         // Assign a new best for each selection pressure
         foreach (var pressure in selectionPressures)
         {
-            foreach (var species in Patch.SpeciesInPatch.Keys)
+            foreach (var species in allSpecies)
             {
                 if (!bestBySelection.ContainsKey(pressure) ||
                     pressure.Score(species, Cache) > bestBySelection[pressure].Item2)
@@ -45,7 +49,7 @@ class ExcludeSpecies : IRunStep
         }
 
         // If it's not the player or not the best at something, bump it off
-        foreach (var species in Patch.SpeciesInPatch.Keys)
+        foreach (var species in allSpecies)
         {
             if (!species.PlayerSpecies && !bestBySelection.Values.Select(x => x.Item1).Contains(species))
             {

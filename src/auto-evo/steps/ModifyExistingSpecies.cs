@@ -90,17 +90,15 @@ public class ModifyExistingSpecies : IRunStep
                 if (viable)
                 {
                     viableVariants.Add(potentialVariant);
-                    GD.Print("adding variant in pressure " + curPressure.Name());
+                    //GD.Print("adding variant in pressure " + curPressure.Name());
                 }
             }
         }
 
-        var str = "";
         foreach (var variant in viableVariants)
         {
-            str += String.Join(",", selectionPressures.Select(pressure => (pressure.Score(variant, cache) / pressureScores[pressure]) * pressure.Strength).ToList()) + ";\n  ";
+            variant.Epithet += (new Random()).Next(1, 10);
         }
-        GD.Print(str);
 
         return viableVariants.OrderByDescending(x => selectionPressures.Select(pressure => (pressure.Score(x, cache) / pressureScores[pressure]) * pressure.Strength).Sum()).ToList();
     }

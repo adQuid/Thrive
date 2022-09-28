@@ -271,6 +271,7 @@ public class PatchMap
             {
                 if (speciesEntry.Value > 0)
                 {
+                    GD.Print(speciesEntry.Key.Epithet +" population = "+speciesEntry.Value);
                     found.Add(speciesEntry.Key);
                 }
             }
