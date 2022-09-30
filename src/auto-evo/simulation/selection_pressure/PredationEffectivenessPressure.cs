@@ -35,6 +35,6 @@ public class PredationEffectivenessPressure : SelectionPressure
         var microbeSpecies = (MicrobeSpecies)species;
         var microbePrey = (MicrobeSpecies)prey;
 
-        return microbeSpecies.BaseHexSize;
+        return microbeSpecies.BaseHexSize / MicrobeInternalCalculations.OsmoregulationCost(microbeSpecies.Organelles.Select(x => x.Definition), microbeSpecies.MembraneType);
     }
 }
