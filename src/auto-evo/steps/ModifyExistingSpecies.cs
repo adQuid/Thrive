@@ -41,8 +41,14 @@ public class ModifyExistingSpecies : IRunStep
         var selectionPressures = new List<SelectionPressure>
         {
             new AutotrophEnergyEfficiencyPressure(patch, 10.0f),
-            new OsmoregulationEfficiencyPressure(patch, 5.0f),
         };
+
+        foreach (var possiblePrey in patch.SpeciesInPatch.Keys)
+        {
+            selectionPressures.Add(new PredationEffectivenessPressure(possiblePrey, 10.0f));
+        }
+
+        selectionPressures.Add(new OsmoregulationEfficiencyPressure(patch, 5.0f));
 
         // find the initial scores
         var pressureScores = new Dictionary<SelectionPressure, float>();
@@ -90,7 +96,6 @@ public class ModifyExistingSpecies : IRunStep
                 if (viable)
                 {
                     viableVariants.Add(potentialVariant);
-                    //GD.Print("adding variant in pressure " + curPressure.Name());
                 }
             }
         }
