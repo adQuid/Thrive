@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoEvo;
+using Godot;
 
 public class PredationEffectivenessPressure : SelectionPressure
 {
@@ -40,6 +41,6 @@ public class PredationEffectivenessPressure : SelectionPressure
         var microbeSpecies = (MicrobeSpecies)species;
         var microbePrey = (MicrobeSpecies)prey;
 
-        return microbeSpecies.Organelles.Select(x => x.Definition == SimulationParameters.Instance.GetOrganelleType("cytoplasm")).Count() / microbeSpecies.BaseHexSize; /// MicrobeInternalCalculations.OsmoregulationCost(microbeSpecies.Organelles.Select(x => x.Definition), microbeSpecies.MembraneType);
+        return microbeSpecies.Organelles.Select(x => x.Definition == SimulationParameters.Instance.GetOrganelleType("cytoplasm")).Count() / Mathf.Sqrt(microbeSpecies.BaseHexSize);
     }
 }

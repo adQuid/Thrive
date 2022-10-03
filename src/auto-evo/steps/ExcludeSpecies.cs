@@ -53,12 +53,17 @@ class ExcludeSpecies : IRunStep
             }
         }
 
+        foreach (var bestSelection in bestBySelection.Keys)
+        {
+            GD.Print("Best at " + bestSelection.Name() + " is " + bestBySelection[bestSelection].Item1.FormattedName);
+        }
+
         // If it's not the player or not the best at something, bump it off
         foreach (var species in allSpecies)
         {
             if (!species.PlayerSpecies && !bestBySelection.Values.Select(x => x.Item1).Contains(species))
             {
-                GD.Print(bestBySelection.Values.Select(x => x.Item1).Contains(species));
+                GD.Print("Excluding "+species.FormattedName);
                 results.KillSpeciesInPatch(species, Patch, false);
             } else
             {
