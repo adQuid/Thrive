@@ -1007,13 +1007,10 @@ public class MicrobeHUD : Control
                     {
                         var autoEvoList = new List<KeyValuePair<IFormattable, AutoEvo.RunResults.SpeciesPatchEnergyResults.NicheInfo>>();
 
-                        foreach (var nicheInfo in AutoEvoGlobals.RunResults.GetPatchEnergyResults(hoveredSpeciesCount.Key)[stage!.GameWorld.Map.CurrentPatch].PerNicheEnergy
-                            .OrderByDescending(x => x.Value.CurrentSpeciesEnergy))
+                        foreach (var pressure in AutoEvoGlobals.RunResults.GetPatchPressureResults(hoveredSpeciesCount.Key, stage!.GameWorld.Map.CurrentPatch))
                         {
-                            autoEvoResults += "\n  " + nicheInfo.Key + ": " + nicheInfo.Value.CurrentSpeciesEnergy;
+                            autoEvoResults += "\n  " + pressure.Name();
                         }
-
-
                     }
                 }
 

@@ -32,9 +32,14 @@ public class PredationEffectivenessPressure : SelectionPressure
             throw new NotImplementedException();
         }
 
+        if (species.Epithet == prey.Epithet)
+        {
+            return 0.0f;
+        }
+
         var microbeSpecies = (MicrobeSpecies)species;
         var microbePrey = (MicrobeSpecies)prey;
 
-        return microbeSpecies.BaseHexSize / MicrobeInternalCalculations.OsmoregulationCost(microbeSpecies.Organelles.Select(x => x.Definition), microbeSpecies.MembraneType);
+        return microbeSpecies.Organelles.Select(x => x.Definition == SimulationParameters.Instance.GetOrganelleType("cytoplasm")).Count() / microbeSpecies.BaseHexSize; /// MicrobeInternalCalculations.OsmoregulationCost(microbeSpecies.Organelles.Select(x => x.Definition), microbeSpecies.MembraneType);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Godot;
 
 class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
@@ -13,7 +14,11 @@ class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     {
         var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-        newSpecies.Organelles.Add(CommonMutationFunctions.GetRealisticPosition(Organelle, newSpecies.Organelles));
+        var position = CommonMutationFunctions.GetRealisticPosition(Organelle, newSpecies.Organelles);
+
+        GD.Print("add organelle at "+position.Position.Q + ", "+ position.Position.R);
+
+        newSpecies.Organelles.Add(position);
 
         return new List<MicrobeSpecies> { newSpecies };
     }

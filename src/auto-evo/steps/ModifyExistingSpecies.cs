@@ -45,7 +45,11 @@ public class ModifyExistingSpecies : IRunStep
 
         foreach (var possiblePrey in patch.SpeciesInPatch.Keys)
         {
-            selectionPressures.Add(new PredationEffectivenessPressure(possiblePrey, 10.0f));
+            if (possiblePrey != species)
+            {
+                selectionPressures.Add(new PredationEffectivenessPressure(possiblePrey, 10.0f));
+                GD.Print("Adding predation for " + possiblePrey.Epithet);
+            }
         }
 
         selectionPressures.Add(new OsmoregulationEfficiencyPressure(patch, 5.0f));
@@ -64,8 +68,6 @@ public class ModifyExistingSpecies : IRunStep
             var previousPressures = selectionPressures.IndexOf(curPressure) > 0 ? selectionPressures.GetRange(0, selectionPressures.IndexOf(curPressure) - 1) : new List<SelectionPressure>();
             previousPressures.Reverse();
 
-            GD.Print(viableVariants.Count() + " starting variants");
-
             // For each viable variant, get a new variants that at least improve score a little bit
             var potentialVariants = viableVariants.Select(startVariant =>
                 curPressure.MicrobeMutations.Select(mutationStrategy => mutationStrategy.MutationsOf(startVariant))
@@ -73,8 +75,6 @@ public class ModifyExistingSpecies : IRunStep
                 .Where(x => curPressure.Score(x, cache) >= curPressure.Score(startVariant, cache))
                 )
                 .SelectMany(x => x).ToList();
-
-            GD.Print(potentialVariants.Count() + " potential variants");
 
             // Prune variants that don't hurt the previous scores too much
             foreach (var potentialVariant in potentialVariants)
@@ -99,6 +99,8 @@ public class ModifyExistingSpecies : IRunStep
                 }
             }
         }
+
+        GD.Print(viableVariants.Count() + " viable variants");
 
         foreach (var variant in viableVariants)
         {

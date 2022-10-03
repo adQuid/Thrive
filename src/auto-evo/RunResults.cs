@@ -545,6 +545,18 @@
             }
         }
 
+        public List<SelectionPressure> GetPatchPressureResults(Species species, Patch patch)
+        {
+            if (results.ContainsKey(species) && results[species].BestPressures.ContainsKey(patch))
+            {
+                return results[species].BestPressures[patch];
+            }
+            else
+            {
+                return new List<SelectionPressure>();
+            }
+        }
+
         /// <summary>
         ///   Prints to log a summary of the results
         /// </summary>
@@ -1118,6 +1130,8 @@
             ///   source and consumption info for this species per-patch where this was simulated
             /// </summary>
             public Dictionary<Patch, SpeciesPatchEnergyResults> EnergyResults = new();
+
+            public Dictionary<Patch, List<SelectionPressure>> BestPressures = new();
 
             public SpeciesResult(Species species)
             {

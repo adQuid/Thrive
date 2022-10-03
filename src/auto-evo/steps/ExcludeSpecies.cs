@@ -30,10 +30,15 @@ class ExcludeSpecies : IRunStep
             new OsmoregulationEfficiencyPressure(Patch, 5.0f),
         };
 
+        foreach (var possiblePrey in Patch.SpeciesInPatch.Keys)
+        {
+            selectionPressures.Add(new PredationEffectivenessPressure(possiblePrey, 10.0f));
+        }
+
         var bestBySelection = new Dictionary<SelectionPressure, Tuple<Species, double>>();
 
         var allSpecies = Patch.SpeciesInPatch.Keys.ToList();
-        allSpecies.AddRange(results.results.Values.Select(x => x.Species));
+        allSpecies.AddRange(results.results.Values.Where(x => x.NewPopulationInPatches.Keys.Contains(Patch)).Select(x => x.Species));
 
         // Assign a new best for each selection pressure
         foreach (var pressure in selectionPressures)
@@ -53,7 +58,11 @@ class ExcludeSpecies : IRunStep
         {
             if (!species.PlayerSpecies && !bestBySelection.Values.Select(x => x.Item1).Contains(species))
             {
+                GD.Print(bestBySelection.Values.Select(x => x.Item1).Contains(species));
                 results.KillSpeciesInPatch(species, Patch, false);
+            } else
+            {
+                results.results[species].BestPressures[Patch] = bestBySelection.Where(x => x.Value.Item1 == species).Select(x => x.Key).ToList();
             }
         }
 
