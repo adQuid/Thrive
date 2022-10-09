@@ -33,6 +33,8 @@ public class PredationEffectivenessPressure : SelectionPressure
             throw new NotImplementedException();
         }
 
+
+        // Very lazy way of preventing canibalism
         if (species.Epithet == prey.Epithet)
         {
             return 0.0f;
