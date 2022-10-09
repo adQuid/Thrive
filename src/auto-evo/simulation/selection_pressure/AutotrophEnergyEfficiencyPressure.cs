@@ -22,7 +22,8 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
 
     public override float Score(Species species, SimulationCache cache)
     {
-        return CommonSelectionFunctions.EnergyGenerationScore((MicrobeSpecies)species, Compound.ByName("hydrogensulfide"), Patch, cache);
+        return CommonSelectionFunctions.EnergyGenerationScore((MicrobeSpecies)species, Compound.ByName("hydrogensulfide"), Patch, cache) / 
+            CommonSelectionFunctions.SpeciesOsmoregulationCost((MicrobeSpecies)species);
     }
 
     public override string Name()

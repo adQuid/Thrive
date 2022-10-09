@@ -7,6 +7,11 @@ using AutoEvo;
 
 class CommonSelectionFunctions
 {
+    public static float SpeciesOsmoregulationCost(MicrobeSpecies species)
+    {
+        return MicrobeInternalCalculations.OsmoregulationCost(species.Organelles.Select(x => x.Definition), species.MembraneType);
+    }
+
     public static float EnergyGenerationScore(MicrobeSpecies species, Compound compound, Patch patch,
             SimulationCache simulationCache)
     {
