@@ -24,16 +24,7 @@ class ExcludeSpecies : IRunStep
     public bool RunStep(RunResults results)
     {
         // TODO: do this some other way
-        var selectionPressures = new List<SelectionPressure>
-        {
-            new AutotrophEnergyEfficiencyPressure(Patch, 10.0f),
-            new OsmoregulationEfficiencyPressure(Patch, 5.0f),
-        };
-
-        foreach (var possiblePrey in Patch.SpeciesInPatch.Keys)
-        {
-            selectionPressures.Add(new PredationEffectivenessPressure(possiblePrey, 10.0f));
-        }
+        var selectionPressures = SelectionPressure.PressuresFromPatch(null, Patch, Cache, null);
 
         var bestBySelection = new Dictionary<SelectionPressure, Tuple<Species, double>>();
 

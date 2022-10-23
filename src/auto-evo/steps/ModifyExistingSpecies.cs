@@ -38,21 +38,7 @@ public class ModifyExistingSpecies : IRunStep
     {
         var modifiedSpecies = (MicrobeSpecies)species.Clone();
 
-        var selectionPressures = new List<SelectionPressure>
-        {
-            new AutotrophEnergyEfficiencyPressure(patch, 10.0f),
-        };
-
-        foreach (var possiblePrey in patch.SpeciesInPatch.Keys)
-        {
-            if (possiblePrey != species)
-            {
-                selectionPressures.Add(new PredationEffectivenessPressure(possiblePrey, 10.0f));
-                GD.Print("Adding predation for " + possiblePrey.Epithet);
-            }
-        }
-
-        selectionPressures.Add(new OsmoregulationEfficiencyPressure(patch, 5.0f));
+        var selectionPressures = SelectionPressure.PressuresFromPatch(species, patch, cache, null);
 
         // find the initial scores
         var pressureScores = new Dictionary<SelectionPressure, float>();
