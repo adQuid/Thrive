@@ -25,7 +25,7 @@ public class ModifyExistingSpecies : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        var viableVariants = ViableVariants(Species, Patch, Cache);
+        var viableVariants = ViableVariants(Species, Patch, Cache, null);
 
         // TODO: pass this in
         var random = new Random();
@@ -34,11 +34,11 @@ public class ModifyExistingSpecies : IRunStep
         return true;
     }
 
-    public static List<MicrobeSpecies> ViableVariants(Species species, Patch patch, SimulationCache cache)
+    public static List<MicrobeSpecies> ViableVariants(Species species, Patch patch, SimulationCache cache, List<SelectionPressure>? niche)
     {
         var modifiedSpecies = (MicrobeSpecies)species.Clone();
 
-        var selectionPressures = SelectionPressure.PressuresFromPatch(species, patch, cache, null);
+        var selectionPressures = SelectionPressure.PressuresFromPatch(species, patch, cache, niche);
 
         // find the initial scores
         var pressureScores = new Dictionary<SelectionPressure, float>();
