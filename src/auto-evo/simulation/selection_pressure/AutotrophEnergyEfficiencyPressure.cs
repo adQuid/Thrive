@@ -12,7 +12,8 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
     public AutotrophEnergyEfficiencyPressure(Patch patch, float weight): base(true, 
         weight, 
         new List<IMutationStrategy<MicrobeSpecies>> { 
-            new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins"))
+            new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins")),
+            new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("cellulose")),
         },
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )
