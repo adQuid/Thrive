@@ -24,7 +24,7 @@ class PullSpeciesForPatch : IRunStep
     {
         foreach (var species in Patch.SpeciesInPatch.Keys)
         {
-            var variants = ModifyExistingSpecies.ViableVariants(species, Patch, Cache, SelectionPressure.PreyOptionsForSpecies(species, Patch, Cache));
+            var variants = ModifyExistingSpecies.ViableVariants(species, Patch, Cache, new List<SelectionPressure> { new AutotrophEnergyEfficiencyPressure(Patch, 10.0f) });
 
             if (variants.Count > 0)
             {

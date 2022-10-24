@@ -21,7 +21,7 @@ public abstract class SelectionPressure
         if (niche == null){
             selectionPressures.Add(new AutotrophEnergyEfficiencyPressure(patch, 10.0f));
 
-            //selectionPressures.AddRange(PreyOptionsForSpecies(species, patch, cache));
+            selectionPressures.AddRange(PreyOptionsForSpecies(species, patch, cache));
         }
         else
         {

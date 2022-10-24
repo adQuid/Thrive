@@ -13,7 +13,8 @@ public class PredationEffectivenessPressure : SelectionPressure
     public PredationEffectivenessPressure(Species prey, float weight): base(true,
         weight,
         new List<IMutationStrategy<MicrobeSpecies>> {
-            new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("cytoplasm"))
+            new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("cytoplasm")),
+            new RemoveAnyOrganelle()
         },
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )
@@ -43,6 +44,25 @@ public class PredationEffectivenessPressure : SelectionPressure
         var microbeSpecies = (MicrobeSpecies)species;
         var microbePrey = (MicrobeSpecies)prey;
 
-        return microbeSpecies.Organelles.Select(x => x.Definition == SimulationParameters.Instance.GetOrganelleType("cytoplasm")).Count() / Mathf.Sqrt(microbeSpecies.BaseHexSize);
+        if (microbeSpecies.BaseHexSize / microbePrey.BaseHexSize < Constants.ENGULF_SIZE_RATIO_REQ)
+        {
+            return 0.0f;
+        }
+
+        var predatorScore = PredationScore(microbeSpecies, microbePrey);
+        var reversePredatorScore = PredationScore(microbePrey, microbeSpecies);
+
+        // Explicitly prohibit circular predation relationships
+        if (reversePredatorScore > predatorScore)
+        {
+            return 0.0f;
+        }
+
+        return predatorScore;
+    }
+
+    private float PredationScore(MicrobeSpecies predator, MicrobeSpecies prey)
+    {
+        return predator.Organelles.Select(x => x.Definition == SimulationParameters.Instance.GetOrganelleType("cytoplasm")).Count() / Mathf.Sqrt(predator.BaseHexSize);
     }
 }
