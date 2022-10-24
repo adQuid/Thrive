@@ -434,7 +434,10 @@ public class AutoEvoRun
                     map, entry.Value, random));*/
             }
 
+            // TODO: Generate niches procedurally
+            steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), SelectionPressure.PreyOptionsForSpecies(null, entry.Value, new SimulationCache())));
             steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), new List<SelectionPressure> { new AutotrophEnergyEfficiencyPressure(entry.Value, 10.0f) }));
+
             steps.Enqueue(new ExcludeSpecies(entry.Value, new SimulationCache()));
         }
 
