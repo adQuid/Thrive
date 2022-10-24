@@ -1091,7 +1091,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         {
             if (toSpawn != Player.Species)
             {
-                SpawnHelpers.SpawnMicrobe(toSpawn, Player.Translation + new Vector3(4.0f * ++i, 0.0f, 0.5f * (float)Math.Pow(CurrentGame.GameWorld.Map.CurrentPatch.GetSpeciesPopulation(toSpawn), 0.35)),
+                SpawnHelpers.SpawnMicrobe(toSpawn, Player.Translation + new Vector3(4.0f * ++i, 0.0f, 0.5f * (float)Math.Pow(CurrentGame.GameWorld.Map.CurrentPatch.GetSpeciesPopulation(toSpawn), 0.15)),
                 rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
                 CurrentGame);
 
