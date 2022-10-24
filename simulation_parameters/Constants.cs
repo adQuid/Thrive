@@ -145,7 +145,7 @@ public static class Constants
     /// <summary>
     ///   How often the microbe AI processes each microbe
     /// </summary>
-    public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
+    public const float MICROBE_AI_THINK_INTERVAL = 0.1f;
 
     /// <summary>
     ///   This is how often the AI microbes look for emitted signaling agent signals from members of their species.
@@ -325,7 +325,7 @@ public static class Constants
     /// <summary>
     ///   How much fully rigid membrane reduces movement factor of a cell
     /// </summary>
-    public const float MEMBRANE_RIGIDITY_MOBILITY_MODIFIER = 0.1f;
+    public const float MEMBRANE_RIGIDITY_MOBILITY_MODIFIER = 0.2f;
 
     /// <summary>
     ///   How much ATP does engulf mode cost per second

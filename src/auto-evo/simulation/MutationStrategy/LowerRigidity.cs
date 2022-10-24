@@ -8,7 +8,7 @@ namespace Thrive.src.auto_evo.simulation.MutationStrategy
         {
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-            newSpecies.MembraneRigidity = 0.0f;
+            newSpecies.MembraneRigidity = (newSpecies.MembraneRigidity + -1.0f) / 2.0f;
 
             return new List<MicrobeSpecies> { newSpecies };
         }
