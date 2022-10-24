@@ -14,7 +14,8 @@ public class PredationEffectivenessPressure : SelectionPressure
         weight,
         new List<IMutationStrategy<MicrobeSpecies>> {
             new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("cytoplasm")),
-            new RemoveAnyOrganelle()
+            new RemoveAnyOrganelle(),
+            new Thrive.src.auto_evo.simulation.MutationStrategy.LowerRigidity(),
         },
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )
@@ -34,7 +35,6 @@ public class PredationEffectivenessPressure : SelectionPressure
             throw new NotImplementedException();
         }
 
-
         // Very lazy way of preventing canibalism
         if (species.Epithet == prey.Epithet)
         {
@@ -43,11 +43,6 @@ public class PredationEffectivenessPressure : SelectionPressure
 
         var microbeSpecies = (MicrobeSpecies)species;
         var microbePrey = (MicrobeSpecies)prey;
-
-        if (microbeSpecies.BaseHexSize / microbePrey.BaseHexSize < Constants.ENGULF_SIZE_RATIO_REQ)
-        {
-            return 0.0f;
-        }
 
         var predatorScore = PredationScore(microbeSpecies, microbePrey);
         var reversePredatorScore = PredationScore(microbePrey, microbeSpecies);
@@ -63,6 +58,26 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     private float PredationScore(MicrobeSpecies predator, MicrobeSpecies prey)
     {
-        return predator.Organelles.Select(x => x.Definition == SimulationParameters.Instance.GetOrganelleType("cytoplasm")).Count() / Mathf.Sqrt(predator.BaseHexSize);
+        return EngulfmentScore(predator, prey);
+    }
+
+    private float EngulfmentScore(MicrobeSpecies predator, MicrobeSpecies prey)
+    {
+        if (predator.BaseHexSize / prey.BaseHexSize < Constants.ENGULF_SIZE_RATIO_REQ)
+        {
+            return 0.0f;
+        }
+
+        // TEMPORARY logic for auto-evo testing
+        var SizeScore = predator.Organelles.Select(x => x.Definition == SimulationParameters.Instance.GetOrganelleType("cytoplasm")).Count() / Mathf.Sqrt(predator.BaseHexSize);
+
+        if (predator.BaseSpeed > prey.BaseSpeed)
+        {
+            return SizeScore;
+        }
+        else
+        {
+            return SizeScore * Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+        }
     }
 }
