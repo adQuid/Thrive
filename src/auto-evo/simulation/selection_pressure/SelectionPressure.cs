@@ -21,13 +21,7 @@ public abstract class SelectionPressure
         if (niche == null){
             selectionPressures.Add(new AutotrophEnergyEfficiencyPressure(patch, 10.0f));
 
-            foreach (var possiblePrey in patch.SpeciesInPatch.Keys)
-            {
-                if (possiblePrey != species)
-                {
-                    selectionPressures.Add(new PredationEffectivenessPressure(possiblePrey, 10.0f));
-                }
-            }
+            //selectionPressures.AddRange(PreyOptionsForSpecies(species, patch, cache));
         }
         else
         {
@@ -37,6 +31,21 @@ public abstract class SelectionPressure
         selectionPressures.Add(new OsmoregulationEfficiencyPressure(patch, 5.0f));
 
         return selectionPressures;
+    }
+
+    public static List<SelectionPressure> PreyOptionsForSpecies(Species? species, Patch patch, SimulationCache cache)
+    {
+        var retval = new List<SelectionPressure>();
+
+        foreach (var possiblePrey in patch.SpeciesInPatch.Keys)
+        {
+            if (possiblePrey != species)
+            {
+                retval.Add(new PredationEffectivenessPressure(possiblePrey, 10.0f));
+            }
+        }
+
+        return retval;
     }
 
     public SelectionPressure(bool exclusive, float strength, List<IMutationStrategy<MicrobeSpecies>> microbeMutations, List<IMutationStrategy<EarlyMulticellularSpecies>> multicellularMutations)
