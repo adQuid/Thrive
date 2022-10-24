@@ -15,7 +15,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         new List<IMutationStrategy<MicrobeSpecies>> {
             new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("cytoplasm")),
             new RemoveAnyOrganelle(),
-            new Thrive.src.auto_evo.simulation.MutationStrategy.LowerRigidity(),
+            new LowerRigidity(),
         },
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )
