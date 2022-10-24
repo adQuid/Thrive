@@ -16,6 +16,7 @@ public class PredationEffectivenessPressure : SelectionPressure
             new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("cytoplasm")),
             new RemoveAnyOrganelle(),
             new LowerRigidity(),
+            new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
         },
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )
