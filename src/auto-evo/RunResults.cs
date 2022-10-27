@@ -42,6 +42,13 @@
             SplitDueToMutation,
         }
 
+        public Species LastestVersionForSpecies(Species species)
+        {
+            return SpeciesHasResults(species) && results[species].MutatedProperties != null ?
+            results[species].MutatedProperties :
+            (Species)species.Clone();
+        }
+
         public void AddMutationResultForSpecies(Species species, Species? mutated)
         {
             MakeSureResultExistsForSpecies(species);

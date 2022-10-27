@@ -304,7 +304,6 @@ public class Jukebox : Node
             }
 
             player.Player.Play(fromPosition);
-            GD.Print("Jukebox: starting track: ", track.ResourcePath, " position: ", fromPosition);
 
             track.PlayedOnce = true;
         }

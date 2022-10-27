@@ -72,7 +72,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         // TEMPORARY logic for auto-evo testing
         var SizeScore = predator.Organelles.Select(x => x.Definition == SimulationParameters.Instance.GetOrganelleType("cytoplasm")).Count() / Mathf.Sqrt(predator.BaseHexSize);
 
-        if (predator.BaseSpeed == 0 || predator.MembraneType.CellWall) 
+        if (predator.BaseSpeed < 0.1f || predator.MembraneType.CellWall) 
         {
             return 0.0f;
         }

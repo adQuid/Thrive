@@ -26,7 +26,7 @@ class PullSpeciesForPatch : IRunStep
     {
         foreach (var species in Patch.SpeciesInPatch.Keys)
         {
-            var variants = ModifyExistingSpecies.ViableVariants(species, Patch, Cache, Niche);
+            var variants = ModifyExistingSpecies.ViableVariants(results, species, Patch, Cache, Niche);
 
             if (variants.Count > 0)
             {

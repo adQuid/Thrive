@@ -10,7 +10,7 @@ class ExcludeSpecies : IRunStep
 {
     public int TotalSteps => 1;
 
-    public bool CanRunConcurrently => true;
+    public bool CanRunConcurrently => false;
 
     public Patch Patch;
     public SimulationCache Cache;
@@ -28,16 +28,15 @@ class ExcludeSpecies : IRunStep
 
         var bestBySelection = new Dictionary<SelectionPressure, Tuple<Species, double>>();
 
-        var allSpecies = Patch.SpeciesInPatch.Keys.ToList();
-        allSpecies.AddRange(results.results.Values.Where(x => x.NewPopulationInPatches.Keys.Contains(Patch)).Select(x => x.Species));
+        var allSpecies = results.results.Values.Where(x => x.NewPopulationInPatches.Keys.Contains(Patch))
+            .Select(x => x.Species);
 
         // Assign a new best for each selection pressure
         foreach (var pressure in selectionPressures)
         {
             foreach (var species in allSpecies)
             {
-                if (!bestBySelection.ContainsKey(pressure) ||
-                    pressure.Score(species, Cache) > bestBySelection[pressure].Item2)
+                if (pressure.Score(species, Cache) > 0 && (!bestBySelection.ContainsKey(pressure) || pressure.Score(species, Cache) > bestBySelection[pressure].Item2))
                 {
                     bestBySelection[pressure] = new Tuple<Species, double>(species, pressure.Score(species, Cache));
                 }
@@ -46,15 +45,15 @@ class ExcludeSpecies : IRunStep
 
         foreach (var bestSelection in bestBySelection.Keys)
         {
-            GD.Print("Best at " + bestSelection.Name() + " is " + bestBySelection[bestSelection].Item1.FormattedName);
+            GD.Print("Best at " + bestSelection.Name() + " is " + bestBySelection[bestSelection].Item1.FormattedName + " with " + bestBySelection[bestSelection].Item2 + " ( speed " + bestBySelection[bestSelection].Item1.BaseSpeed + ")");
         }
 
-        // If it's not the player or not the best at something, bump it off
+        // If it's not the player and not the best at something, bump it off
         foreach (var species in allSpecies)
         {
-            if (!species.PlayerSpecies && !bestBySelection.Values.Select(x => x.Item1).Contains(species))
+            if (!species.PlayerSpecies && !bestBySelection.Where(x => x.Key.Exclusive).Select(x => x.Value).Select(x => x.Item1).Contains(species))
             {
-                GD.Print("Excluding "+species.FormattedName);
+                GD.Print("Excluding "+ species.FormattedName);
                 results.KillSpeciesInPatch(species, Patch, false);
             } else
             {

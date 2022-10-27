@@ -999,7 +999,7 @@ public class MicrobeHUD : Control
             }
             else
             {
-                var autoEvoResults = "";
+                var autoEvoResults = " " + hoveredSpeciesCount.Key.BaseSpeed;
 
                 if (AutoEvoGlobals.RunResults != null)
                 {
