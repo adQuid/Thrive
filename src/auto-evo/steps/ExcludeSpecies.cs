@@ -36,9 +36,11 @@ class ExcludeSpecies : IRunStep
         {
             foreach (var species in allSpecies)
             {
-                if (pressure.Score(species, Cache) > 0 && (!bestBySelection.ContainsKey(pressure) || pressure.Score(species, Cache) > bestBySelection[pressure].Item2))
+                // Since mutations may have occurred by now, take those into account
+                var latestSpecies = results.LastestVersionForSpecies(species);
+                if (pressure.Score(species, Cache) > 0 && (!bestBySelection.ContainsKey(pressure) || pressure.Score(latestSpecies, Cache) > bestBySelection[pressure].Item2))
                 {
-                    bestBySelection[pressure] = new Tuple<Species, double>(species, pressure.Score(species, Cache));
+                    bestBySelection[pressure] = new Tuple<Species, double>(species, pressure.Score(latestSpecies, Cache));
                 }
             }
         }
