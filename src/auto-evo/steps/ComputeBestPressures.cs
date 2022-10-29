@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoEvo;
+using Godot;
 
 class ComputeBestPressures : IRunStep
 {
@@ -26,11 +27,10 @@ class ComputeBestPressures : IRunStep
 
         foreach (var species in results.results.Keys)
         {
-            var latestSpecies = results.LastestVersionForSpecies(species);
-            results.MakeSureResultExistsForSpecies(latestSpecies);
-            results.results[latestSpecies].BestPressures[Patch] = bestPressures.Where(x => x.Value == species).Select(x => x.Key).ToList();
+            results.results[species].BestPressures[Patch] = bestPressures.Where(x => x.Value == species).Select(x => x.Key).ToList();
         }
 
+        AutoEvoGlobals.RunResults = results;
         return true;
     }
 }

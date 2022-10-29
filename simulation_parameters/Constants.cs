@@ -660,7 +660,7 @@ public static class Constants
     ///   to see what small cells are.
     ///   Specifically for use with LengthSquared.
     /// </summary>
-    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 2 * 2;
+    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 1 * 1;
 
     public const float PROCEDURAL_CACHE_CLEAN_INTERVAL = 9.3f;
     public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;

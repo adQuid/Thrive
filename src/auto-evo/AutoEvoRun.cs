@@ -456,9 +456,6 @@ public class AutoEvoRun
         }
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
-
-
-        AutoEvoGlobals.RunResults = results;
     }
 
     /// <summary>

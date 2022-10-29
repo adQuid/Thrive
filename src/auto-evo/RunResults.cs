@@ -558,8 +558,14 @@
             {
                 return results[species].BestPressures[patch];
             }
+            // TODO: don't do this crazy dangerous matching
+            else if(results.Keys.Where(x => x.FormattedName == species.FormattedName).Count() > 0)
+            {
+                return results[results.Keys.Where(x => x.FormattedName == species.FormattedName).First()].BestPressures[patch];
+            }
             else
             {
+                GD.Print("Trying to find "+ species.FormattedName+ " in " + String.Join(",",results.Keys.Select(x => x.FormattedName)));
                 return new List<List<SelectionPressure>>();
             }
         }
