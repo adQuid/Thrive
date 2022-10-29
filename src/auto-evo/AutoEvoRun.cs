@@ -452,14 +452,14 @@ public class AutoEvoRun
         // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
         steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, map) { CanRunConcurrently = false });
 
-        // Due to species splitting migrations may end up being invalid
-        // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
-        // numbers
-        //steps.Enqueue(new RemoveInvalidMigrations(alreadyHandledSpecies));
+        // recalculate the best pressures for each species since they might have changed
+        foreach (var patch in map.Patches.Values)
+        {
+            steps.Enqueue(new ComputeBestPressures(patch, new SimulationCache()));
+        }
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
 
-        //steps.Enqueue(new ForceExtinction(map.Patches.Values.ToList(), autoEvoConfiguration));
 
         AutoEvoGlobals.RunResults = results;
     }

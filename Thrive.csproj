@@ -48,6 +48,7 @@
     <Compile Include="src\auto-evo\simulation\selection_pressure\ReachCompoundCloudPressure.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\SelectionPressure.cs" />
     <Compile Include="src\auto-evo\simulation\SimulationCache.cs" />
+    <Compile Include="src\auto-evo\steps\ComputeBestPressures.cs" />
     <Compile Include="src\auto-evo\steps\ExcludeSpecies.cs" />
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
