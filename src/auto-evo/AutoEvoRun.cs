@@ -431,9 +431,12 @@ public class AutoEvoRun
                     map, entry.Value, random));*/
             }
 
-            foreach (var niche in SelectionPressure.NichesForPatch(entry.Value, new SimulationCache()))
+            foreach (var niche in SelectionPressure.MichesForPatch(entry.Value, new SimulationCache()))
             {
-                steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), niche));
+                foreach (var traversal in niche.AllTraversals())
+                {
+                    steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), traversal));
+                }
             }
 
             steps.Enqueue(new ExcludeSpecies(entry.Value, new SimulationCache()));

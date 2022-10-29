@@ -43,26 +43,45 @@ class CommonSelectionFunctions
         return energyCreationScore;
     }
 
-    public static Dictionary<SelectionPressure, Tuple<Species, double>> GetBestPressures(RunResults results, Patch patch, SimulationCache cache)
+    public static Dictionary<List<SelectionPressure>, Species> GetBestPressures(RunResults results, Patch patch, SimulationCache cache)
     {
         // TODO: do this some other way
-        var selectionPressures = SelectionPressure.PressuresFromPatch(null, patch, cache, null);
+        var miches = SelectionPressure.MichesForPatch(patch, cache);
 
-        var bestBySelection = new Dictionary<SelectionPressure, Tuple<Species, double>>();
+        var bestBySelection = new Dictionary<List<SelectionPressure>, Species>();
 
         var allSpecies = results.results.Values.Where(x => x.NewPopulationInPatches.Keys.Contains(patch))
             .Select(x => x.Species);
 
-        // Assign a new best for each selection pressure
-        foreach (var pressure in selectionPressures)
+        foreach (var miche in miches)
         {
-            foreach (var species in allSpecies)
+            foreach (var traversal in miche.AllTraversals())
             {
-                // Since mutations may have occurred by now, take those into account
-                var latestSpecies = results.LastestVersionForSpecies(species);
-                if (pressure.Score(species, cache) > 0 && (!bestBySelection.ContainsKey(pressure) || pressure.Score(latestSpecies, cache) > bestBySelection[pressure].Item2))
+                var qualifiedSpecies = new Dictionary<Species, double>();
+                foreach (var species in allSpecies)
                 {
-                    bestBySelection[pressure] = new Tuple<Species, double>(species, pressure.Score(latestSpecies, cache));
+                    qualifiedSpecies[species] = 0;
+                }
+
+                foreach (var pressure in traversal)
+                {
+                    var remainingQualifiedSpecies = new Dictionary<Species, double>(qualifiedSpecies);
+
+                    foreach (var species in qualifiedSpecies.Keys)
+                    {
+                        var score = pressure.Score(species, cache);
+                        if (score > 0)
+                        {
+                            remainingQualifiedSpecies.Add(species, score);
+                        }
+                    }
+
+                    qualifiedSpecies = remainingQualifiedSpecies;
+                }
+
+                if (qualifiedSpecies.Count > 0)
+                {
+                    bestBySelection[traversal] = qualifiedSpecies.OrderByDescending(x => x.Value).First().Key;
                 }
             }
         }
@@ -70,4 +89,3 @@ class CommonSelectionFunctions
         return bestBySelection;
     }
 }
-

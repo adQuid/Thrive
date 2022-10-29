@@ -1138,7 +1138,7 @@
             /// </summary>
             public Dictionary<Patch, SpeciesPatchEnergyResults> EnergyResults = new();
 
-            public Dictionary<Patch, List<SelectionPressure>> BestPressures = new();
+            public Dictionary<Patch, List<List<SelectionPressure>>> BestPressures = new();
 
             public SpeciesResult(Species species)
             {

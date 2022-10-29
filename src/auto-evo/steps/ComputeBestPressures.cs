@@ -28,7 +28,7 @@ class ComputeBestPressures : IRunStep
         {
             var latestSpecies = results.LastestVersionForSpecies(species);
             results.MakeSureResultExistsForSpecies(latestSpecies);
-            results.results[latestSpecies].BestPressures[Patch] = bestPressures.Where(x => x.Value.Item1 == species).Select(x => x.Key).ToList();
+            results.results[latestSpecies].BestPressures[Patch] = bestPressures.Where(x => x.Value == species).Select(x => x.Key).ToList();
         }
 
         return true;

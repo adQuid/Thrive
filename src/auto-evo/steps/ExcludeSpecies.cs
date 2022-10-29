@@ -30,19 +30,19 @@ class ExcludeSpecies : IRunStep
 
         foreach (var bestSelection in bestBySelection.Keys)
         {
-            GD.Print("Best at " + bestSelection.Name() + " is " + bestBySelection[bestSelection].Item1.FormattedName + " with " + bestBySelection[bestSelection].Item2 + " ( speed " + bestBySelection[bestSelection].Item1.BaseSpeed + ")");
+            GD.Print("Best at " + String.Join(",", bestSelection.Select(x => x.Name())) + " is " + bestBySelection[bestSelection].FormattedName);
         }
 
         // If it's not the player and not the best at something, bump it off
         foreach (var species in allSpecies)
         {
-            if (!species.PlayerSpecies && !bestBySelection.Where(x => x.Key.Exclusive).Select(x => x.Value).Select(x => x.Item1).Contains(species))
+            if (!species.PlayerSpecies && !bestBySelection.Select(x => x.Value).Contains(species))
             {
                 GD.Print("Excluding "+ species.FormattedName);
                 results.KillSpeciesInPatch(species, Patch, false);
             } else
             {
-                results.results[species].BestPressures[Patch] = bestBySelection.Where(x => x.Value.Item1 == species).Select(x => x.Key).ToList();
+                results.results[species].BestPressures[Patch] = bestBySelection.Where(x => x.Value == species).Select(x => x.Key).ToList();
             }
         }
 

@@ -33,21 +33,21 @@ public abstract class SelectionPressure
         return selectionPressures;
     }
 
-    public static List<List<SelectionPressure>> NichesForPatch(Patch patch, SimulationCache cache)
+    public static List<Miche> MichesForPatch(Patch patch, SimulationCache cache)
     {
-        var retval = new List<List<SelectionPressure>>();
+        var retval = new List<Miche>();
 
         foreach (var pressure in PredationPressures(patch, cache))
         {
-            retval.Add(new List<SelectionPressure> { pressure });
+            retval.Add(new Miche(pressure.Name(), pressure, null));
         }
 
-        retval.Add(new List<SelectionPressure> {
-                new ReachCompoundCloudPressure(10.0f),
-                new AutotrophEnergyEfficiencyPressure(patch, 1.0f),
-        });
+        retval.Add(
+            new Miche("Hydrogen Sulfide Chemosynthesis", new AutotrophEnergyEfficiencyPressure(patch, 1.0f),
+                new List<Miche> { new Miche("Mobile Hydrogen Sulfide Chemosynthesis", new ReachCompoundCloudPressure(10.0f), null) })
+        );
 
-        retval.Add(new List<SelectionPressure> { new ReachCompoundCloudPressure(5.0f) });
+        retval.Add(new Miche("Glucose Consumption", new ReachCompoundCloudPressure(5.0f), null));
 
         return retval;
     }
