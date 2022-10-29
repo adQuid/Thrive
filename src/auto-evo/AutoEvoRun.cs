@@ -435,7 +435,10 @@ public class AutoEvoRun
             // heterotrophs
             steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), SelectionPressure.PreyOptionsForSpecies(null, entry.Value, new SimulationCache())));
             // hydrogen sulfide
-            steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), new List<SelectionPressure> { new AutotrophEnergyEfficiencyPressure(entry.Value, 1.0f), new ReachCompoundCloudPressure(10.0f) }));
+            steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), new List<SelectionPressure> {
+                new ReachCompoundCloudPressure(10.0f),
+                new AutotrophEnergyEfficiencyPressure(entry.Value, 1.0f),  
+            }));
             // glucose
             steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), new List<SelectionPressure> { new ReachCompoundCloudPressure(5.0f) }));
 

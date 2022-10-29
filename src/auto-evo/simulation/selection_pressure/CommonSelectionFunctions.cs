@@ -42,5 +42,32 @@ class CommonSelectionFunctions
 
         return energyCreationScore;
     }
+
+    public static Dictionary<SelectionPressure, Tuple<Species, double>> GetBestPressures(RunResults results, Patch patch, SimulationCache cache)
+    {
+        // TODO: do this some other way
+        var selectionPressures = SelectionPressure.PressuresFromPatch(null, patch, cache, null);
+
+        var bestBySelection = new Dictionary<SelectionPressure, Tuple<Species, double>>();
+
+        var allSpecies = results.results.Values.Where(x => x.NewPopulationInPatches.Keys.Contains(patch))
+            .Select(x => x.Species);
+
+        // Assign a new best for each selection pressure
+        foreach (var pressure in selectionPressures)
+        {
+            foreach (var species in allSpecies)
+            {
+                // Since mutations may have occurred by now, take those into account
+                var latestSpecies = results.LastestVersionForSpecies(species);
+                if (pressure.Score(species, cache) > 0 && (!bestBySelection.ContainsKey(pressure) || pressure.Score(latestSpecies, cache) > bestBySelection[pressure].Item2))
+                {
+                    bestBySelection[pressure] = new Tuple<Species, double>(species, pressure.Score(latestSpecies, cache));
+                }
+            }
+        }
+
+        return bestBySelection;
+    }
 }
 

@@ -23,27 +23,10 @@ class ExcludeSpecies : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        // TODO: do this some other way
-        var selectionPressures = SelectionPressure.PressuresFromPatch(null, Patch, Cache, null);
-
-        var bestBySelection = new Dictionary<SelectionPressure, Tuple<Species, double>>();
-
         var allSpecies = results.results.Values.Where(x => x.NewPopulationInPatches.Keys.Contains(Patch))
             .Select(x => x.Species);
 
-        // Assign a new best for each selection pressure
-        foreach (var pressure in selectionPressures)
-        {
-            foreach (var species in allSpecies)
-            {
-                // Since mutations may have occurred by now, take those into account
-                var latestSpecies = results.LastestVersionForSpecies(species);
-                if (pressure.Score(species, Cache) > 0 && (!bestBySelection.ContainsKey(pressure) || pressure.Score(latestSpecies, Cache) > bestBySelection[pressure].Item2))
-                {
-                    bestBySelection[pressure] = new Tuple<Species, double>(species, pressure.Score(latestSpecies, Cache));
-                }
-            }
-        }
+        var bestBySelection = CommonSelectionFunctions.GetBestPressures(results, Patch, Cache);
 
         foreach (var bestSelection in bestBySelection.Keys)
         {
