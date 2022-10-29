@@ -72,7 +72,7 @@ class CommonSelectionFunctions
                         var score = pressure.Score(species, cache);
                         if (score > 0)
                         {
-                            remainingQualifiedSpecies.Add(species, score);
+                            remainingQualifiedSpecies[species] += score;
                         }
                     }
 
