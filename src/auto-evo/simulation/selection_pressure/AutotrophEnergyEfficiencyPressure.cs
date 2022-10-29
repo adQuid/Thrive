@@ -13,7 +13,7 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
         weight, 
         new List<IMutationStrategy<MicrobeSpecies>> { 
             new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins")),
-            //new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("cellulose")),
+            new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("cellulose")),
         },
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )
