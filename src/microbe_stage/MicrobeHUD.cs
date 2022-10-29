@@ -1012,6 +1012,10 @@ public class MicrobeHUD : Control
                             autoEvoResults += "\n  " + pressure.Name();
                         }
                     }
+                    else
+                    {
+                        autoEvoResults += " (has no entry)";
+                    }
                 }
 
                 AddHoveredCellLabel(hoveredSpeciesCount.Key.FormattedName + autoEvoResults);

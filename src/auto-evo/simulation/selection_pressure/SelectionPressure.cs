@@ -21,7 +21,7 @@ public abstract class SelectionPressure
         if (niche == null){
             selectionPressures.Add(new AutotrophEnergyEfficiencyPressure(patch, 10.0f));
 
-            selectionPressures.AddRange(PreyOptionsForSpecies(species, patch, cache));
+            selectionPressures.AddRange(PredationPressures(patch, cache));
         }
         else
         {
@@ -33,16 +33,32 @@ public abstract class SelectionPressure
         return selectionPressures;
     }
 
-    public static List<SelectionPressure> PreyOptionsForSpecies(Species? species, Patch patch, SimulationCache cache)
+    public static List<List<SelectionPressure>> NichesForPatch(Patch patch, SimulationCache cache)
+    {
+        var retval = new List<List<SelectionPressure>>();
+
+        foreach (var pressure in PredationPressures(patch, cache))
+        {
+            retval.Add(new List<SelectionPressure> { pressure });
+        }
+
+        retval.Add(new List<SelectionPressure> {
+                new ReachCompoundCloudPressure(10.0f),
+                new AutotrophEnergyEfficiencyPressure(patch, 1.0f),
+        });
+
+        retval.Add(new List<SelectionPressure> { new ReachCompoundCloudPressure(5.0f) });
+
+        return retval;
+    }
+
+    public static List<SelectionPressure> PredationPressures(Patch patch, SimulationCache cache)
     {
         var retval = new List<SelectionPressure>();
 
         foreach (var possiblePrey in patch.SpeciesInPatch.Keys)
         {
-            if (possiblePrey != species)
-            {
-                retval.Add(new PredationEffectivenessPressure(possiblePrey, 10.0f));
-            }
+            retval.Add(new PredationEffectivenessPressure(possiblePrey, 10.0f));
         }
 
         return retval;

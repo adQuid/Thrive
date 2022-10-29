@@ -1044,7 +1044,7 @@
             world.LogEvent(description, highlight, iconPath);
         }
 
-        private void MakeSureResultExistsForSpecies(Species species)
+        public void MakeSureResultExistsForSpecies(Species species)
         {
             if (species == null)
                 throw new ArgumentException("species to add result to is null", nameof(species));

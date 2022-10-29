@@ -26,7 +26,9 @@ class ComputeBestPressures : IRunStep
 
         foreach (var species in results.results.Keys)
         {
-            results.results[species].BestPressures[Patch] = bestPressures.Where(x => x.Value.Item1 == species).Select(x => x.Key).ToList();
+            var latestSpecies = results.LastestVersionForSpecies(species);
+            results.MakeSureResultExistsForSpecies(latestSpecies);
+            results.results[latestSpecies].BestPressures[Patch] = bestPressures.Where(x => x.Value.Item1 == species).Select(x => x.Key).ToList();
         }
 
         return true;
