@@ -402,9 +402,6 @@ public class AutoEvoRun
                 {
                     // TODO: should I really be declaring a simulation cache here?
                     steps.Enqueue(new ModifyExistingSpecies(speciesEntry.Key, entry.Value, new SimulationCache()));
-                    /*steps.Enqueue(new FindBestMutation(autoEvoConfiguration,
-                        Parameters.World.WorldSettings, map, speciesEntry.Key,
-                        autoEvoConfiguration.AllowNoMigration));*/
                 }
             }
 
@@ -435,8 +432,11 @@ public class AutoEvoRun
             }
 
             // TODO: Generate niches procedurally
+            // heterotrophs
             steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), SelectionPressure.PreyOptionsForSpecies(null, entry.Value, new SimulationCache())));
-            steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), new List<SelectionPressure> { new AutotrophEnergyEfficiencyPressure(entry.Value, 10.0f), new ReachCompoundCloudPressure(5.0f) }));
+            // hydrogen sulfide
+            steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), new List<SelectionPressure> { new AutotrophEnergyEfficiencyPressure(entry.Value, 1.0f), new ReachCompoundCloudPressure(10.0f) }));
+            // glucose
             steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), new List<SelectionPressure> { new ReachCompoundCloudPressure(5.0f) }));
 
             steps.Enqueue(new ExcludeSpecies(entry.Value, new SimulationCache()));
