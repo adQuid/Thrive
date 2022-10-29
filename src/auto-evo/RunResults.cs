@@ -552,7 +552,7 @@
             }
         }
 
-        public List<SelectionPressure> GetPatchPressureResults(Species species, Patch patch)
+        public List<List<SelectionPressure>> GetPatchPressureResults(Species species, Patch patch)
         {
             if (results.ContainsKey(species) && results[species].BestPressures.ContainsKey(patch))
             {
@@ -560,7 +560,7 @@
             }
             else
             {
-                return new List<SelectionPressure>();
+                return new List<List<SelectionPressure>>();
             }
         }
 
