@@ -27,13 +27,15 @@ public class Miche
             return new List<List<SelectionPressure>> { new List<SelectionPressure> { Pressure } };
         }
 
-        var retval = Children.SelectMany(x => x.AllTraversals());
+        var traversals = Children.SelectMany(x => x.AllTraversals());
+        var retval = new List<List<SelectionPressure>>();
 
-        foreach (var list in retval)
+        foreach (var list in traversals)
         {
-            list.Prepend(Pressure);
+            list.Insert(0, Pressure);
+            retval.Add(list);
         }
 
-        return retval.ToList();
+        return retval;
     }
 }
