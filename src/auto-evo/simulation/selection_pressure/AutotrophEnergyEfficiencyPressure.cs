@@ -8,6 +8,7 @@ using AutoEvo;
 public class AutotrophEnergyEfficiencyPressure : SelectionPressure
 {
     public Patch Patch;
+    public Compound Compound;
 
     public AutotrophEnergyEfficiencyPressure(Patch patch, Compound compound, float weight): base(true, 
         weight, 
@@ -16,11 +17,12 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
         )
     {
         Patch = patch;
+        Compound = compound;
     }
 
     public override float Score(Species species, SimulationCache cache)
     {
-        return CommonSelectionFunctions.EnergyGenerationScore((MicrobeSpecies)species, Compound.ByName("hydrogensulfide"), Patch, cache) / 
+        return CommonSelectionFunctions.EnergyGenerationScore((MicrobeSpecies)species, Compound, Patch, cache) /
             CommonSelectionFunctions.SpeciesOsmoregulationCost((MicrobeSpecies)species);
     }
 
