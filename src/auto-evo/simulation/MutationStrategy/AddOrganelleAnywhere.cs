@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
-class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
+public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
     public OrganelleDefinition Organelle;
 
@@ -19,5 +20,20 @@ class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         newSpecies.Organelles.Add(position);
 
         return new List<MicrobeSpecies> { newSpecies };
+    }
+
+    public static List<IMutationStrategy<MicrobeSpecies>> ForOrganellesMatching(Func<OrganelleDefinition, bool> criteria)
+    {
+        var retval = new List<IMutationStrategy<MicrobeSpecies>>();
+
+        foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
+        {
+            if (criteria(organelle))
+            {
+                retval.Add( new AddOrganelleAnywhere(organelle));
+            }
+        }
+
+        return retval;
     }
 }

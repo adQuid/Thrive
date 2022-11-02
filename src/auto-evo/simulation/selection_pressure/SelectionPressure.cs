@@ -19,7 +19,7 @@ public abstract class SelectionPressure
         var selectionPressures = new List<SelectionPressure>();
 
         if (niche == null){
-            selectionPressures.Add(new AutotrophEnergyEfficiencyPressure(patch, 10.0f));
+            selectionPressures.Add(new AutotrophEnergyEfficiencyPressure(patch, Compound.ByName("hydrogensulfide"), 10.0f));
 
             selectionPressures.AddRange(PredationPressures(patch, cache));
         }
@@ -47,7 +47,7 @@ public abstract class SelectionPressure
         if (patch.GetCompoundAmount("hydrogensulfide") > 0)
         {
             retval.Add(
-                new Miche("Hydrogen Sulfide Chemosynthesis", new AutotrophEnergyEfficiencyPressure(patch, 1.0f),
+                new Miche("Hydrogen Sulfide Chemosynthesis", new AutotrophEnergyEfficiencyPressure(patch, Compound.ByName("hydrogensulfide"), 1.0f),
                     new List<Miche> { new Miche("Mobile Hydrogen Sulfide Chemosynthesis", new ReachCompoundCloudPressure(10.0f), null) })
             );
         }

@@ -9,12 +9,9 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
 {
     public Patch Patch;
 
-    public AutotrophEnergyEfficiencyPressure(Patch patch, float weight): base(true, 
+    public AutotrophEnergyEfficiencyPressure(Patch patch, Compound compound, float weight): base(true, 
         weight, 
-        new List<IMutationStrategy<MicrobeSpecies>> { 
-            new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins")),
-            new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("cellulose")),
-        },
+        FromCompound(compound),
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )
     {
@@ -30,5 +27,12 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
     public override string Name()
     {
         return "Autotroph Energy Efficiency";
+    }
+
+    private static List<IMutationStrategy<MicrobeSpecies>> FromCompound(Compound compound)
+    {
+        List<IMutationStrategy<MicrobeSpecies>> retval = AddOrganelleAnywhere.ForOrganellesMatching(organelle => organelle.RunnableProcesses.Where(proc => proc.Process.Inputs.ContainsKey(compound)).Count() > 0);
+        retval.Add(new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("cellulose")));
+        return retval;
     }
 }
