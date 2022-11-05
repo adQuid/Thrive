@@ -84,7 +84,7 @@ public class MainMenu : NodeWithInput
         if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu)
         {
             TransitionManager.Instance.AddSequence(
-                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv", 0.65f), OnIntroEnded);
+                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
         }
         else
         {
