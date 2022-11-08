@@ -43,6 +43,7 @@
     <Compile Include="src\auto-evo\simulation\MutationStrategy\RemoveAnyOrganelle.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\AutotrophEnergyEfficiencyPressure.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\CommonSelectionFunctions.cs" />
+    <Compile Include="src\auto-evo\simulation\selection_pressure\MetabolicStabilityPressure.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\Miche.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\OsmoregulationEfficiencyPressure.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\PredationEffectivenessPressure.cs" />
