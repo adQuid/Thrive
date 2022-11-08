@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using AutoEvo;
+using Godot;
 
 class MetabolicStabilityPressure : SelectionPressure
 {
     private Patch Patch;
 
-    public MetabolicStabilityPressure(Patch patch, float weight) : base(false,
+    public MetabolicStabilityPressure(Patch patch, float weight) : base(true,
         weight,
         new List<IMutationStrategy<MicrobeSpecies>>
         {
@@ -29,11 +30,11 @@ class MetabolicStabilityPressure : SelectionPressure
 
         if (energyBalance.FinalBalance > 0)
         {
-            return 1.0f;
+            return 1.0f / energyBalance.TotalConsumptionStationary;
         } 
         else if (energyBalance.FinalBalanceStationary >= 0)
         {
-            return 0.5f;
+            return 0.5f / energyBalance.TotalConsumptionStationary;
         }
         else
         {
