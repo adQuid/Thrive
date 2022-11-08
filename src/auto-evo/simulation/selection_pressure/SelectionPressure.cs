@@ -40,7 +40,7 @@ public abstract class SelectionPressure
         // Predation
         foreach (var pressure in PredationPressures(patch, cache))
         {
-            retval.Add(new Miche(pressure.Name(), pressure, null));
+            retval.Add(new Miche(pressure.Name(), pressure, new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 10.0f), null)}));
         }
 
         // Hydrogen Sulfide
@@ -48,13 +48,17 @@ public abstract class SelectionPressure
         {
             retval.Add(
                 new Miche("Hydrogen Sulfide Chemosynthesis", new AutotrophEnergyEfficiencyPressure(patch, Compound.ByName("hydrogensulfide"), 1.0f),
-                    new List<Miche> { new Miche("Mobile Hydrogen Sulfide Chemosynthesis", new ReachCompoundCloudPressure(10.0f), null) })
+                    new List<Miche> { new Miche("Mobile Hydrogen Sulfide Chemosynthesis", new ReachCompoundCloudPressure(10.0f), 
+                        new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 10.0f), null) }) 
+                    })
             );
         }
 
         if (patch.GetCompoundAmount("glucose") > 0)
         {
-            retval.Add(new Miche("Glucose Consumption", new ReachCompoundCloudPressure(5.0f), null));
+            retval.Add(new Miche("Glucose Consumption", new ReachCompoundCloudPressure(5.0f),
+                new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 10.0f), null) }
+            ));
         }
 
         return retval;
