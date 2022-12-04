@@ -2,10 +2,11 @@
 
 public class PartList
 {
-    public Dictionary<string, OrganelleDefinition> PermittedOrganelleDefinitions;
+    public Dictionary<string, OrganelleDefinition> PermittedOrganelleDefinitions = new Dictionary<string, OrganelleDefinition>();
 
     public PartList(Species species)
     {
+
         foreach (var organelleDefinition in SimulationParameters.Instance.GetAllOrganelles())
         {
             var isValid = true;
