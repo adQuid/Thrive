@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 public interface IMutationStrategy<T> where T: Species
 {
-    public abstract List<T> MutationsOf(T baseSpecies);
+    public abstract List<T> MutationsOf(T baseSpecies, PartList partList);
 }

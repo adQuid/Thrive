@@ -1,37 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using Godot;
+using System.Linq;
 
 public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
-    public OrganelleDefinition Organelle;
+    public Func<OrganelleDefinition, bool> Criteria;
 
-    public AddOrganelleAnywhere(OrganelleDefinition organelle)
+    public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria)
     {
-        Organelle = organelle;
+        Criteria = criteria;
     }
 
-    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies)
+    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, PartList partList)
     {
-        var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+        var viableOrganelles = partList.GetAllOrganelles().Where(x => Criteria(x));
 
-        var position = CommonMutationFunctions.GetRealisticPosition(Organelle, newSpecies.Organelles);
+        var retval = new List<MicrobeSpecies>();
 
-        newSpecies.Organelles.Add(position);
-
-        return new List<MicrobeSpecies> { newSpecies };
-    }
-
-    public static List<IMutationStrategy<MicrobeSpecies>> ForOrganellesMatching(Func<OrganelleDefinition, bool> criteria)
-    {
-        var retval = new List<IMutationStrategy<MicrobeSpecies>>();
-
-        foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
+        foreach (var organelle in viableOrganelles)
         {
-            if (criteria(organelle))
-            {
-                retval.Add( new AddOrganelleAnywhere(organelle));
-            }
+            var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+
+            var position = CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles);
+
+            newSpecies.Organelles.Add(position);
+
+            retval.Add(newSpecies);
         }
 
         return retval;

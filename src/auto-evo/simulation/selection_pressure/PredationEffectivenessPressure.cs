@@ -13,7 +13,7 @@ public class PredationEffectivenessPressure : SelectionPressure
     public PredationEffectivenessPressure(Species prey, float weight): base(true,
         weight,
         new List<IMutationStrategy<MicrobeSpecies>> {
-            new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("cytoplasm")),
+            new AddOrganelleAnywhere(organelle => organelle.Name.Equals("cytoplasm")),
             new RemoveAnyOrganelle(),
             new LowerRigidity(),
             new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),

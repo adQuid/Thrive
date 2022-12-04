@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 class RemoveAnyOrganelle : IMutationStrategy<MicrobeSpecies>
 {
-    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies)
+    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, PartList partList)
     {
         //TODO: Make this something passed in
         var random = new Random();

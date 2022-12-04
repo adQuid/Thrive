@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 class RaiseRigidity : IMutationStrategy<MicrobeSpecies>
 {
-    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies)
+    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, PartList partList)
     {
         var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 

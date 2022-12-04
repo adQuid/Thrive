@@ -6,11 +6,11 @@ class MetabolicStabilityPressure : SelectionPressure
 {
     private Patch Patch;
 
-    public MetabolicStabilityPressure(Patch patch, float weight) : base(true,
+    public MetabolicStabilityPressure(Patch patch, PartList partList, float weight) : base(true,
         weight,
         new List<IMutationStrategy<MicrobeSpecies>>
         {
-            new AddOrganelleAnywhere(SimulationParameters.Instance.GetOrganelleType("metabolosome"))
+            new AddOrganelleAnywhere(organelle => organelle.Name.Equals("metabolosome"))
         },
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )

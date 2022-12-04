@@ -11,12 +11,14 @@ public class ModifyExistingSpecies : IRunStep
     public Species Species;
     public Patch Patch;
     public SimulationCache Cache;
+    public PartList PartList;
 
     public ModifyExistingSpecies(Species species, Patch patch, SimulationCache cache)
     {
         Species = species;
         Patch = patch;
         Cache = cache;
+        PartList = new PartList(species);
     }
 
     public int TotalSteps => 1;
@@ -25,7 +27,7 @@ public class ModifyExistingSpecies : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        var viableVariants = ViableVariants(results, Species, Patch, Cache, null);
+        var viableVariants = ViableVariants(results, Species, Patch, PartList, Cache, null);
 
         // TODO: pass this in
         var random = new Random();
@@ -34,11 +36,11 @@ public class ModifyExistingSpecies : IRunStep
         return true;
     }
 
-    public static List<MicrobeSpecies> ViableVariants(RunResults results, Species species, Patch patch, SimulationCache cache, List<SelectionPressure>? niche)
+    public static List<MicrobeSpecies> ViableVariants(RunResults results, Species species, Patch patch, PartList partList, SimulationCache cache, List<SelectionPressure>? niche)
     {
         var modifiedSpecies = (MicrobeSpecies)results.LastestVersionForSpecies(species);
 
-        var selectionPressures = SelectionPressure.PressuresFromPatch(species, patch, cache, niche);
+        var selectionPressures = SelectionPressure.PressuresFromPatch(species, patch, partList, cache, niche);
 
         // find the initial scores
         var pressureScores = new Dictionary<SelectionPressure, float>();
@@ -56,7 +58,7 @@ public class ModifyExistingSpecies : IRunStep
 
             // For each viable variant, get a new variants that at least improve score a little bit
             var potentialVariants = viableVariants.Select(startVariant =>
-                curPressure.MicrobeMutations.Select(mutationStrategy => mutationStrategy.MutationsOf(startVariant))
+                curPressure.MicrobeMutations.Select(mutationStrategy => mutationStrategy.MutationsOf(startVariant, partList))
                 .SelectMany(x => x)
                 .Where(x => curPressure.Score(x, cache) >= curPressure.Score(startVariant, cache))
                 )

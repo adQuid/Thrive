@@ -33,7 +33,8 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
 
     private static List<IMutationStrategy<MicrobeSpecies>> FromCompound(Compound compound)
     {
-        List<IMutationStrategy<MicrobeSpecies>> retval = AddOrganelleAnywhere.ForOrganellesMatching(organelle => organelle.RunnableProcesses.Where(proc => proc.Process.Inputs.ContainsKey(compound)).Count() > 0);
+        List<IMutationStrategy<MicrobeSpecies>> retval = new List<IMutationStrategy<MicrobeSpecies>>();
+        retval.Add(new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses.Where(proc => proc.Process.Inputs.ContainsKey(compound)).Count() > 0));
         retval.Add(new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("cellulose")));
         return retval;
     }
