@@ -6,7 +6,7 @@ class MetabolicStabilityPressure : SelectionPressure
 {
     private Patch Patch;
 
-    public MetabolicStabilityPressure(Patch patch, PartList partList, float weight) : base(true,
+    public MetabolicStabilityPressure(Patch patch, float weight) : base(true,
         weight,
         new List<IMutationStrategy<MicrobeSpecies>>
         {
