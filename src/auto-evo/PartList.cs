@@ -8,17 +8,23 @@ public class PartList
     {
         foreach (var organelleDefinition in SimulationParameters.Instance.GetAllOrganelles())
         {
-            if(species is MicrobeSpecies)
+            var isValid = true;
+            if (species is MicrobeSpecies)
             {
                 var microbeSpecies = (MicrobeSpecies)species;
 
                 if (organelleDefinition.RequiresNucleus && microbeSpecies.IsBacteria)
                 {
-                    continue;
+                    isValid = false;
                 }
             }
-            //TODO: make this only happen sometiems
-            PermittedOrganelleDefinitions.Add(organelleDefinition.Name, organelleDefinition);
+            
+            // TODO: Add chance here
+
+            if (isValid)
+            {
+                PermittedOrganelleDefinitions.Add(organelleDefinition.Name, organelleDefinition);
+            }
         }
 
     }
