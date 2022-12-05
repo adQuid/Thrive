@@ -83,6 +83,11 @@ class CommonSelectionFunctions
                         {
                             remainingQualifiedSpecies[species] += score;
                         }
+                        else
+                        {
+                            remainingQualifiedSpecies.Remove(species);
+                            continue;
+                        }
                     }
 
                     qualifiedSpecies = remainingQualifiedSpecies;
