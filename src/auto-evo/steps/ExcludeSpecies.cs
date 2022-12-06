@@ -30,7 +30,13 @@ class ExcludeSpecies : IRunStep
 
         foreach (var bestSelection in bestBySelection.Keys)
         {
-            GD.Print("Best at " + String.Join(",", bestSelection.Select(x => x.Name())) + " is " + bestBySelection[bestSelection].FormattedName);
+            //GD.Print("Best at " + String.Join(",", bestSelection.Select(x => x.Name())) + " in "+Patch.Name+" is " + bestBySelection[bestSelection].FormattedName + " which has membrane " + ((MicrobeSpecies)bestBySelection[bestSelection]).MembraneType.Name);
+
+            /*GD.Print("Other options: ");
+            foreach (var other in allSpecies)
+            {
+                GD.Print(other.FormattedName + " with " + ((MicrobeSpecies)other).MembraneType.Name);
+            }*/
         }
 
         // If it's not the player and not the best at something, bump it off
