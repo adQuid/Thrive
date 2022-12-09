@@ -83,6 +83,9 @@ public class ModifyExistingSpecies : IRunStep
 
                 if (viable)
                 {
+                    // TODO: Move this somewhere better
+                    ((MicrobeSpecies)potentialVariant).Colour = new Color((float)(new Random().NextDouble() * 255f), 150.0f, 150.0f);
+
                     viableVariants.Add(potentialVariant);
                 }
             }
