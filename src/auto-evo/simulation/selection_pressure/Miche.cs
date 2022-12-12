@@ -6,7 +6,7 @@ public class Miche
 {
     public String Name;
     public Miche? Parent = null;
-    public List<Miche>? Children;
+    public List<Miche> Children = new();
     public SelectionPressure Pressure;
     public Species? Occupant = null; 
 
