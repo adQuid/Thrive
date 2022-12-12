@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoEvo;
 
 class CommonSelectionFunctions
@@ -50,56 +47,5 @@ class CommonSelectionFunctions
         }
 
         return energyCreationScore;
-    }
-
-    public static Dictionary<List<SelectionPressure>, Species> GetBestPressures(RunResults results, Patch patch, SimulationCache cache)
-    {
-        // TODO: do this some other way
-        var miches = SelectionPressure.MichesForPatch(patch, cache);
-
-        var bestBySelection = new Dictionary<List<SelectionPressure>, Species>();
-
-        var allSpecies = results.results.Values.Where(x => x.NewPopulationInPatches.Keys.Contains(patch))
-            .Select(x => x.Species);
-
-        foreach (var miche in miches)
-        {
-            foreach (var traversal in miche.AllTraversals())
-            {
-                var qualifiedSpecies = new Dictionary<Species, double>();
-                foreach (var species in allSpecies)
-                {
-                    qualifiedSpecies[species] = 0;
-                }
-
-                foreach (var pressure in traversal)
-                {
-                    var remainingQualifiedSpecies = new Dictionary<Species, double>(qualifiedSpecies);
-
-                    foreach (var species in qualifiedSpecies.Keys)
-                    {
-                        var score = pressure.Score(species, cache);
-                        if (score > 0)
-                        {
-                            remainingQualifiedSpecies[species] += score;
-                        }
-                        else
-                        {
-                            remainingQualifiedSpecies.Remove(species);
-                            continue;
-                        }
-                    }
-
-                    qualifiedSpecies = remainingQualifiedSpecies;
-                }
-
-                if (qualifiedSpecies.Count > 0)
-                {
-                    bestBySelection[traversal] = qualifiedSpecies.OrderByDescending(x => x.Value).First().Key;
-                }
-            }
-        }
-
-        return bestBySelection;
     }
 }

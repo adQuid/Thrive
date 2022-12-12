@@ -68,6 +68,8 @@ public class Patch
     [JsonIgnore]
     public Dictionary<Species, long> SpeciesInPatch => currentSnapshot.SpeciesInPatch;
 
+    public List<Miche> Miches = new();
+
     [JsonIgnore]
     public BiomeConditions Biome => currentSnapshot.Biome;
 

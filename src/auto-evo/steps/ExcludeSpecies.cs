@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoEvo;
-using Godot;
 
 class ExcludeSpecies : IRunStep
 {
@@ -12,43 +11,19 @@ class ExcludeSpecies : IRunStep
 
     public bool CanRunConcurrently => false;
 
-    public Patch Patch;
-    public SimulationCache Cache;
-
-    public ExcludeSpecies(Patch patch, SimulationCache cache)
+    Patch Patch;
+    public ExcludeSpecies(Patch patch)
     {
         Patch = patch;
-        Cache = cache;
     }
 
     public bool RunStep(RunResults results)
     {
-        var allSpecies = results.results.Values.Where(x => x.NewPopulationInPatches.Keys.Contains(Patch))
-            .Select(x => x.Species);
-
-        var bestBySelection = CommonSelectionFunctions.GetBestPressures(results, Patch, Cache);
-
-        foreach (var bestSelection in bestBySelection.Keys)
+        foreach (var species in Patch.SpeciesInPatch)
         {
-            //GD.Print("Best at " + String.Join(",", bestSelection.Select(x => x.Name())) + " in "+Patch.Name+" is " + bestBySelection[bestSelection].FormattedName + " which has membrane " + ((MicrobeSpecies)bestBySelection[bestSelection]).MembraneType.Name);
-
-            /*GD.Print("Other options: ");
-            foreach (var other in allSpecies)
+            if (!results.Miches[Patch].SelectMany(x => x.AllOccupants()).Contains(species.Key))
             {
-                GD.Print(other.FormattedName + " with " + ((MicrobeSpecies)other).MembraneType.Name);
-            }*/
-        }
-
-        // If it's not the player and not the best at something, bump it off
-        foreach (var species in allSpecies)
-        {
-            if (!species.PlayerSpecies && !bestBySelection.Select(x => x.Value).Contains(species))
-            {
-                GD.Print("Excluding "+ species.FormattedName);
-                results.KillSpeciesInPatch(species, Patch, false);
-            } else
-            {
-                results.results[species].BestPressures[Patch] = bestBySelection.Where(x => x.Value == species).Select(x => x.Key).ToList();
+                results.AddPopulationResultForSpecies(species.Key, Patch, 0);
             }
         }
 

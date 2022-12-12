@@ -431,15 +431,9 @@ public class AutoEvoRun
                     map, entry.Value, random));*/
             }
 
-            foreach (var niche in SelectionPressure.MichesForPatch(entry.Value, new SimulationCache()))
-            {
-                foreach (var traversal in niche.AllTraversals())
-                {
-                    steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), traversal));
-                }
-            }
+            steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache()));
 
-            steps.Enqueue(new ExcludeSpecies(entry.Value, new SimulationCache()));
+            steps.Enqueue(new ExcludeSpecies(entry.Value));
         }
 
         // The new populations don't depend on the mutations, this is so that when
@@ -448,12 +442,6 @@ public class AutoEvoRun
         // editor and suggested changes)
         // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
         steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, map) { CanRunConcurrently = false });
-
-        // recalculate the best pressures for each species since they might have changed
-        foreach (var patch in map.Patches.Values)
-        {
-            steps.Enqueue(new ComputeBestPressures(patch, new SimulationCache()));
-        }
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
     }

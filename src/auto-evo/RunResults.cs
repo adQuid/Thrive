@@ -29,6 +29,8 @@
         /// </remarks>
         public ConcurrentDictionary<Species, SpeciesResult> results = new();
 
+        public Dictionary<Patch, List<Miche>> Miches = new();
+
         public enum NewSpeciesType
         {
             /// <summary>
@@ -240,6 +242,11 @@
 
         public void ApplyResults(GameWorld world, bool skipMutations)
         {
+            foreach (var entry in Miches)
+            {
+                world.Map.Patches[entry.Key.ID].Miches = entry.Value;
+            }
+
             foreach (var entry in results)
             {
                 if (entry.Value.NewlyCreated != null)
