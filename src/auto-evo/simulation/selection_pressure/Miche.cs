@@ -10,7 +10,9 @@ public class Miche
     public SelectionPressure Pressure;
     public Species? Occupant = null; 
 
-    public Miche(String name, SelectionPressure pressure, List<Miche>? children)
+    public Miche(String name, SelectionPressure pressure): this(name, pressure, new List<Miche>()) { }
+
+    public Miche(String name, SelectionPressure pressure, List<Miche> children)
     {
         Name = name;
         Children = children;
