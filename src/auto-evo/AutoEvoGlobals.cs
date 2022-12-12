@@ -7,5 +7,5 @@ using AutoEvo;
 
 public class AutoEvoGlobals
 {
-    public static RunResults RunResults;
+    
 }

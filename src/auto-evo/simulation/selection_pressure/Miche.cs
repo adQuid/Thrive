@@ -27,7 +27,7 @@ public class Miche
 
     public bool IsLeafNode()
     {
-        return Children == null;
+        return Children.Count() == 0;
     }
 
     public List<List<Miche>> AllTraversals()

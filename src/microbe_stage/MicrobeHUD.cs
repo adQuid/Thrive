@@ -999,13 +999,17 @@ public class MicrobeHUD : Control
             }
             else
             {
-                var autoEvoResults = " "+AutoEvoGlobals.RunResults.results.Count();
+                var autoEvoResults = " ";
 
-                if (AutoEvoGlobals.RunResults != null)
+                if (stage!.GameWorld.Map.CurrentPatch.Miches != null)
                 {
-                    foreach (var pressureTraverse in AutoEvoGlobals.RunResults.GetPatchPressureResults(hoveredSpeciesCount.Key, stage!.GameWorld.Map.CurrentPatch))
+                    foreach (var micheTraversal in stage!.GameWorld.Map.CurrentPatch.Miches.SelectMany(x => x.AllTraversals()))
                     {
-                        autoEvoResults += "\n  " + String.Join(",", pressureTraverse.Select(x => x.Name()));
+                        if (micheTraversal.Last().Occupant == hoveredSpeciesCount.Key)
+                        {
+                            autoEvoResults += "\n  " + String.Join(",", micheTraversal.Select(x => x.Pressure.Name()));
+                        }
+
                     }
                 }
 

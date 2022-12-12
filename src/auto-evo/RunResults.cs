@@ -1153,6 +1153,16 @@
                 Species = species ?? throw new ArgumentException("species is null");
             }
 
+            public void AddBestPressuresResults(Patch patch, List<SelectionPressure> pressures)
+            {
+                if (!BestPressures.ContainsKey(patch))
+                {
+                    BestPressures[patch] = new();
+                }
+
+                BestPressures[patch].Add(pressures);
+            }
+
             public SpeciesPatchEnergyResults GetEnergyResults(Patch patch)
             {
                 if (patch == null)

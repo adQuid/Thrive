@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
+using Godot;
 
 class PullSpeciesForPatch : IRunStep
 {
@@ -19,6 +20,7 @@ class PullSpeciesForPatch : IRunStep
 
     public bool RunStep(RunResults results)
     {
+        GD.Print("Running 'pullspecies' for "+Patch.Name+". "+CandiateSpecies().Count()+" candidate species");
         results.Miches[Patch] = SelectionPressure.MichesForPatch(Patch, Cache);
 
         var variants = CandiateSpecies().ToList();
@@ -54,6 +56,8 @@ class PullSpeciesForPatch : IRunStep
 
     private static void PopulateForMiche(Patch patch, Miche miche, IEnumerable<Species> allSpecies, RunResults results, SimulationCache cache)
     {
+        GD.Print(miche.AllTraversals().Count());
+
         foreach (var traversal in miche.AllTraversals())
         {
             var pressures = traversal.Select(x => x.Pressure);
@@ -103,13 +107,17 @@ class PullSpeciesForPatch : IRunStep
                 }
 
                 // Mark the best pressures for hovering over in game
-                results.results[speciesToAdd].BestPressures[patch].Add(traversal.Select(x => x.Pressure).ToList());
+                results.results[speciesToAdd].AddBestPressuresResults(patch, traversal.Select(x => x.Pressure).ToList());
             }
         }
     }
 
     private IEnumerable<Species> CandiateSpecies()
     {
-        return Patch.Adjacent.SelectMany(x => x.SpeciesInPatch.Keys);
+        var retval = Patch.Adjacent.SelectMany(x => x.SpeciesInPatch.Keys).ToList();
+
+        retval.AddRange(Patch.SpeciesInPatch.Select(x => x.Key));
+
+        return retval;
     }
 }
