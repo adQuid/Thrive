@@ -43,15 +43,10 @@ class PullSpeciesForPatch : IRunStep
 
     public static void PopulateMichesForPatch(RunResults results, Patch patch, IEnumerable<Species> allSpecies, SimulationCache cache)
     {
-        // TODO: do this some other way
-        var miches = SelectionPressure.MichesForPatch(patch, cache);
-
-        foreach (var miche in miches)
+        foreach (var miche in results.Miches[patch])
         {
             PopulateForMiche(patch, miche, allSpecies, results, cache);
         }
-
-        results.Miches[patch] = miches;
     }
 
     private static void PopulateForMiche(Patch patch, Miche miche, IEnumerable<Species> allSpecies, RunResults results, SimulationCache cache)
