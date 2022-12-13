@@ -36,7 +36,7 @@ class PullSpeciesForPatch : IRunStep
             }
         }
 
-        PopulateMichesForPatch(results, Patch, variants, Cache);//hmm what do here?
+        PopulateMichesForPatch(results, Patch, variants, Cache);
 
         return true;
     }
