@@ -27,12 +27,12 @@ public class ModifyExistingSpecies : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        var viableVariants = ViableVariants(results, Species, Patch, PartList, Cache, null);
+        /*var viableVariants = ViableVariants(results, Species, Patch, PartList, Cache, null);
 
         // TODO: pass this in
         var random = new Random();
 
-        results.AddMutationResultForSpecies(Species, viableVariants.First());
+        results.AddMutationResultForSpecies(Species, viableVariants.First());*/
         return true;
     }
 
