@@ -12,37 +12,23 @@ public abstract class SelectionPressure
     public List<IMutationStrategy<MicrobeSpecies>> MicrobeMutations;
     public List<IMutationStrategy<EarlyMulticellularSpecies>> MulticellularMutations;
 
-    public static List<SelectionPressure> PressuresFromPatch(Species? species, Patch patch, PartList partList, SimulationCache cache, List<SelectionPressure>? niche)
+    public static List<SelectionPressure> PressuresFromPatch(Species? species, Patch patch, PartList partList, SimulationCache cache, List<SelectionPressure> niche)
     {
         // Add Selection pressures
         // TODO: move this somewhere else
         var selectionPressures = new List<SelectionPressure>();
 
-        if (niche == null){
-            selectionPressures.Add(new AutotrophEnergyEfficiencyPressure(patch, Compound.ByName("hydrogensulfide"), 10.0f));
-
-            selectionPressures.AddRange(PredationPressures(patch, cache));
-        }
-        else
-        {
-            selectionPressures.AddRange(niche);
-        }
+        selectionPressures.AddRange(niche);
 
         selectionPressures.Add(new OsmoregulationEfficiencyPressure(patch, 5.0f));
 
         return selectionPressures;
     }
 
-    public static List<Miche> MichesForPatch(Patch patch, SimulationCache cache)
+    public static List<Miche> AutotrophicMichesForPatch(Patch patch, SimulationCache cache)
     {
         var retval = new List<Miche>();
-
-        // Predation
-        foreach (var pressure in PredationPressures(patch, cache))
-        {
-            retval.Add(new Miche(pressure.Name(), pressure, new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 10.0f))}));
-        }
-
+        
         // Hydrogen Sulfide
         if (patch.GetCompoundAmount("hydrogensulfide") > 0)
         {
@@ -64,13 +50,14 @@ public abstract class SelectionPressure
         return retval;
     }
 
-    public static List<SelectionPressure> PredationPressures(Patch patch, SimulationCache cache)
+    public static List<Miche> PredationMiches(Patch patch, IEnumerable<Species> prey, SimulationCache cache)
     {
-        var retval = new List<SelectionPressure>();
+        var retval = new List<Miche>();
 
         foreach (var possiblePrey in patch.SpeciesInPatch.Keys)
         {
-            retval.Add(new PredationEffectivenessPressure(possiblePrey, 10.0f));
+            var pressure = new PredationEffectivenessPressure(possiblePrey, 10.0f);
+            retval.Add(new Miche(pressure.Name(), pressure, new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 10.0f)) }));
         }
 
         return retval;

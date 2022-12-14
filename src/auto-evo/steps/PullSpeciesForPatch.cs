@@ -21,7 +21,7 @@ class PullSpeciesForPatch : IRunStep
     public bool RunStep(RunResults results)
     {
         GD.Print("Running 'pullspecies' for "+Patch.Name+". "+CandiateSpecies().Count()+" candidate species");
-        results.Miches[Patch] = SelectionPressure.MichesForPatch(Patch, Cache);
+        results.Miches[Patch] = SelectionPressure.AutotrophicMichesForPatch(Patch, Cache);
 
         var variants = CandiateSpecies().ToList();
         foreach (var niche in results.Miches[Patch].SelectMany(x => x.AllTraversals()))
@@ -36,17 +36,28 @@ class PullSpeciesForPatch : IRunStep
             }
         }
 
-        PopulateMichesForPatch(results, Patch, variants, Cache);
+        foreach (var miche in results.Miches[Patch])
+        {
+            PopulateForMiche(Patch, miche, variants, results, Cache);
+        }
+
+        // Second trophic level
+        var speciesToEat = results.Miches[Patch].SelectMany(x => x.AllOccupants());
+        var newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat, Cache);
+
+        results.Miches[Patch].AddRange(newMiches);
+
+        newMiches.ForEach(x => PopulateForMiche(Patch, x, variants, results, Cache));
+
+        // Third trophic level
+        speciesToEat = newMiches.SelectMany(x => x.AllOccupants());
+        newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat, Cache);
+
+        results.Miches[Patch].AddRange(newMiches);
+
+        newMiches.ForEach(x => PopulateForMiche(Patch, x, variants, results, Cache));
 
         return true;
-    }
-
-    public static void PopulateMichesForPatch(RunResults results, Patch patch, IEnumerable<Species> allSpecies, SimulationCache cache)
-    {
-        foreach (var miche in results.Miches[patch])
-        {
-            PopulateForMiche(patch, miche, allSpecies, results, cache);
-        }
     }
 
     private static void PopulateForMiche(Patch patch, Miche miche, IEnumerable<Species> allSpecies, RunResults results, SimulationCache cache)
