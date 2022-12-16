@@ -23,7 +23,7 @@ class ExcludeSpecies : IRunStep
         {
             if (!results.Miches[Patch].SelectMany(x => x.AllOccupants()).Contains(species.Key))
             {
-                results.AddPopulationResultForSpecies(species.Key, Patch, 0);
+                results.KillSpeciesInPatch(species.Key, Patch);
             }
         }
 

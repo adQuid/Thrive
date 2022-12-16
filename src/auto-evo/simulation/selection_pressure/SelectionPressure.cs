@@ -50,11 +50,11 @@ public abstract class SelectionPressure
         return retval;
     }
 
-    public static List<Miche> PredationMiches(Patch patch, IEnumerable<Species> prey, SimulationCache cache)
+    public static List<Miche> PredationMiches(Patch patch, HashSet<Species> prey, SimulationCache cache)
     {
         var retval = new List<Miche>();
 
-        foreach (var possiblePrey in patch.SpeciesInPatch.Keys)
+        foreach (var possiblePrey in prey)
         {
             var pressure = new PredationEffectivenessPressure(possiblePrey, 10.0f);
             retval.Add(new Miche(pressure.Name(), pressure, new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 10.0f)) }));

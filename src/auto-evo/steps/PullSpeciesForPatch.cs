@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
 using Godot;
@@ -24,7 +25,7 @@ class PullSpeciesForPatch : IRunStep
         results.Miches[Patch] = SelectionPressure.AutotrophicMichesForPatch(Patch, Cache);
 
         var variants = CandiateSpecies().ToList();
-        foreach (var niche in results.Miches[Patch].SelectMany(x => x.AllTraversals()))
+        /*foreach (var niche in results.Miches[Patch].SelectMany(x => x.AllTraversals()))
         {
             // TODO: Only check relivent species
             foreach (var species in CandiateSpecies())
@@ -34,7 +35,7 @@ class PullSpeciesForPatch : IRunStep
 
                 variants.Add(ModifyExistingSpecies.ViableVariants(results, species, Patch, partList, Cache, niche.Select(x => x.Pressure).ToList()).First());
             }
-        }
+        }*/
 
         foreach (var miche in results.Miches[Patch])
         {
@@ -43,7 +44,8 @@ class PullSpeciesForPatch : IRunStep
 
         // Second trophic level
         var speciesToEat = results.Miches[Patch].SelectMany(x => x.AllOccupants());
-        var newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat, Cache);
+        GD.Print("Species to eat: "+string.Join(",", speciesToEat.Select(x => x.FormattedName)));
+        var newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat.ToHashSet(), Cache);
 
         results.Miches[Patch].AddRange(newMiches);
 
@@ -51,7 +53,7 @@ class PullSpeciesForPatch : IRunStep
 
         // Third trophic level
         speciesToEat = newMiches.SelectMany(x => x.AllOccupants());
-        newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat, Cache);
+        newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat.ToHashSet(), Cache);
 
         results.Miches[Patch].AddRange(newMiches);
 
@@ -69,7 +71,18 @@ class PullSpeciesForPatch : IRunStep
             var pressures = traversal.Select(x => x.Pressure);
             var qualifiedSpeciesScores = new Dictionary<Species, double>();
 
+            var variants = new List<Species>(allSpecies);
+
             foreach (var species in allSpecies)
+            {
+                //TODO: put this in a fixed place
+                var partList = new PartList(species);
+
+                //TODO: Should I just add the best one?
+                variants.AddRange(ModifyExistingSpecies.ViableVariants(results, species, patch, partList, cache, traversal.Select(x => x.Pressure).ToList()));
+            }
+
+            foreach (var species in variants)
             {
                 qualifiedSpeciesScores[species] = 0;
             }
@@ -102,6 +115,8 @@ class PullSpeciesForPatch : IRunStep
 
                 // This should work since it's a shallow copy, right?
                 traversal.Last().Occupant = speciesToAdd;
+
+                GD.Print("Assigning Species " + speciesToAdd.FormattedName + " to niche " + String.Join(",", traversal.Select(x => x.Pressure.Name())));
 
                 var population = new Dictionary<Patch, long>();
                 population[patch] = 1000;

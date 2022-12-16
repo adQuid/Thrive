@@ -91,8 +91,6 @@ public class ModifyExistingSpecies : IRunStep
             }
         }
 
-        GD.Print(viableVariants.Count() + " viable variants");
-
         foreach (var variant in viableVariants)
         {
             variant.Epithet += (new Random()).Next(1, 10);
