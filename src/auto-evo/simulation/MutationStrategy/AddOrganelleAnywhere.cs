@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 
 public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
@@ -9,6 +10,20 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria)
     {
         Criteria = criteria;
+    }
+
+    public static AddOrganelleAnywhere ThatUseCompound(Compound compound)
+    {
+        return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses.Where(proc => proc.Process.Inputs.ContainsKey(compound)).Count() > 0);
+    }
+
+    public static AddOrganelleAnywhere ThatCreateCompound(Compound compound)
+    {
+        var matches = SimulationParameters.Instance.GetAllOrganelles().Where(organelle => organelle.RunnableProcesses.Where(proc => proc.Process.Outputs.ContainsKey(compound)).Count() > 0).Count();
+
+        GD.Print("Found " + matches + " organelles that make " + compound.Name);
+
+        return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses.Where(proc => proc.Process.Outputs.ContainsKey(compound)).Count() > 0);
     }
 
     public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, PartList partList)

@@ -14,6 +14,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         weight,
         new List<IMutationStrategy<MicrobeSpecies>> {
             new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
+            AddOrganelleAnywhere.ThatCreateCompound(Compound.ByName("oxytoxy")),
             new RemoveAnyOrganelle(),
             new LowerRigidity(),
             new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
@@ -59,7 +60,7 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     private float PredationScore(MicrobeSpecies predator, MicrobeSpecies prey)
     {
-        return EngulfmentScore(predator, prey);
+        return EngulfmentScore(predator, prey) + ToxinScore(predator, prey);
     }
 
     private float EngulfmentScore(MicrobeSpecies predator, MicrobeSpecies prey)
@@ -84,5 +85,27 @@ public class PredationEffectivenessPressure : SelectionPressure
         {
             return SizeScore * Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
         }
+    }
+
+    private float ToxinScore(MicrobeSpecies predator, MicrobeSpecies prey)
+    {
+        if (!(MicrobeAIFunctions.WouldTryToToxinHuntBiggerPrey(predator.Behaviour.Opportunism) || MicrobeAIFunctions.CouldEngulf(predator.BaseHexSize, prey.BaseHexSize)))
+        {
+            return 0.0f;
+        }
+
+        var toxinProductionScore = 0.0f;
+        foreach (var organelle in predator.Organelles)
+        {
+            foreach (var process in organelle.Definition.RunnableProcesses)
+            {
+                if (process.Process.Outputs.TryGetValue(Compound.ByName("oxytoxy"), out var oxytoxyAmount))
+                {
+                    toxinProductionScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
+                }
+            }
+        }
+
+        return toxinProductionScore / prey.MembraneType.ToxinResistance;
     }
 }

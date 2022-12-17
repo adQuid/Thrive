@@ -15,11 +15,19 @@ public class MicrobeAIFunctions
 
     public static bool CanTryToEatMicrobe(Microbe microbe, Microbe targetMicrobe)
     {
-        var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
-
         return targetMicrobe.Species != microbe.Species 
-            && ((NormalizedOpportunism(microbe) > 0.3f && MicrobeAIFunctions.CanShootToxin(microbe))
-            || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
+            && (WouldTryToToxinHuntBiggerPrey(microbe.Species.Behaviour.Opportunism) && CanShootToxin(microbe)
+            || CouldEngulf(microbe.EngulfSize, targetMicrobe.EngulfSize));
+    }
+
+    public static bool WouldTryToToxinHuntBiggerPrey(float opportunism)
+    {
+        return opportunism / Constants.MAX_SPECIES_OPPORTUNISM > 0.3f;
+    }
+
+    public static bool CouldEngulf(float predatorSize, float preySize)
+    {
+        return predatorSize / preySize >= Constants.ENGULF_SIZE_RATIO_REQ;
     }
 
     public static bool CanShootToxin(Microbe microbe)
