@@ -21,7 +21,7 @@ class ExcludeSpecies : IRunStep
     {
         foreach (var species in Patch.SpeciesInPatch)
         {
-            if (!results.Miches[Patch].SelectMany(x => x.AllOccupants()).Contains(species.Key))
+            if (!results.Miches[Patch].AllOccupants().Contains(species.Key))
             {
                 results.KillSpeciesInPatch(species.Key, Patch);
             }

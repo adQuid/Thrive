@@ -22,7 +22,8 @@ class PullSpeciesForPatch : IRunStep
     public bool RunStep(RunResults results)
     {
         GD.Print("Running 'pullspecies' for "+Patch.Name+". "+CandiateSpecies().Count()+" candidate species");
-        results.Miches[Patch] = SelectionPressure.AutotrophicMichesForPatch(Patch, Cache);
+        results.Miches[Patch] = Miche.RootMiche();
+        results.Miches[Patch].AddChildren(SelectionPressure.AutotrophicMichesForPatch(Patch, Cache));
 
         var variants = CandiateSpecies().ToList();
         /*foreach (var niche in results.Miches[Patch].SelectMany(x => x.AllTraversals()))
@@ -37,17 +38,14 @@ class PullSpeciesForPatch : IRunStep
             }
         }*/
 
-        foreach (var miche in results.Miches[Patch])
-        {
-            PopulateForMiche(Patch, miche, variants, results, Cache);
-        }
+        PopulateForMiche(Patch, results.Miches[Patch], variants, results, Cache);
 
         // Second trophic level
-        var speciesToEat = results.Miches[Patch].SelectMany(x => x.AllOccupants());
+        var speciesToEat = results.Miches[Patch].AllOccupants();
         GD.Print("Species to eat: "+string.Join(",", speciesToEat.Select(x => x.FormattedName)));
         var newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat.ToHashSet(), Cache);
 
-        results.Miches[Patch].AddRange(newMiches);
+        results.Miches[Patch].AddChildren(newMiches);
 
         newMiches.ForEach(x => PopulateForMiche(Patch, x, variants, results, Cache));
 
@@ -55,7 +53,7 @@ class PullSpeciesForPatch : IRunStep
         speciesToEat = newMiches.SelectMany(x => x.AllOccupants());
         newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat.ToHashSet(), Cache);
 
-        results.Miches[Patch].AddRange(newMiches);
+        results.Miches[Patch].AddChildren(newMiches);
 
         newMiches.ForEach(x => PopulateForMiche(Patch, x, variants, results, Cache));
 

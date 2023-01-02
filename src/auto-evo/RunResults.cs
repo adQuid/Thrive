@@ -29,7 +29,7 @@
         /// </remarks>
         public ConcurrentDictionary<Species, SpeciesResult> results = new();
 
-        public Dictionary<Patch, List<Miche>> Miches = new();
+        public Dictionary<Patch, Miche> Miches = new();
 
         public enum NewSpeciesType
         {
@@ -244,7 +244,7 @@
         {
             foreach (var entry in Miches)
             {
-                world.Map.Patches[entry.Key.ID].Miches = entry.Value;
+                world.Map.Patches[entry.Key.ID].Miche = entry.Value;
             }
 
             foreach (var entry in results)

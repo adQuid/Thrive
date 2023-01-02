@@ -8,7 +8,12 @@ public class Miche
     public Miche? Parent = null;
     public List<Miche> Children = new();
     public SelectionPressure Pressure;
-    public Species? Occupant = null; 
+    public Species? Occupant = null;
+
+    public static Miche RootMiche()
+    {
+        return new Miche("Root", new NoOpSelectionPressure());
+    }
 
     public Miche(String name, SelectionPressure pressure): this(name, pressure, new List<Miche>()) { }
 
@@ -49,7 +54,7 @@ public class Miche
         return retval;
     }
 
-    public List<Species> AllOccupants()
+    public IEnumerable<Species> AllOccupants()
     {
         var retval = new List<Species>();
 
@@ -64,5 +69,18 @@ public class Miche
         }
 
         return retval;
+    }
+
+    public void AddChild(Miche newChild)
+    {
+        Children.Add(newChild);
+    }
+
+    public void AddChildren(IEnumerable<Miche> newChildren)
+    {
+        foreach (var child in newChildren)
+        {
+            AddChild(child);
+        }
     }
 }

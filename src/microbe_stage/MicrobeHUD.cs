@@ -1001,9 +1001,9 @@ public class MicrobeHUD : Control
             {
                 var autoEvoResults = " ";
 
-                if (stage!.GameWorld.Map.CurrentPatch.Miches != null)
+                if (stage!.GameWorld.Map.CurrentPatch.Miche != null)
                 {
-                    foreach (var micheTraversal in stage!.GameWorld.Map.CurrentPatch.Miches.SelectMany(x => x.AllTraversals()))
+                    foreach (var micheTraversal in stage!.GameWorld.Map.CurrentPatch.Miche.AllTraversals())
                     {
                         if (micheTraversal.Last().Occupant == hoveredSpeciesCount.Key)
                         {

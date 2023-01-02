@@ -47,6 +47,7 @@
     <Compile Include="src\auto-evo\simulation\selection_pressure\CommonSelectionFunctions.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\MetabolicStabilityPressure.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\Miche.cs" />
+    <Compile Include="src\auto-evo\simulation\selection_pressure\NoOpSelectionPressure.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\OsmoregulationEfficiencyPressure.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\PredationEffectivenessPressure.cs" />
     <Compile Include="src\auto-evo\simulation\selection_pressure\ReachCompoundCloudPressure.cs" />
