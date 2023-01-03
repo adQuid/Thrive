@@ -38,6 +38,16 @@ public class Miche
         return Children.Count() == 0;
     }
 
+    public Miche Root()
+    {
+        if (Parent == null)
+        {
+            return this;
+        }
+
+        return Parent.Root();
+    }
+
     public List<List<Miche>> AllTraversals()
     {
         if (IsLeafNode())
@@ -76,6 +86,8 @@ public class Miche
 
     public void InsertSpecies(Species species)
     {
+        //GD.Print("Inserting " + species.FormattedName + " into miche "+Name);
+
         if (IsLeafNode() && Occupant == null)
         {
             Occupant = species;

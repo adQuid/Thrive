@@ -112,7 +112,7 @@ class PullSpeciesForPatch : IRunStep
                 var speciesToAdd = qualifiedSpeciesScores.OrderByDescending(x => x.Value).First().Key;
 
                 // TODO: It's probably very inefficient to do this here
-                miche.InsertSpecies(speciesToAdd);
+                miche.Root().InsertSpecies(speciesToAdd);
 
                 GD.Print("Assigning Species " + speciesToAdd.FormattedName + " to niche " + String.Join(",", traversal.Select(x => x.Pressure.Name())));
 
