@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
+using Godot;
 
 public class Miche
 {
@@ -81,9 +82,9 @@ public class Miche
         }
 
         // TODO: store this somewhere
-        var worstScore = AllOccupants().Select(x => Pressure.Score(x, new SimulationCache())).OrderBy(x => x).First();
+        var existingScores = AllOccupants().Select(x => Pressure.Score(x, new SimulationCache())).OrderBy(x => x);
 
-        if (Pressure.Score(species, new SimulationCache()) > worstScore)
+        if (existingScores.Count() == 0 || Pressure.Score(species, new SimulationCache()) >= existingScores.First())
         {
             // If this is a leaf, then there's only one species and the new species beats that.
             if (IsLeafNode())

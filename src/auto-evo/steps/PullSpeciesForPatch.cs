@@ -111,9 +111,6 @@ class PullSpeciesForPatch : IRunStep
             {
                 var speciesToAdd = qualifiedSpeciesScores.OrderByDescending(x => x.Value).First().Key;
 
-                // This should work since it's a shallow copy, right?
-                //traversal.Last().Occupant = speciesToAdd;
-
                 // TODO: It's probably very inefficient to do this here
                 miche.InsertSpecies(speciesToAdd);
 
