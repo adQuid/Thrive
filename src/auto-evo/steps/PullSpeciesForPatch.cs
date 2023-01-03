@@ -112,7 +112,10 @@ class PullSpeciesForPatch : IRunStep
                 var speciesToAdd = qualifiedSpeciesScores.OrderByDescending(x => x.Value).First().Key;
 
                 // This should work since it's a shallow copy, right?
-                traversal.Last().Occupant = speciesToAdd;
+                //traversal.Last().Occupant = speciesToAdd;
+
+                // TODO: It's probably very inefficient to do this here
+                miche.InsertSpecies(speciesToAdd);
 
                 GD.Print("Assigning Species " + speciesToAdd.FormattedName + " to niche " + String.Join(",", traversal.Select(x => x.Pressure.Name())));
 

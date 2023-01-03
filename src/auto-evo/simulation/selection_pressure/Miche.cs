@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoEvo;
 
 public class Miche
 {
     public String Name;
     public Miche? Parent = null;
     public List<Miche> Children = new();
-    public SelectionPressure Pressure;
+    // confusingly, this should always be null if the children array isn't empty
     public Species? Occupant = null;
+    public SelectionPressure Pressure;
 
     public static Miche RootMiche()
     {
@@ -69,6 +71,32 @@ public class Miche
         }
 
         return retval;
+    }
+
+    public void InsertSpecies(Species species)
+    {
+        if (IsLeafNode() && Occupant == null)
+        {
+            Occupant = species;
+        }
+
+        // TODO: store this somewhere
+        var worstScore = AllOccupants().Select(x => Pressure.Score(x, new SimulationCache())).OrderBy(x => x).First();
+
+        if (Pressure.Score(species, new SimulationCache()) > worstScore)
+        {
+            // If this is a leaf, then there's only one species and the new species beats that.
+            if (IsLeafNode())
+            {
+                Occupant = species;
+            }
+
+            // This could be in an else, but isn't nessicary
+            foreach (var child in Children)
+            {
+                child.InsertSpecies(species);
+            }
+        }
     }
 
     public void AddChild(Miche newChild)
