@@ -424,12 +424,7 @@ public class AutoEvoRun
                 }
             }
 
-            if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
-                random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
-            {
-                /*steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, Parameters.World.WorldSettings,
-                    map, entry.Value, random));*/
-            }
+            steps.Enqueue(new InsertExistingSpecies(entry.Value));
 
             steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache()));
 
