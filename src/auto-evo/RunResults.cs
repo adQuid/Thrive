@@ -29,7 +29,7 @@
         /// </remarks>
         public ConcurrentDictionary<Species, SpeciesResult> results = new();
 
-        public Dictionary<Patch, Miche> Miches = new();
+        public Dictionary<Patch, Miche> MicheByPatch = new();
 
         public enum NewSpeciesType
         {
@@ -242,7 +242,7 @@
 
         public void ApplyResults(GameWorld world, bool skipMutations)
         {
-            foreach (var entry in Miches)
+            foreach (var entry in MicheByPatch)
             {
                 world.Map.Patches[entry.Key.ID].Miche = entry.Value;
             }

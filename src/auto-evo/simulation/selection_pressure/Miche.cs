@@ -86,7 +86,7 @@ public class Miche
 
     public void InsertSpecies(Species species)
     {
-        //GD.Print("Inserting " + species.FormattedName + " into miche "+Name);
+        //GD.Print("Testing " + species.FormattedName + " into miche "+Name);
 
         if (IsLeafNode() && Occupant == null)
         {
@@ -101,6 +101,7 @@ public class Miche
             // If this is a leaf, then there's only one species and the new species beats that.
             if (IsLeafNode())
             {
+                //GD.Print("Species " + species.FormattedName + " won out leaf node " + Name);
                 Occupant = species;
             }
 
@@ -115,6 +116,7 @@ public class Miche
     public void AddChild(Miche newChild)
     {
         Children.Add(newChild);
+        newChild.Parent = this;
     }
 
     public void AddChildren(IEnumerable<Miche> newChildren)

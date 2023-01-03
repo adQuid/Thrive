@@ -433,7 +433,7 @@ public class AutoEvoRun
 
             steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache()));
 
-            steps.Enqueue(new ExcludeSpecies(entry.Value));
+            steps.Enqueue(new ApplyPopulations(entry.Value));
         }
 
         // The new populations don't depend on the mutations, this is so that when

@@ -22,8 +22,8 @@ class PullSpeciesForPatch : IRunStep
     public bool RunStep(RunResults results)
     {
         GD.Print("Running 'pullspecies' for "+Patch.Name+". "+CandiateSpecies().Count()+" candidate species");
-        results.Miches[Patch] = Miche.RootMiche();
-        results.Miches[Patch].AddChildren(SelectionPressure.AutotrophicMichesForPatch(Patch, Cache));
+        results.MicheByPatch[Patch] = Miche.RootMiche();
+        results.MicheByPatch[Patch].AddChildren(SelectionPressure.AutotrophicMichesForPatch(Patch, Cache));
 
         var variants = CandiateSpecies().ToList();
         /*foreach (var niche in results.Miches[Patch].SelectMany(x => x.AllTraversals()))
@@ -38,14 +38,14 @@ class PullSpeciesForPatch : IRunStep
             }
         }*/
 
-        PopulateForMiche(Patch, results.Miches[Patch], variants, results, Cache);
+        PopulateForMiche(Patch, results.MicheByPatch[Patch], variants, results, Cache);
 
         // Second trophic level
-        var speciesToEat = results.Miches[Patch].AllOccupants();
+        var speciesToEat = results.MicheByPatch[Patch].AllOccupants();
         GD.Print("Species to eat: "+string.Join(",", speciesToEat.Select(x => x.FormattedName)));
         var newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat.ToHashSet(), Cache);
 
-        results.Miches[Patch].AddChildren(newMiches);
+        results.MicheByPatch[Patch].AddChildren(newMiches);
 
         newMiches.ForEach(x => PopulateForMiche(Patch, x, variants, results, Cache));
 
@@ -53,7 +53,7 @@ class PullSpeciesForPatch : IRunStep
         speciesToEat = newMiches.SelectMany(x => x.AllOccupants());
         newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat.ToHashSet(), Cache);
 
-        results.Miches[Patch].AddChildren(newMiches);
+        results.MicheByPatch[Patch].AddChildren(newMiches);
 
         newMiches.ForEach(x => PopulateForMiche(Patch, x, variants, results, Cache));
 
@@ -112,19 +112,10 @@ class PullSpeciesForPatch : IRunStep
                 var speciesToAdd = qualifiedSpeciesScores.OrderByDescending(x => x.Value).First().Key;
 
                 // TODO: It's probably very inefficient to do this here
+                //GD.Print("check new species "+speciesToAdd.FormattedName);
                 miche.Root().InsertSpecies(speciesToAdd);
 
-                GD.Print("Assigning Species " + speciesToAdd.FormattedName + " to niche " + String.Join(",", traversal.Select(x => x.Pressure.Name())));
-
-                var population = new Dictionary<Patch, long>();
-                population[patch] = 1000;
-
-                if (!results.SpeciesHasResults(speciesToAdd))
-                {
-                    // TODO: Use the real parent, fool!
-                    results.AddNewSpecies(speciesToAdd, population, RunResults.NewSpeciesType.FillNiche, speciesToAdd);
-                }
-
+                results.MakeSureResultExistsForSpecies(speciesToAdd);
                 // Mark the best pressures for hovering over in game
                 results.results[speciesToAdd].AddBestPressuresResults(patch, traversal.Select(x => x.Pressure).ToList());
             }

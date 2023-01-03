@@ -21,8 +21,6 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     {
         var matches = SimulationParameters.Instance.GetAllOrganelles().Where(organelle => organelle.RunnableProcesses.Where(proc => proc.Process.Outputs.ContainsKey(compound)).Count() > 0).Count();
 
-        GD.Print("Found " + matches + " organelles that make " + compound.Name);
-
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses.Where(proc => proc.Process.Outputs.ContainsKey(compound)).Count() > 0);
     }
 
