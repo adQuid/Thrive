@@ -30,7 +30,7 @@ class ApplyPopulations : IRunStep
 
         foreach (var species in Patch.SpeciesInPatch)
         {
-            if (!results.MicheByPatch[Patch].AllOccupants().Contains(species.Key))
+            if (!species.Key.PlayerSpecies && !results.MicheByPatch[Patch].AllOccupants().Contains(species.Key))
             {
                 results.KillSpeciesInPatch(species.Key, Patch);
             }
