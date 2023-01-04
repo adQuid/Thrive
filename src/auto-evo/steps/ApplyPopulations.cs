@@ -22,7 +22,6 @@ class ApplyPopulations : IRunStep
     {
         foreach (var speciesToAdd in results.MicheByPatch[Patch].AllOccupants())
         {
-            GD.Print("Found a species");
             var population = new Dictionary<Patch, long>();
             population[Patch] = 1000;
 

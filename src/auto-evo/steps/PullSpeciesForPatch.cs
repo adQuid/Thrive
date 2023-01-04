@@ -62,8 +62,6 @@ class PullSpeciesForPatch : IRunStep
 
     private static void PopulateForMiche(Patch patch, Miche miche, IEnumerable<Species> allSpecies, RunResults results, SimulationCache cache)
     {
-        GD.Print(miche.AllTraversals().Count());
-
         foreach (var traversal in miche.AllTraversals())
         {
             var pressures = traversal.Select(x => x.Pressure);
