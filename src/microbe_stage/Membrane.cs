@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 using Array = Godot.Collections.Array;
+using System.Linq;
 
 /// <summary>
 ///   Membrane for microbes
@@ -284,17 +285,16 @@ public class Membrane : MeshInstance, IComputedMembraneData
     /// <summary>
     ///   Return the position of the closest organelle to the target point if it is less then a certain threshold away.
     /// </summary>
-    public Vector2 FindClosestOrganelles(Vector2 target)
+    public Vector2 FindClosestOrganelleInRange(Vector2 origin, float range)
     {
-        // The distance we want the membrane to be from the organelles squared.
-        float closestSoFar = 4;
+        float closestSoFar = range;
         Vector2 closest = new Vector2(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE);
 
         foreach (var pos in OrganellePositions)
         {
-            float lenToObject = (target - pos).LengthSquared();
+            float lenToObject = (origin - pos).LengthSquared();
 
-            if (lenToObject < 4 && lenToObject < closestSoFar)
+            if (lenToObject < closestSoFar)
             {
                 closestSoFar = lenToObject;
                 closest = pos;
@@ -302,6 +302,15 @@ public class Membrane : MeshInstance, IComputedMembraneData
         }
 
         return closest;
+    }
+
+    public Vector2 FindCenterOfOrganellesInRange(Vector2 origin, float range)
+    {
+        List<Vector2> points = new List<Vector2>() { origin };
+
+        points.AddRange(OrganellePositions.Where(x => (origin - x).LengthSquared() < range));
+
+        return new Vector2(points.Sum(x => x.x) / points.Count(), points.Sum(x => x.y) / points.Count());
     }
 
     public bool MatchesCacheParameters(ICacheableData cacheData)
@@ -322,14 +331,14 @@ public class Membrane : MeshInstance, IComputedMembraneData
     /// </summary>
     private static Vector2 GetMovement(Vector2 target, Vector2 closestOrganelle)
     {
-        float power = Mathf.Pow(2.7f, -(target - closestOrganelle).Length() / 10) / 50;
+        float power = Mathf.Pow(2.7f, -(target - closestOrganelle).Length() / 10) / 250;
 
         return (closestOrganelle - target) * power;
     }
 
     private static Vector2 GetMovementForCellWall(Vector2 target, Vector2 closestOrganelle)
     {
-        float power = Mathf.Pow(10.0f, -(target - closestOrganelle).Length()) / 50;
+        float power = Mathf.Pow(3.1f, -(target - closestOrganelle).Length() / 10) / 250;
 
         return (closestOrganelle - target) * power;
     }
@@ -503,7 +512,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
         // This needs to actually run a bunch of times as the points moving towards the organelles is iterative.
         // We use rotating work buffers to save time on skipping useless copies
-        for (int i = 0; i < 40 * cellDimensions; i++)
+        for (int i = 0; i < 60 * cellDimensions; i++)
         {
             DrawCorrectMembrane(cellDimensions, previousWorkBuffer, nextWorkBuffer);
 
@@ -658,13 +667,28 @@ public class Membrane : MeshInstance, IComputedMembraneData
             targetBuffer.RemoveAt(targetBuffer.Count - 1);
 
         // Loops through all the points in the membrane and relocates them as necessary.
-        for (int i = 0, end = sourceBuffer.Count; i < end; ++i)
+        // Iterate from the center of the array for avoid asymetry
+        for (int i = sourceBuffer.Count / 2 + 1, end = sourceBuffer.Count; i != end / 2; i = (i + 1) % end)
         {
-            var closestOrganelle = FindClosestOrganelles(sourceBuffer[i]);
+            var closestOrganelle = FindClosestOrganelleInRange(sourceBuffer[i], 4f);
             if (closestOrganelle ==
                 new Vector2(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE))
             {
-                targetBuffer[i] = (sourceBuffer[(end + i - 1) % end] + sourceBuffer[(i + 1) % end]) / 2;
+                var distantOrganelle = FindCenterOfOrganellesInRange(sourceBuffer[i], 8f);
+
+                var midpoint = (sourceBuffer[(end + i - 1) % end] + sourceBuffer[(i + 1) % end]) / 2;
+
+                if (distantOrganelle == sourceBuffer[i])
+                {
+                    targetBuffer[i] = midpoint;
+                }
+                else
+                {
+                    var movementDirection = movementFunc(sourceBuffer[i], distantOrganelle + midpoint + midpoint / 3);
+
+                    targetBuffer[i] = new Vector2(sourceBuffer[i].x - movementDirection.x,
+                    sourceBuffer[i].y - movementDirection.y);
+                }
             }
             else
             {
