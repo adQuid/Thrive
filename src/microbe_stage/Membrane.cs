@@ -329,14 +329,14 @@ public class Membrane : MeshInstance, IComputedMembraneData
     /// <summary>
     ///   Decides where the point needs to move based on the position of the closest organelle.
     /// </summary>
-    private static Vector2 GetMovement(Vector2 target, Vector2 closestOrganelle)
+    private Vector2 GetMovement(Vector2 target, Vector2 closestOrganelle)
     {
         float power = Mathf.Pow(2.7f, -(target - closestOrganelle).Length() / 10) / 250;
 
         return (closestOrganelle - target) * power;
     }
 
-    private static Vector2 GetMovementForCellWall(Vector2 target, Vector2 closestOrganelle)
+    private Vector2 GetMovementForCellWall(Vector2 target, Vector2 closestOrganelle)
     {
         float power = Mathf.Pow(3.1f, -(target - closestOrganelle).Length() / 10) / 250;
 
@@ -468,6 +468,8 @@ public class Membrane : MeshInstance, IComputedMembraneData
         // Half the side length of the original square that is compressed to make the membrane.
         int cellDimensions = 10;
 
+        var nodeLength = cellDimensions / membraneResolution;
+
         foreach (var pos in OrganellePositions)
         {
             if (Mathf.Abs(pos.x) + 1 > cellDimensions)
@@ -484,29 +486,33 @@ public class Membrane : MeshInstance, IComputedMembraneData
         previousWorkBuffer.Capacity = vertices2D.Capacity;
         nextWorkBuffer.Capacity = previousWorkBuffer.Capacity;
 
+        // left wall of square
         for (int i = membraneResolution; i > 0; i--)
         {
             previousWorkBuffer.Add(new Vector2(-cellDimensions,
-                cellDimensions - 2 * cellDimensions / membraneResolution * i));
+                cellDimensions - 2 * nodeLength * i));
         }
 
+        // bottom wall of square
         for (int i = membraneResolution; i > 0; i--)
         {
             previousWorkBuffer.Add(new Vector2(
-                cellDimensions - 2 * cellDimensions / membraneResolution * i,
+                cellDimensions - 2 * nodeLength * i,
                 cellDimensions));
         }
 
+        // right wall of square
         for (int i = membraneResolution; i > 0; i--)
         {
             previousWorkBuffer.Add(new Vector2(cellDimensions,
-                -cellDimensions + 2 * cellDimensions / membraneResolution * i));
+                -cellDimensions + 2 * nodeLength * i));
         }
 
+        // bottom wall of square
         for (int i = membraneResolution; i > 0; i--)
         {
             previousWorkBuffer.Add(new Vector2(
-                -cellDimensions + 2 * cellDimensions / membraneResolution * i,
+                -cellDimensions + 2 * nodeLength * i,
                 -cellDimensions));
         }
 
@@ -514,7 +520,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
         // We use rotating work buffers to save time on skipping useless copies
         for (int i = 0; i < 60 * cellDimensions; i++)
         {
-            DrawCorrectMembrane(cellDimensions, previousWorkBuffer, nextWorkBuffer);
+            DrawMembrane(cellDimensions, previousWorkBuffer, nextWorkBuffer, Type.CellWall ? GetMovementForCellWall : GetMovement);
 
             (previousWorkBuffer, nextWorkBuffer) = (nextWorkBuffer, previousWorkBuffer);
         }
@@ -644,18 +650,6 @@ public class Membrane : MeshInstance, IComputedMembraneData
         return writeIndex;
     }
 
-    private void DrawCorrectMembrane(float cellDimensions, List<Vector2> sourceBuffer, List<Vector2> targetBuffer)
-    {
-        if (Type.CellWall)
-        {
-            DrawMembrane(cellDimensions, sourceBuffer, targetBuffer, GetMovementForCellWall);
-        }
-        else
-        {
-            DrawMembrane(cellDimensions, sourceBuffer, targetBuffer, GetMovement);
-        }
-    }
-
     private void DrawMembrane(float cellDimensions, List<Vector2> sourceBuffer, List<Vector2> targetBuffer,
         Func<Vector2, Vector2, Vector2> movementFunc)
     {
@@ -667,14 +661,13 @@ public class Membrane : MeshInstance, IComputedMembraneData
             targetBuffer.RemoveAt(targetBuffer.Count - 1);
 
         // Loops through all the points in the membrane and relocates them as necessary.
-        // Iterate from the center of the array for avoid asymetry
-        for (int i = sourceBuffer.Count / 2 + 1, end = sourceBuffer.Count; i != end / 2; i = (i + 1) % end)
+        for (int i = 0, end = sourceBuffer.Count; i < end; i++)
         {
-            var closestOrganelle = FindClosestOrganelleInRange(sourceBuffer[i], 4f);
+            var closestOrganelle = FindClosestOrganelleInRange(sourceBuffer[i], 3f);
             if (closestOrganelle ==
                 new Vector2(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE))
             {
-                var distantOrganelle = FindCenterOfOrganellesInRange(sourceBuffer[i], 8f);
+                var distantOrganelle = FindCenterOfOrganellesInRange(sourceBuffer[i], 5f);
 
                 var midpoint = (sourceBuffer[(end + i - 1) % end] + sourceBuffer[(i + 1) % end]) / 2;
 
@@ -684,7 +677,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
                 }
                 else
                 {
-                    var movementDirection = movementFunc(sourceBuffer[i], distantOrganelle + midpoint + midpoint / 3);
+                    var movementDirection = movementFunc(sourceBuffer[i], distantOrganelle + distantOrganelle + midpoint / 3);
 
                     targetBuffer[i] = new Vector2(sourceBuffer[i].x - movementDirection.x,
                     sourceBuffer[i].y - movementDirection.y);
