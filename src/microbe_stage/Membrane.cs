@@ -338,7 +338,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
     private Vector2 GetMovementForCellWall(Vector2 target, Vector2 closestOrganelle)
     {
-        float power = Mathf.Pow(3.1f, -(target - closestOrganelle).Length() / 10) / 250;
+        float power = Mathf.Pow(3.1f, -(target - closestOrganelle).Length() / 3) / 250;
 
         return (closestOrganelle - target) * power;
     }
