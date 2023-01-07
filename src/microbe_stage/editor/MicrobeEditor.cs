@@ -177,7 +177,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     protected override void InitEditorGUI(bool fresh)
     {
         // If the player was slow, move straight to the important editor
-        TutorialState.EditorWelcome.TestPlayerTrust();
         if (!TutorialState.EditorWelcome.TrustPlayer)
         {
             SetEditorTab(EditorTab.CellEditor);

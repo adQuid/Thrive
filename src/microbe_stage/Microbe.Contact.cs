@@ -85,7 +85,7 @@ public partial class Microbe
     private MicrobeState state;
 
     [JsonProperty]
-    public String lastDamageTypeSuffered = null;
+    public String LastDamageTypeSuffered = null;
 
     public enum MicrobeState
     {
@@ -288,7 +288,7 @@ public partial class Microbe
             return;
         }
 
-        lastDamageTypeSuffered = source;
+        LastDamageTypeSuffered = source;
 
         if (source is "toxin" or "oxytoxy")
         {

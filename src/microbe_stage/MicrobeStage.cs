@@ -522,7 +522,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             // See if any states are active for displaying intro messages
             if (!TutorialState.EditorWelcome.TrustPlayer
                 && Player.Compounds.GetCompoundAmount(SimulationParameters.Instance.GetCompound("atp")) <= 0.1f
-                && Player.Hitpoints < Player.MaxHitpoints && Player.lastDamageTypeSuffered == "atpDamage")
+                && Player.Hitpoints < Player.MaxHitpoints && Player.LastDamageTypeSuffered == "atpDamage")
             {
                 HUD.DisplayIntroMessage("STARVATION_MESSAGE");
             }
