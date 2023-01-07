@@ -35,6 +35,14 @@
                     break;
                 }
 
+                case TutorialEventType.PressedMicrobeEditorButton:
+                {
+                    // The player was quick to hit the button, and probably doesn't need help
+                    TestPlayerTrust();
+
+                    break;
+                }
+
                 case TutorialEventType.EnteredMicrobeEditor:
                 {
                     // The player was quick to hit the button, and probably doesn't need help

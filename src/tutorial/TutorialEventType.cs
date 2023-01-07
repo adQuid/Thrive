@@ -43,6 +43,8 @@ public enum TutorialEventType
     /// </summary>
     EnteredMicrobeStage,
 
+    PressedMicrobeEditorButton,
+
     /// <summary>
     ///   Player entered the microbe editor
     /// </summary>
