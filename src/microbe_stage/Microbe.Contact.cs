@@ -84,6 +84,9 @@ public partial class Microbe
     [JsonProperty]
     private MicrobeState state;
 
+    [JsonProperty]
+    public String lastDamageTypeSuffered = null;
+
     public enum MicrobeState
     {
         /// <summary>
@@ -284,6 +287,8 @@ public partial class Microbe
             GD.PrintErr("Trying to deal negative damage");
             return;
         }
+
+        lastDamageTypeSuffered = source;
 
         if (source is "toxin" or "oxytoxy")
         {
