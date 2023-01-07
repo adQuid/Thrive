@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RoundButtonRed.png-6c8238eabaf8880a5704819e53d8ef8a.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://assets/textures/gui/bevel/RoundButtonRed.png"
-dest_files=[ "res://.import/RoundButtonRed.png-6c8238eabaf8880a5704819e53d8ef8a.stex" ]
-
 [params]
 
 compress/mode=0

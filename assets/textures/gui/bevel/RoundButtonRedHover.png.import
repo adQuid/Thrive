@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RoundButtonRedHover.png-4c170e4ac7e6cdb0c681620c43785dab.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://assets/textures/gui/bevel/RoundButtonRedHover.png"
-dest_files=[ "res://.import/RoundButtonRedHover.png-4c170e4ac7e6cdb0c681620c43785dab.stex" ]
-
 [params]
 
 compress/mode=0

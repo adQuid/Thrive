@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RoundButtonGreenPressedHover.png-f925bf88574317ca354612bf9a3c983d.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://assets/textures/gui/bevel/RoundButtonGreenPressedHover.png"
-dest_files=[ "res://.import/RoundButtonGreenPressedHover.png-f925bf88574317ca354612bf9a3c983d.stex" ]
-
 [params]
 
 compress/mode=0
