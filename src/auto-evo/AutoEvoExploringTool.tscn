@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -679,6 +679,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 MaxZoom = 1.0
 MinZoom = 0.4
+ShowScrollbars = false
 ContentPath = NodePath("EvolutionaryTree")
 
 [node name="EvolutionaryTree" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DraggableScrollContainer" instance=ExtResource( 14 )]

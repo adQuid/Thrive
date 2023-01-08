@@ -686,7 +686,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         if (species is MicrobeSpecies microbeSpecies)
         {
-            //hexesPreview.PreviewSpecies = microbeSpecies;
+            hexesPreview.PreviewSpecies = microbeSpecies;
         }
         else
         {
