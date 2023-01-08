@@ -8,6 +8,9 @@ rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 TextureRectPath = NodePath("TextureRect")
 
 [node name="TextureRect" type="TextureRect" parent="."]

@@ -409,7 +409,7 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        autoEvoExploringButton.Disabled = true;
+        //autoEvoExploringButton.Disabled = true;
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
             () => { SceneManager.Instance.SwitchToScene("res://src/auto-evo/AutoEvoExploringTool.tscn"); }, false);

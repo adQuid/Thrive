@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/RoundButtonGreenHover.png-dc722df1870a9bbdba67a1ac6e6ae0a4.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/textures/gui/bevel/RoundButtonGreenHover.png"
+dest_files=[ "res://.import/RoundButtonGreenHover.png-dc722df1870a9bbdba67a1ac6e6ae0a4.stex" ]
+
 [params]
 
 compress/mode=0

@@ -26,7 +26,7 @@ public class GameWorld : ISaveLoadable
     private Mutations mutator = new();
 
     [JsonProperty]
-    private Dictionary<uint, Species> worldSpecies = new();
+    public Dictionary<uint, Species> worldSpecies = new();
 
     [JsonProperty]
     private Dictionary<double, List<GameEventDescription>> eventsLog = new();
