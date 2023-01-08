@@ -75,7 +75,7 @@ public class EvolutionaryTree : Control
                     TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
                 Colors.Cyan, TIMELINE_LINE_THICKNESS, true);
 
-            var localizedText = "test size";
+            var localizedText = i * Constants.EDITOR_TIME_JUMP_MILLION_YEARS + " MY";
             var size = new Vector2(30f, 30f);
             DrawString(latoSmallRegular, new Vector2(
                     LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2 - size.x / 2,
