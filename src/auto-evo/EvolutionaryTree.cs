@@ -75,9 +75,8 @@ public class EvolutionaryTree : Control
                     TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
                 Colors.Cyan, TIMELINE_LINE_THICKNESS, true);
 
-            var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0}", i * 100) + " "
-                + TranslationServer.Translate("MEGA_YEARS");
-            var size = latoSmallItalic.GetStringSize(localizedText);
+            var localizedText = "test size";
+            var size = new Vector2(30f, 30f);
             DrawString(latoSmallRegular, new Vector2(
                     LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2 - size.x / 2,
                     TIMELINE_LINE_Y + TIMELINE_MARK_SIZE * 2 + size.y),

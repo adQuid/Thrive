@@ -111,8 +111,8 @@ public class AutoEvoExploringTool : NodeWithInput
 
     // Report paths
 
-//    [Export]
-//    public NodePath HistoryListMenuPath = null!;
+    [Export]
+    public NodePath HistoryListMenuPath = null!;
 
     [Export]
     public NodePath ResultsLabelPath = null!;
@@ -191,7 +191,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     // Viewer controls
     private SpeciesPreview speciesPreview = null!;
-    private CellHexesPreview hexesPreview = null!;
+    //private CellHexesPreview hexesPreview = null!;
     private CustomDropDown speciesListMenu = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private EvolutionaryTree evolutionaryTree = null!;
@@ -286,10 +286,10 @@ public class AutoEvoExploringTool : NodeWithInput
         playWithCurrentSettingButton = GetNode<Button>(PlayWithCurrentSettingPath);
 
         autoEvoResultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
-        //historyListMenu = GetNode<CustomDropDown>(HistoryListMenuPath);
+        historyListMenu = GetNode<CustomDropDown>(HistoryListMenuPath);
 
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
+        //hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
         speciesListMenu = GetNode<CustomDropDown>(SpeciesListMenuPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
@@ -686,7 +686,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         if (species is MicrobeSpecies microbeSpecies)
         {
-            hexesPreview.PreviewSpecies = microbeSpecies;
+            //hexesPreview.PreviewSpecies = microbeSpecies;
         }
         else
         {

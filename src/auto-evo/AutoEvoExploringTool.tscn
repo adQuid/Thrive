@@ -51,6 +51,7 @@ RunGenerationButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContaine
 RunStepButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep")
 AbortButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort")
 PlayWithCurrentSettingPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayWithThis")
+HistoryListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer/HistoryListMenu")
 ResultsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
 SpeciesPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
 HexPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
