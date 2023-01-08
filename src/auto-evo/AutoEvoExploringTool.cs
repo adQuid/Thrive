@@ -191,7 +191,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     // Viewer controls
     private SpeciesPreview speciesPreview = null!;
-    //private CellHexesPreview hexesPreview = null!;
+    private CellHexesPreview hexesPreview = null!;
     private CustomDropDown speciesListMenu = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private EvolutionaryTree evolutionaryTree = null!;
@@ -289,7 +289,7 @@ public class AutoEvoExploringTool : NodeWithInput
         historyListMenu = GetNode<CustomDropDown>(HistoryListMenuPath);
 
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        //hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
+        hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
         speciesListMenu = GetNode<CustomDropDown>(SpeciesListMenuPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);

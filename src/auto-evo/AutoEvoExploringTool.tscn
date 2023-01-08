@@ -14,6 +14,7 @@
 [ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=12]
 [ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=15]
 
 [sub_resource type="ButtonGroup" id=1]
 resource_name = "TabsButtonGroup"
@@ -744,7 +745,7 @@ rect_min_size = Vector2( 0, 200 )
 script = ExtResource( 10 )
 
 [node name="CellHexPreview" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 9 )]
-script = null
+script = ExtResource( 15 )
 
 [node name="SpeciesInfoLabel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
 margin_top = 204.0

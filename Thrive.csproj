@@ -221,7 +221,7 @@
     <Compile Include="src\microbe_stage\ai\MicrobeAIResponse.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
-    <Compile Include="src\microbe_stage\CellHexPreview.cs" />
+    <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\HexMoveActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\BehaviourActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\HexPlacementActionData.cs" />
