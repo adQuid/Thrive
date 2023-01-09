@@ -906,6 +906,203 @@ msgstr "{0} population changed by {1} because of: {2}"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} population changed by {1} in {2} because of: {3}"
 
+#: ../src/general/MainMenu.tscn:293
+msgid "AUTO_EVO_EXPLORING_TOOL"
+msgstr "Auto-Evo Exploring Tool"
+
+msgid "SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Species[/b]\n"
+"  {0}:{1}\n"
+"[b]Generation[/b]\n"
+"  {2}\n"
+"[b]Population[/b]\n"
+"  {3}\n"
+"[b]Colour[/b]\n"
+"  #{4}\n"
+"[b]Behaviour[/b]\n"
+"  {5}\n"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:695
+msgid "MICROBE_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Stage[/b]\n"
+"  Microbe\n"
+"[b]Membrane Type[/b]\n"
+"  {0}\n"
+"[b]Membrane Rigidity[/b]\n"
+"  {1}\n"
+"[b]Base Speed[/b]\n"
+"  {2}\n"
+"[b]Base Rotation Speed[/b]\n"
+"  {3}\n"
+"[b]Base Hex Size[/b]\n"
+"  {4}"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:97
+msgid "CONFIG"
+msgstr "Config"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
+msgid "REPORT"
+msgstr "Report"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
+msgid "VIEWER"
+msgstr "Viewer"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:161
+msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+msgstr "Allow species to not mutate"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:168
+msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+msgstr "Allow species to not migrate"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:181
+msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+msgstr "Biodiversity attempt fill chance"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
+msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+msgstr "Biodiversity from neighbour patch chance"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:215
+msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+msgstr "Biodiversity nearby patch is free population"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:222
+msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+msgstr "Biodiversity split is mutated"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:235
+msgid "LOW_BIODIVERSITY_LIMIT"
+msgstr "Low biodiversity limit"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:253
+msgid "MAXIMUM_SPECIES_IN_PATCH"
+msgstr "Maximum species in patch"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:271
+msgid "MOVE_ATTEMPTS_PER_SPECIES"
+msgstr "Move attempts per species"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:289
+msgid "MUTATIONS_PER_SPECIES"
+msgstr "Mutations per species"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:307
+msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+msgstr "New biodiversity increasing species population"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:321
+msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+msgstr "Protect migrations from species cap"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:328
+msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+msgstr "Protect new cells from species cap"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
+msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+msgstr "Refund migrations in extinctions"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:342
+msgid "STRICT_NICHE_COMPETITION"
+msgstr "Strict niche competition"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:355
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+msgstr "Species split by mutation threshold population amount"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:375
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+msgstr "Species split by mutation threshold population fraction"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:387
+msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+msgstr "Use biodiversity force split"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
+msgid "CURRENT_GENERATION_COLON"
+msgstr "Current Generation:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:426
+msgid "STATUS_COLON"
+msgstr "Status:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:433
+msgid "READY"
+msgstr "Ready"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
+msgid "FINISH_ONE_GENERATION"
+msgstr "Finish One Generation"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
+msgid "RUN_ONE_STEP"
+msgstr "Run One Step"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
+msgid "ABORT"
+msgstr "Abort"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
+msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr "Play With Current Setting"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
+msgid "GENERATIONS"
+msgstr "Generations"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+msgid "SELECT_A_GENERATION"
+msgstr "Select a generation"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+msgid "SPECIES"
+msgstr "Species"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
+msgid "SELECT_A_SPECIES"
+msgstr "Select a species"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
+msgid "AUTO_EVO_RESULTS"
+msgstr "Auto-evo results:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
+msgid "EVOLUTIONARY_TREE"
+msgstr "Evolutionary Tree"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
+msgid "SPECIES_DETAILS"
+msgstr "Species Details"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:769
+#: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
+#: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
+#: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/saving/SaveManagerGUI.tscn:120
+msgid "BACK"
+msgstr "Back"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:773
+#: ../src/general/PauseMenu.tscn:288
+msgid "CONFIRM_EXIT"
+msgstr "Confirm Exit"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:774
+#: ../src/general/PauseMenu.cs:353
+msgid "RETURN_TO_MENU_WARNING"
+msgstr ""
+"Are you sure you want to exit to the main menu?\n"
+"You will lose any unsaved progress."
+
 #: ../src/auto-evo/RunResults.cs:554
 msgid "POPULATION_COLON"
 msgstr "population:"
