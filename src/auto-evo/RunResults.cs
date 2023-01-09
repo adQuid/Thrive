@@ -31,6 +31,8 @@
 
         public Dictionary<Patch, Miche> MicheByPatch = new();
 
+        public Dictionary<Species, Species> AncestorDictionary = new();
+
         public enum NewSpeciesType
         {
             /// <summary>
@@ -102,7 +104,7 @@
         }
 
         public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,
-            NewSpeciesType addType, Species parentSpecies)
+            NewSpeciesType addType, Species? parentSpecies)
         {
             MakeSureResultExistsForSpecies(species);
 

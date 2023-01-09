@@ -25,7 +25,6 @@
     <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
     <Compile Include="src\auto-evo\AutoEvoExploringTool.cs" />
-    <Compile Include="src\auto-evo\AutoEvoGlobals.cs" />
     <Compile Include="src\auto-evo\EditorAutoEvoRun.cs" />
     <Compile Include="src\auto-evo\EvolutionaryTree.cs" />
     <Compile Include="src\auto-evo\EvolutionaryTreeNode.cs" />

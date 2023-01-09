@@ -75,7 +75,14 @@ class PullSpeciesForPatch : IRunStep
                 var partList = new PartList(species);
 
                 //TODO: Should I just add the best one?
-                variants.AddRange(ModifyExistingSpecies.ViableVariants(results, species, patch, partList, cache, traversal.Select(x => x.Pressure).ToList()));
+                var variantsToAdd = ModifyExistingSpecies.ViableVariants(results, species, patch, partList, cache, traversal.Select(x => x.Pressure).ToList());
+
+                foreach (var variant in variantsToAdd)
+                {
+                    results.AncestorDictionary.Add(variant, species);
+                }
+
+                variants.AddRange(variantsToAdd);
             }
 
             foreach (var species in variants)

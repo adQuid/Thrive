@@ -25,7 +25,14 @@ class ApplyPopulations : IRunStep
             var population = new Dictionary<Patch, long>();
             population[Patch] = 1000;
 
-            results.AddNewSpecies(speciesToAdd, population, RunResults.NewSpeciesType.FillNiche, speciesToAdd);
+            if (results.AncestorDictionary.ContainsKey(speciesToAdd))
+            {
+                results.AddNewSpecies(speciesToAdd, population, RunResults.NewSpeciesType.FillNiche, results.AncestorDictionary[speciesToAdd]);
+            }
+            else
+            {
+                results.AddNewSpecies(speciesToAdd, population, RunResults.NewSpeciesType.FillNiche, null);
+            }
         }
 
         foreach (var species in Patch.SpeciesInPatch)

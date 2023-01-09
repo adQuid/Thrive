@@ -132,8 +132,18 @@ public class EvolutionaryTree : Control
                 SetupTreeNode((Species)species.Clone(),
                     nodes.FindLast(n => n.SpeciesID == result.SplitFrom.ID), generation);
 
-                speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
-                speciesNames.Add(species.ID, species.FormattedName);
+
+                GD.Print("Want to add " +species.ID+","+result.SplitFrom.ID+","+generation+","+species.FormattedName);
+                //TODO: be safer with this
+                if (!speciesOrigin.ContainsKey(species.ID))
+                {
+                    speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
+                }
+
+                if (!speciesNames.ContainsKey(species.ID))
+                {
+                    speciesNames.Add(species.ID, species.FormattedName);
+                }
             }
             else if (result.MutatedProperties != null)
             {
