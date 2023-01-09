@@ -704,9 +704,9 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void UpdateSpeciesDetail(Species species)
     {
-        /*speciesDetailsLabel.ExtendedBbcode = TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
-            species.FormattedNameBbCode, species.ID, species.Generation, species.Population, species.Colour.ToHtml(),
-            string.Join("\n  ", species.Behaviour.Select(b => b.Key + ": " + b.Value)));*/
+        speciesDetailsLabel.ExtendedBbcode = String.Format(TranslationServer.Translate("SPECIES_DETAIL_TEXT"),
+            species.FormattedName, species.ID, species.Generation, species.Population, species.Colour.ToHtml(),
+            string.Join("\n  ", species.Behaviour.Select(b => b.Key + ": " + b.Value)));
 
         speciesDetailsLabel.ExtendedBbcode = "test";
 
