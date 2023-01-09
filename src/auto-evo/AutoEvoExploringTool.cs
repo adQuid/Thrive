@@ -708,15 +708,13 @@ public class AutoEvoExploringTool : NodeWithInput
             species.FormattedName, species.ID, species.Generation, species.Population, species.Colour.ToHtml(),
             string.Join("\n  ", species.Behaviour.Select(b => b.Key + ": " + b.Value)));
 
-        speciesDetailsLabel.ExtendedBbcode = "test";
-
         switch (species)
         {
             case MicrobeSpecies microbeSpecies:
                 {
-                    speciesDetailsLabel.ExtendedBbcode += " add";/*TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT")
-                        .FormatSafe(microbeSpecies.MembraneType.Name, microbeSpecies.MembraneRigidity,
-                            microbeSpecies.BaseSpeed, microbSpecies.BaseRotationSpeed, microbeSpecies.BaseHexSize);*/
+                    speciesDetailsLabel.ExtendedBbcode += String.Format(TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT"),
+                        microbeSpecies.MembraneType.Name, microbeSpecies.MembraneRigidity,
+                            microbeSpecies.BaseSpeed, microbeSpecies.BaseRotationSpeed, microbeSpecies.BaseHexSize);
                     break;
                 }
         }
