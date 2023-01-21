@@ -426,7 +426,7 @@ public class AutoEvoRun
 
             steps.Enqueue(new InsertExistingSpecies(entry.Value));
 
-            steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache()));
+            steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), map.CurrentPatch == entry.Value));
 
             steps.Enqueue(new ApplyPopulations(entry.Value));
         }

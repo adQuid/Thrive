@@ -8,37 +8,31 @@ class PullSpeciesForPatch : IRunStep
 {
     public Patch Patch;
     public SimulationCache Cache;
+    public bool PlayerPatch;
 
     public int TotalSteps => 1;
 
     public bool CanRunConcurrently => false;
 
-    public PullSpeciesForPatch(Patch patch, SimulationCache cache)
+    public PullSpeciesForPatch(Patch patch, SimulationCache cache, bool playerPatch)
     {
         Patch = patch;
         Cache = cache;
+        PlayerPatch = playerPatch;
     }
 
     public bool RunStep(RunResults results)
     {
         results.MicheByPatch[Patch] = Miche.RootMiche();
 
-        results.MicheByPatch[Patch].AddChild(new Miche("Be the player", new BePlayerSelectionPressure(1.0f)));
+        if (PlayerPatch)
+        {
+            results.MicheByPatch[Patch].AddChild(new Miche("Be the player", new BePlayerSelectionPressure(1.0f)));
+        }
 
         results.MicheByPatch[Patch].AddChildren(SelectionPressure.AutotrophicMichesForPatch(Patch, Cache));
 
         var variants = CandiateSpecies().ToList();
-        /*foreach (var niche in results.Miches[Patch].SelectMany(x => x.AllTraversals()))
-        {
-            // TODO: Only check relivent species
-            foreach (var species in CandiateSpecies())
-            {
-                //TODO: put this in a fixed place
-                var partList = new PartList(species);
-
-                variants.Add(ModifyExistingSpecies.ViableVariants(results, species, Patch, partList, Cache, niche.Select(x => x.Pressure).ToList()).First());
-            }
-        }*/
 
         PopulateForMiche(Patch, results.MicheByPatch[Patch], variants, results, Cache);
 
