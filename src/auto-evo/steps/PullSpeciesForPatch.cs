@@ -22,6 +22,9 @@ class PullSpeciesForPatch : IRunStep
     public bool RunStep(RunResults results)
     {
         results.MicheByPatch[Patch] = Miche.RootMiche();
+
+        results.MicheByPatch[Patch].AddChild(new Miche("Be the player", new BePlayerSelectionPressure(1.0f)));
+
         results.MicheByPatch[Patch].AddChildren(SelectionPressure.AutotrophicMichesForPatch(Patch, Cache));
 
         var variants = CandiateSpecies().ToList();
