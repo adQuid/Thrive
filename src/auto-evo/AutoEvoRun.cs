@@ -517,9 +517,6 @@ public class AutoEvoRun
         Running = false;
         Finished = true;
 
-        //TODO: Put this somewhere better
-        ApplyAllResultsAndEffects(true);
-
         RunDuration += timer.Elapsed;
     }
 

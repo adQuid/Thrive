@@ -814,7 +814,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     {
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
         GD.Print("Applying auto-evo results. Auto-evo run took: ", run.RunDuration);
-        run.ApplyExternalEffects();
+        run.ApplyAllResultsAndEffects(true);
 
         CurrentGame.GameWorld.Map.UpdateGlobalTimePeriod(CurrentGame.GameWorld.TotalPassedTime);
 
