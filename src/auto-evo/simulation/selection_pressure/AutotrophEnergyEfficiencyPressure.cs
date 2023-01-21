@@ -11,7 +11,7 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
     public Compound Compound;
 
     public AutotrophEnergyEfficiencyPressure(Patch patch, Compound compound, float weight): base(true, 
-        weight, 
+        weight,
         FromCompound(compound),
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )

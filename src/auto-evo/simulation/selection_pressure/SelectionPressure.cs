@@ -28,7 +28,7 @@ public abstract class SelectionPressure
     public static List<Miche> AutotrophicMichesForPatch(Patch patch, SimulationCache cache)
     {
         var retval = new List<Miche>();
-        
+
         // Hydrogen Sulfide
         if (patch.GetCompoundAmount("hydrogensulfide") > 0)
         {
@@ -40,6 +40,16 @@ public abstract class SelectionPressure
             );
         }
 
+        // Sunlight
+        if (patch.GetCompoundAmount("sunlight") > 0)
+        {
+            retval.Add(
+                new Miche("Photosynthesis", new AutotrophEnergyEfficiencyPressure(patch, Compound.ByName("sunlight"), 1.0f),
+                    new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 10.0f)) })
+            );
+        }
+
+        // Glucose
         if (patch.GetCompoundAmount("glucose") > 0)
         {
             retval.Add(new Miche("Glucose Consumption", new ReachCompoundCloudPressure(5.0f),
