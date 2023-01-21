@@ -21,7 +21,6 @@ class PullSpeciesForPatch : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        GD.Print("Running 'pullspecies' for "+Patch.Name+". "+CandiateSpecies().Count()+" candidate species");
         results.MicheByPatch[Patch] = Miche.RootMiche();
         results.MicheByPatch[Patch].AddChildren(SelectionPressure.AutotrophicMichesForPatch(Patch, Cache));
 
@@ -42,7 +41,6 @@ class PullSpeciesForPatch : IRunStep
 
         // Second trophic level
         var speciesToEat = results.MicheByPatch[Patch].AllOccupants();
-        GD.Print("Species to eat: "+string.Join(",", speciesToEat.Select(x => x.FormattedName)));
         var newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat.ToHashSet(), Cache);
 
         results.MicheByPatch[Patch].AddChildren(newMiches);

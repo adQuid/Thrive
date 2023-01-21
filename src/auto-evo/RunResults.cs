@@ -996,8 +996,12 @@
 
                     if (population > 0 && speciesResult.NewlyCreated != null)
                     {
+                        // TODO: Care where this comes from
                         if (speciesResult.SplitFrom == null)
-                            throw new Exception("Split species doesn't have the species it split off stored");
+                        {
+                            GD.Print("Split species " + speciesResult.Species.FormattedName + " doesn't have the species it split off stored");
+                            return;
+                        }
 
                         switch (speciesResult.NewlyCreated.Value)
                         {
