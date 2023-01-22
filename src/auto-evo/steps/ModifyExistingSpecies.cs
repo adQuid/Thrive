@@ -64,7 +64,7 @@ public class ModifyExistingSpecies : IRunStep
                 )
                 .SelectMany(x => x).ToList();
 
-            // Prune variants that don't hurt the previous scores too much
+            // Prune variants that hurt the previous scores too much
             foreach (var potentialVariant in potentialVariants)
             {
                 var currentImprovement = curPressure.Score(potentialVariant, cache) / pressureScores[curPressure];
@@ -93,7 +93,7 @@ public class ModifyExistingSpecies : IRunStep
 
         foreach (var variant in viableVariants)
         {
-            variant.Epithet += (new Random()).Next(1, 10);
+            MutationLogicFunctions.NameNewMicrobeSpecies(variant, modifiedSpecies);
         }
 
         return viableVariants.OrderByDescending(x => selectionPressures.Select(pressure => (pressure.Score(x, cache) / pressureScores[pressure]) * pressure.Strength).Sum()).ToList();
