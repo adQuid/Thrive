@@ -172,6 +172,7 @@
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\OrbitCamera.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
+    <Compile Include="src\general\PopulationFormatFunctions.cs" />
     <Compile Include="src\general\StringUtils.cs" />
     <Compile Include="src\general\TranslationHelper.cs" />
     <Compile Include="src\general\TypeUtils.cs" />

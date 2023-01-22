@@ -1232,7 +1232,7 @@ public class MicrobeHUD : Control
 
     private void UpdatePopulation()
     {
-        populationLabel.Text = stage!.GameWorld.PlayerSpecies.Population.FormatNumber();
+        populationLabel.Text = PopulationFormatFunctions.FormatPopulationForPlayer(stage!.GameWorld.PlayerSpecies.Population);
     }
 
     private void UpdateProcessPanel()
