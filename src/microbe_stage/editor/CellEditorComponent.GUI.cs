@@ -437,30 +437,6 @@ public partial class CellEditorComponent
         }
     }
 
-    private void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, Species playerSpeciesOriginal,
-        MicrobeSpecies playerSpeciesNew)
-    {
-        if (waitingForPrediction != null)
-        {
-            GD.PrintErr(
-                $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
-        }
-
-        totalPopulationIndicator.Show();
-        totalPopulationIndicator.Texture = questionIcon;
-
-        var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
-
-        if (startedRun.Finished)
-        {
-            waitingForPrediction = null;
-        }
-        else
-        {
-            waitingForPrediction = prediction;
-        }
-    }
-
     /// <summary>
     ///   Cancels the previous auto-evo prediction run if there is one
     /// </summary>

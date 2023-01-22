@@ -1382,8 +1382,6 @@ public partial class CellEditorComponent :
         var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.EditedBaseSpecies,
             cachedAutoEvoPredictionSpecies);
         run.Start();
-
-        UpdateAutoEvoPrediction(run, Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
     }
 
     /// <summary>
