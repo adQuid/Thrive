@@ -12,7 +12,7 @@ public class ReachCompoundCloudPressure : SelectionPressure
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )
     {
-
+        EnergyProvided = 2000;
     }
 
     public override string Name()

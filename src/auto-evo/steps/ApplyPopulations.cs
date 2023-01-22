@@ -24,6 +24,11 @@ class ApplyPopulations : IRunStep
         {
             var speciesToAdd = traversal.Last().Occupant;
 
+            if (speciesToAdd == null)
+            {
+                continue;
+            }
+
             var population = new Dictionary<Patch, long>();
             population[Patch] = 0;
 
