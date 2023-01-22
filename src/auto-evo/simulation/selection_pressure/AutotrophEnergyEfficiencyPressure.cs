@@ -29,7 +29,7 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
 
     public override string Name()
     {
-        return "Autotroph Energy Efficiency";
+        return "Autotroph Energy Efficiency from " + Compound.Name;
     }
 
     private static List<IMutationStrategy<MicrobeSpecies>> FromCompound(Compound compound)

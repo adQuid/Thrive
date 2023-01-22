@@ -96,7 +96,8 @@ public class Miche
         // TODO: store this somewhere
         var existingScores = AllOccupants().Select(x => Pressure.Score(x, new SimulationCache())).OrderBy(x => x);
 
-        if (existingScores.Count() == 0 || Pressure.Score(species, new SimulationCache()) >= existingScores.First())
+        var speciesScore = Pressure.Score(species, new SimulationCache());
+        if (speciesScore > 0 && (existingScores.Count() == 0 || speciesScore >= existingScores.First()))
         {
             // If this is a leaf, then there's only one species and the new species beats that.
             if (IsLeafNode())
