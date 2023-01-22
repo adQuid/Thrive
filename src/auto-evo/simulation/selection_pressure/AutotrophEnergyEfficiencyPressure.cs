@@ -18,6 +18,7 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
     {
         Patch = patch;
         Compound = compound;
+        EnergyProvided = 40000;
     }
 
     public override float Score(Species species, SimulationCache cache)

@@ -6,6 +6,7 @@ public abstract class SelectionPressure
     public float Strength;
     public List<IMutationStrategy<MicrobeSpecies>> MicrobeMutations;
     public List<IMutationStrategy<EarlyMulticellularSpecies>> MulticellularMutations;
+    public int EnergyProvided = 0;
 
     public static List<SelectionPressure> PressuresFromPatch(Species? species, Patch patch, PartList partList, SimulationCache cache, List<SelectionPressure> niche)
     {

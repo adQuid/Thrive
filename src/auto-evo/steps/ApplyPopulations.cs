@@ -20,10 +20,18 @@ class ApplyPopulations : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        foreach (var speciesToAdd in results.MicheByPatch[Patch].AllOccupants())
+        foreach (var traversal in results.MicheByPatch[Patch].AllTraversals())
         {
+            var speciesToAdd = traversal.Last().Occupant;
+
             var population = new Dictionary<Patch, long>();
-            population[Patch] = 1000;
+            population[Patch] = 0;
+
+            // TODO: Make it so that species that split the miche split the population
+            foreach (var miche in traversal)
+            {
+                population[Patch] += miche.Pressure.EnergyProvided;
+            }
 
             if (results.AncestorDictionary.ContainsKey(speciesToAdd))
             {

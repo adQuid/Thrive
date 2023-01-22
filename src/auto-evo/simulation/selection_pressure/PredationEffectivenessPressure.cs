@@ -25,6 +25,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         )
     {
         this.prey = prey;
+        EnergyProvided = 1000;
     }
 
     public override string Name()

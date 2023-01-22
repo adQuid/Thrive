@@ -9,6 +9,7 @@ public class BePlayerSelectionPressure : SelectionPressure
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )
     {
+        EnergyProvided = 1000;
     }
 
     public override string Name()
