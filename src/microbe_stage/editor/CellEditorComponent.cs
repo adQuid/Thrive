@@ -129,12 +129,6 @@ public partial class CellEditorComponent :
     public NodePath CompoundBalancePathMoving = null!;
 
     [Export]
-    public NodePath AutoEvoPredictionExplanationPopupPath = null!;
-
-    [Export]
-    public NodePath AutoEvoPredictionExplanationLabelPath = null!;
-
-    [Export]
     public NodePath OrganelleUpgradeGUIPath = null!;
 
     // Selection menu tab selector buttons
@@ -188,9 +182,6 @@ public partial class CellEditorComponent :
 
     private CompoundBalanceDisplay compoundBalanceStationary = null!;
     private CompoundBalanceDisplay compoundBalanceMoving = null!;
-
-    private CustomDialog autoEvoPredictionExplanationPopup = null!;
-    private Label autoEvoPredictionExplanationLabel = null!;
 
     private Texture increaseIcon = null!;
     private Texture decreaseIcon = null!;
@@ -628,9 +619,6 @@ public partial class CellEditorComponent :
 
         compoundBalanceStationary = GetNode<CompoundBalanceDisplay>(CompoundBalancePathStationary);
         compoundBalanceMoving = GetNode<CompoundBalanceDisplay>(CompoundBalancePathMoving);
-
-        autoEvoPredictionExplanationPopup = GetNode<CustomDialog>(AutoEvoPredictionExplanationPopupPath);
-        autoEvoPredictionExplanationLabel = GetNode<Label>(AutoEvoPredictionExplanationLabelPath);
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -2041,148 +2029,6 @@ public partial class CellEditorComponent :
         }
     }
 
-    private void UpdateAutoEvoPredictionTranslations()
-    {
-        if (autoEvoPredictionRunSuccessful is false)
-        {
-            totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
-        }
-
-        if (!string.IsNullOrEmpty(bestPatchName))
-        {
-            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                TranslationServer.Translate(bestPatchName),
-                bestPatchPopulation);
-        }
-        else
-        {
-            bestPatchLabel.Text = TranslationServer.Translate("N_A");
-        }
-
-        if (!string.IsNullOrEmpty(worstPatchName))
-        {
-            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                TranslationServer.Translate(worstPatchName),
-                worstPatchPopulation);
-        }
-        else
-        {
-            worstPatchLabel.Text = TranslationServer.Translate("N_A");
-        }
-    }
-
-    private void OpenAutoEvoPredictionDetails()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        UpdateAutoEvoPredictionDetailsText();
-
-        autoEvoPredictionExplanationPopup.PopupCenteredShrink();
-
-        TutorialState?.SendEvent(TutorialEventType.MicrobeEditorAutoEvoPredictionOpened, EventArgs.Empty, this);
-    }
-
-    private void CloseAutoEvoPrediction()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        autoEvoPredictionExplanationPopup.Hide();
-    }
-
-    private void OnAutoEvoPredictionComplete(PendingAutoEvoPrediction run)
-    {
-        if (!run.AutoEvoRun.WasSuccessful)
-        {
-            GD.PrintErr("Failed to run auto-evo prediction for showing in the editor");
-            autoEvoPredictionRunSuccessful = false;
-            UpdateAutoEvoPredictionTranslations();
-            return;
-        }
-
-        var results = run.AutoEvoRun.Results ??
-            throw new Exception("Auto evo prediction has no results even though it succeeded");
-
-        // Total population
-        var newPopulation = results.GetGlobalPopulation(run.PlayerSpeciesNew);
-
-        if (newPopulation > run.PlayerSpeciesOriginal.Population)
-        {
-            totalPopulationIndicator.Texture = increaseIcon;
-        }
-        else if (newPopulation < run.PlayerSpeciesOriginal.Population)
-        {
-            totalPopulationIndicator.Texture = decreaseIcon;
-        }
-        else
-        {
-            totalPopulationIndicator.Texture = null;
-        }
-
-        autoEvoPredictionRunSuccessful = true;
-        totalPopulationLabel.Text = newPopulation.ToString(CultureInfo.CurrentCulture);
-
-        var sorted = results.GetPopulationInPatches(run.PlayerSpeciesNew).OrderByDescending(p => p.Value).ToList();
-
-        // Best
-        if (sorted.Count > 0)
-        {
-            var patch = sorted[0];
-            bestPatchName = patch.Key.Name.ToString();
-            bestPatchPopulation = patch.Value;
-        }
-        else
-        {
-            bestPatchName = null;
-        }
-
-        // And worst patch
-        if (sorted.Count > 1)
-        {
-            var patch = sorted[sorted.Count - 1];
-            worstPatchName = patch.Key.Name.ToString();
-            worstPatchPopulation = patch.Value;
-        }
-        else
-        {
-            worstPatchName = null;
-        }
-
-        CreateAutoEvoPredictionDetailsText(results.GetPatchEnergyResults(run.PlayerSpeciesNew),
-            run.PlayerSpeciesOriginal.FormattedName);
-
-        UpdateAutoEvoPredictionTranslations();
-
-        if (autoEvoPredictionPanel.Visible)
-        {
-            UpdateAutoEvoPredictionDetailsText();
-        }
-    }
-
-    private void CreateAutoEvoPredictionDetailsText(
-        Dictionary<Patch, RunResults.SpeciesPatchEnergyResults> energyResults, string playerSpeciesName)
-    {
-        predictionDetailsText = new LocalizedStringBuilder(300);
-
-        // Show the player's current patch first
-        foreach (var energyResult in energyResults)
-        {
-            if (energyResult.Key == Editor.CurrentPatch && energyResult.Value.PerNicheEnergy.Count > 0)
-            {
-                AddSummaryForNiche(energyResult, playerSpeciesName);
-            }
-        }
-
-        // Then show all other patches
-        foreach (var energyResult in energyResults)
-        {
-            if (energyResult.Key != Editor.CurrentPatch && energyResult.Value.PerNicheEnergy.Count > 0)
-            {
-                AddSummaryForNiche(energyResult, playerSpeciesName);
-            }
-        }
-    }
-
     private void AddSummaryForNiche(KeyValuePair<Patch, RunResults.SpeciesPatchEnergyResults> energyResult, string playerSpeciesName)
     {
         double Round(float value)
@@ -2225,13 +2071,6 @@ public partial class CellEditorComponent :
         predictionDetailsText.Append('\n');
         predictionDetailsText.Append('\n');
         predictionDetailsText.Append('\n');
-    }
-
-    private void UpdateAutoEvoPredictionDetailsText()
-    {
-        autoEvoPredictionExplanationLabel.Text = predictionDetailsText != null ?
-            predictionDetailsText.ToString() :
-            TranslationServer.Translate("NO_DATA_TO_SHOW");
     }
 
     private void SetInitialCellStats()
