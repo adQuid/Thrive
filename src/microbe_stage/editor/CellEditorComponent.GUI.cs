@@ -60,9 +60,6 @@ public partial class CellEditorComponent
 
     protected override void OnTranslationsChanged()
     {
-        UpdateAutoEvoPredictionTranslations();
-        UpdateAutoEvoPredictionDetailsText();
-
         CalculateOrganelleEffectivenessInPatch(Editor.CurrentPatch);
         UpdatePatchDependentBalanceData();
 
@@ -155,7 +152,6 @@ public partial class CellEditorComponent
         if (waitingForPrediction?.Finished != true)
             return;
 
-        OnAutoEvoPredictionComplete(waitingForPrediction);
         waitingForPrediction = null;
     }
 
@@ -457,7 +453,6 @@ public partial class CellEditorComponent
 
         if (startedRun.Finished)
         {
-            OnAutoEvoPredictionComplete(prediction);
             waitingForPrediction = null;
         }
         else
