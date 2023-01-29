@@ -98,7 +98,9 @@ public class PredationEffectivenessPressure : SelectionPressure
             return 0.0f;
         }
 
-        var toxinStorageScore = Math.Min(1.0, predator.Organelles.Sum(x => x.Definition.Storage()) * Constants.OXYTOXY_DAMAGE 
+        var predatorToxinStorage = predator.Organelles.Sum(x => x.Definition.Storage());
+
+        var toxinStorageScore = Math.Min(1.0, predatorToxinStorage  * Constants.OXYTOXY_DAMAGE 
             / (prey.MembraneType.ToxinResistance * prey.MaxHealth()));
 
         var toxinProductionScore = 0.0f;
@@ -112,6 +114,10 @@ public class PredationEffectivenessPressure : SelectionPressure
                 }
             }
         }
+
+        var speedScore = predator.BaseSpeed > prey.BaseSpeed || 
+            prey.MaxHealth() <= (Math.Min(predatorToxinStorage, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT) * Constants.OXYTOXY_DAMAGE / prey.MembraneType.ToxinResistance)
+            ? 1.0f : 0.5f;
 
         return ((float)toxinStorageScore * 100) + toxinProductionScore;
     }
