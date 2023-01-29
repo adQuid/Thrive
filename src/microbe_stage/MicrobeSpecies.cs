@@ -204,4 +204,10 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
             Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
     }
+
+    public float MaxHealth()
+    {
+        return MembraneType.Hitpoints +
+            (MembraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
     }
+}

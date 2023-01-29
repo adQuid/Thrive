@@ -63,7 +63,7 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     private float PredationScore(MicrobeSpecies predator, MicrobeSpecies prey)
     {
-        return EngulfmentScore(predator, prey) + ToxinScore(predator, prey);
+        return Math.Max(EngulfmentScore(predator, prey), ToxinScore(predator, prey));
     }
 
     private float EngulfmentScore(MicrobeSpecies predator, MicrobeSpecies prey)
@@ -74,7 +74,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         }
 
         // TEMPORARY logic for auto-evo testing
-        var SizeScore = predator.Organelles.Select(x => x.Definition == SimulationParameters.Instance.GetOrganelleType("cytoplasm")).Count() / Mathf.Sqrt(predator.BaseHexSize);
+        var SizeScore = predator.Organelles.Count();
 
         if (predator.BaseSpeed < 0.1f || predator.MembraneType.CellWall) 
         {
@@ -92,10 +92,14 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     private float ToxinScore(MicrobeSpecies predator, MicrobeSpecies prey)
     {
+        // If the species wouldn't even attack this prey, no need to check further
         if (!(MicrobeAIFunctions.WouldTryToToxinHuntBiggerPrey(predator.Behaviour.Opportunism) || MicrobeAIFunctions.CouldEngulf(predator.BaseHexSize, prey.BaseHexSize)))
         {
             return 0.0f;
         }
+
+        var toxinStorageScore = Math.Min(1.0, predator.Organelles.Sum(x => x.Definition.Storage()) * Constants.OXYTOXY_DAMAGE 
+            / (prey.MembraneType.ToxinResistance * prey.MaxHealth()));
 
         var toxinProductionScore = 0.0f;
         foreach (var organelle in predator.Organelles)
@@ -104,11 +108,11 @@ public class PredationEffectivenessPressure : SelectionPressure
             {
                 if (process.Process.Outputs.TryGetValue(Compound.ByName("oxytoxy"), out var oxytoxyAmount))
                 {
-                    toxinProductionScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
+                    toxinProductionScore += oxytoxyAmount;
                 }
             }
         }
 
-        return toxinProductionScore / prey.MembraneType.ToxinResistance;
+        return ((float)toxinStorageScore * 100) + toxinProductionScore;
     }
 }
