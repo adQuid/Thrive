@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class PartList
 {
@@ -9,20 +10,24 @@ public class PartList
 
         foreach (var organelleDefinition in SimulationParameters.Instance.GetAllOrganelles())
         {
-            var isValid = true;
+            var shouldAdd = true;
             if (species is MicrobeSpecies)
             {
                 var microbeSpecies = (MicrobeSpecies)species;
 
                 if (organelleDefinition.RequiresNucleus && microbeSpecies.IsBacteria)
                 {
-                    isValid = false;
+                    shouldAdd = false;
                 }
             }
-            
-            // TODO: Add chance here
 
-            if (isValid)
+            // TODO: Make this use a shared random and based on definition
+            if (new Random().NextDouble() < 0.6)
+            {
+                shouldAdd = false;
+            }
+
+            if (shouldAdd)
             {
                 PermittedOrganelleDefinitions.Add(organelleDefinition.Name, organelleDefinition);
             }
