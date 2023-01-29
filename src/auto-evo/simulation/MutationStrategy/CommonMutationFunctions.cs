@@ -26,7 +26,7 @@ class CommonMutationFunctions
 
                 for (int sideRoll = 1; sideRoll <= 6; ++sideRoll)
                 {
-                    var side = random.Next(6) + 1;
+                    var side = Math.Max(1, random.Next(7));
                     for (int radius = 1; radius <= 3; ++radius)
                     {
                         // Offset by hex offset multiplied by a factor to check for greater range
