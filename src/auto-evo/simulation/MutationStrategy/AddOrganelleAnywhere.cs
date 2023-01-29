@@ -34,7 +34,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         {
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-            var position = CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles);
+            var position = CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random());
 
             newSpecies.Organelles.Add(position);
 

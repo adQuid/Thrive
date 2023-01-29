@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 class CommonMutationFunctions
 {
     public static OrganelleTemplate GetRealisticPosition(OrganelleDefinition organelle,
-        OrganelleLayout<OrganelleTemplate> existingOrganelles)
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, Random random)
     {
         var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
 
@@ -15,7 +15,7 @@ class CommonMutationFunctions
         // place our new organelle attached to existing organelles
         // This almost always is over at the first iteration, so its
         // not a huge performance hog
-        foreach (var otherOrganelle in existingOrganelles.OrderBy(_ => (new Random()).Next()))
+        foreach (var otherOrganelle in existingOrganelles.OrderBy(_ => random.Next()))
         {
             // The otherOrganelle is the organelle we wish to be next to
             // Loop its hexes and check positions next to them
@@ -24,8 +24,9 @@ class CommonMutationFunctions
                 // Offset by hexes in organelle we are looking at
                 var pos = otherOrganelle.Position + hex;
 
-                for (int side = 1; side <= 6; ++side)
+                for (int sideRoll = 1; sideRoll <= 6; ++sideRoll)
                 {
+                    var side = random.Next(6);
                     for (int radius = 1; radius <= 3; ++radius)
                     {
                         // Offset by hex offset multiplied by a factor to check for greater range
