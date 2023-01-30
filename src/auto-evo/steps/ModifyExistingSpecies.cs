@@ -36,7 +36,12 @@ public class ModifyExistingSpecies : IRunStep
         return true;
     }
 
-    public static List<MicrobeSpecies> ViableVariants(RunResults results, Species species, Patch patch, PartList partList, SimulationCache cache, List<SelectionPressure>? niche)
+    public static List<MicrobeSpecies> ViableVariants(RunResults results, 
+        Species species, 
+        Patch patch, 
+        PartList partList, 
+        SimulationCache cache, 
+        List<SelectionPressure>? niche)
     {
         var modifiedSpecies = (MicrobeSpecies)results.LastestVersionForSpecies(species);
 
@@ -53,9 +58,6 @@ public class ModifyExistingSpecies : IRunStep
 
         foreach (var curPressure in selectionPressures)
         {
-            var previousPressures = selectionPressures.IndexOf(curPressure) > 0 ? selectionPressures.GetRange(0, selectionPressures.IndexOf(curPressure) - 1) : new List<SelectionPressure>();
-            previousPressures.Reverse();
-
             // For each viable variant, get a new variants that at least improve score a little bit
             var potentialVariants = viableVariants.Select(startVariant =>
                 curPressure.MicrobeMutations.Select(mutationStrategy => mutationStrategy.MutationsOf(startVariant, partList))
@@ -65,30 +67,7 @@ public class ModifyExistingSpecies : IRunStep
                 .SelectMany(x => x).ToList();
 
             // Prune variants that hurt the previous scores too much
-            foreach (var potentialVariant in potentialVariants)
-            {
-                var currentImprovement = curPressure.Score(potentialVariant, cache) / pressureScores[curPressure];
-
-                var viable = true;
-                foreach (var pastPressure in previousPressures)
-                {
-                    var pastImprovement = pastPressure.Score(potentialVariant, cache) / pressureScores[pastPressure];
-
-                    // If, proportional to weights, the improvement to the current pressure doesn't outweigh the loss to the other pressures, this is still viable.
-                    if (currentImprovement * curPressure.Strength + pastImprovement * pastPressure.Strength < curPressure.Strength + pastPressure.Strength)
-                    {
-                        viable = false;
-                    }
-                }
-
-                if (viable)
-                {
-                    // TODO: Move this somewhere better
-                    ((MicrobeSpecies)potentialVariant).Colour = new Color((float)new Random().NextDouble(), 0.5f, 0.5f);
-
-                    viableVariants.Add(potentialVariant);
-                }
-            }
+            viableVariants = PruneInviableSpecies(potentialVariants, curPressure, selectionPressures, pressureScores, cache);
         }
 
         foreach (var variant in viableVariants)
@@ -97,5 +76,43 @@ public class ModifyExistingSpecies : IRunStep
         }
 
         return viableVariants.OrderByDescending(x => selectionPressures.Select(pressure => (pressure.Score(x, cache) / pressureScores[pressure]) * pressure.Strength).Sum()).ToList();
+    }
+
+    public static List<MicrobeSpecies> PruneInviableSpecies(List<MicrobeSpecies> potentialVariants, 
+        SelectionPressure curPressure, 
+        List<SelectionPressure>? selectionPressures, 
+        Dictionary<SelectionPressure, float> pressureScores, 
+        SimulationCache cache)
+    {
+        var previousPressures = selectionPressures.IndexOf(curPressure) > 0 ? selectionPressures.GetRange(0, selectionPressures.IndexOf(curPressure) - 1) : new List<SelectionPressure>();
+        previousPressures.Reverse();
+
+        var viableVariants = new List<MicrobeSpecies>();
+        foreach (var potentialVariant in potentialVariants)
+        {
+            var currentImprovement = curPressure.Score(potentialVariant, cache) / pressureScores[curPressure];
+
+            var viable = true;
+            foreach (var pastPressure in previousPressures)
+            {
+                var pastImprovement = pastPressure.Score(potentialVariant, cache) / pressureScores[pastPressure];
+
+                // If, proportional to weights, the improvement to the current pressure doesn't outweigh the loss to the other pressures, this is still viable.
+                if (currentImprovement * curPressure.Strength + pastImprovement * pastPressure.Strength < curPressure.Strength + pastPressure.Strength)
+                {
+                    viable = false;
+                }
+            }
+
+            if (viable)
+            {
+                // TODO: Move this somewhere better
+                ((MicrobeSpecies)potentialVariant).Colour = new Color((float)new Random().NextDouble(), 0.5f, 0.5f);
+
+                viableVariants.Add(potentialVariant);
+            }
+        }
+
+        return viableVariants;
     }
 }
