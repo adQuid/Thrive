@@ -86,8 +86,6 @@ public class Miche
 
     public void InsertSpecies(Species species)
     {
-        //GD.Print("Testing " + species.FormattedName + " into miche "+Name);
-
         if (IsLeafNode() && Occupant == null)
         {
             Occupant = species;
@@ -102,7 +100,6 @@ public class Miche
             // If this is a leaf, then there's only one species and the new species beats that.
             if (IsLeafNode())
             {
-                //GD.Print("Species " + species.FormattedName + " won out leaf node " + Name);
                 Occupant = species;
             }
 
