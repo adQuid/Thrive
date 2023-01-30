@@ -67,7 +67,7 @@ public class ModifyExistingSpecies : IRunStep
                 .SelectMany(x => x).ToList();
 
             // Prune variants that hurt the previous scores too much
-            viableVariants = PruneInviableSpecies(potentialVariants, curPressure, selectionPressures, pressureScores, cache);
+            viableVariants.AddRange(PruneInviableSpecies(potentialVariants, curPressure, selectionPressures, pressureScores, cache));
         }
 
         foreach (var variant in viableVariants)
