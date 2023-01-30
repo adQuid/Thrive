@@ -23,6 +23,20 @@ class PullSpeciesForPatch : IRunStep
 
     public bool RunStep(RunResults results)
     {
+        var variants = CandiateSpecies().ToList();
+
+        var newMiches = PopulateMiche(results, variants);
+
+        newMiches.ForEach(x => PopulateForMiche(Patch, x, variants, results, Cache));
+
+        return true;
+    }
+
+    /*
+     * Creates a root level miche appropriate for the patch
+     */
+    private List<Miche> PopulateMiche(RunResults results, List<Species> candidates)
+    {
         results.MicheByPatch[Patch] = Miche.RootMiche();
 
         if (PlayerPatch)
@@ -32,9 +46,7 @@ class PullSpeciesForPatch : IRunStep
 
         results.MicheByPatch[Patch].AddChildren(SelectionPressure.AutotrophicMichesForPatch(Patch, Cache));
 
-        var variants = CandiateSpecies().ToList();
-
-        PopulateForMiche(Patch, results.MicheByPatch[Patch], variants, results, Cache);
+        PopulateForMiche(Patch, results.MicheByPatch[Patch], candidates, results, Cache);
 
         // Second trophic level
         var speciesToEat = results.MicheByPatch[Patch].AllOccupants();
@@ -42,7 +54,7 @@ class PullSpeciesForPatch : IRunStep
 
         results.MicheByPatch[Patch].AddChildren(newMiches);
 
-        newMiches.ForEach(x => PopulateForMiche(Patch, x, variants, results, Cache));
+        newMiches.ForEach(x => PopulateForMiche(Patch, x, candidates, results, Cache));
 
         // Third trophic level
         speciesToEat = newMiches.SelectMany(x => x.AllOccupants());
@@ -50,11 +62,12 @@ class PullSpeciesForPatch : IRunStep
 
         results.MicheByPatch[Patch].AddChildren(newMiches);
 
-        newMiches.ForEach(x => PopulateForMiche(Patch, x, variants, results, Cache));
-
-        return true;
+        return newMiches;
     }
 
+    /*
+     * Finds or creates a species for every leaf node of the provided miche.
+     */
     private static void PopulateForMiche(Patch patch, Miche miche, IEnumerable<Species> allSpecies, RunResults results, SimulationCache cache)
     {
         foreach (var traversal in miche.AllTraversals())
@@ -112,7 +125,6 @@ class PullSpeciesForPatch : IRunStep
                 var speciesToAdd = qualifiedSpeciesScores.OrderByDescending(x => x.Value).First().Key;
 
                 // TODO: It's probably very inefficient to do this here
-                //GD.Print("check new species "+speciesToAdd.FormattedName);
                 miche.Root().InsertSpecies(speciesToAdd);
 
                 results.MakeSureResultExistsForSpecies(speciesToAdd);
