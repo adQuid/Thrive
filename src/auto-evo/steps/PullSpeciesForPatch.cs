@@ -25,9 +25,9 @@ class PullSpeciesForPatch : IRunStep
     {
         var variants = CandiateSpecies().ToList();
 
-        var newMiches = PopulateMiche(results, variants);
+        var newMiche = PopulateMiche(results, variants);
 
-        newMiches.ForEach(x => PopulateForMiche(Patch, x, variants, results, Cache));
+        PopulateForMiche(Patch, newMiche, variants, results, Cache);
 
         return true;
     }
@@ -35,7 +35,7 @@ class PullSpeciesForPatch : IRunStep
     /*
      * Creates a root level miche appropriate for the patch
      */
-    private List<Miche> PopulateMiche(RunResults results, List<Species> candidates)
+    private Miche PopulateMiche(RunResults results, List<Species> candidates)
     {
         results.MicheByPatch[Patch] = Miche.RootMiche();
 
@@ -62,7 +62,7 @@ class PullSpeciesForPatch : IRunStep
 
         results.MicheByPatch[Patch].AddChildren(newMiches);
 
-        return newMiches;
+        return results.MicheByPatch[Patch];
     }
 
     /*
