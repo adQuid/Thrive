@@ -65,9 +65,10 @@ public class ModifyExistingSpecies : IRunStep
                 .Where(x => curPressure.Score(x, cache) >= curPressure.Score(startVariant, cache))
                 )
                 .SelectMany(x => x).ToList();
+            potentialVariants.AddRange(viableVariants);
 
             // Prune variants that hurt the previous scores too much
-            viableVariants.AddRange(PruneInviableSpecies(potentialVariants, curPressure, selectionPressures, pressureScores, cache));
+            viableVariants = PruneInviableSpecies(potentialVariants, curPressure, selectionPressures, pressureScores, cache);
         }
 
         foreach (var variant in viableVariants)
@@ -95,10 +96,11 @@ public class ModifyExistingSpecies : IRunStep
             var viable = true;
             foreach (var pastPressure in previousPressures)
             {
-                var pastImprovement = pastPressure.Score(potentialVariant, cache) / pressureScores[pastPressure];
+                var pastScore = pastPressure.Score(potentialVariant, cache);
+                var pastImprovement = pastScore / pressureScores[pastPressure];
 
                 // If, proportional to weights, the improvement to the current pressure doesn't outweigh the loss to the other pressures, this is still viable.
-                if (currentImprovement * curPressure.Strength + pastImprovement * pastPressure.Strength < curPressure.Strength + pastPressure.Strength)
+                if (pastScore == 0)
                 {
                     viable = false;
                 }
