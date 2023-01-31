@@ -712,7 +712,7 @@ public class AutoEvoExploringTool : NodeWithInput
         }
 
         speciesDetailsLabel.ExtendedBbcode = String.Format(TranslationServer.Translate("SPECIES_DETAIL_TEXT"),
-            species.FormattedName, species.ID, species.Generation, species.Population, species.Colour.ToHtml(),
+            species.FormattedName, species.ID, species.Population, 
             string.Join("\n  ", species.Behaviour.Select(b => b.Key + ": " + b.Value)),
             confusingMicheString);
 
