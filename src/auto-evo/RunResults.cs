@@ -292,7 +292,7 @@
                             if (patch.AddSpecies(entry.Key, populationEntry.Value) != true)
                             {
                                 GD.PrintErr(
-                                    "RunResults has new species with invalid patch or it was failed to be added");
+                                    "RunResults has new species ("+entry.Key.FormattedName+") with invalid patch or it was failed to be added");
                             }
                         }
                     }
