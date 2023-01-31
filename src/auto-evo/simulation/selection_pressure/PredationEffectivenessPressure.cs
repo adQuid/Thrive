@@ -119,6 +119,6 @@ public class PredationEffectivenessPressure : SelectionPressure
             prey.MaxHealth() <= (Math.Min(predatorToxinStorage, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT) * Constants.OXYTOXY_DAMAGE / prey.MembraneType.ToxinResistance)
             ? 1.0f : 0.5f;
 
-        return ((float)toxinStorageScore * 100) + toxinProductionScore;
+        return ((float)toxinStorageScore * 100) * toxinProductionScore * speedScore;
     }
 }
