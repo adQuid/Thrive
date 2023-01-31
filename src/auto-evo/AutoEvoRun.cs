@@ -393,15 +393,6 @@ public class AutoEvoRun
                     continue;
 
                 alreadyHandledSpecies.Add(speciesEntry.Key);
-
-                // The player species doesn't get random mutations. And also doesn't spread automatically
-                if (speciesEntry.Key.PlayerSpecies)
-                {
-                }
-                else
-                {
-                    
-                }
             }
 
             // Verify the length.
@@ -431,15 +422,6 @@ public class AutoEvoRun
 
             steps.Enqueue(new ApplyPopulations(entry.Value));
         }
-
-        // The new populations don't depend on the mutations, this is so that when
-        // the player edits their species the other species they are competing
-        // against are the same (so we can show some performance predictions in the
-        // editor and suggested changes)
-        // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
-        //steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, map) { CanRunConcurrently = false });
-
-        //AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
     }
 
     /// <summary>
