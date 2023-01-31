@@ -77,6 +77,7 @@ class PullSpeciesForPatch : IRunStep
 
             var variants = new List<Species>(allSpecies);
 
+            // Take all possible variants of all possible species
             foreach (var species in allSpecies)
             {
                 //TODO: put this in a fixed place
@@ -93,11 +94,13 @@ class PullSpeciesForPatch : IRunStep
                 variants.AddRange(variantsToAdd);
             }
 
+            // Set scores for all starting species
             foreach (var species in variants)
             {
                 qualifiedSpeciesScores[species] = 0;
             }
 
+            // Travel down the list of pressures, adding up totals and elminiating any zeros
             foreach (var pressure in pressures)
             {
                 var remainingQualifiedSpecies = new Dictionary<Species, double>(qualifiedSpeciesScores);
@@ -119,7 +122,7 @@ class PullSpeciesForPatch : IRunStep
                 qualifiedSpeciesScores = remainingQualifiedSpecies;
             }
 
-            // If anything is able to survive this path, put it on the leaf node.
+            // If anything is able to survive this path, put the best scoring species on the leaf node.
             if (qualifiedSpeciesScores.Count > 0)
             {
                 var speciesToAdd = qualifiedSpeciesScores.OrderByDescending(x => x.Value).First().Key;
