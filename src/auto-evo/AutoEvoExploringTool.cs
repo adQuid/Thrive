@@ -704,9 +704,20 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void UpdateSpeciesDetail(Species species)
     {
+        var confusingMicheString = "";
+
+        foreach (var curMiche in gameProperties.GameWorld.Map.Patches.Select(x => x.Value.Miche))
+        {
+            foreach (var curTraversal in curMiche.TraversalsTerminatingInSpecies(species))
+            {
+                confusingMicheString += string.Join(",", curTraversal.Select(x => x.Pressure.Name())) + "\n";
+            }
+        }
+
         speciesDetailsLabel.ExtendedBbcode = String.Format(TranslationServer.Translate("SPECIES_DETAIL_TEXT"),
             species.FormattedName, species.ID, species.Generation, species.Population, species.Colour.ToHtml(),
-            string.Join("\n  ", species.Behaviour.Select(b => b.Key + ": " + b.Value)));
+            string.Join("\n  ", species.Behaviour.Select(b => b.Key + ": " + b.Value)),
+            confusingMicheString);
 
         switch (species)
         {

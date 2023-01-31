@@ -922,6 +922,7 @@ msgstr ""
 "  #{4}\n"
 "[b]Behaviour[/b]\n"
 "  {5}\n"
+"[b]Best Pressures[/b]\n"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:695
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
