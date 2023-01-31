@@ -36,6 +36,8 @@ public class EvolutionaryTree : Control
 
     private uint maxSpeciesId;
 
+    public System.Collections.Generic.Dictionary<Species, List<List<Miche>>> MichesBySpecies;
+
     private int latestGeneration;
 
     [Signal]
@@ -119,6 +121,18 @@ public class EvolutionaryTree : Control
             var species = speciesResultPair.Key;
             var result = speciesResultPair.Value;
 
+            var miches = new List<List<Miche>>();
+
+            foreach(var curMiche in results.MicheByPatch.Values)
+            {
+                foreach(var traversal in curMiche.TraversalsTerminatingInSpecies(species))
+                {
+                    miches.Add(traversal.ToList());
+                }
+            }
+
+            MichesBySpecies.Add(species, miches);
+
             if (result.Species.Population <= 0)
             {
                 if (result.SplitFrom == null)
@@ -132,8 +146,6 @@ public class EvolutionaryTree : Control
                 SetupTreeNode((Species)species.Clone(),
                     nodes.FindLast(n => n.SpeciesID == result.SplitFrom.ID), generation);
 
-
-                GD.Print("Want to add " +species.ID+","+result.SplitFrom.ID+","+generation+","+species.FormattedName);
                 //TODO: be safer with this
                 if (!speciesOrigin.ContainsKey(species.ID))
                 {

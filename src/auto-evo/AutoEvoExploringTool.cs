@@ -706,12 +706,9 @@ public class AutoEvoExploringTool : NodeWithInput
     {
         var confusingMicheString = "";
 
-        foreach (var curMiche in gameProperties.GameWorld.Map.Patches.Select(x => x.Value.Miche))
+        foreach (var curTraversal in evolutionaryTree.MichesBySpecies[species])
         {
-            foreach (var curTraversal in curMiche.TraversalsTerminatingInSpecies(species))
-            {
-                confusingMicheString += string.Join(",", curTraversal.Select(x => x.Pressure.Name())) + "\n";
-            }
+            confusingMicheString += string.Join(",", curTraversal.Select(x => x.Pressure.Name())) + "\n";
         }
 
         speciesDetailsLabel.ExtendedBbcode = String.Format(TranslationServer.Translate("SPECIES_DETAIL_TEXT"),
