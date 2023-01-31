@@ -71,7 +71,7 @@ class PullSpeciesForPatch : IRunStep
 
             if (finalSpecies != null)
             {
-                GD.Print("  and I found something: "+finalSpecies.FormattedName);                
+                GD.Print("  and I found something: "+finalSpecies.FormattedName);
                 results.MakeSureResultExistsForSpecies(finalSpecies);
 
                 // Mark the best pressures for hovering over in game
@@ -81,67 +81,6 @@ class PullSpeciesForPatch : IRunStep
                 }
             }
         }
-
-        /*foreach (var traversal in miche.AllTraversals())
-        {
-            var pressures = traversal.Select(x => x.Pressure);
-            var qualifiedSpeciesScores = new Dictionary<Species, double>();
-
-            var variants = new List<Species>(allSpecies);
-
-            // Take all possible variants of all possible species
-            foreach (var species in allSpecies)
-            {
-                //TODO: put this in a fixed place
-                var partList = new PartList(species);
-
-                //TODO: Should I just add the best one?
-                var variantsToAdd = ModifyExistingSpecies.ViableVariants(results, species, patch, partList, cache, traversal.Select(x => x.Pressure).ToList());
-
-                foreach (var variant in variantsToAdd)
-                {
-                    results.AncestorDictionary.Add(variant, species);
-                }
-
-                variants.AddRange(variantsToAdd);
-            }
-
-            // Set scores for all starting species
-            foreach (var species in variants)
-            {
-                qualifiedSpeciesScores[species] = 0;
-            }
-
-            // Travel down the list of pressures, adding up totals and elminiating any zeros
-            foreach (var pressure in pressures)
-            {
-                var remainingQualifiedSpecies = new Dictionary<Species, double>(qualifiedSpeciesScores);
-
-                foreach (var species in qualifiedSpeciesScores.Keys)
-                {
-                    var score = pressure.Score(species, cache);
-                    if (score > 0)
-                    {
-                        remainingQualifiedSpecies[species] += score;
-                    }
-                    else
-                    {
-                        remainingQualifiedSpecies.Remove(species);
-                        continue;
-                    }
-                }
-
-                qualifiedSpeciesScores = remainingQualifiedSpecies;
-            }
-
-            // If anything is able to survive this path, put the best scoring species on the leaf node.
-            if (qualifiedSpeciesScores.Count > 0)
-            {
-                var speciesToAdd = qualifiedSpeciesScores.OrderByDescending(x => x.Value).First().Key;
-
-                
-            }
-        }*/
     }
 
     private IEnumerable<Species> CandiateSpecies()
