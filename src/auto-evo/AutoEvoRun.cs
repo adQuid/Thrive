@@ -423,7 +423,8 @@ public class AutoEvoRun
                 }
             }
 
-            // TODO: should I really be declaring a simulation cache here?
+            steps.Enqueue(new EstablishMicheTree(entry.Value, new SimulationCache(), map.CurrentPatch == entry.Value));
+
             steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache()));
 
             steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), map.CurrentPatch == entry.Value));

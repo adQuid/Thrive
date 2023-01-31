@@ -55,6 +55,7 @@
     <Compile Include="src\auto-evo\simulation\selection_pressure\SelectionPressure.cs" />
     <Compile Include="src\auto-evo\simulation\SimulationCache.cs" />
     <Compile Include="src\auto-evo\steps\ApplyPopulations.cs" />
+    <Compile Include="src\auto-evo\steps\EstablishMicheTree.cs" />
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\InsertExistingSpecies.cs" />

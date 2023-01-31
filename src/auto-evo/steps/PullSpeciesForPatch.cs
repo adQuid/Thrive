@@ -25,44 +25,9 @@ class PullSpeciesForPatch : IRunStep
     {
         var variants = CandiateSpecies().ToList();
 
-        var newMiche = PopulateMiche(results, variants);
-
-        PopulateForMiche(Patch, newMiche, variants, results, Cache);
+        PopulateForMiche(Patch, results.MicheByPatch[Patch], variants, results, Cache);
 
         return true;
-    }
-
-    /*
-     * Creates a root level miche appropriate for the patch
-     */
-    private Miche PopulateMiche(RunResults results, List<Species> candidates)
-    {
-        results.MicheByPatch[Patch] = Miche.RootMiche();
-
-        if (PlayerPatch)
-        {
-            results.MicheByPatch[Patch].AddChild(new Miche("Be the player", new BePlayerSelectionPressure(1.0f)));
-        }
-
-        results.MicheByPatch[Patch].AddChildren(SelectionPressure.AutotrophicMichesForPatch(Patch, Cache));
-
-        PopulateForMiche(Patch, results.MicheByPatch[Patch], candidates, results, Cache);
-
-        // Second trophic level
-        var speciesToEat = results.MicheByPatch[Patch].AllOccupants();
-        var newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat.ToHashSet(), Cache);
-
-        results.MicheByPatch[Patch].AddChildren(newMiches);
-
-        newMiches.ForEach(x => PopulateForMiche(Patch, x, candidates, results, Cache));
-
-        // Third trophic level
-        speciesToEat = newMiches.SelectMany(x => x.AllOccupants());
-        newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat.ToHashSet(), Cache);
-
-        results.MicheByPatch[Patch].AddChildren(newMiches);
-
-        return results.MicheByPatch[Patch];
     }
 
     /*
