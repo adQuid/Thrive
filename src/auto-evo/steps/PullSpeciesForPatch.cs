@@ -58,13 +58,16 @@ class PullSpeciesForPatch : IRunStep
             {
                 var variants = ModifyExistingSpecies.ViableVariants(results, curSpecies, patch, new PartList(curSpecies), cache, emptyMiche.Select(x => x.Pressure).ToList());
 
-                // This may do nothing or be overwritten, and that's ok
-                emptyMiche.Last().InsertSpecies(curSpecies);
+                if (variants.Count() > 0)
+                {
+                    // This may do nothing or be overwritten, and that's ok
+                    emptyMiche.Last().InsertSpecies(curSpecies);
+                }
             }
 
             var finalSpecies = emptyMiche.Last().Occupant;
 
-            if(finalSpecies != null)
+            if (finalSpecies != null)
             {
                 results.MakeSureResultExistsForSpecies(finalSpecies);
 

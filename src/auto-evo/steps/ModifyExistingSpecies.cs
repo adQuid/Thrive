@@ -31,14 +31,17 @@ public class ModifyExistingSpecies : IRunStep
 
                 var variants = ViableVariants(results, species, Patch, partlist, new SimulationCache(), traversal.Select(x => x.Pressure).ToList());
 
-                var speciesToAdd = variants.First();
+                if (variants.Count() > 0)
+                {
+                    var speciesToAdd = variants.First();
 
-                results.AncestorDictionary.Add(speciesToAdd, species);
-                results.MicheByPatch[Patch].InsertSpecies(variants.First());
+                    results.AncestorDictionary.Add(speciesToAdd, species);
+                    results.MicheByPatch[Patch].InsertSpecies(variants.First());
 
-                results.MakeSureResultExistsForSpecies(speciesToAdd);
-                // Mark the best pressures for hovering over in game
-                results.results[speciesToAdd].AddBestPressuresResults(Patch, traversal.Select(x => x.Pressure).ToList());
+                    results.MakeSureResultExistsForSpecies(speciesToAdd);
+                    // Mark the best pressures for hovering over in game
+                    results.results[speciesToAdd].AddBestPressuresResults(Patch, traversal.Select(x => x.Pressure).ToList());
+                }
             }
         }
 
