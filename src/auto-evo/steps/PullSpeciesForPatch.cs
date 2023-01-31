@@ -54,31 +54,36 @@ class PullSpeciesForPatch : IRunStep
         // if there are any empty miches, try out other species to fill the gap
         foreach (var emptyMiche in miche.TraversalsTerminatingInSpecies(null))
         {
-            GD.Print("Searching to fill empty path: " + String.Join(",",emptyMiche.Select(x => x.Name)));
-            foreach (var curSpecies in allSpecies)
-            {
-                var variants = ModifyExistingSpecies.ViableVariants(results, curSpecies, patch, new PartList(curSpecies), cache, emptyMiche.Select(x => x.Pressure).ToList());
+            FillEmptyMiche(emptyMiche, allSpecies, results, miche, patch, cache);
+        }
+    }
 
-                if (variants.Count() > 0)
-                {
-                    // This may do nothing or be overwritten, and that's ok
-                    emptyMiche.Last().InsertSpecies(variants.First());
-                    results.AncestorDictionary.Add(variants.First(), curSpecies);
-                }
+    public static void FillEmptyMiche(IEnumerable<Miche> emptyMiche, IEnumerable<Species> allSpecies, RunResults results, Miche miche, Patch patch, SimulationCache cache)
+    {
+        GD.Print("Searching to fill empty path: " + String.Join(",", emptyMiche.Select(x => x.Name)));
+        foreach (var curSpecies in allSpecies)
+        {
+            var variants = ModifyExistingSpecies.ViableVariants(results, curSpecies, patch, new PartList(curSpecies), cache, emptyMiche.Select(x => x.Pressure).ToList());
+
+            if (variants.Count() > 0)
+            {
+                // This may do nothing or be overwritten, and that's ok
+                emptyMiche.Last().InsertSpecies(variants.First());
+                results.AncestorDictionary.Add(variants.First(), curSpecies);
             }
+        }
 
-            var finalSpecies = emptyMiche.Last().Occupant;
+        var finalSpecies = emptyMiche.Last().Occupant;
 
-            if (finalSpecies != null)
+        if (finalSpecies != null)
+        {
+            GD.Print("  and I found something: " + finalSpecies.FormattedName);
+            results.MakeSureResultExistsForSpecies(finalSpecies);
+
+            // Mark the best pressures for hovering over in game
+            foreach (var traversal in miche.TraversalsTerminatingInSpecies(finalSpecies))
             {
-                GD.Print("  and I found something: "+finalSpecies.FormattedName);
-                results.MakeSureResultExistsForSpecies(finalSpecies);
-
-                // Mark the best pressures for hovering over in game
-                foreach (var traversal in miche.TraversalsTerminatingInSpecies(finalSpecies))
-                {
-                    results.results[finalSpecies].AddBestPressuresResults(patch, traversal.Select(x => x.Pressure).ToList());
-                }
+                results.results[finalSpecies].AddBestPressuresResults(patch, traversal.Select(x => x.Pressure).ToList());
             }
         }
     }
