@@ -70,7 +70,23 @@ class PullSpeciesForPatch : IRunStep
      */
     private static void PopulateForMiche(Patch patch, Miche miche, IEnumerable<Species> allSpecies, RunResults results, SimulationCache cache)
     {
-        foreach (var traversal in miche.AllTraversals())
+        foreach (var curSpecies in allSpecies)
+        {
+            // Try to add existing species
+            if (miche.Root().InsertSpecies(curSpecies))
+            {
+
+                results.MakeSureResultExistsForSpecies(curSpecies);
+
+                // Mark the best pressures for hovering over in game
+                foreach(var traversal in miche.TraversalsTerminatingInSpecies(curSpecies))
+                {
+                    results.results[curSpecies].AddBestPressuresResults(patch, traversal.Select(x => x.Pressure).ToList());
+                }
+            }
+        }
+
+        /*foreach (var traversal in miche.AllTraversals())
         {
             var pressures = traversal.Select(x => x.Pressure);
             var qualifiedSpeciesScores = new Dictionary<Species, double>();
@@ -127,14 +143,9 @@ class PullSpeciesForPatch : IRunStep
             {
                 var speciesToAdd = qualifiedSpeciesScores.OrderByDescending(x => x.Value).First().Key;
 
-                // TODO: It's probably very inefficient to do this here
-                miche.Root().InsertSpecies(speciesToAdd);
-
-                results.MakeSureResultExistsForSpecies(speciesToAdd);
-                // Mark the best pressures for hovering over in game
-                results.results[speciesToAdd].AddBestPressuresResults(patch, traversal.Select(x => x.Pressure).ToList());
+                
             }
-        }
+        }*/
     }
 
     private IEnumerable<Species> CandiateSpecies()

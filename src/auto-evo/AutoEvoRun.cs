@@ -400,8 +400,7 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    // TODO: should I really be declaring a simulation cache here?
-                    steps.Enqueue(new ModifyExistingSpecies(speciesEntry.Key, entry.Value, new SimulationCache()));
+                    
                 }
             }
 
@@ -424,7 +423,8 @@ public class AutoEvoRun
                 }
             }
 
-            steps.Enqueue(new InsertExistingSpecies(entry.Value));
+            // TODO: should I really be declaring a simulation cache here?
+            steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache()));
 
             steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), map.CurrentPatch == entry.Value));
 

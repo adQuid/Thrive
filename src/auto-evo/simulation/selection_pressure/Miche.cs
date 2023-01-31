@@ -84,11 +84,21 @@ public class Miche
         return retval;
     }
 
-    public void InsertSpecies(Species species)
+    public IEnumerable<IEnumerable<Miche>> TraversalsTerminatingInSpecies(Species species)
+    {
+        return AllTraversals().Where(x => x.Last().Occupant == species);
+    }
+
+    /// <summary>
+    ///   Inserts a species into any spots on the tree. where the species is a better fit than any current occupants
+    /// </summary>
+    /// <param name="species"></param>
+    public bool InsertSpecies(Species species)
     {
         if (IsLeafNode() && Occupant == null)
         {
             Occupant = species;
+            return true;
         }
 
         // TODO: store this somewhere
@@ -103,12 +113,17 @@ public class Miche
                 Occupant = species;
             }
 
+            var retval = false;
+
             // This could be in an else, but isn't nessicary
             foreach (var child in Children)
             {
                 child.InsertSpecies(species);
+                retval = true;
             }
         }
+
+        return false;
     }
 
     public void AddChild(Miche newChild)

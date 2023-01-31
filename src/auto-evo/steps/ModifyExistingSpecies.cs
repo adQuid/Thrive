@@ -8,14 +8,12 @@ using Godot;
 
 public class ModifyExistingSpecies : IRunStep
 {
-    public Species Species;
     public Patch Patch;
     public SimulationCache Cache;
     public PartList PartList;
 
-    public ModifyExistingSpecies(Species species, Patch patch, SimulationCache cache)
+    public ModifyExistingSpecies(Patch patch, SimulationCache cache)
     {
-        Species = species;
         Patch = patch;
         Cache = cache;
         PartList = new PartList(species);
@@ -27,12 +25,19 @@ public class ModifyExistingSpecies : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        /*var viableVariants = ViableVariants(results, Species, Patch, PartList, Cache, null);
+        foreach(var species in Patch.Miche.AllOccupants())
+        {
+            foreach(var traversal in Patch.Miche.TraversalsTerminatingInSpecies(species))
+            {
+                var partlist = new PartList(species);
 
-        // TODO: pass this in
-        var random = new Random();
+                var variants = ViableVariants(results, species, Patch, partlist, new SimulationCache(), traversal.Select(x => x.Pressure).ToList());
 
-        results.AddMutationResultForSpecies(Species, viableVariants.First());*/
+                // I can safely just insert to the bottom here, right?
+                traversal.Last().InsertSpecies(variants.First());
+            }
+        }
+
         return true;
     }
 
