@@ -10,13 +10,11 @@ public class ModifyExistingSpecies : IRunStep
 {
     public Patch Patch;
     public SimulationCache Cache;
-    public PartList PartList;
 
     public ModifyExistingSpecies(Patch patch, SimulationCache cache)
     {
         Patch = patch;
         Cache = cache;
-        PartList = new PartList(species);
     }
 
     public int TotalSteps => 1;
@@ -33,8 +31,14 @@ public class ModifyExistingSpecies : IRunStep
 
                 var variants = ViableVariants(results, species, Patch, partlist, new SimulationCache(), traversal.Select(x => x.Pressure).ToList());
 
-                // I can safely just insert to the bottom here, right?
-                traversal.Last().InsertSpecies(variants.First());
+                var speciesToAdd = variants.First();
+
+                results.AncestorDictionary.Add(speciesToAdd, species);
+                results.MicheByPatch[Patch].InsertSpecies(variants.First());
+
+                results.MakeSureResultExistsForSpecies(speciesToAdd);
+                // Mark the best pressures for hovering over in game
+                results.results[speciesToAdd].AddBestPressuresResults(Patch, traversal.Select(x => x.Pressure).ToList());
             }
         }
 
