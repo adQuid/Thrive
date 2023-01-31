@@ -706,7 +706,7 @@ public class AutoEvoExploringTool : NodeWithInput
     {
         var confusingMicheString = "";
 
-        foreach (var curTraversal in evolutionaryTree.MichesBySpecies[species])
+        foreach (var curTraversal in evolutionaryTree.MichesBySpecies[species.ID])
         {
             confusingMicheString += string.Join(",", curTraversal.Select(x => x.Pressure.Name())) + "\n";
         }

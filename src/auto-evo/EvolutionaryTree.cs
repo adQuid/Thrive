@@ -36,7 +36,7 @@ public class EvolutionaryTree : Control
 
     private uint maxSpeciesId;
 
-    public System.Collections.Generic.Dictionary<Species, List<List<Miche>>> MichesBySpecies;
+    public System.Collections.Generic.Dictionary<uint, List<List<Miche>>> MichesBySpecies = new();
 
     private int latestGeneration;
 
@@ -121,18 +121,6 @@ public class EvolutionaryTree : Control
             var species = speciesResultPair.Key;
             var result = speciesResultPair.Value;
 
-            var miches = new List<List<Miche>>();
-
-            foreach(var curMiche in results.MicheByPatch.Values)
-            {
-                foreach(var traversal in curMiche.TraversalsTerminatingInSpecies(species))
-                {
-                    miches.Add(traversal.ToList());
-                }
-            }
-
-            MichesBySpecies.Add(species, miches);
-
             if (result.Species.Population <= 0)
             {
                 if (result.SplitFrom == null)
@@ -141,26 +129,48 @@ public class EvolutionaryTree : Control
                         nodes.FindLast(n => n.SpeciesID == species.ID), generation - 1, true);
                 }
             }
-            else if (result.SplitFrom != null)
+            else
             {
-                SetupTreeNode((Species)species.Clone(),
-                    nodes.FindLast(n => n.SpeciesID == result.SplitFrom.ID), generation);
+                var miches = new List<List<Miche>>();
 
-                //TODO: be safer with this
-                if (!speciesOrigin.ContainsKey(species.ID))
+                foreach (var curMiche in results.MicheByPatch.Values)
                 {
-                    speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
+                    foreach (var traversal in curMiche.TraversalsTerminatingInSpecies(species))
+                    {
+                        miches.Add(traversal.ToList());
+                    }
                 }
 
-                if (!speciesNames.ContainsKey(species.ID))
+                if (MichesBySpecies.ContainsKey(species.ID))
                 {
-                    speciesNames.Add(species.ID, species.FormattedName);
+                    MichesBySpecies[species.ID] = miches;
                 }
-            }
-            else if (result.MutatedProperties != null)
-            {
-                SetupTreeNode((Species)result.MutatedProperties.Clone(),
-                    nodes.FindLast(n => n.SpeciesID == species.ID), generation);
+                else
+                {
+                    MichesBySpecies.Add(species.ID, miches);
+                }
+
+                if (result.SplitFrom != null)
+                {
+                    SetupTreeNode((Species)species.Clone(),
+                        nodes.FindLast(n => n.SpeciesID == result.SplitFrom.ID), generation);
+
+                    //TODO: be safer with this
+                    if (!speciesOrigin.ContainsKey(species.ID))
+                    {
+                        speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
+                    }
+
+                    if (!speciesNames.ContainsKey(species.ID))
+                    {
+                        speciesNames.Add(species.ID, species.FormattedName);
+                    }
+                }
+                else if (result.MutatedProperties != null)
+                {
+                    SetupTreeNode((Species)result.MutatedProperties.Clone(),
+                        nodes.FindLast(n => n.SpeciesID == species.ID), generation);
+                }
             }
 
             if (species.ID > maxSpeciesId)
