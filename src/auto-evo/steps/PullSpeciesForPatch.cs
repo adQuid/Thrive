@@ -51,15 +51,22 @@ class PullSpeciesForPatch : IRunStep
             }
         }
 
+        FillEmptyMiches(allSpecies, results, patch, cache);
+    }
+
+    public static void FillEmptyMiches(IEnumerable<Species> allSpecies, RunResults results, Patch patch, SimulationCache cache)
+    {
         // if there are any empty miches, try out other species to fill the gap
-        foreach (var emptyMiche in miche.TraversalsTerminatingInSpecies(null))
+        foreach (var emptyMiche in results.MicheByPatch[patch].TraversalsTerminatingInSpecies(null))
         {
-            FillEmptyMiche(emptyMiche, allSpecies, results, miche, patch, cache);
+            FillEmptyMiche(emptyMiche, allSpecies, results, patch, cache);
         }
     }
 
-    public static void FillEmptyMiche(IEnumerable<Miche> emptyMiche, IEnumerable<Species> allSpecies, RunResults results, Miche miche, Patch patch, SimulationCache cache)
+    private static void FillEmptyMiche(IEnumerable<Miche> emptyMiche, IEnumerable<Species> allSpecies, RunResults results, Patch patch, SimulationCache cache)
     {
+        var miche = results.MicheByPatch[patch];
+
         GD.Print("Searching to fill empty path: " + String.Join(",", emptyMiche.Select(x => x.Name)));
         foreach (var curSpecies in allSpecies)
         {
