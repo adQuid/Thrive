@@ -51,6 +51,31 @@ class PullSpeciesForPatch : IRunStep
             }
         }
 
+        // if there are any empty miches, try out other species to fill the gap
+        foreach (var emptyMiche in miche.TraversalsTerminatingInSpecies(null))
+        {
+            foreach (var curSpecies in allSpecies)
+            {
+                var variants = ModifyExistingSpecies.ViableVariants(results, curSpecies, patch, new PartList(curSpecies), cache, emptyMiche.Select(x => x.Pressure).ToList());
+
+                // This may do nothing or be overwritten, and that's ok
+                emptyMiche.Last().InsertSpecies(curSpecies);
+            }
+
+            var finalSpecies = emptyMiche.Last().Occupant;
+
+            if(finalSpecies != null)
+            {
+                results.MakeSureResultExistsForSpecies(finalSpecies);
+
+                // Mark the best pressures for hovering over in game
+                foreach (var traversal in miche.TraversalsTerminatingInSpecies(finalSpecies))
+                {
+                    results.results[finalSpecies].AddBestPressuresResults(patch, traversal.Select(x => x.Pressure).ToList());
+                }
+            }
+        }
+
         /*foreach (var traversal in miche.AllTraversals())
         {
             var pressures = traversal.Select(x => x.Pressure);
