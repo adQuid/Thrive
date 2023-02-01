@@ -22,7 +22,7 @@ public class EvolutionaryTree : Control
 
     private readonly System.Collections.Generic.Dictionary<uint, EvolutionaryTreeNode> latestNodes = new();
 
-    private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
+    public readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
         speciesOrigin = new();
 
     private readonly ButtonGroup nodesGroup = new();

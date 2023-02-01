@@ -84,8 +84,6 @@ class PullSpeciesForPatch : IRunStep
     {
         var miche = results.MicheByPatch[patch];
 
-        GD.Print("Searching to fill empty path: " + String.Join(",", emptyMiche.Select(x => x.Name)));
-
         var pointer = emptyMiche.Last();
         // This should always be null at this stage
         var finalSpecies = emptyMiche.Last().Occupant;
@@ -102,7 +100,12 @@ class PullSpeciesForPatch : IRunStep
                 {
                     // This may do nothing or be overwritten, and that's ok
                     emptyMiche.Last().InsertSpecies(variants.First());
-                    results.AncestorDictionary.Add(variants.First(), curSpecies);
+                    if (!results.AncestorDictionary.ContainsKey(variants.First()))
+                    {
+                        // TODO: Figure out a cleaner way to deal with sibling mutations
+                        var ancestor = results.AncestorDictionary.ContainsKey(curSpecies) ? results.AncestorDictionary[curSpecies] : curSpecies;
+                        results.AncestorDictionary.Add(variants.First(), ancestor);
+                    }
                 }
             }
 
@@ -120,15 +123,19 @@ class PullSpeciesForPatch : IRunStep
                 {
                     // This may do nothing or be overwritten, and that's ok
                     emptyMiche.Last().InsertSpecies(variants.First());
-                    results.AncestorDictionary.Add(variants.First(), curSpecies);
+                    if (!results.AncestorDictionary.ContainsKey(variants.First()))
+                    {
+                        // TODO: Figure out a cleaner way to deal with sibling mutations
+                        var ancestor = results.AncestorDictionary.ContainsKey(curSpecies) ? results.AncestorDictionary[curSpecies] : curSpecies;
+                        results.AncestorDictionary.Add(variants.First(), ancestor);
+                    }
                 }
             }
+            finalSpecies = emptyMiche.Last().Occupant;
         }
-        
 
         if (finalSpecies != null)
         {
-            GD.Print("  and I found something: " + finalSpecies.FormattedName);
             results.MakeSureResultExistsForSpecies(finalSpecies);
 
             // Mark the best pressures for hovering over in game
@@ -142,6 +149,8 @@ class PullSpeciesForPatch : IRunStep
     private IEnumerable<Species> NeighboringSpecies()
     {
         var retval = Patch.Adjacent.SelectMany(x => x.SpeciesInPatch.Keys).ToList();
+
+        GD.Print("Species in the previous generation: " + string.Join(",", retval.Select(x => x.FormattedName)));
 
         return retval;
     }
