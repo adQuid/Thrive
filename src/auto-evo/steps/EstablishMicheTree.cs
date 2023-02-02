@@ -41,12 +41,6 @@ class EstablishMicheTree : IRunStep
 
         results.MicheByPatch[Patch].AddChildren(SelectionPressure.AutotrophicMichesForPatch(Patch, Cache));
 
-        // Second trophic level
-        var speciesToEat = Patch.Miche.AllOccupants();
-        var newMiches = SelectionPressure.PredationMiches(Patch, speciesToEat.ToHashSet(), Cache);
-
-        results.MicheByPatch[Patch].AddChildren(newMiches);
-
         return results.MicheByPatch[Patch];
     }
 }

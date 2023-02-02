@@ -118,9 +118,13 @@ public class Miche
             // This could be in an else, but isn't nessicary
             foreach (var child in Children)
             {
-                child.InsertSpecies(species);
-                retval = true;
+                if (child.InsertSpecies(species))
+                {
+                    retval = true;
+                }
             }
+
+            return retval;
         }
 
         return false;

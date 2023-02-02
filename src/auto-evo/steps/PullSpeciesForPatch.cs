@@ -23,25 +23,54 @@ class PullSpeciesForPatch : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        var variants = NeighboringSpecies().ToList();
+        GD.Print("\nPulling for " + Patch.Name);
+        var foreignSpecies = NeighboringSpecies().ToList();
 
-        PopulateForMiche(Patch, results.MicheByPatch[Patch], variants, results, Cache);
+        //GD.Print(results.MicheByPatch[Patch].AllOccupants().Count() + " species already here");
+
+        List<Species> newSpecies = PopulateForMiche(Patch, results.MicheByPatch[Patch], foreignSpecies, results, Cache);
+
+        // At the first cycle also add species that were already present
+        newSpecies.AddRange(results.MicheByPatch[Patch].AllOccupants().Where(x => !newSpecies.Contains(x)));
+
+        //GD.Print(newSpecies.Count()+ " new species");
+        GD.Print(results.MicheByPatch[Patch].AllOccupants().Count() + " species here now: " + string.Join(",", newSpecies.Select(x => x.FormattedName)));
+
+        // TODO: Replace this with an energy-based calculation
+        var iteration = 1;
+        while (newSpecies.Count() > 0 && iteration < 3)
+        {
+            GD.Print("iterating............");
+            results.MicheByPatch[Patch].AddChildren(DerivativeMiches(Patch, newSpecies, Cache));
+            GD.Print(results.MicheByPatch[Patch].TraversalsTerminatingInSpecies(null).Count());
+            newSpecies = PopulateForMiche(Patch, results.MicheByPatch[Patch], foreignSpecies, results, Cache);
+            GD.Print("Made " + newSpecies.Count() + " new species: "+ string.Join(",", newSpecies.Select(x=>x.FormattedName)));
+            iteration++;
+        }
 
         return true;
+    }
+
+    private static List<Miche> DerivativeMiches(Patch patch, List<Species> speciesToEat, SimulationCache cache)
+    {
+        return SelectionPressure.PredationMiches(patch, speciesToEat.ToHashSet(), cache);
     }
 
     /*
      * Finds or creates a species for every leaf node of the provided miche.
      */
-    private static void PopulateForMiche(Patch patch, Miche miche, IEnumerable<Species> foreignSpecies, RunResults results, SimulationCache cache)
+    private static List<Species> PopulateForMiche(Patch patch, Miche miche, IEnumerable<Species> foreignSpecies, RunResults results, SimulationCache cache)
     {
+        List<Species> retval = new();
+        GD.Print(results.MicheByPatch[patch].TraversalsTerminatingInSpecies(null).Count());
         // Try to add native species to any new openings
-        // TODO: Would this ever do anything?
-        foreach (var curSpecies in patch.SpeciesInPatch.Select(x => x.Key))
+        var nativeSpecies = patch.SpeciesInPatch.Select(x => x.Key).ToList();
+        nativeSpecies.AddRange(miche.AllOccupants().Where(x => !nativeSpecies.Contains(x)));
+        foreach (var curSpecies in nativeSpecies)
         {
             if (miche.Root().InsertSpecies(curSpecies))
             {
-
+                GD.Print("Sucessfully inserted species " + curSpecies.FormattedName);
                 results.MakeSureResultExistsForSpecies(curSpecies);
 
                 // Mark the best pressures for hovering over in game
@@ -49,15 +78,21 @@ class PullSpeciesForPatch : IRunStep
                 {
                     results.results[curSpecies].AddBestPressuresResults(patch, traversal.Select(x => x.Pressure).ToList());
                 }
+
+                retval.Add(curSpecies);
+            }
+            else
+            {
+                GD.Print("Failed to insert " + curSpecies.FormattedName);
             }
         }
+        GD.Print(results.MicheByPatch[patch].TraversalsTerminatingInSpecies(null).Count());
 
         // Then outside species have a chance to migrate in
         foreach (var curSpecies in foreignSpecies)
         {
             if (miche.Root().InsertSpecies(curSpecies))
             {
-
                 results.MakeSureResultExistsForSpecies(curSpecies);
 
                 // Mark the best pressures for hovering over in game
@@ -65,22 +100,38 @@ class PullSpeciesForPatch : IRunStep
                 {
                     results.results[curSpecies].AddBestPressuresResults(patch, traversal.Select(x => x.Pressure).ToList());
                 }
+
+                retval.Add(curSpecies);
             }
         }
 
-        FillEmptyMiches(foreignSpecies, results, patch, cache);
+        GD.Print(results.MicheByPatch[patch].TraversalsTerminatingInSpecies(null).Count());
+        // If no existing species can do the job, make a new one
+        retval.AddRange(FillEmptyMiches(foreignSpecies, results, patch, cache));
+
+        return retval;
     }
 
-    public static void FillEmptyMiches(IEnumerable<Species> foreignSpecies, RunResults results, Patch patch, SimulationCache cache)
+    public static List<Species> FillEmptyMiches(IEnumerable<Species> foreignSpecies, RunResults results, Patch patch, SimulationCache cache)
     {
+        List<Species> retval = new();
+
         // if there are any empty miches, try out other species to fill the gap
         foreach (var emptyMiche in results.MicheByPatch[patch].TraversalsTerminatingInSpecies(null))
         {
-            FillEmptyMiche(emptyMiche, foreignSpecies, results, patch, cache);
+            GD.Print("trying to fill empty miche");
+            var toAdd = FillEmptyMiche(emptyMiche, foreignSpecies, results, patch, cache);
+
+            if (toAdd != null)
+            {
+                retval.Add(toAdd);
+            }
         }
+
+        return retval;
     }
 
-    private static void FillEmptyMiche(IEnumerable<Miche> emptyMiche, IEnumerable<Species> foreignSpecies, RunResults results, Patch patch, SimulationCache cache)
+    private static Species? FillEmptyMiche(IEnumerable<Miche> emptyMiche, IEnumerable<Species> foreignSpecies, RunResults results, Patch patch, SimulationCache cache)
     {
         var miche = results.MicheByPatch[patch];
 
@@ -144,13 +195,13 @@ class PullSpeciesForPatch : IRunStep
                 results.results[finalSpecies].AddBestPressuresResults(patch, traversal.Select(x => x.Pressure).ToList());
             }
         }
+
+        return finalSpecies;
     }
 
     private IEnumerable<Species> NeighboringSpecies()
     {
         var retval = Patch.Adjacent.SelectMany(x => x.SpeciesInPatch.Keys).ToList();
-
-        GD.Print("Species in the previous generation: " + string.Join(",", retval.Select(x => x.FormattedName)));
 
         return retval;
     }
