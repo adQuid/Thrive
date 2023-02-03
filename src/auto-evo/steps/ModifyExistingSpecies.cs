@@ -35,12 +35,18 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     var speciesToAdd = variants.First();
 
-                    results.AncestorDictionary.Add(speciesToAdd, species);
-                    results.MicheByPatch[Patch].InsertSpecies(variants.First());
+                    // TODO: Be less hacky with this
+                    if (speciesToAdd.FormattedName != species.FormattedName)
+                    {
 
-                    results.MakeSureResultExistsForSpecies(speciesToAdd);
-                    // Mark the best pressures for hovering over in game
-                    results.results[speciesToAdd].AddBestPressuresResults(Patch, traversal.Select(x => x.Pressure).ToList());
+                        results.AncestorDictionary.Add(speciesToAdd, species);
+                        GD.Print("Inserting variant in modify step: " + species.FormattedName);
+                        results.MicheByPatch[Patch].InsertSpecies(variants.First());
+
+                        results.MakeSureResultExistsForSpecies(speciesToAdd);
+                        // Mark the best pressures for hovering over in game
+                        results.results[speciesToAdd].AddBestPressuresResults(Patch, traversal.Select(x => x.Pressure).ToList());
+                    }
                 }
             }
         }
@@ -88,7 +94,9 @@ public class ModifyExistingSpecies : IRunStep
             MutationLogicFunctions.NameNewMicrobeSpecies(variant, modifiedSpecies);
         }
 
-        return viableVariants.OrderByDescending(x => selectionPressures.Select(pressure => (pressure.Score(x, cache) / pressureScores[pressure]) * pressure.Strength).Sum()).ToList();
+        return viableVariants.OrderByDescending(x =>
+        selectionPressures.Select(pressure => (pressure.Score(x, cache) / pressureScores[pressure]) * pressure.Strength).Sum() + (x == modifiedSpecies ? 0.01f : 0.0f))
+            .ToList();
     }
 
     public static List<MicrobeSpecies> PruneInviableSpecies(List<MicrobeSpecies> potentialVariants, 

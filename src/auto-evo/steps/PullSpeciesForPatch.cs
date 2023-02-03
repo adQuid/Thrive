@@ -23,28 +23,21 @@ class PullSpeciesForPatch : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        GD.Print("\nPulling for " + Patch.Name);
         var foreignSpecies = NeighboringSpecies().ToList();
-
-        //GD.Print(results.MicheByPatch[Patch].AllOccupants().Count() + " species already here");
 
         List<Species> newSpecies = PopulateForMiche(Patch, results.MicheByPatch[Patch], foreignSpecies, results, Cache);
 
         // At the first cycle also add species that were already present
         newSpecies.AddRange(results.MicheByPatch[Patch].AllOccupants().Where(x => !newSpecies.Contains(x)));
 
-        //GD.Print(newSpecies.Count()+ " new species");
         GD.Print(results.MicheByPatch[Patch].AllOccupants().Count() + " species here now: " + string.Join(",", newSpecies.Select(x => x.FormattedName)));
 
         // TODO: Replace this with an energy-based calculation
         var iteration = 1;
         while (newSpecies.Count() > 0 && iteration < 3)
         {
-            GD.Print("iterating............");
             results.MicheByPatch[Patch].AddChildren(DerivativeMiches(Patch, newSpecies, Cache));
-            GD.Print(results.MicheByPatch[Patch].TraversalsTerminatingInSpecies(null).Count());
             newSpecies = PopulateForMiche(Patch, results.MicheByPatch[Patch], foreignSpecies, results, Cache);
-            GD.Print("Made " + newSpecies.Count() + " new species: "+ string.Join(",", newSpecies.Select(x=>x.FormattedName)));
             iteration++;
         }
 
@@ -70,7 +63,6 @@ class PullSpeciesForPatch : IRunStep
         {
             if (miche.Root().InsertSpecies(curSpecies))
             {
-                GD.Print("Sucessfully inserted species " + curSpecies.FormattedName);
                 results.MakeSureResultExistsForSpecies(curSpecies);
 
                 // Mark the best pressures for hovering over in game
@@ -80,10 +72,6 @@ class PullSpeciesForPatch : IRunStep
                 }
 
                 retval.Add(curSpecies);
-            }
-            else
-            {
-                GD.Print("Failed to insert " + curSpecies.FormattedName);
             }
         }
         GD.Print(results.MicheByPatch[patch].TraversalsTerminatingInSpecies(null).Count());
@@ -119,7 +107,6 @@ class PullSpeciesForPatch : IRunStep
         // if there are any empty miches, try out other species to fill the gap
         foreach (var emptyMiche in results.MicheByPatch[patch].TraversalsTerminatingInSpecies(null))
         {
-            GD.Print("trying to fill empty miche");
             var toAdd = FillEmptyMiche(emptyMiche, foreignSpecies, results, patch, cache);
 
             if (toAdd != null)

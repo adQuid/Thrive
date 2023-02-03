@@ -105,15 +105,17 @@ public class Miche
         var existingScores = AllOccupants().Select(x => Pressure.Score(x, new SimulationCache())).OrderBy(x => x);
 
         var speciesScore = Pressure.Score(species, new SimulationCache());
-        if (speciesScore > 0 && (existingScores.Count() == 0 || speciesScore >= existingScores.First()))
+        if (speciesScore > 0 && 
+            (existingScores.Count() == 0 || (IsLeafNode() && speciesScore > existingScores.First()) || (!IsLeafNode() && speciesScore >= existingScores.First())))
         {
+            var retval = false;
+
             // If this is a leaf, then there's only one species and the new species beats that.
             if (IsLeafNode())
             {
                 Occupant = species;
+                retval = true;
             }
-
-            var retval = false;
 
             // This could be in an else, but isn't nessicary
             foreach (var child in Children)
