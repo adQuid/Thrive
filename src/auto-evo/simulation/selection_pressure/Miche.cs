@@ -89,11 +89,17 @@ public class Miche
         return AllTraversals().Where(x => x.Last().Occupant == species);
     }
 
-    /// <summary>
-    ///   Inserts a species into any spots on the tree. where the species is a better fit than any current occupants
-    /// </summary>
-    /// <param name="species"></param>
     public bool InsertSpecies(Species species)
+    {
+        return InsertSpecies(species, new List<Species>(),  new List<Species>());
+    }
+
+        /// <summary>
+        ///   Inserts a species into any spots on the tree. where the species is a better fit than any current occupants
+        /// </summary>
+        /// <param name="species">new species being inserted</param>
+        /// <param name="speciesBeat">a list of species that the species being inserted has surpassed in at least one selection pressure</param>
+        public bool InsertSpecies(Species species, List<Species> speciesBeat, List<Species> disqualifyingSpecies)
     {
         if (IsLeafNode() && Occupant == null)
         {
@@ -101,17 +107,31 @@ public class Miche
             return true;
         }
 
-        // TODO: store this somewhere
-        var existingScores = AllOccupants().Select(x => Pressure.Score(x, new SimulationCache())).OrderBy(x => x);
+        var newSpeciesBeat = new List<Species>(speciesBeat);
+        var newDisqualifyingSpecies = new List<Species>(disqualifyingSpecies);
 
         var speciesScore = Pressure.Score(species, new SimulationCache());
-        if (speciesScore > 0 && 
-            (existingScores.Count() == 0 || (IsLeafNode() && speciesScore > existingScores.First()) || (!IsLeafNode() && speciesScore >= existingScores.First())))
+
+        foreach (var existingSpecies in AllOccupants())
+        {
+            var existingSpeciesScore = Pressure.Score(existingSpecies, new SimulationCache());
+            if (speciesScore > existingSpeciesScore)
+            {
+                newSpeciesBeat.Add(existingSpecies);
+            } 
+            else if (speciesScore < existingSpeciesScore)
+            {
+                newDisqualifyingSpecies.Add(existingSpecies);
+            }
+        }
+
+        if (speciesScore > 0 
+            && newDisqualifyingSpecies.Count() < AllOccupants().Count())
         {
             var retval = false;
 
-            // If this is a leaf, then there's only one species and the new species beats that.
-            if (IsLeafNode())
+            // We know Occupant isn't null because of an earlier check
+            if (IsLeafNode() && newSpeciesBeat.Contains(Occupant))
             {
                 Occupant = species;
                 retval = true;
@@ -120,7 +140,7 @@ public class Miche
             // This could be in an else, but isn't nessicary
             foreach (var child in Children)
             {
-                if (child.InsertSpecies(species))
+                if (child.InsertSpecies(species, newSpeciesBeat, newDisqualifyingSpecies))
                 {
                     retval = true;
                 }
