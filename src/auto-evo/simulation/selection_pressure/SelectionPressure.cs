@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoEvo;
+using Godot;
 
 public abstract class SelectionPressure
 {
@@ -16,7 +17,7 @@ public abstract class SelectionPressure
 
         selectionPressures.AddRange(niche);
 
-        selectionPressures.Add(new OsmoregulationEfficiencyPressure(patch, 5.0f));
+        selectionPressures.Add(new OsmoregulationEfficiencyPressure(patch, 0.5f));
 
         return selectionPressures;
     }
@@ -29,9 +30,9 @@ public abstract class SelectionPressure
         if (patch.GetCompoundAmount("hydrogensulfide") > 0)
         {
             retval.Add(
-                new Miche("Hydrogen Sulfide Chemosynthesis", new AutotrophEnergyEfficiencyPressure(patch, Compound.ByName("hydrogensulfide"), 1.0f),
-                    new List<Miche> { new Miche("Mobile Hydrogen Sulfide Chemosynthesis", new ReachCompoundCloudPressure(10.0f), 
-                        new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 10.0f)) }) 
+                new Miche("Hydrogen Sulfide Chemosynthesis", new AutotrophEnergyEfficiencyPressure(patch, Compound.ByName("hydrogensulfide"), 10.0f),
+                    new List<Miche> { new Miche("Mobile Hydrogen Sulfide Chemosynthesis", new ReachCompoundCloudPressure(1.0f), 
+                        new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 1.0f)) }) 
                     })
             );
         }
@@ -41,7 +42,7 @@ public abstract class SelectionPressure
         {
             retval.Add(
                 new Miche("Photosynthesis", new AutotrophEnergyEfficiencyPressure(patch, Compound.ByName("sunlight"), 1.0f),
-                    new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 10.0f)) })
+                    new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 1.0f)) })
             );
         }
 
@@ -49,13 +50,13 @@ public abstract class SelectionPressure
         if (patch.GetCompoundAmount("glucose") > 0)
         {
             retval.Add(new Miche("Glucose Consumption", new ReachCompoundCloudPressure(5.0f),
-                new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 10.0f)) }
+                new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 1.0f)) }
             ));
         }
 
         return retval;
     }
-
+    
     public static List<Miche> PredationMiches(Patch patch, HashSet<Species> prey, SimulationCache cache)
     {
         var retval = new List<Miche>();
@@ -63,7 +64,7 @@ public abstract class SelectionPressure
         foreach (var possiblePrey in prey)
         {
             var pressure = new PredationEffectivenessPressure(possiblePrey, 10.0f);
-            retval.Add(new Miche(pressure.Name(), pressure, new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 10.0f)) }));
+            retval.Add(new Miche(pressure.Name(), pressure, new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 0.1f)) }));
         }
 
         return retval;
@@ -90,6 +91,11 @@ public abstract class SelectionPressure
     {
         var score1 = Score(species1, cache);
         var score2 = Score(species2, cache);
+
+        if (score1 == 0)
+        {
+            return -999.0f;
+        }
 
         if (score2 == 0)
         {

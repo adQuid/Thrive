@@ -40,7 +40,6 @@ public class ModifyExistingSpecies : IRunStep
                     {
 
                         results.AncestorDictionary.Add(speciesToAdd, species);
-                        GD.Print("Inserting variant in modify step: " + species.FormattedName);
                         results.MicheByPatch[Patch].InsertSpecies(variants.First());
 
                         results.MakeSureResultExistsForSpecies(speciesToAdd);
@@ -74,19 +73,22 @@ public class ModifyExistingSpecies : IRunStep
 
         var viableVariants = new List<MicrobeSpecies> { baseSpecies };
 
+        var pressuresSoFar = new List<SelectionPressure>();
         foreach (var curPressure in selectionPressures)
         {
+            pressuresSoFar.Add(curPressure);
+
             // For each viable variant, get a new variants that at least improve score a little bit
             var potentialVariants = viableVariants.Select(startVariant =>
                 curPressure.MicrobeMutations.Select(mutationStrategy => mutationStrategy.MutationsOf(startVariant, partList))
                 .SelectMany(x => x)
-                .Where(x => curPressure.Score(x, cache) >= curPressure.Score(startVariant, cache))
+                //.Where(x => curPressure.Score(x, cache) >= curPressure.Score(startVariant, cache))
                 )
                 .SelectMany(x => x).ToList();
             potentialVariants.AddRange(viableVariants);
 
             // Prune variants that hurt the previous scores too much
-            viableVariants = PruneInviableSpecies(potentialVariants, curPressure, selectionPressures, baseSpecies, cache);
+            viableVariants = PruneInviableSpecies(potentialVariants, pressuresSoFar, baseSpecies, cache);
         }
 
         foreach (var variant in viableVariants)
@@ -99,31 +101,28 @@ public class ModifyExistingSpecies : IRunStep
             .ToList();
     }
 
-    public static List<MicrobeSpecies> PruneInviableSpecies(List<MicrobeSpecies> potentialVariants, 
-        SelectionPressure curPressure, 
-        List<SelectionPressure>? selectionPressures, 
-        Species baseSpecies, 
+    public static List<MicrobeSpecies> PruneInviableSpecies(List<MicrobeSpecies> potentialVariants,
+        List<SelectionPressure>? selectionPressures,
+        Species baseSpecies,
         SimulationCache cache)
     {
-        var previousPressures = selectionPressures.IndexOf(curPressure) > 0 ? selectionPressures.GetRange(0, selectionPressures.IndexOf(curPressure) - 1) : new List<SelectionPressure>();
-        previousPressures.Reverse();
-
         var viableVariants = new List<MicrobeSpecies>();
         foreach (var potentialVariant in potentialVariants)
         {
             var combinedScores = 0.0;
-            foreach (var pastPressure in previousPressures)
+            foreach (var pastPressure in selectionPressures)
             {
                 combinedScores += pastPressure.WeightedComparedScores(potentialVariant, baseSpecies, cache);
             }
 
-            if (combinedScores > 0)
+            if (combinedScores >= 0)
             {
                 // TODO: Move this somewhere better
                 ((MicrobeSpecies)potentialVariant).Colour = new Color((float)new Random().NextDouble(), 0.5f, 0.5f);
 
                 viableVariants.Add(potentialVariant);
             }
+
         }
 
         return viableVariants;

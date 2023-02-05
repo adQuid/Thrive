@@ -94,12 +94,12 @@ public class Miche
         return InsertSpecies(species, new Dictionary<Species, float>());
     }
 
-        /// <summary>
-        ///   Inserts a species into any spots on the tree. where the species is a better fit than any current occupants
-        /// </summary>
-        /// <param name="species">new species being inserted</param>
-        /// <param name="speciesBeat">a list of species that the species being inserted has surpassed in at least one selection pressure</param>
-        public bool InsertSpecies(Species species, Dictionary<Species, float> scoresSoFar)
+    /// <summary>
+    ///   Inserts a species into any spots on the tree. where the species is a better fit than any current occupants
+    /// </summary>
+    /// <param name="species">new species being inserted</param>
+    /// <param name="speciesBeat">a list of species that the species being inserted has surpassed in at least one selection pressure</param>
+    public bool InsertSpecies(Species species, Dictionary<Species, float> scoresSoFar)
     {
         if (IsLeafNode() && Occupant == null)
         {
