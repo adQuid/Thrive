@@ -30,8 +30,6 @@ class PullSpeciesForPatch : IRunStep
         // At the first cycle also add species that were already present
         newSpecies.AddRange(results.MicheByPatch[Patch].AllOccupants().Where(x => !newSpecies.Contains(x)));
 
-        GD.Print(results.MicheByPatch[Patch].AllOccupants().Count() + " species here now: " + string.Join(",", newSpecies.Select(x => x.FormattedName)));
-
         // TODO: Replace this with an energy-based calculation
         var iteration = 1;
         while (newSpecies.Count() > 0 && iteration < 3)
@@ -55,7 +53,6 @@ class PullSpeciesForPatch : IRunStep
     private static List<Species> PopulateForMiche(Patch patch, Miche miche, IEnumerable<Species> foreignSpecies, RunResults results, SimulationCache cache)
     {
         List<Species> retval = new();
-        GD.Print(results.MicheByPatch[patch].TraversalsTerminatingInSpecies(null).Count());
         // Try to add native species to any new openings
         var nativeSpecies = patch.SpeciesInPatch.Select(x => x.Key).ToList();
         nativeSpecies.AddRange(miche.AllOccupants().Where(x => !nativeSpecies.Contains(x)));
@@ -74,7 +71,6 @@ class PullSpeciesForPatch : IRunStep
                 retval.Add(curSpecies);
             }
         }
-        GD.Print(results.MicheByPatch[patch].TraversalsTerminatingInSpecies(null).Count());
 
         // Then outside species have a chance to migrate in
         foreach (var curSpecies in foreignSpecies)
@@ -93,7 +89,6 @@ class PullSpeciesForPatch : IRunStep
             }
         }
 
-        GD.Print(results.MicheByPatch[patch].TraversalsTerminatingInSpecies(null).Count());
         // If no existing species can do the job, make a new one
         retval.AddRange(FillEmptyMiches(foreignSpecies, results, patch, cache));
 
