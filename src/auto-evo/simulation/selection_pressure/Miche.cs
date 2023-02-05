@@ -91,7 +91,7 @@ public class Miche
 
     public bool InsertSpecies(Species species)
     {
-        return InsertSpecies(species, new List<Species>(),  new List<Species>());
+        return InsertSpecies(species, new Dictionary<Species, float>());
     }
 
         /// <summary>
@@ -99,39 +99,46 @@ public class Miche
         /// </summary>
         /// <param name="species">new species being inserted</param>
         /// <param name="speciesBeat">a list of species that the species being inserted has surpassed in at least one selection pressure</param>
-        public bool InsertSpecies(Species species, List<Species> speciesBeat, List<Species> disqualifyingSpecies)
+        public bool InsertSpecies(Species species, Dictionary<Species, float> scoresSoFar)
     {
         if (IsLeafNode() && Occupant == null)
         {
-            Occupant = species;
-            return true;
+            if (Pressure.Score(species, new SimulationCache()) > 0)
+            {
+                Occupant = species;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
-        var newSpeciesBeat = new List<Species>(speciesBeat);
-        var newDisqualifyingSpecies = new List<Species>(disqualifyingSpecies);
-
-        var speciesScore = Pressure.Score(species, new SimulationCache());
+        var newDictionary = new Dictionary<Species, float>(scoresSoFar);
 
         foreach (var existingSpecies in AllOccupants())
         {
-            var existingSpeciesScore = Pressure.Score(existingSpecies, new SimulationCache());
-            if (speciesScore > existingSpeciesScore)
+            if (!newDictionary.ContainsKey(existingSpecies))
             {
-                newSpeciesBeat.Add(existingSpecies);
-            } 
-            else if (speciesScore < existingSpeciesScore)
+                newDictionary[existingSpecies] = 0.0f;
+            }
+
+            // sentinal value for a species that has been ruled out to replace
+            // TODO: Is this needed?
+            if (newDictionary[existingSpecies] > -999.0f)
             {
-                newDisqualifyingSpecies.Add(existingSpecies);
+                newDictionary[existingSpecies] = newDictionary[existingSpecies] + Pressure.WeightedComparedScores(species, existingSpecies, new SimulationCache());
             }
         }
 
-        if (speciesScore > 0 
-            && newDisqualifyingSpecies.Count() < AllOccupants().Count())
+        // If nothing has been ruled out, trickle it down
+        if (newDictionary.AsEnumerable().Where(x => x.Value > -999.0f).Count() > 0)
         {
             var retval = false;
 
             // We know Occupant isn't null because of an earlier check
-            if (IsLeafNode() && newSpeciesBeat.Contains(Occupant))
+            if (IsLeafNode() && newDictionary[Occupant] > 0.0f)
             {
                 Occupant = species;
                 retval = true;
@@ -140,7 +147,7 @@ public class Miche
             // This could be in an else, but isn't nessicary
             foreach (var child in Children)
             {
-                if (child.InsertSpecies(species, newSpeciesBeat, newDisqualifyingSpecies))
+                if (child.InsertSpecies(species, newDictionary))
                 {
                     retval = true;
                 }
