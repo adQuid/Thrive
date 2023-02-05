@@ -133,7 +133,7 @@ public class Miche
         }
 
         // If nothing has been ruled out, trickle it down
-        if (newDictionary.AsEnumerable().Where(x => x.Value > -999.0f).Count() > 0)
+        if (newDictionary.AsEnumerable().Where(x => x.Value > -999.0f).Count() > 0 && Pressure.Score(species, new SimulationCache()) > 0)
         {
             var retval = false;
 

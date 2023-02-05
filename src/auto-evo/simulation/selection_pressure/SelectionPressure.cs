@@ -64,7 +64,7 @@ public abstract class SelectionPressure
         foreach (var possiblePrey in prey)
         {
             var pressure = new PredationEffectivenessPressure(possiblePrey, 10.0f);
-            retval.Add(new Miche(pressure.Name(), pressure, new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 0.1f)) }));
+            retval.Add(new Miche(pressure.Name(), pressure, new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 1.0f)) }));
         }
 
         return retval;
