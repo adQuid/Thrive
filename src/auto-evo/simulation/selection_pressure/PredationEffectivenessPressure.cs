@@ -61,12 +61,12 @@ public class PredationEffectivenessPressure : SelectionPressure
         return predatorScore;
     }
 
-    private float PredationScore(MicrobeSpecies predator, MicrobeSpecies prey)
+    public static float PredationScore(MicrobeSpecies predator, MicrobeSpecies prey)
     {
         return Math.Max(EngulfmentScore(predator, prey), ToxinScore(predator, prey));
     }
 
-    private float EngulfmentScore(MicrobeSpecies predator, MicrobeSpecies prey)
+    private static float EngulfmentScore(MicrobeSpecies predator, MicrobeSpecies prey)
     {
         if (predator.BaseHexSize / prey.BaseHexSize < Constants.ENGULF_SIZE_RATIO_REQ)
         {
@@ -90,7 +90,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         }
     }
 
-    private float ToxinScore(MicrobeSpecies predator, MicrobeSpecies prey)
+    private static float ToxinScore(MicrobeSpecies predator, MicrobeSpecies prey)
     {
         // If the species wouldn't even attack this prey, no need to check further
         if (!(MicrobeAIFunctions.WouldTryToToxinHuntBiggerPrey(predator.Behaviour.Opportunism) || MicrobeAIFunctions.CouldEngulf(predator.BaseHexSize, prey.BaseHexSize)))
