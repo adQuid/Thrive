@@ -55,16 +55,26 @@ public class ModifyExistingSpecies : IRunStep
         return true;
     }
 
+    /// <summary>
+    ///   Returns a new list of all possible species that might emerge in response to the provided pressures, as well as a copy of the origonal species.
+    /// </summary>
+    /// <param name="results">RunResults needed to find latest copy of provided species. This object is NOT modified.</param>
+    /// <param name="species"></param>
+    /// <param name="patch"></param>
+    /// <param name="mutationLibrary"></param>
+    /// <param name="cache"></param>
+    /// <param name="niche"></param>
+    /// <returns>List of viable variants, and the provided species</returns>
     public static List<MicrobeSpecies> ViableVariants(RunResults results, 
         Species species, 
         Patch patch, 
-        MutationLibrary partList, 
+        MutationLibrary mutationLibrary, 
         SimulationCache cache, 
         List<SelectionPressure>? niche)
     {
         var baseSpecies = (MicrobeSpecies)results.LastestVersionForSpecies(species);
 
-        var selectionPressures = SelectionPressure.PressuresFromPatch(species, patch, partList, cache, niche);
+        var selectionPressures = SelectionPressure.PressuresFromPatch(species, patch, mutationLibrary, cache, niche);
 
         // find the initial scores
         var pressureScores = new Dictionary<SelectionPressure, float>();
@@ -82,7 +92,7 @@ public class ModifyExistingSpecies : IRunStep
 
             // For each viable variant, get a new variants that at least improve score a little bit
             var potentialVariants = viableVariants.Select(startVariant =>
-                curPressure.MicrobeMutations.Select(mutationStrategy => mutationStrategy.MutationsOf(startVariant, partList))
+                curPressure.MicrobeMutations.Select(mutationStrategy => mutationStrategy.MutationsOf(startVariant, mutationLibrary))
                 .SelectMany(x => x)
                 //.Where(x => curPressure.Score(x, cache) >= curPressure.Score(startVariant, cache))
                 )
@@ -103,6 +113,14 @@ public class ModifyExistingSpecies : IRunStep
             .ToList();
     }
 
+    /// <summary>
+    ///   Returns new list containing only species from the provided list that don't score too badly in the provided list of selection pressures.
+    /// </summary>
+    /// <param name="potentialVariants"></param>
+    /// <param name="selectionPressures"></param>
+    /// <param name="baseSpecies"></param>
+    /// <param name="cache"></param>
+    /// <returns>List of species not ruled to be inviable.</returns>
     public static List<MicrobeSpecies> PruneInviableSpecies(List<MicrobeSpecies> potentialVariants,
         List<SelectionPressure>? selectionPressures,
         Species baseSpecies,
@@ -135,6 +153,13 @@ public class ModifyExistingSpecies : IRunStep
         return new List<SelectionPressure>(PredatorsOf(Patch.Miche, species).Select(x => new AvoidPredationSelectionPressure(x, 2.0f)).ToList());
     }
 
+
+    /// <summary>
+    ///   Returns a new list of all species that have filled a predation miche to eat the provided species.
+    /// </summary>
+    /// <param name="miche">Miche to search</param>
+    /// <param name="species">Species to search for Predation miches of</param>
+    /// <returns>List of species</returns>
     private List<Species> PredatorsOf(Miche miche, Species species)
     {
         var retval = new List<Species>();

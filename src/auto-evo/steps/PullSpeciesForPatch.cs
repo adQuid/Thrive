@@ -47,9 +47,15 @@ class PullSpeciesForPatch : IRunStep
         return SelectionPressure.PredationMiches(patch, speciesToEat.ToHashSet(), cache);
     }
 
-    /*
-     * Finds or creates a species for every leaf node of the provided miche.
-     */
+    /// <summary>
+    ///   Finds or creates a species for every leaf node of the provided miche.
+    /// </summary>
+    /// <param name="patch"></param>
+    /// <param name="miche"></param>
+    /// <param name="foreignSpecies"></param>
+    /// <param name="results"></param>
+    /// <param name="cache"></param>
+    /// <returns>A list of any species inserted, even if the species was already present.</returns>
     private static List<Species> PopulateForMiche(Patch patch, Miche miche, IEnumerable<Species> foreignSpecies, RunResults results, SimulationCache cache)
     {
         List<Species> retval = new();
@@ -95,6 +101,14 @@ class PullSpeciesForPatch : IRunStep
         return retval;
     }
 
+    /// <summary>
+    ///   Modifies results object by trying to provide species to fill in any empty miches, creating new species if nessicary.
+    /// </summary>
+    /// <param name="foreignSpecies"></param>
+    /// <param name="results"></param>
+    /// <param name="patch"></param>
+    /// <param name="cache"></param>
+    /// <returns>A list of any species inserted, even if the species was already present.</returns>
     public static List<Species> FillEmptyMiches(IEnumerable<Species> foreignSpecies, RunResults results, Patch patch, SimulationCache cache)
     {
         List<Species> retval = new();
@@ -121,6 +135,7 @@ class PullSpeciesForPatch : IRunStep
         // This should always be null at this stage
         var finalSpecies = emptyMiche.Last().Occupant;
 
+        // Traverse up the tree, giving species a chance to mutate and fill the empty miche in increasing order of distance
         while (pointer.Parent != null && finalSpecies == null)
         {
             pointer = pointer.Parent;

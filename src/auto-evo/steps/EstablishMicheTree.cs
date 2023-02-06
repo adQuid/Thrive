@@ -22,15 +22,17 @@ class EstablishMicheTree : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        results.MicheByPatch[Patch] = PopulateMiche(results, Patch.Miche.AllOccupants().ToList());
+        results.MicheByPatch[Patch] = PopulateMiche(results);
 
         return true;
     }
 
-    /*
-     * Creates a root level miche appropriate for the patch
-     */
-    private Miche PopulateMiche(RunResults results, List<Species> candidates)
+    /// <summary>
+    ///   Modifies the miche of the RunResults provided with all primary miches (those not resulting from the presence of a species, since species are not populated at this time)
+    /// </summary>
+    /// <param name="results">results to modify</param>
+    /// <returns></returns>
+    private Miche PopulateMiche(RunResults results)
     {
         results.MicheByPatch[Patch] = Miche.RootMiche();
 
