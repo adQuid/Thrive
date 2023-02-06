@@ -8,7 +8,7 @@ using Godot;
 
 public class PredationEffectivenessPressure : SelectionPressure
 {
-    Species prey;
+    public Species Prey;
 
     public PredationEffectivenessPressure(Species prey, float weight): base(true,
         weight,
@@ -24,30 +24,30 @@ public class PredationEffectivenessPressure : SelectionPressure
         new List<IMutationStrategy<EarlyMulticellularSpecies>>()
         )
     {
-        this.prey = prey;
+        this.Prey = prey;
         EnergyProvided = 1000;
     }
 
     public override string Name()
     {
-        return "Predation Effectiveness against " + prey;
+        return "Predation Effectiveness against " + Prey;
     }
 
     public override float Score(Species species, SimulationCache cache)
     {
-        if (!(species is MicrobeSpecies || prey is MicrobeSpecies))
+        if (!(species is MicrobeSpecies || Prey is MicrobeSpecies))
         {
             throw new NotImplementedException();
         }
 
         // Very lazy way of preventing canibalism
-        if (species.Epithet == prey.Epithet)
+        if (species.Epithet == Prey.Epithet)
         {
             return 0.0f;
         }
 
         var microbeSpecies = (MicrobeSpecies)species;
-        var microbePrey = (MicrobeSpecies)prey;
+        var microbePrey = (MicrobeSpecies)Prey;
 
         var predatorScore = PredationScore(microbeSpecies, microbePrey);
         var reversePredatorScore = PredationScore(microbePrey, microbeSpecies);

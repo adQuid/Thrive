@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoEvo;
 using Godot;
 
@@ -29,7 +27,11 @@ public class ModifyExistingSpecies : IRunStep
             {
                 var partlist = new PartList(species);
 
-                var variants = ViableVariants(results, species, Patch, partlist, new SimulationCache(), traversal.Select(x => x.Pressure).ToList());
+                var pressures = traversal.Select(x => x.Pressure).ToList();
+
+                pressures.AddRange(PredatorsOf(Patch.Miche, species).Select(x => new AvoidPredationSelectionPressure(x, 5.0f)));
+
+                var variants = ViableVariants(results, species, Patch, partlist, new SimulationCache(), pressures);
 
                 if (variants.Count() > 0)
                 {
@@ -126,5 +128,24 @@ public class ModifyExistingSpecies : IRunStep
         }
 
         return viableVariants;
+    }
+
+    private List<Species> PredatorsOf(Miche miche, Species species)
+    {
+        var retval = new List<Species>();
+
+        // TODO: Make this WAY more efficient
+        foreach(var traversal in miche.AllTraversals())
+        {
+            foreach(var curMiche in traversal)
+            {
+                if (curMiche is PredationEffectivenessPressure && ((PredationEffectivenessPressure)curMiche.Pressure).Prey == species)
+                {
+                    retval.AddRange(curMiche.AllOccupants());
+                }
+            }
+        }
+
+        return retval;
     }
 }
