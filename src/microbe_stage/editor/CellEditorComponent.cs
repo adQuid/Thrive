@@ -1378,10 +1378,6 @@ public partial class CellEditorComponent :
             throw new InvalidOperationException("can't start auto-evo prediction without current cell properties"));
 
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
-
-        var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.EditedBaseSpecies,
-            cachedAutoEvoPredictionSpecies);
-        run.Start();
     }
 
     /// <summary>
