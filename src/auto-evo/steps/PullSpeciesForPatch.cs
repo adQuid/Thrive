@@ -127,7 +127,7 @@ class PullSpeciesForPatch : IRunStep
 
             foreach (var curSpecies in pointer.AllOccupants())
             {
-                var variants = ModifyExistingSpecies.ViableVariants(results, curSpecies, patch, new PartList(curSpecies), cache, emptyMiche.Select(x => x.Pressure).ToList());
+                var variants = ModifyExistingSpecies.ViableVariants(results, curSpecies, patch, new MutationLibrary(curSpecies), cache, emptyMiche.Select(x => x.Pressure).ToList());
 
                 if (variants.Count() > 0)
                 {
@@ -150,7 +150,7 @@ class PullSpeciesForPatch : IRunStep
         {
             foreach (var curSpecies in foreignSpecies)
             {
-                var variants = ModifyExistingSpecies.ViableVariants(results, curSpecies, patch, new PartList(curSpecies), cache, emptyMiche.Select(x => x.Pressure).ToList());
+                var variants = ModifyExistingSpecies.ViableVariants(results, curSpecies, patch, new MutationLibrary(curSpecies), cache, emptyMiche.Select(x => x.Pressure).ToList());
 
                 if (variants.Count() > 0)
                 {

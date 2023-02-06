@@ -12,7 +12,7 @@ class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
         Type = type;
     }
 
-    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, PartList partList)
+    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, MutationLibrary partList)
     {
         var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 

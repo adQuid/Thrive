@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class PartList
+public class MutationLibrary
 {
     public Dictionary<string, OrganelleDefinition> PermittedOrganelleDefinitions = new Dictionary<string, OrganelleDefinition>();
 
-    public PartList(Species species)
+    public MutationLibrary(Species species)
     {
 
         foreach (var organelleDefinition in SimulationParameters.Instance.GetAllOrganelles())

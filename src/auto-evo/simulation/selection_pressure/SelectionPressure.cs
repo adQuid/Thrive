@@ -9,7 +9,7 @@ public abstract class SelectionPressure
     public List<IMutationStrategy<EarlyMulticellularSpecies>> MulticellularMutations;
     public int EnergyProvided = 0;
 
-    public static List<SelectionPressure> PressuresFromPatch(Species? species, Patch patch, PartList partList, SimulationCache cache, List<SelectionPressure> niche)
+    public static List<SelectionPressure> PressuresFromPatch(Species? species, Patch patch, MutationLibrary partList, SimulationCache cache, List<SelectionPressure> niche)
     {
         // Add Selection pressures
         // TODO: move this somewhere else

@@ -25,7 +25,7 @@ public class ModifyExistingSpecies : IRunStep
         {
             foreach(var traversal in Patch.Miche.TraversalsTerminatingInSpecies(species))
             {
-                var partlist = new PartList(species);
+                var partlist = new MutationLibrary(species);
 
                 var pressures = traversal.Select(x => x.Pressure).ToList();
 
@@ -58,7 +58,7 @@ public class ModifyExistingSpecies : IRunStep
     public static List<MicrobeSpecies> ViableVariants(RunResults results, 
         Species species, 
         Patch patch, 
-        PartList partList, 
+        MutationLibrary partList, 
         SimulationCache cache, 
         List<SelectionPressure>? niche)
     {

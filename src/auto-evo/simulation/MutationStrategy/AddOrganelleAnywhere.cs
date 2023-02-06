@@ -24,7 +24,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses.Where(proc => proc.Process.Outputs.ContainsKey(compound)).Count() > 0);
     }
 
-    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, PartList partList)
+    public List<MicrobeSpecies> MutationsOf(MicrobeSpecies baseSpecies, MutationLibrary partList)
     {
         var viableOrganelles = partList.GetAllOrganelles().Where(x => Criteria(x));
 
