@@ -25,7 +25,6 @@
     <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
     <Compile Include="src\auto-evo\AutoEvoExploringTool.cs" />
-    <Compile Include="src\auto-evo\EditorAutoEvoRun.cs" />
     <Compile Include="src\auto-evo\EvolutionaryTree.cs" />
     <Compile Include="src\auto-evo\EvolutionaryTreeNode.cs" />
     <Compile Include="src\auto-evo\MutationLibrary.cs" />
@@ -58,12 +57,9 @@
     <Compile Include="src\auto-evo\simulation\SimulationCache.cs" />
     <Compile Include="src\auto-evo\steps\ApplyPopulations.cs" />
     <Compile Include="src\auto-evo\steps\EstablishMicheTree.cs" />
-    <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
-    <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\InsertExistingSpecies.cs" />
     <Compile Include="src\auto-evo\steps\ModifyExistingSpecies.cs" />
 	<Compile Include="src\auto-evo\steps\PullSpeciesForPatch.cs" />
-    <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
     <Compile Include="src\early_multicellular_stage\CellLayout.cs" />
     <Compile Include="src\early_multicellular_stage\CellTemplate.cs" />
     <Compile Include="src\early_multicellular_stage\CellType.cs" />
@@ -406,13 +402,9 @@
     <Compile Include="src\auto-evo\RunResults.cs" />
     <Compile Include="src\auto-evo\RunParameters.cs" />
     <Compile Include="src\auto-evo\steps\LambdaStep.cs" />
-    <Compile Include="src\auto-evo\steps\FindBestMutation.cs" />
-    <Compile Include="src\auto-evo\steps\FindBestMigration.cs" />
-    <Compile Include="src\auto-evo\steps\CalculatePopulation.cs" />
     <Compile Include="src\auto-evo\SpeciesMigration.cs" />
     <Compile Include="src\auto-evo\simulation\SimulationConfiguration.cs" />
     <Compile Include="src\auto-evo\simulation\PopulationSimulation.cs" />
-    <Compile Include="src\auto-evo\steps\VariantTryingStep.cs" />
     <Compile Include="src\auto-evo\ExternalEffect.cs" />
     <Compile Include="src\general\Jukebox.cs" />
     <Compile Include="src\general\MusicCategory.cs" />
