@@ -154,13 +154,15 @@ class PullSpeciesForPatch : IRunStep
 
                 if (variants.Count() > 0)
                 {
+                    var speciesToAdd = variants.First().FormattedName == curSpecies.FormattedName ? curSpecies : variants.First();
+
                     // This may do nothing or be overwritten, and that's ok
-                    emptyMiche.Last().InsertSpecies(variants.First());
-                    if (!results.AncestorDictionary.ContainsKey(variants.First()))
+                    emptyMiche.Last().InsertSpecies(speciesToAdd);
+                    if (!results.AncestorDictionary.ContainsKey(speciesToAdd))
                     {
                         // TODO: Figure out a cleaner way to deal with sibling mutations
                         var ancestor = results.AncestorDictionary.ContainsKey(curSpecies) ? results.AncestorDictionary[curSpecies] : curSpecies;
-                        results.AncestorDictionary.Add(variants.First(), ancestor);
+                        results.AncestorDictionary.Add(speciesToAdd, ancestor);
                     }
                 }
             }

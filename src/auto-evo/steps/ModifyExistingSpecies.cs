@@ -29,7 +29,7 @@ public class ModifyExistingSpecies : IRunStep
 
                 var pressures = traversal.Select(x => x.Pressure).ToList();
 
-                pressures.AddRange(PredatorsOf(Patch.Miche, species).Select(x => new AvoidPredationSelectionPressure(x, 5.0f)));
+                pressures.AddRange(SpeciesDependentPressures(Patch, species));
 
                 var variants = ViableVariants(results, species, Patch, partlist, new SimulationCache(), pressures);
 
@@ -128,6 +128,11 @@ public class ModifyExistingSpecies : IRunStep
         }
 
         return viableVariants;
+    }
+
+    private List<SelectionPressure> SpeciesDependentPressures(Patch patch, Species species)
+    {
+        return new List<SelectionPressure>(PredatorsOf(Patch.Miche, species).Select(x => new AvoidPredationSelectionPressure(x, 2.0f)).ToList());
     }
 
     private List<Species> PredatorsOf(Miche miche, Species species)
