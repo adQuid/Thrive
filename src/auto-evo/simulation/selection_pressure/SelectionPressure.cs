@@ -42,7 +42,10 @@ public abstract class SelectionPressure
         {
             retval.Add(
                 new Miche("Photosynthesis", new AutotrophEnergyEfficiencyPressure(patch, Compound.ByName("sunlight"), 1.0f),
-                    new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 1.0f)) })
+                    new List<Miche> { 
+                        new Miche("and store energy for night", new StoreGlucosePressure(0.8f), new List<Miche>{ new Miche("and don't die", new MetabolicStabilityPressure(patch, 1.0f)) }),
+                        new Miche("and don't die", new MetabolicStabilityPressure(patch, 1.0f))
+                    })
             );
         }
 
