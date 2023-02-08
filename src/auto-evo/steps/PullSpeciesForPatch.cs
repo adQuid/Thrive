@@ -25,6 +25,7 @@ class PullSpeciesForPatch : IRunStep
     {
         var foreignSpecies = NeighboringSpecies().ToList();
 
+        // Fill autotrophic niches first, and note the set of species that results
         List<Species> newSpecies = PopulateForMiche(Patch, results.MicheByPatch[Patch], foreignSpecies, results, Cache);
 
         // At the first cycle also add species that were already present
@@ -59,6 +60,7 @@ class PullSpeciesForPatch : IRunStep
     private static List<Species> PopulateForMiche(Patch patch, Miche miche, IEnumerable<Species> foreignSpecies, RunResults results, SimulationCache cache)
     {
         List<Species> retval = new();
+
         // Try to add native species to any new openings
         var nativeSpecies = patch.SpeciesInPatch.Select(x => x.Key).ToList();
         nativeSpecies.AddRange(miche.AllOccupants().Where(x => !nativeSpecies.Contains(x)));
