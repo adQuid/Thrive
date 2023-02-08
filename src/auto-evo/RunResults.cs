@@ -569,7 +569,6 @@
             }
             else
             {
-                GD.Print("Trying to find "+ species.FormattedName+ " in " + String.Join(",",results.Keys.Select(x => x.FormattedName)));
                 return new List<List<SelectionPressure>>();
             }
         }

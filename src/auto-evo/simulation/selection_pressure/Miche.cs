@@ -6,6 +6,9 @@ using Godot;
 
 public class Miche
 {
+    // This doesn't need to be in the Constants class because it is a sentinal value, not a constant.
+    public static float INVIABLE_PRESSURE_RESULT = -999.0f;
+
     public String Name;
     public Miche? Parent = null;
     public List<Miche> Children = new();
@@ -126,14 +129,14 @@ public class Miche
 
             // sentinal value for a species that has been ruled out to replace
             // TODO: Is this needed?
-            if (newDictionary[existingSpecies] > -999.0f)
+            if (newDictionary[existingSpecies] > INVIABLE_PRESSURE_RESULT)
             {
                 newDictionary[existingSpecies] = newDictionary[existingSpecies] + Pressure.WeightedComparedScores(species, existingSpecies, new SimulationCache());
             }
         }
 
         // If nothing has been ruled out, trickle it down
-        if (newDictionary.AsEnumerable().Where(x => x.Value > -999.0f).Count() > 0 && Pressure.Score(species, new SimulationCache()) > 0)
+        if (newDictionary.AsEnumerable().Where(x => x.Value > INVIABLE_PRESSURE_RESULT).Count() > 0 && Pressure.Score(species, new SimulationCache()) > 0)
         {
             var retval = false;
 

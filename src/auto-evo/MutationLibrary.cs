@@ -21,7 +21,7 @@ public class MutationLibrary
                 }
             }
 
-            // TODO: Make this use a shared random and based on definition
+            // TODO: Make this use a shared random and based on a property in the organelle definition
             if (new Random().NextDouble() < 0.6)
             {
                 shouldAdd = false;

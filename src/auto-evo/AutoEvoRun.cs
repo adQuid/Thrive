@@ -376,6 +376,7 @@ public class AutoEvoRun
             // TODO: No one should be allowed to update the SpeciesInPatch.
             // If this happens, the root cause must be addressed.
 
+            // Ensure that everything already in the patch has results, just in case no later step touches a species
             foreach (var species in entry.Value.SpeciesInPatch)
             {
                 results.AddPopulationResultForSpecies(species.Key, entry.Value, species.Value);

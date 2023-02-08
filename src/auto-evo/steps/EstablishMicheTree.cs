@@ -41,7 +41,7 @@ class EstablishMicheTree : IRunStep
             results.MicheByPatch[Patch].AddChild(new Miche("Be the player", new BePlayerSelectionPressure(1.0f)));
         }
 
-        results.MicheByPatch[Patch].AddChildren(SelectionPressure.AutotrophicMichesForPatch(Patch, Cache));
+        results.MicheByPatch[Patch].AddChildren(MicheFactory.AutotrophicMichesForPatch(Patch, Cache));
 
         return results.MicheByPatch[Patch];
     }

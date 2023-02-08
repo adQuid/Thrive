@@ -74,7 +74,7 @@ public class ModifyExistingSpecies : IRunStep
     {
         var baseSpecies = (MicrobeSpecies)results.LastestVersionForSpecies(species);
 
-        var selectionPressures = SelectionPressure.PressuresFromPatch(species, patch, mutationLibrary, cache, niche);
+        var selectionPressures = MicheFactory.PressuresFromPatch(species, patch, mutationLibrary, cache, niche);
 
         // find the initial scores
         var pressureScores = new Dictionary<SelectionPressure, float>();
@@ -94,7 +94,6 @@ public class ModifyExistingSpecies : IRunStep
             var potentialVariants = viableVariants.Select(startVariant =>
                 curPressure.MicrobeMutations.Select(mutationStrategy => mutationStrategy.MutationsOf(startVariant, mutationLibrary))
                 .SelectMany(x => x)
-                //.Where(x => curPressure.Score(x, cache) >= curPressure.Score(startVariant, cache))
                 )
                 .SelectMany(x => x).ToList();
             potentialVariants.AddRange(viableVariants);

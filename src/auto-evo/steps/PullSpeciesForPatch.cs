@@ -44,7 +44,7 @@ class PullSpeciesForPatch : IRunStep
 
     private static List<Miche> DerivativeMiches(Patch patch, List<Species> speciesToEat, SimulationCache cache)
     {
-        return SelectionPressure.PredationMiches(patch, speciesToEat.ToHashSet(), cache);
+        return MicheFactory.PredationMiches(patch, speciesToEat.ToHashSet(), cache);
     }
 
     /// <summary>

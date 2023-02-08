@@ -22,7 +22,7 @@ public class EvolutionaryTree : Control
 
     private readonly System.Collections.Generic.Dictionary<uint, EvolutionaryTreeNode> latestNodes = new();
 
-    public readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
+    private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
         speciesOrigin = new();
 
     private readonly ButtonGroup nodesGroup = new();
@@ -36,6 +36,7 @@ public class EvolutionaryTree : Control
 
     private uint maxSpeciesId;
 
+    // Used only to view what a species is good at; NOT part of the world simulation
     public System.Collections.Generic.Dictionary<uint, List<List<Miche>>> MichesBySpecies = new();
 
     private int latestGeneration;

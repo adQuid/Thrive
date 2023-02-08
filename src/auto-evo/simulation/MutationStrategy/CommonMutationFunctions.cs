@@ -26,6 +26,7 @@ class CommonMutationFunctions
 
                 for (int sideRoll = 1; sideRoll <= 6; ++sideRoll)
                 {
+                    // pick a hex direction, with a slight bias towards forwards
                     var side = Math.Max(1, random.Next(7));
                     for (int radius = 1; radius <= 3; ++radius)
                     {
@@ -50,7 +51,7 @@ class CommonMutationFunctions
         }
 
         // We didnt find an open spot, this doesn't make much sense
-        throw new ArgumentException("Mutation code could not find a good position " +
+        throw new Exception("Mutation code could not find a good position " +
             "for a new organelle");
     }
 
