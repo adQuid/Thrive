@@ -226,7 +226,7 @@ public class GameWorld : ISaveLoadable
     public void RegisterAutoEvoCreatedSpecies(Species species)
     {
         if (worldSpecies.Any(p => p.Value == species))
-            throw new ArgumentException("Species is already in this world");
+            return;
 
         species.OnBecomePartOfWorld(++speciesIdCounter);
         worldSpecies[species.ID] = species;

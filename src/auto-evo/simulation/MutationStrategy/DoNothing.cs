@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AutoEvo;
 
-public class AutoEvoGlobals
+namespace Thrive.src.auto_evo.simulation.MutationStrategy
 {
-    public static RunResults RunResults;
+    class DoNothing
+    {
+    }
 }

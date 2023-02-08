@@ -29,6 +29,10 @@
         /// </remarks>
         public ConcurrentDictionary<Species, SpeciesResult> results = new();
 
+        public Dictionary<Patch, Miche> MicheByPatch = new();
+
+        public Dictionary<Species, Species> AncestorDictionary = new();
+
         public enum NewSpeciesType
         {
             /// <summary>
@@ -40,6 +44,13 @@
             ///   The new species was added due to experiencing different selection pressure
             /// </summary>
             SplitDueToMutation,
+        }
+
+        public Species LastestVersionForSpecies(Species species)
+        {
+            return SpeciesHasResults(species) && results[species].MutatedProperties != null ?
+            results[species].MutatedProperties :
+            (Species)species.Clone();
         }
 
         public void AddMutationResultForSpecies(Species species, Species? mutated)
@@ -93,7 +104,7 @@
         }
 
         public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,
-            NewSpeciesType addType, Species parentSpecies)
+            NewSpeciesType addType, Species? parentSpecies)
         {
             MakeSureResultExistsForSpecies(species);
 
@@ -126,6 +137,7 @@
             AddPopulationResultForSpecies(species, patch, 0);
 
             var speciesResult = results[species];
+            speciesResult.Kill = true;
 
             // We copy migration list to be able to modify it
             foreach (var migration in speciesResult.SpreadToPatches.ToList())
@@ -232,6 +244,11 @@
 
         public void ApplyResults(GameWorld world, bool skipMutations)
         {
+            foreach (var entry in MicheByPatch)
+            {
+                world.Map.Patches[entry.Key.ID].Miche = entry.Value;
+            }
+
             foreach (var entry in results)
             {
                 if (entry.Value.NewlyCreated != null)
@@ -275,7 +292,7 @@
                             if (patch.AddSpecies(entry.Key, populationEntry.Value) != true)
                             {
                                 GD.PrintErr(
-                                    "RunResults has new species with invalid patch or it was failed to be added");
+                                    "RunResults has new species ("+entry.Key.FormattedName+") with invalid patch or it was failed to be added");
                             }
                         }
                     }
@@ -352,7 +369,7 @@
         /// </remarks>
         public long GetGlobalPopulation(Species species, bool resolveMigrations = false, bool resolveSplits = false)
         {
-            return GetSpeciesPopulationsByPatch(species, resolveMigrations, resolveSplits).Sum(e => e.Value);
+             return GetSpeciesPopulationsByPatch(species, resolveMigrations, resolveSplits).Sum(e => e.Value);
         }
 
         /// <summary>
@@ -541,6 +558,18 @@
             else
             {
                 return new Dictionary<Patch, SpeciesPatchEnergyResults>();
+            }
+        }
+
+        public List<List<SelectionPressure>> GetPatchPressureResults(Species species, Patch patch)
+        {
+            if (results.ContainsKey(species) && results[species].BestPressures.ContainsKey(patch))
+            {
+                return results[species].BestPressures[patch];
+            }
+            else
+            {
+                return new List<List<SelectionPressure>>();
             }
         }
 
@@ -966,8 +995,12 @@
 
                     if (population > 0 && speciesResult.NewlyCreated != null)
                     {
+                        // TODO: Care where this comes from
                         if (speciesResult.SplitFrom == null)
-                            throw new Exception("Split species doesn't have the species it split off stored");
+                        {
+                            GD.Print("Split species " + speciesResult.Species.FormattedName + " doesn't have the species it split off stored");
+                            return;
+                        }
 
                         switch (speciesResult.NewlyCreated.Value)
                         {
@@ -1024,7 +1057,7 @@
             world.LogEvent(description, highlight, iconPath);
         }
 
-        private void MakeSureResultExistsForSpecies(Species species)
+        public void MakeSureResultExistsForSpecies(Species species)
         {
             if (species == null)
                 throw new ArgumentException("species to add result to is null", nameof(species));
@@ -1067,6 +1100,8 @@
         public class SpeciesResult
         {
             public Species Species;
+
+            public bool Kill = false;
 
             /// <summary>
             ///   Dictionary of the new species population for relevant patches,
@@ -1116,9 +1151,21 @@
             /// </summary>
             public Dictionary<Patch, SpeciesPatchEnergyResults> EnergyResults = new();
 
+            public Dictionary<Patch, List<List<SelectionPressure>>> BestPressures = new();
+
             public SpeciesResult(Species species)
             {
                 Species = species ?? throw new ArgumentException("species is null");
+            }
+
+            public void AddBestPressuresResults(Patch patch, List<SelectionPressure> pressures)
+            {
+                if (!BestPressures.ContainsKey(patch))
+                {
+                    BestPressures[patch] = new();
+                }
+
+                BestPressures[patch].Add(pressures);
             }
 
             public SpeciesPatchEnergyResults GetEnergyResults(Patch patch)

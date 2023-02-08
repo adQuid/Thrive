@@ -376,6 +376,12 @@ public class AutoEvoRun
             // TODO: No one should be allowed to update the SpeciesInPatch.
             // If this happens, the root cause must be addressed.
 
+            // Ensure that everything already in the patch has results, just in case no later step touches a species
+            foreach (var species in entry.Value.SpeciesInPatch)
+            {
+                results.AddPopulationResultForSpecies(species.Key, entry.Value, species.Value);
+            }
+
             // Iterate over a copy to be secure from changes to the dictionary.
             var speciesInPatchCopy = entry.Value.SpeciesInPatch.ToList();
             foreach (var speciesEntry in speciesInPatchCopy)
@@ -388,25 +394,6 @@ public class AutoEvoRun
                     continue;
 
                 alreadyHandledSpecies.Add(speciesEntry.Key);
-
-                // The player species doesn't get random mutations. And also doesn't spread automatically
-                if (speciesEntry.Key.PlayerSpecies)
-                {
-                }
-                else
-                {
-                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration,
-                        worldSettings, map, speciesEntry.Key,
-                        autoEvoConfiguration.MutationsPerSpecies,
-                        autoEvoConfiguration.AllowSpeciesToNotMutate,
-                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
-                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
-
-                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, map, speciesEntry.Key,
-                        random,
-                        autoEvoConfiguration.MoveAttemptsPerSpecies,
-                        autoEvoConfiguration.AllowSpeciesToNotMigrate));
-                }
             }
 
             // Verify the length.
@@ -428,29 +415,14 @@ public class AutoEvoRun
                 }
             }
 
-            if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
-                random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
-            {
-                steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, worldSettings,
-                    map, entry.Value, random));
-            }
+            steps.Enqueue(new EstablishMicheTree(entry.Value, new SimulationCache(), map.CurrentPatch == entry.Value));
+
+            steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache()));
+
+            steps.Enqueue(new PullSpeciesForPatch(entry.Value, new SimulationCache(), map.CurrentPatch == entry.Value));
+
+            steps.Enqueue(new ApplyPopulations(entry.Value));
         }
-
-        // The new populations don't depend on the mutations, this is so that when
-        // the player edits their species the other species they are competing
-        // against are the same (so we can show some performance predictions in the
-        // editor and suggested changes)
-        // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
-        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, map) { CanRunConcurrently = false });
-
-        // Due to species splitting migrations may end up being invalid
-        // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
-        // numbers
-        steps.Enqueue(new RemoveInvalidMigrations(alreadyHandledSpecies));
-
-        AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
-
-        steps.Enqueue(new ForceExtinction(map.Patches.Values.ToList(), autoEvoConfiguration));
     }
 
     /// <summary>

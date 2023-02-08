@@ -36,6 +36,9 @@ public class EvolutionaryTree : Control
 
     private uint maxSpeciesId;
 
+    // Used only to view what a species is good at; NOT part of the world simulation
+    public System.Collections.Generic.Dictionary<uint, List<List<Miche>>> MichesBySpecies = new();
+
     private int latestGeneration;
 
     [Signal]
@@ -127,18 +130,48 @@ public class EvolutionaryTree : Control
                         nodes.FindLast(n => n.SpeciesID == species.ID), generation - 1, true);
                 }
             }
-            else if (result.SplitFrom != null)
+            else
             {
-                SetupTreeNode((Species)species.Clone(),
-                    nodes.FindLast(n => n.SpeciesID == result.SplitFrom.ID), generation);
+                var miches = new List<List<Miche>>();
 
-                speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
-                speciesNames.Add(species.ID, species.FormattedName);
-            }
-            else if (result.MutatedProperties != null)
-            {
-                SetupTreeNode((Species)result.MutatedProperties.Clone(),
-                    nodes.FindLast(n => n.SpeciesID == species.ID), generation);
+                foreach (var curMiche in results.MicheByPatch.Values)
+                {
+                    foreach (var traversal in curMiche.TraversalsTerminatingInSpecies(species))
+                    {
+                        miches.Add(traversal.ToList());
+                    }
+                }
+
+                if (MichesBySpecies.ContainsKey(species.ID))
+                {
+                    MichesBySpecies[species.ID] = miches;
+                }
+                else
+                {
+                    MichesBySpecies.Add(species.ID, miches);
+                }
+
+                if (result.SplitFrom != null)
+                {
+                    SetupTreeNode((Species)species.Clone(),
+                        nodes.FindLast(n => n.SpeciesID == result.SplitFrom.ID), generation);
+
+                    //TODO: be safer with this
+                    if (!speciesOrigin.ContainsKey(species.ID))
+                    {
+                        speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
+                    }
+
+                    if (!speciesNames.ContainsKey(species.ID))
+                    {
+                        speciesNames.Add(species.ID, species.FormattedName);
+                    }
+                }
+                else if (result.MutatedProperties != null)
+                {
+                    SetupTreeNode((Species)result.MutatedProperties.Clone(),
+                        nodes.FindLast(n => n.SpeciesID == species.ID), generation);
+                }
             }
 
             if (species.ID > maxSpeciesId)

@@ -60,9 +60,6 @@ public partial class CellEditorComponent
 
     protected override void OnTranslationsChanged()
     {
-        UpdateAutoEvoPredictionTranslations();
-        UpdateAutoEvoPredictionDetailsText();
-
         CalculateOrganelleEffectivenessInPatch(Editor.CurrentPatch);
         UpdatePatchDependentBalanceData();
 
@@ -155,7 +152,6 @@ public partial class CellEditorComponent
         if (waitingForPrediction?.Finished != true)
             return;
 
-        OnAutoEvoPredictionComplete(waitingForPrediction);
         waitingForPrediction = null;
     }
 
@@ -438,31 +434,6 @@ public partial class CellEditorComponent
             tooltip.Description = string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION"), displayName,
                 energyBalance.Consumption[subBar.Name]);
-        }
-    }
-
-    private void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, Species playerSpeciesOriginal,
-        MicrobeSpecies playerSpeciesNew)
-    {
-        if (waitingForPrediction != null)
-        {
-            GD.PrintErr(
-                $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
-        }
-
-        totalPopulationIndicator.Show();
-        totalPopulationIndicator.Texture = questionIcon;
-
-        var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
-
-        if (startedRun.Finished)
-        {
-            OnAutoEvoPredictionComplete(prediction);
-            waitingForPrediction = null;
-        }
-        else
-        {
-            waitingForPrediction = prediction;
         }
     }
 

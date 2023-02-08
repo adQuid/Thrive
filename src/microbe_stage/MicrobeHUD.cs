@@ -999,20 +999,16 @@ public class MicrobeHUD : Control
             }
             else
             {
-                var autoEvoResults = "";
+                var autoEvoResults = " ";
 
-                if (AutoEvoGlobals.RunResults != null)
+                if (stage!.GameWorld.Map.CurrentPatch.Miche != null)
                 {
-                    if (AutoEvoGlobals.RunResults.GetPatchEnergyResults(hoveredSpeciesCount.Key).ContainsKey(stage!.GameWorld.Map.CurrentPatch))
+                    foreach (var micheTraversal in stage!.GameWorld.Map.CurrentPatch.Miche.AllTraversals())
                     {
-                        var autoEvoList = new List<KeyValuePair<IFormattable, AutoEvo.RunResults.SpeciesPatchEnergyResults.NicheInfo>>();
-
-                        foreach (var nicheInfo in AutoEvoGlobals.RunResults.GetPatchEnergyResults(hoveredSpeciesCount.Key)[stage!.GameWorld.Map.CurrentPatch].PerNicheEnergy
-                            .OrderByDescending(x => x.Value.CurrentSpeciesEnergy))
+                        if (micheTraversal.Last().Occupant == hoveredSpeciesCount.Key)
                         {
-                            autoEvoResults += "\n  " + nicheInfo.Key + ": " + nicheInfo.Value.CurrentSpeciesEnergy;
+                            autoEvoResults += "\n  " + String.Join(",", micheTraversal.Select(x => x.Pressure.Name()));
                         }
-
 
                     }
                 }
@@ -1236,7 +1232,7 @@ public class MicrobeHUD : Control
 
     private void UpdatePopulation()
     {
-        populationLabel.Text = stage!.GameWorld.PlayerSpecies.Population.FormatNumber();
+        populationLabel.Text = PopulationFormatFunctions.FormatPopulationForPlayer(stage!.GameWorld.PlayerSpecies.Population);
     }
 
     private void UpdateProcessPanel()
