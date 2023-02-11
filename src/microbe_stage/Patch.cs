@@ -68,6 +68,7 @@ public class Patch
     [JsonIgnore]
     public Dictionary<Species, long> SpeciesInPatch => currentSnapshot.SpeciesInPatch;
 
+    [JsonIgnore]
     public Miche Miche = Miche.RootMiche();
 
     [JsonIgnore]
