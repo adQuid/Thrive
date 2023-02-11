@@ -478,7 +478,7 @@ public static class Constants
     /// <summary>
     ///   Maximum extra microbes to spawn
     /// </summary>
-    public const int MAX_BACTERIAL_COLONY_SIZE = 1;
+    public const int MAX_BACTERIAL_COLONY_SIZE = 3;
 
     // What is divided during fear and aggression calculations in the AI
     public const float AGGRESSION_DIVISOR = 25.0f;
