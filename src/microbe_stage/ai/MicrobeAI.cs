@@ -532,12 +532,22 @@ public class MicrobeAI
         {
             MoveFullSpeed(response);
 
-            if (!microbe.CanEngulf(target))
+            if (engulf)
+            {
+                // Just in case something is obstructing prey engulfing, wiggle a little sometimes
+                if (random.NextDouble() < 0.05)
+                {
+                    MoveWithRandomTurn(0.1f, 0.2f, random, response);
+                }
+            }
+            else if (!microbe.CanEngulf(target))
             {
                 // try to slash with a pilus
-                if (MicrobeAIFunctions.HasPilus(microbe) && DistanceFromMe(targetPosition) < 4.0f * microbe.EngulfSize && RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION * 2, random))
+                if (MicrobeAIFunctions.HasPilus(microbe) && 
+                    DistanceFromMe(targetPosition) < 8.0f * microbe.EngulfSize && RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION * 2, random))
                 {
-                    MoveWithRandomTurn(1.5f, 2.0f, random, response);
+                    DebugFlash();
+                    MoveWithRandomTurn(0.05f, 0.15f, random, response);
                 }
             }
         }
