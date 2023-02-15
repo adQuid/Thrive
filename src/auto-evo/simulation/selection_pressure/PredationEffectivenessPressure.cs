@@ -63,7 +63,7 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     public static float PredationScore(MicrobeSpecies predator, MicrobeSpecies prey)
     {
-        return Math.Max(EngulfmentScore(predator, prey), ToxinScore(predator, prey));
+        return Math.Max(EngulfmentScore(predator, prey), ToxinScore(predator, prey) + PilusScore(predator, prey));
     }
 
     private static float EngulfmentScore(MicrobeSpecies predator, MicrobeSpecies prey)
@@ -88,6 +88,24 @@ public class PredationEffectivenessPressure : SelectionPressure
         {
             return SizeScore * Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
         }
+    }
+
+    private static float PilusScore(MicrobeSpecies predator, MicrobeSpecies prey)
+    {
+        if (prey.BaseSpeed > 0)
+        {
+            return 0.0f;
+        }
+
+        foreach (var organelle in predator.Organelles)
+        {
+            if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
+            {
+                return prey.BaseHexSize;
+            }
+        }
+
+        return 0.0f;
     }
 
     private static float ToxinScore(MicrobeSpecies predator, MicrobeSpecies prey)
