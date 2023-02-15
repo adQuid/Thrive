@@ -273,11 +273,10 @@ public class MicrobeAI
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
         if (possiblePrey != null)
         {
-            bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
-                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
+            
             Vector3? prey = possiblePrey.GlobalTransform.origin;
 
-            EngagePrey(prey.Value, random, engulfPrey, response);
+            EngagePrey(possiblePrey, random, response);
             return;
         }
 
@@ -512,14 +511,17 @@ public class MicrobeAI
         MoveFullSpeed(response);
     }
 
-    private void EngagePrey(Vector3 target, Random random, bool engulf, MicrobeAIResponse response)
+    private void EngagePrey(Microbe target, Random random,  MicrobeAIResponse response)
     {
+        bool engulf = microbe.CanEngulf(target) &&
+                DistanceFromMe(target.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
+
         response.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
-        targetPosition = target;
+        targetPosition = target.GlobalTransform.origin;
         response.LookTarget = targetPosition;
         if (MicrobeAIFunctions.CanShootToxin(microbe))
         {
-            TryToLaunchToxin(target, response);
+            TryToLaunchToxin(targetPosition, response);
 
             if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION / 5, random))
             {
@@ -529,6 +531,15 @@ public class MicrobeAI
         else
         {
             MoveFullSpeed(response);
+
+            if (!microbe.CanEngulf(target))
+            {
+                // try to slash with a pilus
+                if (MicrobeAIFunctions.HasPilus(microbe) && DistanceFromMe(targetPosition) < 4.0f * microbe.EngulfSize && RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION * 2, random))
+                {
+                    MoveWithRandomTurn(1.5f, 2.0f, random, response);
+                }
+            }
         }
     }
 
