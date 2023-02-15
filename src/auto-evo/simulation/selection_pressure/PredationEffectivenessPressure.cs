@@ -15,6 +15,7 @@ public class PredationEffectivenessPressure : SelectionPressure
         new List<IMutationStrategy<MicrobeSpecies>> {
             new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
             AddOrganelleAnywhere.ThatCreateCompound(Compound.ByName("oxytoxy")),
+            new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent, AddOrganelleAnywhere.Direction.FRONT),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.OPPORTUNISM, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.FEAR, -150.0f),
             new RemoveAnyOrganelle(),

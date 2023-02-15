@@ -9,20 +9,23 @@ class CommonMutationFunctions
     public static OrganelleTemplate GetRealisticPosition(OrganelleDefinition organelle,
         OrganelleLayout<OrganelleTemplate> existingOrganelles, Random random)
     {
-        var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
+        var possible = ValidOrganellePositions(organelle, existingOrganelles, random);
+        return possible.Random(random);
+    }
 
-        // Loop through all the organelles and find an open spot to
-        // place our new organelle attached to existing organelles
-        // This almost always is over at the first iteration, so its
-        // not a huge performance hog
-        foreach (var otherOrganelle in existingOrganelles.OrderBy(_ => random.Next()))
+    public static List<OrganelleTemplate> ValidOrganellePositions(OrganelleDefinition organelle,
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, Random random)
+    {
+        var retval = new List<OrganelleTemplate>();
+
+        foreach (var existingOrganelle in existingOrganelles)
         {
             // The otherOrganelle is the organelle we wish to be next to
             // Loop its hexes and check positions next to them
-            foreach (var hex in otherOrganelle.RotatedHexes)
+            foreach (var hex in existingOrganelle.RotatedHexes)
             {
                 // Offset by hexes in organelle we are looking at
-                var pos = otherOrganelle.Position + hex;
+                var pos = existingOrganelle.Position + hex;
 
                 for (int sideRoll = 1; sideRoll <= 6; ++sideRoll)
                 {
@@ -33,16 +36,15 @@ class CommonMutationFunctions
                         // Offset by hex offset multiplied by a factor to check for greater range
                         var hexOffset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
                         hexOffset *= radius;
-                        result.Position = pos + hexOffset;
 
                         // Check every possible rotation value.
                         for (int rotation = 0; rotation <= 5; ++rotation)
                         {
-                            result.Orientation = rotation;
+                            var potentialPlacement = new OrganelleTemplate(organelle, pos + hexOffset, rotation);
 
-                            if (existingOrganelles.CanPlace(result))
+                            if (existingOrganelles.CanPlace(potentialPlacement))
                             {
-                                return result;
+                                retval.Add(potentialPlacement);
                             }
                         }
                     }
@@ -50,9 +52,7 @@ class CommonMutationFunctions
             }
         }
 
-        // We didnt find an open spot, this doesn't make much sense
-        throw new Exception("Mutation code could not find a good position " +
-            "for a new organelle");
+        return retval;
     }
 
     public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles)
