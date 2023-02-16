@@ -44,15 +44,18 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             {
                 position = CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random());
             }
-            else if (direction == Direction.FRONT)
-            {
-                // TODO: Just get a random of the top
-                position = CommonMutationFunctions.ValidOrganellePositions(organelle, newSpecies.Organelles, new Random()).OrderBy(x => x.Position.R).First();
-            }
             else
             {
-                // TODO: Just get a random of the bottom
-                position = CommonMutationFunctions.ValidOrganellePositions(organelle, newSpecies.Organelles, new Random()).OrderBy(x => x.Position.R).Last();
+                var choices = new List<OrganelleTemplate>
+                {
+                    CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random()),
+                    CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random()),
+                    CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random()),
+                    CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random()),
+                    CommonMutationFunctions.GetRealisticPosition(organelle, newSpecies.Organelles, new Random())
+                };
+
+                position = choices.OrderBy(x => direction == Direction.FRONT ? x.Position.R : -x.Position.R).First();
             }
 
             newSpecies.Organelles.Add(position);
