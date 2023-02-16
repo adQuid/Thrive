@@ -99,7 +99,7 @@ public class PredationEffectivenessPressure : SelectionPressure
 
         foreach (var organelle in predator.Organelles)
         {
-            if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
+            if (organelle.Definition.HasComponentFactory<PilusComponentFactory>() && organelle.Position.Q == 0)
             {
                 return prey.BaseHexSize;
             }
