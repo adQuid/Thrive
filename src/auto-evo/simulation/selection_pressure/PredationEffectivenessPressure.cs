@@ -74,8 +74,7 @@ public class PredationEffectivenessPressure : SelectionPressure
             return 0.0f;
         }
 
-        // TEMPORARY logic for auto-evo testing
-        var SizeScore = predator.Organelles.Count();
+        var SizeScore = predator.BaseHexSize;
 
         if (predator.BaseSpeed < 0.1f || predator.MembraneType.CellWall) 
         {
@@ -93,7 +92,7 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     private static float PilusScore(MicrobeSpecies predator, MicrobeSpecies prey)
     {
-        if (prey.BaseSpeed > 0)
+        if (prey.BaseSpeed > 0 || predator.BaseSpeed < 0.1f)
         {
             return 0.0f;
         }
