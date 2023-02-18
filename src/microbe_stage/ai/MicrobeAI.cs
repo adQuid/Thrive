@@ -546,7 +546,6 @@ public class MicrobeAI
                 if (MicrobeAIFunctions.HasPilus(microbe) && 
                     DistanceFromMe(targetPosition) < 8.0f * microbe.EngulfSize && RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION * 2, random))
                 {
-                    DebugFlash();
                     MoveWithRandomTurn(0.05f, 0.15f, random, response);
                 }
             }
