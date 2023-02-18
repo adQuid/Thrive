@@ -756,9 +756,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         if (CurrentGame == null)
             throw new InvalidOperationException("Returning to stage from editor without a game setup");
 
-        EditorGlobals.MaxMutationPoints = Constants.BASE_MUTATION_POINTS - random.Next(50);
+        EditorGlobals.MaxMutationPoints = Constants.BASE_MUTATION_POINTS - random.Next(30) - random.Next(30);
         savedMaxMutationPoints = EditorGlobals.MaxMutationPoints;
-        GD.Print("setting saved max to " + savedMaxMutationPoints);
         if (PityPopulation != null)
         {
             GameWorld.PlayerSpecies.Population = (long)PityPopulation;

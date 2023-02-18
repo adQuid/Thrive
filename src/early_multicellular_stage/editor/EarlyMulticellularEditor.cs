@@ -115,7 +115,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
     public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
-        return history.WhatWouldActionsCost(actions);
+        return CheatManager.InfiniteMP ? 0 : history.WhatWouldActionsCost(actions);
     }
 
     public override bool EnqueueAction(EditorAction action)
