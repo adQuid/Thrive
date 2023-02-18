@@ -273,11 +273,10 @@ public class MicrobeAI
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
         if (possiblePrey != null)
         {
-            bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
-                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
+            
             Vector3? prey = possiblePrey.GlobalTransform.origin;
 
-            EngagePrey(prey.Value, random, engulfPrey, response);
+            EngagePrey(possiblePrey, random, response);
             return;
         }
 
@@ -512,14 +511,17 @@ public class MicrobeAI
         MoveFullSpeed(response);
     }
 
-    private void EngagePrey(Vector3 target, Random random, bool engulf, MicrobeAIResponse response)
+    private void EngagePrey(Microbe target, Random random,  MicrobeAIResponse response)
     {
+        bool engulf = microbe.CanEngulf(target) &&
+                DistanceFromMe(target.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
+
         response.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
-        targetPosition = target;
+        targetPosition = target.GlobalTransform.origin;
         response.LookTarget = targetPosition;
         if (MicrobeAIFunctions.CanShootToxin(microbe))
         {
-            TryToLaunchToxin(target, response);
+            TryToLaunchToxin(targetPosition, response);
 
             if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION / 5, random))
             {
@@ -529,6 +531,24 @@ public class MicrobeAI
         else
         {
             MoveFullSpeed(response);
+
+            if (engulf)
+            {
+                // Just in case something is obstructing prey engulfing, wiggle a little sometimes
+                if (random.NextDouble() < 0.05)
+                {
+                    MoveWithRandomTurn(0.1f, 0.2f, random, response);
+                }
+            }
+            else if (!microbe.CanEngulf(target))
+            {
+                // try to slash with a pilus
+                if (MicrobeAIFunctions.HasPilus(microbe) && 
+                    DistanceFromMe(targetPosition) < 8.0f * microbe.EngulfSize && RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION * 2, random))
+                {
+                    MoveWithRandomTurn(0.05f, 0.15f, random, response);
+                }
+            }
         }
     }
 

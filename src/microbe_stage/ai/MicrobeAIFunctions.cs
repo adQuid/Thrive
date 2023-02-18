@@ -17,7 +17,8 @@ public class MicrobeAIFunctions
     {
         return targetMicrobe.Species != microbe.Species 
             && (WouldTryToToxinHuntBiggerPrey(microbe.Species.Behaviour.Opportunism) && CanShootToxin(microbe)
-            || CouldEngulf(microbe.EngulfSize, targetMicrobe.EngulfSize));
+            || (!IsAfraidOf(microbe, targetMicrobe) 
+            && (CouldEngulf(microbe.EngulfSize, targetMicrobe.EngulfSize) || (HasPilus(microbe)))));
     }
 
     public static bool WouldTryToToxinHuntBiggerPrey(float opportunism)
@@ -28,6 +29,19 @@ public class MicrobeAIFunctions
     public static bool CouldEngulf(float predatorSize, float preySize)
     {
         return predatorSize / preySize >= Constants.ENGULF_SIZE_RATIO_REQ;
+    }
+
+    public static bool HasPilus(Microbe microbe)
+    {
+        foreach(var organelle in microbe.organelles.Organelles)
+        {
+            if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static bool CanShootToxin(Microbe microbe)
