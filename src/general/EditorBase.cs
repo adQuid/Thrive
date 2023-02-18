@@ -852,7 +852,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         mutationPointsCache = history.CalculateMutationPointsLeft();
 
-        if (mutationPointsCache.Value < 0 || mutationPointsCache > EditorGlobals.MaxMutationPoints)
+        if (mutationPointsCache.Value < 0)
         {
             GD.PrintErr("Invalid MP amount: ", mutationPointsCache,
                 " This should only happen if the user disabled the Infinite MP cheat while having mutated too much.");

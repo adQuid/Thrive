@@ -106,7 +106,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
     public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
-        return history.WhatWouldActionsCost(actions);
+        return CheatManager.InfiniteMP ? 0 : history.WhatWouldActionsCost(actions);
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
