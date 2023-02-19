@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using AutoEvo;
 using Godot;
+using System.Linq;
 
 class MetabolicStabilityPressure : SelectionPressure
 {
@@ -25,13 +26,24 @@ class MetabolicStabilityPressure : SelectionPressure
 
     public override float Score(Species species, SimulationCache cache)
     {
-        var microbeSpecies = (MicrobeSpecies)species;
-        var energyBalance = MicrobeInternalCalculations.ComputeEnergyBalance(microbeSpecies.Organelles, Patch.Biome, microbeSpecies.MembraneType);
+        if (species is MicrobeSpecies)
+        {
+            return ScoreByCell((MicrobeSpecies)species, cache);
+        }
+        else
+        {
+            return ((EarlyMulticellularSpecies)species).Cells.Sum(cell => ScoreByCell(cell, cache));
+        }
+    }
+
+    private float ScoreByCell(ICellProperties cell, SimulationCache cache)
+    {
+        var energyBalance = MicrobeInternalCalculations.ComputeEnergyBalance(cell.Organelles, Patch.Biome, cell.MembraneType);
 
         if (energyBalance.FinalBalance > 0)
         {
             return 1.0f / energyBalance.TotalConsumptionStationary;
-        } 
+        }
         else if (energyBalance.FinalBalanceStationary >= 0)
         {
             return 0.5f / energyBalance.TotalConsumptionStationary;

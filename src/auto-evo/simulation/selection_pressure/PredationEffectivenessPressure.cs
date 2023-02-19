@@ -38,7 +38,8 @@ public class PredationEffectivenessPressure : SelectionPressure
     {
         if (!(species is MicrobeSpecies || Prey is MicrobeSpecies))
         {
-            throw new NotImplementedException();
+            // TODO: Add logic for multicell
+            return 0.0f;
         }
 
         // Very lazy way of preventing canibalism

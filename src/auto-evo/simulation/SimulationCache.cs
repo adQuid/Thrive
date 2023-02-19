@@ -1,4 +1,6 @@
-﻿namespace AutoEvo
+﻿using System.Linq;
+
+namespace AutoEvo
 {
     using System.Collections.Generic;
 
@@ -13,9 +15,9 @@
     /// </remarks>
     public class SimulationCache
     {
-        private readonly Dictionary<(MicrobeSpecies, BiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
-        private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
-        private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
+        private readonly Dictionary<(Species, BiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
+        private readonly Dictionary<Species, float> cachedBaseSpeeds = new();
+        private readonly Dictionary<Species, float> cachedBaseHexSizes = new();
 
         private readonly Dictionary<(TweakedProcess, BiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
             new();
@@ -24,8 +26,10 @@
         {
         }
 
-        public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
+        public EnergyBalanceInfo GetEnergyBalanceForSpecies(Species species, BiomeConditions biomeConditions)
         {
+
+
             var key = (species, biomeConditions);
 
             if (cachedEnergyBalances.TryGetValue(key, out var cached))
@@ -33,13 +37,23 @@
                 return cached;
             }
 
-            cached = MicrobeInternalCalculations.ComputeEnergyBalance(species.Organelles, biomeConditions, species.MembraneType);
+            if (species is MicrobeSpecies)
+            {
+                cached = MicrobeInternalCalculations.ComputeEnergyBalance(((MicrobeSpecies)species).Organelles, biomeConditions, ((MicrobeSpecies)species).MembraneType);
+            }
+            else
+            {
+                // base it on the worst cell, since they don't share ATP IIRC
+                cached =
+                    ((EarlyMulticellularSpecies)species).Cells.Select(cell => cell.CellType)
+                    .Min(cell => MicrobeInternalCalculations.ComputeEnergyBalance(cell.Organelles, biomeConditions, cell.MembraneType));
+            }
 
             cachedEnergyBalances.Add(key, cached);
             return cached;
         }
 
-        public float GetBaseSpeedForSpecies(MicrobeSpecies species)
+        public float GetBaseSpeedForSpecies(Species species)
         {
             if (cachedBaseSpeeds.TryGetValue(species, out var cached))
             {

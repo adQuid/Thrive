@@ -27,7 +27,9 @@ public class StoreGlucosePressure : SelectionPressure
         }
         else
         {
-            throw new NotImplementedException();
+            var multicellSpecies = (EarlyMulticellularSpecies)species;
+
+            return multicellSpecies.Cells.Select(cell => cell.CellType).Sum(cell => cell.Organelles.Sum(x => x.Definition.Storage()));
         }
 
     }
