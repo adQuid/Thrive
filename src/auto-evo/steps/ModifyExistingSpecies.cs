@@ -65,14 +65,14 @@ public class ModifyExistingSpecies : IRunStep
     /// <param name="cache"></param>
     /// <param name="niche"></param>
     /// <returns>List of viable variants, and the provided species</returns>
-    public static List<MicrobeSpecies> ViableVariants(RunResults results, 
+    public static List<Species> ViableVariants(RunResults results, 
         Species species, 
         Patch patch, 
         MutationLibrary mutationLibrary, 
         SimulationCache cache, 
         List<SelectionPressure>? niche)
     {
-        var baseSpecies = (MicrobeSpecies)results.LastestVersionForSpecies(species);
+        var baseSpecies = results.LastestVersionForSpecies(species);
 
         var selectionPressures = MicheFactory.PressuresFromPatch(species, patch, mutationLibrary, cache, niche);
 
@@ -83,7 +83,7 @@ public class ModifyExistingSpecies : IRunStep
             pressureScores[curPressure] = curPressure.Score(baseSpecies, cache);
         }
 
-        var viableVariants = new List<MicrobeSpecies> { baseSpecies };
+        var viableVariants = new List<Species> { baseSpecies };
 
         var pressuresSoFar = new List<SelectionPressure>();
         foreach (var curPressure in selectionPressures)
@@ -91,11 +91,9 @@ public class ModifyExistingSpecies : IRunStep
             pressuresSoFar.Add(curPressure);
 
             // For each viable variant, get a new variants that at least improve score a little bit
-            var potentialVariants = viableVariants.Select(startVariant =>
-                curPressure.MicrobeMutations.Select(mutationStrategy => mutationStrategy.MutationsOf(startVariant, mutationLibrary))
-                .SelectMany(x => x)
-                )
-                .SelectMany(x => x).ToList();
+            List<Species> potentialVariants = viableVariants.Select(startVariant =>
+                MutationsFrom(startVariant, curPressure, mutationLibrary)
+                ).SelectMany(x => x).Select(x => (Species)x).ToList();
             potentialVariants.AddRange(viableVariants);
 
             // Prune variants that hurt the previous scores too much
@@ -112,6 +110,18 @@ public class ModifyExistingSpecies : IRunStep
             .ToList();
     }
 
+    private static List<Species> MutationsFrom(Species species, SelectionPressure selectionPressure, MutationLibrary mutationLibrary)
+    {
+        if (species is MicrobeSpecies)
+        {
+            return selectionPressure.MicrobeMutations.SelectMany(mutationStrategy => mutationStrategy.MutationsOf((MicrobeSpecies)species, mutationLibrary).Select(x => (Species)x)).ToList();
+        }
+        else
+        {
+            return selectionPressure.MulticellularMutations.SelectMany(mutationStrategy => mutationStrategy.MutationsOf((EarlyMulticellularSpecies)species, mutationLibrary).Select(x => (Species)x)).ToList();
+        }        
+    }
+
     /// <summary>
     ///   Returns new list containing only species from the provided list that don't score too badly in the provided list of selection pressures.
     /// </summary>
@@ -120,12 +130,12 @@ public class ModifyExistingSpecies : IRunStep
     /// <param name="baseSpecies"></param>
     /// <param name="cache"></param>
     /// <returns>List of species not ruled to be inviable.</returns>
-    public static List<MicrobeSpecies> PruneInviableSpecies(List<MicrobeSpecies> potentialVariants,
+    public static List<Species> PruneInviableSpecies(List<Species> potentialVariants,
         List<SelectionPressure>? selectionPressures,
         Species baseSpecies,
         SimulationCache cache)
     {
-        var viableVariants = new List<MicrobeSpecies>();
+        var viableVariants = new List<Species>();
         foreach (var potentialVariant in potentialVariants)
         {
             var combinedScores = 0.0;
@@ -137,7 +147,10 @@ public class ModifyExistingSpecies : IRunStep
             if (combinedScores >= 0)
             {
                 // TODO: Move this somewhere better
-                ((MicrobeSpecies)potentialVariant).Colour = new Color((float)new Random().NextDouble(), 0.5f, 0.5f);
+                if (potentialVariant is MicrobeSpecies)
+                {
+                    ((MicrobeSpecies)potentialVariant).Colour = new Color((float)new Random().NextDouble(), 0.5f, 0.5f);
+                }
 
                 viableVariants.Add(potentialVariant);
             }
