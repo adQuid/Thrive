@@ -597,11 +597,11 @@ public partial class Microbe
     /// <summary>
     ///   Sets up the hitpoints of this microbe based on the Species membrane
     /// </summary>
-    private void SetupMicrobeHitpoints()
+    private void SetupMicrobeHitpoints(ICellProperties cell)
     {
         float currentHealth = Hitpoints / MaxHitpoints;
 
-        MaxHitpoints = ((ICellProperties)Species).MaxHealth();
+        MaxHitpoints = cell.MaxHealth();
 
         Hitpoints = MaxHitpoints * currentHealth;
     }

@@ -156,8 +156,6 @@ public partial class CellEditorComponent :
     private Label bestPatchLabel = null!;
     private Label worstPatchLabel = null!;
 
-    private Control autoEvoPredictionPanel = null!;
-
     private Slider rigiditySlider = null!;
     private TweakedColourPicker membraneColorPicker = null!;
 
@@ -545,8 +543,6 @@ public partial class CellEditorComponent :
 
             componentBottomLeftButtons.SetNamePlaceholder(TranslationServer.Translate("CELL_TYPE_NAME"));
 
-            autoEvoPredictionPanel.Visible = false;
-
             // In multicellular the body plan editor handles this
             behaviourTabButton.Visible = false;
             behaviourEditor.Visible = false;
@@ -593,8 +589,6 @@ public partial class CellEditorComponent :
         totalPopulationLabel = GetNode<Label>(TotalPopulationLabelPath);
         worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
         bestPatchLabel = GetNode<Label>(BestPatchLabelPath);
-
-        autoEvoPredictionPanel = GetNode<Control>(AutoEvoPredictionPanelPath);
 
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
         membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);

@@ -68,9 +68,9 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
         CellType.UpdateNameIfValid(newName);
     }
 
-    public float GetMaxHitpoints()
+    public float MaxHealth()
     {
-        return CellType.GetMaxHitpoints();
+        return CellType.MaxHealth();
     }
 
     public bool MatchesDefinition(IActionHex other)

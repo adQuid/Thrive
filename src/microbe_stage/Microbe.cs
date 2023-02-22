@@ -424,6 +424,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTra
             // We might as well store this here as we already casted it. This property is not saved to make working
             // with earlier saves easier
             cachedMicrobeSpecies = microbeSpecies;
+
+            cachedRotationSpeed = CellTypeProperties.BaseRotationSpeed;
+
+            FinishSpeciesSetup((MicrobeSpecies)Species);
         }
         else if (species is EarlyMulticellularSpecies earlyMulticellularSpecies)
         {
@@ -431,16 +435,19 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTra
             // ApplyMulticellularNonFirstCellSpecies
             MulticellularCellType = earlyMulticellularSpecies.Cells[0].CellType;
 
+            cachedRotationSpeed = CellTypeProperties.BaseRotationSpeed;
+
             cachedMulticellularSpecies = earlyMulticellularSpecies;
+
+            FinishSpeciesSetup(earlyMulticellularSpecies.CellTypes[0]);
         }
         else
         {
             throw new ArgumentException("Microbe can only be a microbe or early multicellular species");
         }
 
-        cachedRotationSpeed = CellTypeProperties.BaseRotationSpeed;
+        
 
-        FinishSpeciesSetup();
     }
 
     /// <summary>
@@ -897,7 +904,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTra
         return (newTranslation, Rotation - globalParentRotation);
     }
 
-    private void FinishSpeciesSetup()
+    private void FinishSpeciesSetup(ICellProperties cell)
     {
         if (CellTypeProperties.Organelles.Count < 1)
             throw new ArgumentException("Species with no organelles is not valid");
@@ -915,7 +922,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTra
                 State = MicrobeState.Normal;
         }
 
-        SetupMicrobeHitpoints();
+        SetupMicrobeHitpoints(cell);
     }
 
     private void SetScaleFromSpecies()
