@@ -601,7 +601,7 @@ public partial class Microbe
     {
         float currentHealth = Hitpoints / MaxHitpoints;
 
-        MaxHitpoints = ((MicrobeSpecies)Species).MaxHealth();
+        MaxHitpoints = ((ICellProperties)Species).MaxHealth();
 
         Hitpoints = MaxHitpoints * currentHealth;
     }

@@ -68,6 +68,11 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
         CellType.UpdateNameIfValid(newName);
     }
 
+    public float GetMaxHitpoints()
+    {
+        return CellType.GetMaxHitpoints();
+    }
+
     public bool MatchesDefinition(IActionHex other)
     {
         return CellType == ((CellTemplate)other).CellType;
