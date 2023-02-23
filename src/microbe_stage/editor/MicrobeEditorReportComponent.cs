@@ -46,9 +46,6 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     public NodePath CompoundsChartPath = null!;
 
     [Export]
-    public NodePath SpeciesPopulationChartPath = null!;
-
-    [Export]
     public NodePath GlucoseReductionLabelPath = null!;
 
     [Export]
@@ -116,7 +113,6 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         sunlightChart = GetNode<LineChart>(SunlightChartPath);
         atmosphericGassesChart = GetNode<LineChart>(AtmosphericGassesChartPath);
         compoundsChart = GetNode<LineChart>(CompoundsChartPath);
-        speciesPopulationChart = GetNode<LineChart>(SpeciesPopulationChartPath);
 
         reportTabPatchSelector.GetPopup().HideOnCheckableItemSelection = false;
 
