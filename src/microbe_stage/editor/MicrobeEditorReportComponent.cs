@@ -78,7 +78,6 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     private LineChart sunlightChart = null!;
     private LineChart atmosphericGassesChart = null!;
     private LineChart compoundsChart = null!;
-    private LineChart speciesPopulationChart = null!;
 
     private Texture temperatureIcon = null!;
 
@@ -172,7 +171,6 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         sunlightChart.ClearDataSets();
         atmosphericGassesChart.ClearDataSets();
         compoundsChart.ClearDataSets();
-        speciesPopulationChart.ClearDataSets();
 
         // Initialize datasets
         var temperatureData = new LineChartData
@@ -194,12 +192,6 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
                 };
 
                 GetChartForCompound(entry.Key.InternalName)?.AddDataSet(entry.Key.Name, dataset);
-            }
-
-            foreach (var entry in snapshot.SpeciesInPatch)
-            {
-                var dataset = new LineChartData { Colour = entry.Key.Colour };
-                speciesPopulationChart.AddDataSet(entry.Key.FormattedName, dataset);
             }
         }
 
@@ -234,7 +226,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
                 dataset.AddPoint(dataPoint);
             }
 
-            foreach (var entry in snapshot.SpeciesInPatch)
+            /*foreach (var entry in snapshot.SpeciesInPatch)
             {
                 var dataset = speciesPopulationChart.GetDataSet(entry.Key.FormattedName);
 
@@ -296,7 +288,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
                 }
 
                 dataset.AddPoint(dataPoint);
-            }
+            }*/
         }
 
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
@@ -305,7 +297,6 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
         compoundsChart.TooltipYAxisFormat = percentageFormat;
 
-        speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.DropDown;
 
         SpeciesPopulationDatasetsLegend? speciesPopDatasetsLegend = null;
 
@@ -313,8 +304,6 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         if (extinctSpecies.Any())
         {
             var datasets = extinctSpecies.Distinct().ToList();
-            speciesPopDatasetsLegend = new SpeciesPopulationDatasetsLegend(datasets, speciesPopulationChart);
-            speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.CustomOrNone;
         }
 
         sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5, null, null, null, 5);
@@ -322,10 +311,6 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         atmosphericGassesChart.Plot(
             TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"), null,
             null, 5);
-        speciesPopulationChart.Plot(
-            TranslationServer.Translate("YEARS"), string.Empty, 5, TranslationServer.Translate("SPECIES_LIST"),
-            speciesPopDatasetsLegend,
-            Editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName, 5);
         compoundsChart.Plot(
             TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"), null, null, 5);
 
@@ -336,18 +321,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
             var extinctionType = point.ExtinctEverywhere ?
                 TranslationServer.Translate("EXTINCT_FROM_THE_PLANET") :
                 TranslationServer.Translate("EXTINCT_FROM_PATCH");
-
-            // Override datapoint tooltip to show extinction type instead of just zero.
-            // Doesn't need to account for ToolTipAxesFormat as we don't have it for species pop graph
-            speciesPopulationChart.OverrideDataPointToolTipDescription(point.Name, point.ExtinctPoint,
-                $"{point.Name}\n{point.TimePeriod.FormatNumber()}\n{extinctionType}");
         }
-
-        var cross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
-        var skull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
-
-        speciesPopulationChart.AddIconLegend(cross, TranslationServer.Translate("EXTINCT_FROM_PATCH"));
-        speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("EXTINCT_FROM_THE_PLANET"), 25);
     }
 
     public void UpdateTimeline(Patch? mapSelectedPatch, Patch? patch = null)
