@@ -23,8 +23,20 @@ public class AutotrophEnergyEfficiencyPressure : SelectionPressure
 
     public override float Score(Species species, SimulationCache cache)
     {
-        return CommonSelectionFunctions.EnergyGenerationScore((MicrobeSpecies)species, Compound, Patch, cache) /
-            CommonSelectionFunctions.SpeciesOsmoregulationCost((MicrobeSpecies)species);
+        // it's important to keep this ordered since this is spawning order
+        List <ICellProperties> cells = new();
+
+        if (species is MicrobeSpecies)
+        {
+            cells.Add((MicrobeSpecies)species);
+        }
+        else
+        {
+            cells.AddRange(((EarlyMulticellularSpecies)species).CellTypes);
+        }
+
+        return cells.Sum(cell => CommonSelectionFunctions.EnergyGenerationScore(cell, Compound, Patch, cache)) /
+            cells.Sum(cell => CommonSelectionFunctions.SpeciesOsmoregulationCost(cell));
     }
 
     public override string Name()

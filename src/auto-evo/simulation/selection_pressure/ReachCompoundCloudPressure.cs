@@ -22,6 +22,12 @@ public class ReachCompoundCloudPressure : SelectionPressure
 
     public override float Score(Species species, SimulationCache cache)
     {
+        // TODO: Add logic for multicel species (do I really need to?)
+        if (!(species is MicrobeSpecies))
+        {
+            return 0.0f;
+        }
+
         var microbeSpecies = (MicrobeSpecies)species;
 
         return microbeSpecies.BaseSpeed;

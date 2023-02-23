@@ -96,6 +96,12 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
             Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
     }
 
+    public float MaxHealth()
+    {
+        return MembraneType.Hitpoints +
+            (MembraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
+    }
+
     public Dictionary<Compound, float> CalculateTotalComposition()
     {
         var result = new Dictionary<Compound, float>();

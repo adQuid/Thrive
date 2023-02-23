@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 /// </summary>
 /// <typeparam name="T">The concrete type of the hex to hold</typeparam>
 [UseThriveSerializer]
-public abstract class HexLayout<T> : ICollection<T>
+public abstract class HexLayout<T> : ICollection<T>, IEnumerable<T>
     where T : class, IPositionedHex
 {
     [JsonProperty]

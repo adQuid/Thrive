@@ -22,4 +22,6 @@ public interface ICellProperties
 
     public void RepositionToOrigin();
     public void UpdateNameIfValid(string newName);
+
+    public float MaxHealth();
 }

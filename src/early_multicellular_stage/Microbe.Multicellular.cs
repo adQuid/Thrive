@@ -55,7 +55,7 @@ public partial class Microbe
 
         Species = species;
 
-        FinishSpeciesSetup();
+        FinishSpeciesSetup(cellType);
 
         // We have to force our membrane to be setup here so that the attach logic will have valid membrane data
         // to work with

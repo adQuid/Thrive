@@ -36,9 +36,10 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     public override float Score(Species species, SimulationCache cache)
     {
-        if (!(species is MicrobeSpecies || Prey is MicrobeSpecies))
+        if (!(species is MicrobeSpecies && Prey is MicrobeSpecies))
         {
-            throw new NotImplementedException();
+            // TODO: Add logic for multicell
+            return 0.0f;
         }
 
         // Very lazy way of preventing canibalism
