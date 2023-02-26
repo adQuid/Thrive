@@ -55,8 +55,8 @@ public static class SpawnHelpers
         microbe.AddToGroup(Constants.AI_TAG_MICROBE);
         microbe.AddToGroup(Constants.PROCESS_GROUP);
 
-        if (aiControlled)
-            microbe.AddToGroup(Constants.AI_GROUP);
+        // since the player might be leading a colony, always tag as AI
+        microbe.AddToGroup(Constants.AI_GROUP);
 
         if (multicellularCellType != null)
         {
