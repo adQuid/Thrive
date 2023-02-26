@@ -116,7 +116,7 @@ public class MicrobeAI
         {
             foreach(var child in microbe.ColonyChildren)
             {
-                retval.DroneResponses.Add(DroneAI.Think(child));
+                retval.DroneResponses.Add(child.DroneAIThink(delta, random, data));
             }
         }
 

@@ -7,7 +7,14 @@ using Godot;
 
 class DroneAI
 {
-    public static DroneAIResponse Think(Microbe microbe)
+    private Microbe microbe;
+
+    public DroneAI(Microbe microbe)
+    {
+        this.microbe = microbe;
+    }
+
+    public DroneAIResponse Think(float delta, Random random, MicrobeAICommonData data)
     {
         var retval = new DroneAIResponse();
         retval.Drone = microbe;
@@ -18,7 +25,7 @@ class DroneAI
         return retval;
     }
 
-    private static void DebugFlash(Microbe microbe)
+    private void DebugFlash()
     {
         microbe.Flash(1.0f, new Color(255.0f, 0.0f, 0.0f));
     }
