@@ -172,8 +172,8 @@ public partial class Microbe
             }
 
             state = value;
-            if (Colony != null)
-                Colony.State = value;
+            /*if (Colony != null)
+                Colony.State = value;*/
 
             if (value == MicrobeState.Unbinding && IsPlayerMicrobe)
                 OnUnbindEnabled?.Invoke(this);

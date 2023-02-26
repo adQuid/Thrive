@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Godot;
+using Newtonsoft.Json;
 
 class DroneAI
 {
+    [JsonProperty]
     private Microbe microbe;
 
     public DroneAI(Microbe microbe)
@@ -19,11 +21,11 @@ class DroneAI
         var retval = new DroneAIResponse();
         retval.Drone = microbe;
 
-        if (microbe.CellTypeProperties.MembraneType.CellWall)
+        if (microbe != null)
         {
             var thingIMightWantToEat = NearestEngulfableThing(data);
 
-            if (thingIMightWantToEat != null && DistanceFromMe((Vector3)thingIMightWantToEat) < 15.0f)
+            if (thingIMightWantToEat != null && DistanceFromMe((Vector3)thingIMightWantToEat) < 200.0f)
             {
                 retval.State = Microbe.MicrobeState.Engulf;
             }
@@ -34,7 +36,7 @@ class DroneAI
 
     private Vector3? NearestEngulfableThing(MicrobeAICommonData data)
     {
-        float lowestDistance = 9999.0f;
+        float lowestDistance = float.MaxValue;
         Vector3? target = null;
 
         foreach (var chunk in data.AllChunks)
@@ -46,12 +48,12 @@ class DroneAI
             }
         }
 
-        foreach (var microbe in data.AllMicrobes)
+        foreach (var possiblePrey in data.AllMicrobes)
         {
-            if (DistanceFromMe(microbe.GlobalTransform.origin) < lowestDistance)
+            if (MicrobeAIFunctions.CanTryToEatMicrobe(microbe, possiblePrey) && DistanceFromMe(possiblePrey.GlobalTransform.origin) < lowestDistance)
             {
-                target = microbe.GlobalTransform.origin;
-                lowestDistance = DistanceFromMe(microbe.GlobalTransform.origin);
+                target = possiblePrey.GlobalTransform.origin;
+                lowestDistance = DistanceFromMe(possiblePrey.GlobalTransform.origin);
             }
         }
 
@@ -60,7 +62,7 @@ class DroneAI
 
     private float DistanceFromMe(Vector3 target)
     {
-        return (target - microbe.Translation).LengthSquared();
+        return (target - microbe.GlobalTransform.origin).LengthSquared();
     }
 
     private void DebugFlash()

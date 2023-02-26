@@ -114,23 +114,28 @@ public class MicrobeAI
 
         if (microbe.Colony != null)
         {
-            foreach(var child in microbe.ColonyChildren)
+            foreach (var child in microbe.ColonyChildren)
             {
-                retval.DroneResponses.Add(child.DroneAIThink(delta, random, data));
+                retval.DroneResponses.AddRange(DroneAIResponses(child, delta, random, data));
             }
         }
 
         // Don't go further as player
         if (microbe.IsPlayerMicrobe)
         {
-            return retval;
+            if (retval.DroneResponses.Count() > 0)
+            {
+                return retval;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // For now don't think if immobile
-        if (MicrobeInternalCalculations.CalculateSpeed(((MicrobeSpecies)microbe.Species).Organelles, microbe.Membrane.Type, ((MicrobeSpecies)microbe.Species).MembraneRigidity) <= 0.0f)
+        if (microbe is MicrobeSpecies && MicrobeInternalCalculations.CalculateSpeed(((MicrobeSpecies)microbe.Species).Organelles, microbe.Membrane.Type, ((MicrobeSpecies)microbe.Species).MembraneRigidity) <= 0.0f)
             return null;
-
-        
 
         timeSinceSignalSniffing += delta;
 
@@ -160,6 +165,23 @@ public class MicrobeAI
 
         // We clear here for update, this is why we stored above!
         microbe.TotalAbsorbedCompounds.Clear();
+
+        return retval;
+    }
+
+    public List<DroneAIResponse> DroneAIResponses(Microbe root, float delta, Random random, MicrobeAICommonData data)
+    {
+        var retval = new List<DroneAIResponse>();
+
+        retval.Add(root.DroneAIThink(delta, random, data));
+
+        if (root.ColonyChildren != null)
+        {
+            foreach (var child in root.ColonyChildren)
+            {
+                retval.AddRange(DroneAIResponses(child, delta, random, data));
+            }
+        }
 
         return retval;
     }
