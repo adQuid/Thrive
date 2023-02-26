@@ -110,11 +110,13 @@ public class MicrobeAI
         if (microbe.ColonyParent != null)
             return null;
 
+        MicrobeAIResponse retval = new MicrobeAIResponse();
+
         if (microbe.Colony != null)
         {
             foreach(var child in microbe.ColonyChildren)
             {
-                DroneAI.Think(child);
+                retval.DroneResponses.Add(DroneAI.Think(child));
             }
         }
 
@@ -128,7 +130,7 @@ public class MicrobeAI
         if (MicrobeInternalCalculations.CalculateSpeed(((MicrobeSpecies)microbe.Species).Organelles, microbe.Membrane.Type, ((MicrobeSpecies)microbe.Species).MembraneRigidity) <= 0.0f)
             return null;
 
-        MicrobeAIResponse retval = new MicrobeAIResponse();
+        
 
         timeSinceSignalSniffing += delta;
 

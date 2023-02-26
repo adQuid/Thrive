@@ -7,9 +7,15 @@ using Godot;
 
 class DroneAI
 {
-    public static void Think(Microbe microbe)
+    public static DroneAIResponse Think(Microbe microbe)
     {
-        DebugFlash(microbe);
+        var retval = new DroneAIResponse();
+        retval.Drone = microbe;
+
+        retval.State = Microbe.MicrobeState.Engulf;
+        //DebugFlash(microbe);
+
+        return retval;
     }
 
     private static void DebugFlash(Microbe microbe)

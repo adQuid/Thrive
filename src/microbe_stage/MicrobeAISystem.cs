@@ -118,6 +118,11 @@ public class MicrobeAISystem
                 microbe.QueueEmitToxin(Compound.ByName("oxytoxy"));
                 microbe.QueueEmitToxin(Compound.ByName("glycotoxy"));
             }
+
+            foreach (var droneResponse in response.DroneResponses)
+            {
+                droneResponse.Drone.State = droneResponse.State;
+            }
         }
     }
 }
