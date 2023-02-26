@@ -110,6 +110,20 @@ public class MicrobeAI
         if (microbe.ColonyParent != null)
             return null;
 
+        if (microbe.Colony != null)
+        {
+            foreach(var child in microbe.ColonyChildren)
+            {
+                DroneAI.Think(child);
+            }
+        }
+
+        // Don't go further as player
+        if (microbe.IsPlayerMicrobe)
+        {
+            return null;
+        }
+
         // For now don't think if immobile
         if (MicrobeInternalCalculations.CalculateSpeed(((MicrobeSpecies)microbe.Species).Organelles, microbe.Membrane.Type, ((MicrobeSpecies)microbe.Species).MembraneRigidity) <= 0.0f)
             return null;

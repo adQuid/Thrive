@@ -298,7 +298,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTra
         CurrentGame = currentGame;
         IsPlayerMicrobe = isPlayer;
 
-        if (!isPlayer)
+        //if (!isPlayer)
             ai = new MicrobeAI(this);
 
         // Needed for immediately applying the species
@@ -774,9 +774,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTra
 
     public MicrobeAIResponse? AIThink(float delta, Random random, MicrobeAICommonData data)
     {
-        if (IsPlayerMicrobe)
-            throw new InvalidOperationException("AI can't run on the player microbe");
-
         if (Dead)
             return null;
 
