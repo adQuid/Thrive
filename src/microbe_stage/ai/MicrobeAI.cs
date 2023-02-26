@@ -123,7 +123,7 @@ public class MicrobeAI
         // Don't go further as player
         if (microbe.IsPlayerMicrobe)
         {
-            return null;
+            return retval;
         }
 
         // For now don't think if immobile
