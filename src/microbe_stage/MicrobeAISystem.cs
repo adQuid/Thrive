@@ -122,6 +122,13 @@ public class MicrobeAISystem
             foreach (var droneResponse in response.DroneResponses)
             {
                 droneResponse.Drone.State = droneResponse.State;
+
+                if (droneResponse.ToxinShootTarget != null)
+                {
+                    droneResponse.Drone.AgentFirePoint = (Vector3)droneResponse.ToxinShootTarget;
+                    droneResponse.Drone.QueueEmitToxin(Compound.ByName("oxytoxy"));
+                    droneResponse.Drone.QueueEmitToxin(Compound.ByName("glycotoxy"));
+                }
             }
         }
     }

@@ -11,6 +11,12 @@ class DroneAI
     [JsonProperty]
     private Microbe microbe;
 
+    [JsonProperty]
+    private Microbe? microbeIMightShoot;
+
+    [JsonProperty]
+    private Vector3? thingImightEngulf;
+
     public DroneAI(Microbe microbe)
     {
         this.microbe = microbe;
@@ -23,41 +29,52 @@ class DroneAI
 
         if (microbe != null)
         {
-            var thingIMightWantToEat = NearestEngulfableThing(data);
+            PopulateTargets(data);
 
-            if (thingIMightWantToEat != null && DistanceFromMe((Vector3)thingIMightWantToEat) < 200.0f)
+            if (thingImightEngulf != null && DistanceFromMe((Vector3)thingImightEngulf) < 200.0f)
             {
                 retval.State = Microbe.MicrobeState.Engulf;
+            }
+
+            if (microbeIMightShoot != null && DistanceFromMe((Vector3)microbeIMightShoot.GlobalTransform.origin) < 400.0f)
+            {
+                retval.ToxinShootTarget = microbeIMightShoot.GlobalTransform.origin;
             }
         }
 
         return retval;
     }
 
-    private Vector3? NearestEngulfableThing(MicrobeAICommonData data)
+    private void PopulateTargets(MicrobeAICommonData data)
     {
-        float lowestDistance = float.MaxValue;
+        float lowestEngulfDistance = float.MaxValue;
         Vector3? target = null;
 
         foreach (var chunk in data.AllChunks)
         {
-            if (DistanceFromMe(chunk.GlobalTransform.origin) < lowestDistance)
+            if (DistanceFromMe(chunk.GlobalTransform.origin) < lowestEngulfDistance)
             {
-                target = chunk.GlobalTransform.origin;
-                lowestDistance = DistanceFromMe(chunk.GlobalTransform.origin);
+                thingImightEngulf = chunk.GlobalTransform.origin;
+                lowestEngulfDistance = DistanceFromMe(chunk.GlobalTransform.origin);
             }
         }
 
         foreach (var possiblePrey in data.AllMicrobes)
         {
-            if (MicrobeAIFunctions.CanTryToEatMicrobe(microbe, possiblePrey) && DistanceFromMe(possiblePrey.GlobalTransform.origin) < lowestDistance)
+            if (MicrobeAIFunctions.CanTryToEatMicrobe(microbe, possiblePrey) && DistanceFromMe(possiblePrey.GlobalTransform.origin) < lowestEngulfDistance)
             {
-                target = possiblePrey.GlobalTransform.origin;
-                lowestDistance = DistanceFromMe(possiblePrey.GlobalTransform.origin);
+                if (MicrobeAIFunctions.CouldEngulf(microbe.EngulfSize, possiblePrey.EngulfSize))
+                {
+                    thingImightEngulf = possiblePrey.GlobalTransform.origin;
+                    lowestEngulfDistance = DistanceFromMe(possiblePrey.GlobalTransform.origin);
+                }
+                if (MicrobeAIFunctions.WouldTryToToxinHuntBiggerPrey(microbe.Species.Behaviour.Opportunism) && MicrobeAIFunctions.CanShootToxin(microbe))
+                {
+                    microbeIMightShoot = possiblePrey;
+                }
+
             }
         }
-
-        return target;
     }
 
     private float DistanceFromMe(Vector3 target)
