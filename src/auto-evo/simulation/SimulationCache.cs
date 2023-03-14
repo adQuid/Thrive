@@ -45,8 +45,8 @@ namespace AutoEvo
             {
                 // base it on the worst cell, since they don't share ATP IIRC
                 cached =
-                    ((EarlyMulticellularSpecies)species).Cells.Select(cell => cell.CellType)
-                    .Min(cell => MicrobeInternalCalculations.ComputeEnergyBalance(cell.Organelles, biomeConditions, cell.MembraneType));
+                    ((EarlyMulticellularSpecies)species).Cells.Select(cell => MicrobeInternalCalculations.ComputeEnergyBalance(cell.CellType.Organelles, biomeConditions, cell.CellType.MembraneType))
+                    .OrderBy(energyBalanceInfo => energyBalanceInfo.FinalBalance).First();
             }
 
             cachedEnergyBalances.Add(key, cached);
