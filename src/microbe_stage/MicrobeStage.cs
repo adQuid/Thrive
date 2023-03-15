@@ -1086,7 +1086,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     private void DebugPrintSpecies()
     {
         var i = 0;
-        foreach (MicrobeSpecies toSpawn in CurrentGame.GameWorld.Map.CurrentPatch.SpeciesInPatch.Keys)
+        foreach (Species toSpawn in CurrentGame.GameWorld.Map.CurrentPatch.SpeciesInPatch.Keys)
         {
             if (toSpawn != Player.Species)
             {
