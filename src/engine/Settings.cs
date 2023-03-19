@@ -210,7 +210,7 @@ public class Settings
     /// <summary>
     ///   When true the microbe intro is played on new game
     /// </summary>
-    public SettingValue<bool> PlayMicrobeIntroVideo { get; set; } = new(true);
+    public SettingValue<bool> ShowNarrativeSlides { get; set; } = new(true);
 
     /// <summary>
     ///   If false auto saving will be disabled

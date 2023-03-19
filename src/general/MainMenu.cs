@@ -166,7 +166,7 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (Settings.Instance.PlayMicrobeIntroVideo)
+        if (Settings.Instance.ShowNarrativeSlides)
         {
             // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
             // before the stage music starts)
@@ -178,7 +178,7 @@ public class MainMenu : NodeWithInput
             if (settings.Origin == WorldGenerationSettings.LifeOrigin.Panspermia)
             {
                 transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, "INTRO_MESSAGE_PANSPERMIA"));
-                Settings.Instance.PlayMicrobeIntroVideo = new(false);
+                Settings.Instance.ShowNarrativeSlides = new(false);
             }
             else
             {

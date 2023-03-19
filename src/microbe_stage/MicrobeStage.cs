@@ -663,7 +663,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         var transitions = new List<ITransition>();
         transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.5f));
 
-        if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && (!TutorialState.DisplayedMessages.Contains("EDITOR_MESSAGE_1") || PityPopulation != null))
+        if (!CurrentGame.FreeBuild && Settings.Instance.ShowNarrativeSlides && (!TutorialState.DisplayedMessages.Contains("EDITOR_MESSAGE_1") || PityPopulation != null))
         {
             var text = PityPopulation != null ? "PITY_EDITOR_MESSAGE_1" : "EDITOR_MESSAGE_1";
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.StayBlack, 5.0f, text));
@@ -983,7 +983,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // going back to the stage
         if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!) && promptPatchNameChange)
         {
-            if (!CurrentGame.FreeBuild && Settings.Instance.PlayMicrobeIntroVideo && "epi".IsSubsequenceOf(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower()))
+            if (!CurrentGame.FreeBuild && Settings.Instance.ShowNarrativeSlides && "epi".IsSubsequenceOf(GameWorld.Map.CurrentPatch!.Name.ToString().ToLower()))
             {
                 HUD.DisplayIntroMessage("EPIPELAGIC_INTRO_MESSAGE");
             }
