@@ -36,7 +36,7 @@ class DroneAI
                 retval.State = Microbe.MicrobeState.Engulf;
             }
 
-            if (microbeIMightShoot != null && DistanceFromMe((Vector3)microbeIMightShoot.GlobalTransform.origin) < 400.0f)
+            if (microbeIMightShoot != null && DistanceFromMe((Vector3)microbeIMightShoot.GlobalTransform.origin) < 800.0f)
             {
                 retval.ToxinShootTarget = microbeIMightShoot.GlobalTransform.origin;
             }
@@ -48,6 +48,11 @@ class DroneAI
     private void PopulateTargets(MicrobeAICommonData data)
     {
         float lowestEngulfDistance = float.MaxValue;
+        float lowestShootDistance = float.MaxValue;
+
+        thingImightEngulf = null;
+        microbeIMightShoot = null;
+
         Vector3? target = null;
 
         foreach (var chunk in data.AllChunks)
@@ -68,9 +73,13 @@ class DroneAI
                     thingImightEngulf = possiblePrey.GlobalTransform.origin;
                     lowestEngulfDistance = DistanceFromMe(possiblePrey.GlobalTransform.origin);
                 }
-                if (MicrobeAIFunctions.WouldTryToToxinHuntBiggerPrey(microbe.Species.Behaviour.Opportunism) && MicrobeAIFunctions.CanShootToxin(microbe))
+                if (((MicrobeAIFunctions.CouldEngulf(microbe.EngulfSize, possiblePrey.EngulfSize) || MicrobeAIFunctions.WouldTryToToxinHuntBiggerPrey(microbe.Species.Behaviour.Opportunism))) 
+                    && MicrobeAIFunctions.CanShootToxin(microbe) 
+                    && DistanceFromMe(possiblePrey.GlobalTransform.origin) < lowestShootDistance
+                    && !possiblePrey.Dead)
                 {
                     microbeIMightShoot = possiblePrey;
+                    lowestShootDistance = DistanceFromMe(possiblePrey.GlobalTransform.origin);
                 }
 
             }

@@ -213,9 +213,9 @@ public partial class Microbe
 
         var props = new AgentProperties(Species, agentType);
 
-        var direction = (AgentFirePoint - Translation).Normalized();
+        var direction = (AgentFirePoint - GlobalTransform.origin).Normalized();
 
-        var position = Translation + (direction * ejectionDistance);
+        var position = GlobalTransform.origin + (direction * ejectionDistance);
 
         var agent = SpawnHelpers.SpawnAgent(props, agentType, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),
