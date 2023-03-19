@@ -2340,7 +2340,7 @@ msgstr "Play intro video"
 
 #: ../src/general/OptionsMenu.tscn:996
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr "Play microbe intro on new game"
+msgstr "Show Pretentious Narrative Slides"
 
 #: ../src/general/OptionsMenu.tscn:1004
 msgid "AUTOSAVE_DURING_THE_GAME"

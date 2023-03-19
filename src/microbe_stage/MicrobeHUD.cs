@@ -665,7 +665,7 @@ public class MicrobeHUD : Control
 
     public void DisplayIntroMessage(string message)
     {
-        if (Settings.Instance.PlayMicrobeIntroVideo)
+        if (Settings.Instance.ShowNarrativeSlides)
         {
             if (TutorialState != null && !TutorialState.DisplayedMessages.Contains(message))
             {
@@ -1278,7 +1278,7 @@ public class MicrobeHUD : Control
     private void UpdateAbilitiesHotBar(Microbe player)
     {
         engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall 
-            && (!Settings.Instance.PlayMicrobeIntroVideo 
+            && (!Settings.Instance.ShowNarrativeSlides 
                 || (TutorialState != null && TutorialState.DisplayedMessages.Contains("EDITOR_MESSAGE_1") && player.EngulfSize >= 2));
         bindingModeHotkey.Visible = player.CanBind;
         fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;

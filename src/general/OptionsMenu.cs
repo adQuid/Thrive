@@ -545,7 +545,7 @@ public class OptionsMenu : ControlWithInput
 
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
-        playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
+        playMicrobeIntro.Pressed = settings.ShowNarrativeSlides;
         tutorialsEnabledOnNewGame.Pressed = settings.TutorialsEnabled;
         cheats.Pressed = settings.CheatsEnabled;
         autoSave.Pressed = settings.AutoSaveEnabled;
@@ -1342,7 +1342,7 @@ public class OptionsMenu : ControlWithInput
 
     private void OnMicrobeIntroToggled(bool pressed)
     {
-        Settings.Instance.PlayMicrobeIntroVideo.Value = pressed;
+        Settings.Instance.ShowNarrativeSlides.Value = pressed;
 
         UpdateResetSaveButtonState();
     }
