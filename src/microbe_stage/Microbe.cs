@@ -81,6 +81,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTra
     [JsonProperty]
     private MicrobeAI? ai;
 
+    [JsonProperty]
+    private DroneAI? droneAi;
+
     /// <summary>
     ///   3d audio listener attached to this microbe if it is the player owned one.
     /// </summary>
@@ -298,8 +301,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTra
         CurrentGame = currentGame;
         IsPlayerMicrobe = isPlayer;
 
-        if (!isPlayer)
+        //if (!isPlayer)
             ai = new MicrobeAI(this);
+        droneAi = new DroneAI(this);
 
         // Needed for immediately applying the species
         _Ready();
@@ -774,9 +778,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTra
 
     public MicrobeAIResponse? AIThink(float delta, Random random, MicrobeAICommonData data)
     {
-        if (IsPlayerMicrobe)
-            throw new InvalidOperationException("AI can't run on the player microbe");
-
         if (Dead)
             return null;
 
@@ -791,6 +792,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, ISaveLoadedTra
             GD.PrintErr("Microbe AI failure! ", e);
             return null;
         }
+    }
+
+    public DroneAIResponse? DroneAIThink(float delta, Random random, MicrobeAICommonData data)
+    {
+        return droneAi.Think(delta, random, data);
     }
 
     public override void _IntegrateForces(PhysicsDirectBodyState physicsState)

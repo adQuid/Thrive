@@ -153,16 +153,7 @@ public partial class Microbe
     {
         get
         {
-            if (Colony == null)
-                return state;
-
-            var colonyState = Colony.State;
-
-            // Override engulf mode in colony cells that can't engulf
-            if (colonyState == MicrobeState.Engulf && Membrane.Type.CellWall)
-                return MicrobeState.Normal;
-
-            return colonyState;
+            return state;
         }
         set
         {
@@ -181,8 +172,8 @@ public partial class Microbe
             }
 
             state = value;
-            if (Colony != null)
-                Colony.State = value;
+            /*if (Colony != null)
+                Colony.State = value;*/
 
             if (value == MicrobeState.Unbinding && IsPlayerMicrobe)
                 OnUnbindEnabled?.Invoke(this);

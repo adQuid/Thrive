@@ -64,6 +64,8 @@
     <Compile Include="src\early_multicellular_stage\CellLayout.cs" />
     <Compile Include="src\early_multicellular_stage\CellTemplate.cs" />
     <Compile Include="src\early_multicellular_stage\CellType.cs" />
+    <Compile Include="src\early_multicellular_stage\DroneAI.cs" />
+    <Compile Include="src\early_multicellular_stage\DroneAIResponse.cs" />
     <Compile Include="src\early_multicellular_stage\EarlyMulticellularSpecies.cs" />
     <Compile Include="src\early_multicellular_stage\editor\action_data\CellMoveActionData.cs" />
     <Compile Include="src\early_multicellular_stage\editor\action_data\CellPlacementActionData.cs" />
