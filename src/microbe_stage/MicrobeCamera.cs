@@ -46,7 +46,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     /// </summary>
     [Export]
     [JsonProperty]
-    public float MaxCameraHeight = 60.0f;
+    public float MaxCameraHeight = 55.0f;
 
     [Export]
     [JsonProperty]
