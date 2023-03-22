@@ -298,7 +298,8 @@ public class SpawnSystem
     {
         var spawns = 0;
 
-        foreach (var spawnType in spawnTypes)
+        foreach (var spawnType in spawnTypes
+            .Where(spawner => spawner is MicrobeSpawner && !((MicrobeSpawner)spawner).Species.PlayerSpecies))
         {
             var sectorCenter = new Vector3(sector.x * Constants.SPAWN_SECTOR_SIZE, 0,
                 sector.y * Constants.SPAWN_SECTOR_SIZE);
@@ -325,9 +326,12 @@ public class SpawnSystem
 
         var motileSpawns = spawnTypes.Where(x => x is MicrobeSpawner && ((MicrobeSpawner)x).Species.BaseSpeed > MathUtils.EPSILON).ToList();
 
-        spawns += SpawnWithSpawner(motileSpawns[(new Random()).Next(0, motileSpawns.Count())],
-            playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
-                Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
+        if (motileSpawns.Count() > 0)
+        {
+            spawns += SpawnWithSpawner(motileSpawns[(new Random()).Next(0, motileSpawns.Count())],
+                playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
+                    Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
+        }
 
         var debugOverlay = DebugOverlays.Instance;
 
