@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using System.Linq;
 
 /// <summary>
 ///   Spawns AI cells and other environmental things as the player moves around
@@ -297,7 +298,8 @@ public class SpawnSystem
     {
         var spawns = 0;
 
-        foreach (var spawnType in spawnTypes)
+        foreach (var spawnType in spawnTypes
+            .Where(spawner => !(spawner is MicrobeSpawner && ((MicrobeSpawner)spawner).Species.PlayerSpecies)))
         {
             var sectorCenter = new Vector3(sector.x * Constants.SPAWN_SECTOR_SIZE, 0,
                 sector.y * Constants.SPAWN_SECTOR_SIZE);
@@ -321,15 +323,14 @@ public class SpawnSystem
         var angle = random.NextFloat() * 2 * Mathf.Pi;
 
         var spawns = 0;
-        foreach (var spawnType in spawnTypes)
+
+        var motileSpawns = spawnTypes.Where(x => x is MicrobeSpawner && ((MicrobeSpawner)x).Species.BaseSpeed > MathUtils.EPSILON).ToList();
+
+        if (motileSpawns.Count() > 0)
         {
-            if (spawnType is MicrobeSpawner
-                && ((MicrobeSpawner)spawnType).Species.BaseSpeed > MathUtils.EPSILON)
-            {
-                    spawns += SpawnWithSpawner(spawnType,
-                        playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
-                            Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
-            }
+            spawns += SpawnWithSpawner(motileSpawns[(new Random()).Next(0, motileSpawns.Count())],
+                playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
+                    Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
         }
 
         var debugOverlay = DebugOverlays.Instance;

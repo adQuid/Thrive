@@ -32,7 +32,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     /// </summary>
     [Export]
     [JsonProperty]
-    public float DefaultCameraHeight = 40.0f;
+    public float DefaultCameraHeight = 30.0f;
 
     /// <summary>
     ///   Min height the camera can be scrolled to
@@ -46,7 +46,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     /// </summary>
     [Export]
     [JsonProperty]
-    public float MaxCameraHeight = 60.0f;
+    public float MaxCameraHeight = 40.0f;
 
     [Export]
     [JsonProperty]
