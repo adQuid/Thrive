@@ -21,6 +21,14 @@ class MicheFactory
     {
         var retval = new List<Miche>();
 
+        // Glucose
+        if (patch.GetCompoundAmount("glucose") > 0)
+        {
+            retval.Add(new Miche("Glucose Consumption", new ReachCompoundCloudPressure(5.0f),
+                new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 1.0f)) }
+            ));
+        }
+
         // Hydrogen Sulfide
         if (patch.GetCompoundAmount("hydrogensulfide") > 0)
         {
@@ -44,12 +52,15 @@ class MicheFactory
             );
         }
 
-        // Glucose
-        if (patch.GetCompoundAmount("glucose") > 0)
+        // Iron
+        if (patch.GetCompoundAmount("iron") > 0)
         {
-            retval.Add(new Miche("Glucose Consumption", new ReachCompoundCloudPressure(5.0f),
-                new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 1.0f)) }
-            ));
+            retval.Add(
+                new Miche("Iron Chemosynthesis", new AutotrophEnergyEfficiencyPressure(patch, Compound.ByName("iron"), 1.0f),
+                    new List<Miche> { new Miche("Mobile Iron Chemosynthesis", new ReachCompoundCloudPressure(1.0f),
+                        new List<Miche> { new Miche("and don't die", new MetabolicStabilityPressure(patch, 1.0f)) })
+                    })
+            );
         }
 
         return retval;
