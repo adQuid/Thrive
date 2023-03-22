@@ -299,7 +299,7 @@ public class SpawnSystem
         var spawns = 0;
 
         foreach (var spawnType in spawnTypes
-            .Where(spawner => spawner is MicrobeSpawner && !((MicrobeSpawner)spawner).Species.PlayerSpecies))
+            .Where(spawner => !(spawner is MicrobeSpawner && ((MicrobeSpawner)spawner).Species.PlayerSpecies)))
         {
             var sectorCenter = new Vector3(sector.x * Constants.SPAWN_SECTOR_SIZE, 0,
                 sector.y * Constants.SPAWN_SECTOR_SIZE);
