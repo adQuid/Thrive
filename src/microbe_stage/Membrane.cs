@@ -663,7 +663,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
         // Loops through all the points in the membrane and relocates them as necessary.
         for (int i = 0, end = sourceBuffer.Count; i < end; i++)
         {
-            var closestOrganelle = FindClosestOrganelleInRange(sourceBuffer[i], 3f);
+            var closestOrganelle = FindClosestOrganelleInRange(sourceBuffer[i], 3.9f);
             if (closestOrganelle ==
                 new Vector2(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE))
             {
