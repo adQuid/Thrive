@@ -136,7 +136,7 @@ public class Miche
         }
 
         // If nothing has been ruled out, trickle it down
-        if (newDictionary.AsEnumerable().Where(x => x.Value > INVIABLE_PRESSURE_RESULT).Count() > 0 && Pressure.Score(species, new SimulationCache()) > 0)
+        if ((newDictionary.Count() == 0 || newDictionary.AsEnumerable().Where(x => x.Value > INVIABLE_PRESSURE_RESULT).Count() > 0) && Pressure.Score(species, new SimulationCache()) > 0)
         {
             var retval = false;
 
