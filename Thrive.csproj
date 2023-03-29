@@ -34,6 +34,7 @@
     <Compile Include="src\auto-evo\simulation\food_source\HeterotrophicFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\EnvironmentalFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\MutationLogicFunctions.cs" />
+    <Compile Include="src\auto-evo\simulation\MutationStrategy\AddMultipleOrganelles.cs" />
     <Compile Include="src\auto-evo\simulation\MutationStrategy\AddOrganelleAnywhere.cs" />
     <Compile Include="src\auto-evo\simulation\MutationStrategy\ChangeBehaviorScore.cs" />
     <Compile Include="src\auto-evo\simulation\MutationStrategy\ChangeMembraneType.cs" />
