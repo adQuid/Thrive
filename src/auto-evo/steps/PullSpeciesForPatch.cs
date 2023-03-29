@@ -98,7 +98,10 @@ class PullSpeciesForPatch : IRunStep
         }
 
         // If no existing species can do the job, make a new one
-        retval.AddRange(FillEmptyMiches(foreignSpecies, results, patch, cache));
+        if (retval.Count() == 0)
+        {
+            retval.AddRange(FillEmptyMiches(foreignSpecies, results, patch, cache));
+        }
 
         return retval;
     }
