@@ -4068,7 +4068,7 @@ msgstr "EXTINCTION"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
-msgstr "Just like 99% of all species that have ever existed, your species has gone extinct. Others will go on to fill in your niche and thrive, but that won’t be you. You will be forgotten, a failed experiment in evolution."
+msgstr "Just like 99% of all species that have ever existed, your species has gone extinct. Life may have a future on this world, perhaps even intelligence, but it will never know you. Your recipe will be lost, compressed into indistinguishable layers of rock, as though your molecules had never lived at all."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
