@@ -49,7 +49,7 @@ public class CurrentSystem
 
             if (ciliaCount > 0)
             {
-                sinkholes.Add(new Sinkhole(microbe.Translation, ciliaCount * 0.01f));
+                sinkholes.Add(new Sinkhole(microbe.Translation, ciliaCount * 0.03f));
             }
         }
 
