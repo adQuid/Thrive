@@ -7,6 +7,8 @@ class MetabolicStabilityPressure : SelectionPressure
 {
     private Patch Patch;
 
+    private AutotrophEnergyEfficiencyPressure SunPressure;
+
     public MetabolicStabilityPressure(Patch patch, float weight) : base(true,
         weight,
         new List<IMutationStrategy<MicrobeSpecies>>
@@ -17,6 +19,7 @@ class MetabolicStabilityPressure : SelectionPressure
         )
     {
         Patch = patch;
+        SunPressure = new AutotrophEnergyEfficiencyPressure(patch, Compound.ByName("sunlight"), 1.0f);
     }
 
     public override string Name()
@@ -28,6 +31,12 @@ class MetabolicStabilityPressure : SelectionPressure
     {
         if (species is MicrobeSpecies)
         {
+            if (((MicrobeSpecies)species).BaseSpeed == 0
+                && SunPressure.Score(species, cache) < 0.1f)
+            {
+                return 0.0f;
+            }
+
             return ScoreByCell((MicrobeSpecies)species, cache);
         }
         else
