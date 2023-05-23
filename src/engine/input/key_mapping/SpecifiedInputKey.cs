@@ -86,7 +86,7 @@ public class SpecifiedInputKey : ICloneable
         {
             InputType.Key => new InputEventKey { Scancode = Code },
             InputType.MouseButton => new InputEventMouseButton { ButtonIndex = (int)Code },
-            _ => throw new NotSupportedException("Unsupported InputType given"),
+            _ => new InputEventKey { Scancode = Code},
         };
 
         result.Alt = Alt;
